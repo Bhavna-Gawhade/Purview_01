@@ -12,7 +12,7 @@ from pathlib import Path
 from pyapacheatlas.core.typedef import AtlasAttributeDef, AtlasStructDef, TypeCategory
 from pyapacheatlas.core import AtlasEntity, AtlasProcess
 from azure.core.exceptions import HttpResponseError
-from purview.utils import get_credentials, create_purview_client
+from utils import get_credentials, create_purview_client
 import json
 
 
@@ -29,18 +29,11 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # ---------------
 
 
-
 # Main Function
 # ---------------
 
 def main():
-    """
-    For testing
-
-    """
     print()
-
-    ### Testing
 
     
 if __name__ == '__main__':

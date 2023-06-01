@@ -31,9 +31,6 @@ def get_credentials(cred_type: str, client_id: str = None, client_secret: str = 
 
     Returns:
         Union[DefaultAzureCredential, ClientSecretCredential]: The created credentials.
-
-    Raises:
-        ValueError: If the provided cred_type is not supported or if cred_type is 'client_secret' but client_id, client_secret, or tenant_id are not provided.
     """
     if cred_type == 'default':
         return DefaultAzureCredential()

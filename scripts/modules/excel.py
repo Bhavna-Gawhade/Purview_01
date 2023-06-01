@@ -10,7 +10,8 @@ from pyapacheatlas.auth import ServicePrincipalAuthentication
 from pyapacheatlas.core import PurviewClient  # Communicate with your Atlas server
 from pyapacheatlas.readers import ExcelConfiguration, ExcelReader
 from pyapacheatlas.scaffolding.column_lineage import column_lineage_scaffold
-s
+
+
 def fill_in_workbook(filepath, excel_config):
     # You can safely ignore this function as it just
     # populates the excel spreadsheet.
@@ -50,6 +51,9 @@ def fill_in_workbook(filepath, excel_config):
 
 
 def test_verify_all_template_sheets():
+    """
+    Need to test
+    """
     # Setup
     temp_path = "./temp_verfiysheets.xlsx"
     ExcelReader.make_template(temp_path, include_deprecated=True)
@@ -70,6 +74,9 @@ def test_verify_all_template_sheets():
         os.remove(temp_path)
 
 def test_verify_default_template_sheets():
+    """
+    Need to test
+    """
     # Setup
     temp_path = "./temp_verfiysheets.xlsx"
     ExcelReader.make_template(temp_path)
@@ -89,6 +96,9 @@ def test_verify_default_template_sheets():
         os.remove(temp_path)
 
 def test_verify_custom_template_sheets():
+    """
+    Need to test
+    """
     # Setup
     temp_path = "./temp_customizesheetnames.xlsx"
     ExcelReader.make_template(temp_path,
@@ -118,6 +128,9 @@ def test_verify_custom_template_sheets():
         os.remove(temp_path)
 
 def test_custom_template_header_prefix():
+    """
+    Need to test
+    """
     # Setup
     temp_path = "./test_custom_template_header_prefix.xlsx"
     ExcelReader.make_template(temp_path,
@@ -162,6 +175,9 @@ def test_custom_template_header_prefix():
         os.remove(temp_path)
 
 def setup_workbook_custom_sheet(filepath, sheet_name, headers, json_rows):
+    """
+    Need to test
+    """
     wb = Workbook()
     customSheet = wb.active
     customSheet.title = sheet_name
@@ -179,6 +195,9 @@ def setup_workbook_custom_sheet(filepath, sheet_name, headers, json_rows):
 
 
 def setup_workbook(filepath, sheet_name, max_col, json_rows, include_deprecated=False):
+    """
+    Need to test
+    """
     if not os.path.exists(filepath):
         ExcelReader.make_template(filepath, include_deprecated=include_deprecated)
     wb = load_workbook(filepath)
@@ -195,11 +214,17 @@ def setup_workbook(filepath, sheet_name, max_col, json_rows, include_deprecated=
 
 
 def remove_workbook(filepath):
+    """
+    Need to test
+    """
     if os.path.exists(filepath) and os.path.isfile(filepath):
         os.remove(filepath)
 
 
 def test_excel_typeDefs_entityTypes():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_typeDefs_entityTYpes.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -229,6 +254,9 @@ def test_excel_typeDefs_entityTypes():
 
 
 def test_excel_typeDefs_entityTypes_superTypes():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_typeDefs_entityTypesWithSuperTypes.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -274,6 +302,9 @@ def test_excel_typeDefs_entityTypes_superTypes():
 
 
 def test_excel_bulkEntities():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_bulkEntities.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -300,6 +331,9 @@ def test_excel_bulkEntities():
 
 
 def test_excel_bulkEntities_withClassifications():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_bulkEntitiesWithClassifications.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -339,6 +373,9 @@ def test_excel_bulkEntities_withClassifications():
 
 
 def test_excel_bulkEntities_dynamicAttributes():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_bulkEntitieswithAttributes.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -384,6 +421,9 @@ def test_excel_bulkEntities_dynamicAttributes():
 
 
 def test_excel_bulkEntities_meanings_relationships():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_bulkEntitieswithMeanings.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -431,6 +471,9 @@ def test_excel_bulkEntities_meanings_relationships():
 
 
 def test_excel_table_lineage():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_table_lineage.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -463,6 +506,9 @@ def test_excel_table_lineage():
 
 
 def test_excel_finegrain_column_lineage():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_column_lineage.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -553,6 +599,9 @@ def test_excel_finegrain_column_lineage():
 
 
 def test_excel_update_lineage():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_updateLineage.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -579,6 +628,9 @@ def test_excel_update_lineage():
 
 
 def test_excel_classification_defs():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_classificationDefs.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)
@@ -606,6 +658,9 @@ def test_excel_classification_defs():
         remove_workbook(temp_filepath)
 
 def test_excel_column_mapping():
+    """
+    Need to test
+    """
     temp_filepath = "./temp_test_excel_columnMapping.xlsx"
     ec = ExcelConfiguration()
     reader = ExcelReader(ec)

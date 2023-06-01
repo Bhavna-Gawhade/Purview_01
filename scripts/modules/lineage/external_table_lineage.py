@@ -3,7 +3,7 @@
 
 # Function Imports
 # ---------------
-from purview.utils import get_credentials, create_purview_client
+from utils import get_credentials, create_purview_client
 from modules import *
 from shared_lineage_functions import *
 
@@ -77,10 +77,6 @@ def extract_source_and_target_from_external_table(sql_file_path: str):
 
     Returns:
         tuple: A tuple containing the extracted source location and target table name.
-
-    Raises:
-        FileNotFoundError: If the specified SQL file does not exist.
-        ValueError: If the source location or target table name cannot be extracted from the SQL file.
     """
     try:
         with open(sql_file_path, 'r') as file:

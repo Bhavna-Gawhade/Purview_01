@@ -1,24 +1,27 @@
+##! /usr/bin/env python3
+
+
+# Function Imports
+# ---------------
+
+from utils import get_credentials, create_purview_client
+from modules.entity import *
+
+
+# Package Imports
+# ---------------
+
 import json
 import os
-
-# PyApacheAtlas packages
 from pyapacheatlas.auth import ServicePrincipalAuthentication
 from pyapacheatlas.core import PurviewClient
 from pyapacheatlas.core.glossary import PurviewGlossaryTerm
 
 
-# From own files
-from purview.utils import get_credentials, create_purview_client
-from modules.entity import *
-
-
 # Constants
 # ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
 
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-ENDPOINT = f"https://{REFERENCE_NAME_PURVIEW}.purview.azure.com/"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)

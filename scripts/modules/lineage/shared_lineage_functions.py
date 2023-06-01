@@ -3,7 +3,7 @@
 
 # Function Imports
 # ---------------
-from purview.utils import get_credentials, create_purview_client
+from utils import get_credentials, create_purview_client
 from modules.entity import *
 from shared_lineage_functions import *
 
@@ -59,9 +59,6 @@ def add_manual_lineage(source_entities: list, target_entities: list, process_typ
 
     Returns:
         dict: Result of the entity upload operation.
-
-    Raises:
-        ValueError: If any of the inputs are invalid.
     """
     try:
         sources = []

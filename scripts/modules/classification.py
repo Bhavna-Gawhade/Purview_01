@@ -1,18 +1,10 @@
 ##! /usr/bin/env python3
 
 
-# File Notes
-# ---------------
-__author__ = "User Name"
-__version__ = "1.0"
-__email__ = "dylan.gregorysmith@gmail.com"
-__status__ = "Development"
-
-
 # Function Imports
 # ---------------
 from modules import entity
-from purview.utils import get_credentials, create_purview_client
+from utils import get_credentials, create_purview_client
 
 
 # Package Imports
