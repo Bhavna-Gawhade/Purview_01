@@ -1,12 +1,5 @@
 ##! /usr/bin/env python3
-"""
-    Objects & Methods
-    ---------
 
-    Sample Invocation
-    ---------
-
-"""
 
 # File Notes
 # ---------------
@@ -21,6 +14,7 @@ __status__ = "Development"
 from modules import entity
 from purview.utils import get_credentials, create_purview_client
 
+
 # Package Imports
 # ---------------
 from pyapacheatlas.core import AtlasEntity
@@ -32,57 +26,15 @@ from pathlib import Path
 
 # Constants
 # ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
 
-storage_name = "<name of your Storage Account>"
-storage_id = "<id of your Storage Account>"
-rg_name = "<name of your resource group>"
-rg_location = "<location of your resource group>"
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 
-
-# Classes
-# ---------------
-# Define classes after the constants. 
-
-
 # Functions
 # ---------------
-
-def test_add_classifications():
-    ae = AtlasEntity(name="a", typeName="b", qualified_name="c", guid=-1)
-    ae.addClassification("a","b", AtlasClassification("c"))
-    assert(ae.classifications)
-
-    expected = [AtlasClassification("a").to_json(), AtlasClassification("b").to_json(),
-    AtlasClassification("c").to_json()
-    ]
-    
-    assert(ae.classifications == expected)
-
-
-def test_add_classifications_transaction():
-    ae = AtlasEntity(name="a", typeName="b", qualified_name="c", guid=-1)
-    # Confirm that it will keep the initial state as uninitialized
-    try:
-        ae.addClassification("a","b", 123, AtlasClassification("c"))
-    except Exception as e:
-        pass
-    assert(isinstance(ae.classifications, AtlasUnInit))
-    
-    # Now confirm that it will keep the initial state
-    ae.addClassification("a")
-    try:
-        ae.addClassification(123)
-    except:
-        pass
-    assert(ae.classifications == [AtlasClassification("a").to_json()])
-
 
 def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
     """
@@ -164,12 +116,7 @@ def get_entity_classification(qualified_name: str):
 # Put the code to be executed inside a main() function, 
 # and call it at the bottom of the module with an if __name__ == "__main__" block. 
 def main():
-    """
-    Explain the steps walked through for the main dataflow
-
-    """
-
-    ### Testing
+    print()
     
 
 if __name__ == '__main__':

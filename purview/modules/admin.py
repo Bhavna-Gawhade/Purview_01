@@ -1,18 +1,5 @@
 ##! /usr/bin/env python3
-"""
-    Objects & Methods
-    ---------
 
-    Sample Invocation
-    ---------
-
-"""
-
-# File Notes
-__author__ = "User Name"
-__version__ = "1.0"
-__email__ = "dylan.gregorysmith@gmail.com"
-__status__ = "Development"
 
 # Imports
 # ---------------
@@ -27,15 +14,6 @@ from azure.core.exceptions import HttpResponseError
 from azure.identity import DefaultAzureCredential, ClientSecretCredential
 from typing import Union
 import json
-
-# Constants
-# ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
-
-CONSTANT_1 = 'X'
-CONSTANT_2 = 'Y'
-
 
 
 # Functions
@@ -69,6 +47,7 @@ def get_credentials(cred_type: str, client_id: str = None, client_secret: str = 
         return ServicePrincipalAuthentication(tenant_id=tenant_id,client_id=client_id,client_secret=client_secret)
     else:
         raise ValueError(f"Invalid cred_type provided: {cred_type}")
+    
     
 def create_purview_client(credentials: Union[DefaultAzureCredential, ClientSecretCredential, ServicePrincipalAuthentication], purview_account: str, mod_type: str) -> PurviewClient:
     """
