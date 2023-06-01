@@ -1,21 +1,9 @@
 ##! /usr/bin/env python3
-"""
-    Objects & Methods
-    ---------
 
-    Sample Invocation
-    ---------
-
-"""
-
-# File Notes
-__author__ = "User Name"
-__version__ = "1.0"
-__email__ = "dylan.gregorysmith@gmail.com"
-__status__ = "Development"
 
 # Imports
 # ---------------
+
 from pyapacheatlas.core import PurviewClient
 from pyapacheatlas.auth import ServicePrincipalAuthentication
 from pyapacheatlas.core import PurviewClient
@@ -24,13 +12,10 @@ from pathlib import Path
 from azure.identity import ClientSecretCredential, DefaultAzureCredential
 from typing import Union
 
+
 # Constants
 # ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
 
-CONSTANT_1 = 'X'
-CONSTANT_2 = 'Y'
 
 # Functions
 # ---------------
@@ -64,39 +49,51 @@ def get_credentials(cred_type: str, client_id: str = None, client_secret: str = 
     else:
         raise ValueError(f"Invalid cred_type provided: {cred_type}")
     
+
 def create_purview_client(credentials: Union[DefaultAzureCredential, ClientSecretCredential, ServicePrincipalAuthentication], purview_account: str, mod_type: str) -> PurviewClient:
     """
     Creates and returns a PurviewClient object authenticated with Azure AD Service Principal.
 
     Args:
-        mod_type (str): The type of python module to use for the operations
-        tenant_id (str): The Azure AD tenant ID.
-        client_id (str): The client ID (Application ID) of the Azure AD Service Principal.
-        client_secret (str): The client secret (Application Secret) of the Azure AD Service Principal.
+        credentials (Union[DefaultAzureCredential, ClientSecretCredential, ServicePrincipalAuthentication]): The credentials for authentication.
         purview_account (str): The name of the Azure Purview account.
+        mod_type (str): The type of python module to use for the operations.
 
     Returns:
         PurviewClient: An authenticated PurviewClient object.
+
+    Raises:
+        ValueError: If an unsupported module type is specified.
+        Exception: If an error occurs during the PurviewClient instantiation.
     """
-    # Instantiate the PurviewClient
-    if mod_type == 'pyapacheatlas':
-        return PurviewClient(account_name=purview_account, authentication=credentials)
-    
+    try:
+        # Instantiate the PurviewClient
+        if mod_type == 'pyapacheatlas':
+            return PurviewClient(account_name=purview_account, authentication=credentials)
+        else:
+            raise ValueError("Unsupported module type: " + mod_type)
+    except Exception as e:
+        raise Exception("Error occurred during PurviewClient instantiation.") from e
+
+
 def save_dict_to_json(data: dict, path: Path, filename: str):
     """
-    Save a dictionary to a JSON file nested within the current directory.
+    Save a dictionary to a JSON file nested within the specified directory.
 
     Args:
         data (dict): The dictionary to be saved.
+        path (Path): The directory path where the JSON file will be saved.
         filename (str): The name of the JSON file.
     """
-    # Convert the dictionary to JSON format
-    json_data = json.dumps(data, indent=2)
+    try:
+        # Convert the dictionary to JSON format
+        json_data = json.dumps(data, indent=2)
 
+        # Create a Path object for the output file
+        file_path = path.joinpath(filename)
 
-    # Create a Path object for the output file
-    file_path = path.joinpath(filename)
-
-    # Write the JSON data to the file
-    with file_path.open(mode='w') as file:
-        file.write(json_data)
+        # Write the JSON data to the file
+        with file_path.open(mode='w') as file:
+            file.write(json_data)
+    except IOError as e:
+        raise IOError("Error occurred while writing the JSON file.") from e
