@@ -1,0 +1,63 @@
+{
+    "relationship_types": {
+        "asset_relationship": {
+            "description": "Represents a generic relationship between two assets.",
+            "example": "Creating lineage between a source table and a target table."
+        },
+        "data_flow": {
+            "description": "Represents a data flow relationship between two assets.",
+            "example": "Capturing the data flow from a source database to a target data lake."
+        },
+        "data_transformation": {
+            "description": "Represents a data transformation relationship between two assets.",
+            "example": "Tracking the transformation process between a source dataset and a transformed dataset."
+        },
+        "data_owner": {
+            "description": "Represents the ownership relationship of data assets.",
+            "example": "Establishing the ownership of a data asset by assigning a data owner."
+        },
+        "data_consumer": {
+            "description": "Represents the consumption relationship of data assets.",
+            "example": "Identifying the consumers of a specific data asset."
+        },
+        "data_supplier": {
+            "description": "Represents the supply relationship of data assets.",
+            "example": "Establishing the data suppliers for a specific data asset."
+        },
+        "data_source": {
+            "description": "Represents the source relationship of data assets.",
+            "example": "Indicating the source of data for a particular asset."
+        },
+        "data_target": {
+            "description": "Represents the target relationship of data assets.",
+            "example": "Indicating the target location where data is being sent."
+        }
+    },
+    "lineage_attributes": {
+        "source_type": {
+            "description": "The type of the source asset.",
+            "example": "Table"
+        },
+        "source_name": {
+            "description": "The name of the source asset.",
+            "example": "customer_table"
+        },
+        "target_type": {
+            "description": "The type of the target asset.",
+            "example": "View"
+        },
+        "target_name": {
+            "description": "The name of the target asset.",
+            "example": "customer_view"
+        },
+        "transformation_type": {
+            "description": "The type of data transformation performed.",
+            "example": "Join"
+        },
+        "transformation_details": {
+            "description": "Details about the data transformation.",
+            "example": "Join customer_table with orders_table on customer_id"
+        }
+    }
+    
+}

@@ -1,0 +1,98 @@
+{
+    "$schema": "https://hbidvanalyticsweb.z20.web.core.windows.net/schema/processPayload/schema/payload.schema.json",
+    "processId": 306,
+    "parentProcessId": null,
+    "displayName": "DimWinningPortfolioSkuList",
+    "processType": "Data",
+    "dataFactoryInstance": "01",
+    "pipelineName": "common_driver_stage_to_synapse",
+    "isActive": true,
+    "configurationPayload": {
+        "processPayload": [
+            {
+                "processSystem": "databricks",
+                "processType": "notebook",
+                "label": "Staging Ingest -> Curated",
+                "processConfig": {
+                    "notebookPath": "/Common/01/Workflows/Pipelines/Curated/DimWinningPortfolioSkuList/DimWinningPortfolioSkuListDriver",
+                    "linkedService": {
+                        "jobComplexity": "simple",
+                        "jobSize": "small",
+                        "clusterConfig": {
+                            "workerType": "Standard_F4s",
+                            "workers": "8",
+                            "driverType": "Standard_F4s"
+                        }
+                    }
+                }
+            },
+            {
+                "processSystem": "databricks",
+                "processType": "notebook",
+                "label": "Curated -> Synapse",
+                "processConfig": {
+                    "notebookPath": "/Common/DataPlatform/Workflows/Pipelines/Synapse/Common/common_curated_to_synapse",
+                    "linkedService": {
+                        "jobComplexity": "simple",
+                        "jobSize": "small",
+                        "clusterConfig": {
+                            "workerType": "Standard_F4s",
+                            "workers": "8",
+                            "driverType": "Standard_F4s"
+                        }
+                    }
+                }
+            },
+            {
+                "processSystem": "databricks",
+                "processType": "notebook",
+                "label": "Curated Ingest -> Curated Archive",
+                "processConfig": {
+                    "notebookPath": "/Common/DataPlatform/Workflows/Pipelines/Curated/Common/common_curated_ingest_to_archive",
+                    "linkedService": {
+                        "jobComplexity": "simple",
+                        "jobSize": "small",
+                        "clusterConfig": {
+                            "workerType": "Standard_F4s",
+                            "workers": "8",
+                            "driverType": "Standard_F4s"
+                        }
+                    }
+                }
+            }
+        ],
+        "dataPayload": [
+            {
+                "label": "Curated Ingest Source",
+                "dataSystem": "databricks",
+                "dataSource": "delta",
+                "dataConfig": {
+                    "path": "/mnt/curated/Inventory/US/Manual/DimWinningPortfolioSkuList/Ingest/"
+                }
+            },
+            {
+                "label": "Curated Archive Sink",
+                "dataSystem": "databricks",
+                "dataSource": "delta",
+                "dataConfig": {
+                    "path": "/mnt/curated/Inventory/US/Manual/DimWinningPortfolioSkuList/Archive/",
+                    "mergeColumns": [
+                        "SKUGlobal"
+                    ]
+                }
+            },
+            {
+                "label": "Synapse Sink",
+                "dataSystem": "databricks",
+                "dataSource": "Synapse",
+                "dataConfig": {
+                    "synapseTable": "stage.DimWinningPortfolioSkuList",
+                    "tempContainer": "synapse",
+                    "tempDirectory": "Inventory/DimWinningPortfolioSkuList",
+                    "mergeProcedure": "Common.LoadDimWinningPortfolioSkuList",
+                    "maxStrLen": "350"
+                }
+            }
+        ]
+    }
+}
