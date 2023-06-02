@@ -4,17 +4,19 @@
 # Import Packages
 # ---------------
 import json
+from pathlib import Path
 
 
 # Import Functions
 # ---------------
-from modules.lineage.external_table_lineage import *
-from modules.lineage.json_payload_lineage import *
-from modules.lineage.shared_lineage_functions import *
-from modules.lineage.stored_procedure_lineage import *
+from scripts.modules.lineage.external_table_lineage import *
+from scripts.modules.lineage.json_payload_lineage import *
+from scripts.modules.lineage.shared_lineage_functions import *
+from scripts.modules.lineage.stored_procedure_lineage import *
 
 # Constants
 # ---------------
+PROJ_PATH = Path(__file__).resolve().parent
 
 
 # Functions
@@ -37,6 +39,7 @@ def example_get_and_add_lineage_for_synapse_external_table():
     entity_type_name = "synapse_external_table"
     result = get_and_add_lineage(table_names, [source_header, target_header], entity_type_name)
     print(json.dumps(result, indent=2))
+
 
 def example_get_and_add_lineage_from_payload():
     # Open the JSON file using `with open`
