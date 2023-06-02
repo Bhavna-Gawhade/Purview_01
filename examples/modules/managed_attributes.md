@@ -1,30 +1,32 @@
-##! /usr/bin/env python3
+# Managed Attributes Examples
 
-# Import Packages
-# ---------------
-import json
+## Create a Managed Attribute Group and Attributes
 
+In order to create managed attributes, you have to first create a managed attribute group for those attributes. Thus you must specifiy the group name as well as all of the attribute names for within that group.
 
-# Import Functions
-# ---------------
+```python
 from scripts.modules.managed_attributes import *
-from scripts.modules.entity import *
-
-
-# Constants
-# ---------------
-
-
-# Functions
-# ---------------
-
+import json
 
 def example_create_managed_attribute_group_and_attributes():
     # Create an attribute group and attributes
     attribute_group_name = "PRODUCT"
     attribute_names = ["SIZE", "STRUCTURE"]
+
+    # Upload and create the attribute group and attributes
     response = create_attribute(CLIENT, attribute_group_name, attribute_names)
     print(json.dumps(response))
+```
+
+
+## Add Managed Attributes to an Entity
+
+With an exisiting managed attribute, you can add a value to that attribute for a particular entity. You will need to first pull the entity you would like to associate this attribute with. Then you specify the attribute's name and the value you want to give it for this entity. Finally, you upload and add the attribute to the entity.
+
+```python
+from scripts.modules.managed_attributes import *
+from scripts.modules.entity import *
+import json
 
 def example_add_attributes_to_entity():
     # Get an entity
@@ -41,14 +43,5 @@ def example_add_attributes_to_entity():
     attribute_value = "15.5"
     response = add_attributes_to_entity(CLIENT, entity_type, attribute_group_name, attribute_name, attribute_value)
     print(json.dumps(response))
+```
 
-
-# Main Function
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

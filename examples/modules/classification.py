@@ -1,12 +1,13 @@
 ##! /usr/bin/env python3
 
+
 # Import Packages
 # ---------------
 
 
 # Import Functions
 # ---------------
-from modules.classification import *
+from scripts.modules.classification import *
 
 
 # Constants
@@ -19,7 +20,6 @@ from modules.classification import *
 def example_associate_classification_entities_with_glossary_term():
     classification_name = "BOM"
     glossary_term_name = "Bill of Material"
-    
     result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
     print(result)
 
