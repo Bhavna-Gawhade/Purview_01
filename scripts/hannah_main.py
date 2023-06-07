@@ -3,7 +3,7 @@
 
 # Import Functions
 # ---------------
-from modules import entity
+from modules import entity, classification
 
 
 # Import Packages

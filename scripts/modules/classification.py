@@ -9,9 +9,8 @@ from utils import get_credentials, create_purview_client
 
 # Package Imports
 # ---------------
-from pyapacheatlas.core import AtlasEntity
+from pyapacheatlas.core import AtlasEntity, AtlasClassification
 from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
-from pyapacheatlas.core import AtlasClassification
 import json
 from pathlib import Path
 
