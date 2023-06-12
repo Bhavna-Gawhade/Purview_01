@@ -62,12 +62,15 @@ def create_collection(name: str, friendly_name: str, parent_collection_name: str
     Returns:
         dict: The result of creating or updating the collection.
     """
-    try:
-        result = CLIENT.collections.create_or_update_collection(name, friendly_name, parent_collection_name, description)
+    '''try:
+        result = CLIENT.collections.create_or_update_collection(name = name, friendlyName = friendly_name, parentCollectionName = parent_collection_name, description = description)
         return result
     except Exception as e:
         print(f"An error occurred while creating or updating the collection: {e}")
-        return None
+        return None'''
+    result = CLIENT.collections.create_or_update_collection(name = name, friendlyName = friendly_name, parentCollectionName = parent_collection_name, description = description)
+    return result
+
 
 
 # Main Processing

@@ -35,20 +35,6 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 def main():
     print()
 
-    """ Get Collections Example """
-    collections = collection.get_collections()
-    print(collections)
-
-    """ Create Collection Example - NEED TO TEST """
-    friendly_name = "Unclassified"
-    friendly_name_snake_case = "unclassified"
-    # Note, "hbi-qa01-datamgmt-pview" is the name of the root directory and has the same name as the account, and cannot be changed
-    parent_collection_name = "hbi-qa01-datamgmt-pview" 
-    name = parent_collection_name + "/" + friendly_name_snake_case
-    description = "This collection will hold all of HBI's resources that have been scanned, but not classified yet"
-    result = collection.create_collection(name, friendly_name, parent_collection_name, description)
-    print(result)
-
     
 if __name__ == '__main__':
     main()
