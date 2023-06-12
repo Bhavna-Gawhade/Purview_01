@@ -30,27 +30,134 @@ ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
 # Functions
 # ---------------
 
-def get_collections():
-    """
-    Retrieves a list of collections.
+def find_collection(collections, parent_collection):
+    for collection in collections:
+        if collection["name"] == parent_collection:
+            return collection
+        subcollections = collection.get("subcollections", [])
+        if subcollections:
+            found_collection = find_collection(subcollections, parent_collection)
+            if found_collection:
+                return found_collection
+    return None
+
+
+def structure_collection_data(generator):
+    collections = []
+    for item in generator:
+        parent_collection = item.get("parentCollection", {}).get("referenceName")
+        collection = {
+            "name": item["name"],
+            "friendly_name": item["friendlyName"],
+            "description": item["description"],
+            "parent_collection": parent_collection,
+            "subcollections": []
+        }
+        if parent_collection:
+            parent = find_collection(collections, parent_collection)
+            if parent:
+                parent["subcollections"].append(collection)
+            else:
+                collections.append(collection)
+        else:
+            collections.append(collection)
+
+    return collections
+
+
+def nest_collections(data):
+    collections = {}
+    for item in data:
+        name = item.get('name')
+        friendly_name = item.get('friendlyName')
+        description = item.get('description')
+        parent_collection = item.get('parentCollection', {}).get('referenceName')
+        if name not in collections:
+            collections[name] = {
+                'name': name,
+                'friendly_name': friendly_name,
+                'description': description,
+                'parent_collection': parent_collection,
+                'subcollections': []
+            }
+        else:
+            collections[name]['friendly_name'] = friendly_name
+            collections[name]['description'] = description
+            collections[name]['parent_collection'] = parent_collection
+
+        if parent_collection:
+            if parent_collection not in collections:
+                collections[parent_collection] = {
+                    'name': parent_collection,
+                    'friendly_name': None,
+                    'description': None,
+                    'parent_collection': None,
+                    'subcollections': []
+                }
+            collections[parent_collection]['subcollections'].append(collections[name])
+
+    return [collection for collection in collections.values() if not collection['parent_collection']]
+
+
+def flatten_collections(data):
+    collections = {}
+    data = list(data)  # Convert generator to list
+    for item in data:
+        name = item['name']
+        friendly_name = item['friendlyName']
+        description = item['description']
+        parent_collection = item.get('parentCollection', {}).get('referenceName')
+
+        if name not in collections:
+            collections[name] = {
+                'name': name,
+                'friendly_name': friendly_name,
+                'description': description,
+                'parent_collection': parent_collection,
+                'subcollections': []
+            }
+
+        if parent_collection:
+            if parent_collection not in collections:
+                collections[parent_collection] = {
+                    'name': parent_collection,
+                    'friendly_name': '',
+                    'description': '',
+                    'parent_collection': None,
+                    'subcollections': []
+                }
+
+            collections[parent_collection]['subcollections'].append(name)
+
+    return list(collections.values())
+
+
+def get_nested_collections():
+    """s
+    Retrieves a list of collections that are nested.
 
     Returns:
         list: A list of dictionaries representing the collections.
     """
-    collections = []
     generator = CLIENT.collections.list_collections()
-    for g in generator:
-        collection = {
-            "name": g["name"],
-            "friendly_name": g["friendlyName"],
-            "description": g["description"]
-        }
-        collections.append(collection)
+    collections = nest_collections(generator)
+    return collections
+
+
+def get_flattened_collections():
+    """
+    Retrieves a list of collections that is a flattened hierarchy.
+
+    Returns:
+        list: A list of dictionaries representing the collections.
+    """
+    generator = CLIENT.collections.list_collections()
+    collections = flatten_collections(generator)
     return collections
 
 
 def get_existing_collection_names():
-    collections = get_collections()
+    collections = get_flattened_collections()
     collection_names = []
     for c in collections:
         collection_names.append(c["name"])

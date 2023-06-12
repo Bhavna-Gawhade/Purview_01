@@ -1,13 +1,37 @@
 # Collection Examples
 
-## Getting Collections
+## Getting Collections in a Flattened Structure
 
 ```python
 from scripts.modules.collection import *
 
-def example_get_collections():
-    collections = get_collections()
-    print(collections)
+def example_get_flattened_collections():
+    result = get_flattened_collections()
+    print(result)
+```
+
+<br />
+
+## Getting Collections in a Nested Structure
+
+```python
+from scripts.modules.collection import *
+
+def example_get_nested_collections():
+    result = get_nested_collections()
+    print(result)
+```
+
+<br />
+
+## Getting Existing Collection Names
+
+```python
+from scripts.modules.collection import *
+
+def example_get_existing_collection_names():
+    result = get_existing_collection_names()
+    print(result)
 ```
 
 <br />
