@@ -99,9 +99,9 @@ def flatten_collections(data):
     collections = {}
     data = list(data)  # Convert generator to list
     for item in data:
-        name = item['name']
-        friendly_name = item['friendlyName']
-        description = item['description']
+        name = item.get('name')
+        friendly_name = item.get('friendlyName')
+        description = item.get('description')
         parent_collection = item.get('parentCollection', {}).get('referenceName')
 
         if name not in collections:
@@ -129,7 +129,7 @@ def flatten_collections(data):
 
 
 def get_nested_collections():
-    """s
+    """
     Retrieves a list of collections that are nested.
 
     Returns:
@@ -260,6 +260,92 @@ def delete_collection(collection_name: str):
     """
     result = CLIENT.collections.delete_collection(collection_name)
     return result
+
+
+def find_collection_in_json(collection_name, json_str):
+    """
+    Finds the collection with the given name in the JSON structure.
+
+    Args:
+        collection_name (str): The friendly name of the collection to find.
+        json_str (str): The JSON string representing the structure to search.
+
+    Returns:
+        dict or None: The collection if found, None otherwise.
+    """
+    json_obj = json.loads(json_str)
+    for collection in json_obj:
+        if collection.get('friendly_name') == collection_name:
+            return collection
+        if collection.get('subcollections'):
+            found_collection = find_collection_in_json(collection_name, json.dumps(collection['subcollections']))
+            if found_collection:
+                return found_collection
+    return None
+
+
+def create_collections_recursive(collections: list, parent_collection_name: str):
+    """
+    Recursively creates collections and their subcollections.
+
+    Args:
+        collections (list): A list of collections to create.
+        parent_collection_name (str): The name of the parent collection.
+
+    Returns:
+        None
+    """
+    for collection in collections:
+        friendly_name = collection['friendly_name']
+        description = collection['description']
+
+        create_collection(friendly_name, parent_collection_name, description)
+
+        subcollections = collection['subcollections']
+        if subcollections:
+            # Recursively create subcollections
+            create_collections_recursive(subcollections, friendly_name)
+
+
+def get_collection_name_from_friendly_name(friendly_name: str, collections: list):
+    """
+    Retrieves the collection name corresponding to the given friendly name.
+
+    Args:
+        friendly_name (str): The friendly name of the collection to find.
+        collections (list): The list of collections to search.
+
+    Returns:
+        str or None: The collection name if found, None otherwise.
+    """
+    for collection in collections:
+        if collection['friendly_name'] == friendly_name:
+            return collection['name']
+        if collection['subcollections']:
+            found_collection = get_collection_name_from_friendly_name(friendly_name, collection['subcollections'])
+            if found_collection:
+                return found_collection
+    return None
+
+
+def generate_subcollections_from_json(friendly_name: str, json_str: str):
+    """
+    Generates subcollections based on a JSON structure.
+
+    Args:
+        friendly_name (str): The friendly name of the collection to generate subcollections for.
+        json_str (str): The JSON structure containing the collection hierarchy.
+
+    Returns:
+        None
+    """
+    collection = find_collection_in_json(friendly_name, json_str)
+    existing_collections = get_nested_collections()
+    collection_name = get_collection_name_from_friendly_name(friendly_name, existing_collections)
+    if collection:
+        create_collections_recursive(collection['subcollections'], collection_name)
+    else:
+        print(f"Collection '{friendly_name}' not found in the output structure.")
 
 
 # Main Processing

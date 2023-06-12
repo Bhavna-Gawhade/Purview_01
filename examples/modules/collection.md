@@ -75,3 +75,79 @@ def example_delete_collection():
     print(result)
 ```
 
+## Creating Subcollections Based off a JSON File
+
+```python
+from scripts.modules.collection import *
+
+def example_create_subcollections_from_json():
+    friendly_name = "Source"
+    with open("collections_structure.json", 'r') as file:
+        data = json.load(file)
+        json_string = json.dumps(data)
+    generate_subcollections_from_json(friendly_name, json_string)
+```
+
+An example of "collections_structure.json" is below:
+```json
+  [
+    {
+      "friendly_name": "hbi-qa01-datamgmt-pview",
+      "description": "The root collection.",
+      "parent_collection_friendly_name": null,
+      "subcollections": [
+        {
+          "friendly_name": "HBI Production",
+          "description": "HBI Production",
+          "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
+          "subcollections": [
+            {
+              "friendly_name": "HBI-Shared-Hub",
+              "description": null,
+              "parent_collection_friendly_name": "HBI Production",
+              "subcollections": []
+            }
+          ]
+        },
+        {
+          "friendly_name": "Shared-Hub",
+          "description": null,
+          "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
+          "subcollections": [
+            {
+              "friendly_name": "Human Resources",
+              "description": null,
+              "parent_collection_friendly_name": "Shared-Hub",
+              "subcollections": []
+            }
+          ]
+        },
+        {
+          "friendly_name": "Source",
+          "description": null,
+          "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
+          "subcollections": [
+            {
+              "friendly_name": "Finance",
+              "description": null,
+              "parent_collection_friendly_name": "Source",
+              "subcollections": []
+            },
+            {
+              "friendly_name": "Material Article",
+              "description": null,
+              "parent_collection_friendly_name": "Source",
+              "subcollections": []
+            }
+          ]
+        },
+        {
+          "friendly_name": "Unclassified",
+          "description": null,
+          "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
+          "subcollections": []
+        }
+      ]
+    }
+  ]
+```
