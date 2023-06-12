@@ -126,8 +126,7 @@ def delete_collection(collection_name: str):
 
 # Main Processing
 # ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
+
 def main():
     print()
     

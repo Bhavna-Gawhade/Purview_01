@@ -19,8 +19,6 @@ from pathlib import Path
 
 # Constants
 # ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
 
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
@@ -166,8 +164,6 @@ def get_and_add_lineage(table_names: tuple, qualified_name_headers: tuple, entit
 
 # Main Processing
 # ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
 
 def main():
     print()

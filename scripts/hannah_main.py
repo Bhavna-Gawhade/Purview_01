@@ -35,20 +35,6 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 def main():
     print()
 
-    result = collection.get_collections()
-    print(result)
-
-
-    '''
-    collection_name = "rtywuy"
-    result = collection.get_all_entities_in_collection(collection_name)
-    print(result)
-    '''
-
-    result = collection.get_collections()
-    print(result)
-
-
     
 if __name__ == '__main__':
     main()

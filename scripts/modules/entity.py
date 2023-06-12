@@ -50,31 +50,27 @@ def get_entity_from_qualified_name(qualified_name):
 
     Returns:
         dict: The entity found based on the qualified name.
-    """
-    try:
-        entities_found = CLIENT.discovery.search_entities(query=qualified_name)
+"""
+    entities_found = CLIENT.discovery.search_entities(query=qualified_name)
 
-        # Extract entities from the generator
-        entities = []
-        for entity in entities_found:
-            # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
-            # This is to avoid qualified names that have the same beginning and different extensions
-            # Allow length to differ by 1 for potential '/' at the end
-            if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
-                entities.append(entity)
+    # Extract entities from the generator
+    entities = []
+    for entity in entities_found:
+        # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
+        # This is to avoid qualified names that have the same beginning and different extensions
+        # Allow length to differ by 1 for potential '/' at the end
+        if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
+            entities.append(entity)
 
-        if len(entities) > 1:
-            raise ValueError(f"More than one entity was returned. There should only be one entity returned from a qualified name. The qualified name used was: {qualified_name}")
-        elif len(entities) == 0:
-            raise ValueError(f"No entity was found with this qualified name: {qualified_name}")
+    if len(entities) > 1:
+        raise ValueError(f"More than one entity was returned. There should only be one entity returned from a qualified name. The qualified name used was: {qualified_name}")
+    elif len(entities) == 0:
+        raise ValueError(f"No entity was found with this qualified name: {qualified_name}")
 
-        # Extract the entity found by the search catalog
-        entity = entities[0]
+    # Extract the entity found by the search catalog
+    entity = entities[0]
 
-        return entity
-
-    except Exception as e:
-        raise Exception("An error occurred during the entity retrieval process.") from e
+    return entity
 
 
 def upload_custom_type_def(type_def: EntityTypeDef):
@@ -87,22 +83,16 @@ def upload_custom_type_def(type_def: EntityTypeDef):
     Returns:
         dict: The result of the upload operation.
     """
-    try:
-        result = CLIENT.upload_typedefs(
-            entityDefs=[type_def],
-            force_update=True
-        )
-        return result
-    except ValueError as ve:
-        raise ValueError("Error occurred during the upload process.") from ve
-    except Exception as e:
-        raise Exception("An error occurred during the upload process.") from e
+    result = CLIENT.upload_typedefs(
+        entityDefs=[type_def],
+        force_update=True
+    )
+    return result
 
 
 # Main Processing
 # ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
+
 def main():
     print()
 
