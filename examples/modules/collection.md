@@ -10,21 +10,44 @@ def example_get_collections():
     print(collections)
 ```
 
+<br />
+
 ## Creating a Collection
 
 ```python
 from scripts.modules.collection import *
 
 def example_create_collection():
-    # Name the collection
     friendly_name = "Unclassified"
-    name = "unclassified"
+    parent_collection_name = "hbi-qa01-datamgmt-pview" # NOTE: this is the root directory name
+    description = "This collection holds all resources that have been scanned, but not yet classified"
+    result = create_collection(friendly_name, parent_collection_name, description)
+    print(result)
+```
 
-    # Note, "hbi-qa01-datamgmt-pview" is the name of the root directory and has the same name as the account, and cannot be changed
-    parent_collection_name = "hbi-qa01-datamgmt-pview" 
-    description = "This collection will hold all of HBI's resources that have been scanned, but not classified yet"
+<br />
 
-    result = create_collection(name, friendly_name, parent_collection_name, description)
+## Get All Entities in a Collection
+
+```python
+from scripts.modules.collection import *
+
+def example_get_all_entities_in_collection():
+    collection_name = "rtywuy" # NOTE: this is the collection's name not its friendly name
+    result = get_all_entities_in_collection(collection_name)
+    print(result)
+```
+
+<br />
+
+## Deleting a Collection
+
+```python
+from scripts.modules.collection import *
+
+def example_delete_collection():
+    collection_name = "" # NOTE: this is the collection's name not its friendly name
+    result = sdelete_collection(collection_name)
     print(result)
 ```
 
