@@ -30,42 +30,23 @@ ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
 # Functions
 # ---------------
 
-def find_collection(collections, parent_collection):
-    for collection in collections:
-        if collection["name"] == parent_collection:
-            return collection
-        subcollections = collection.get("subcollections", [])
-        if subcollections:
-            found_collection = find_collection(subcollections, parent_collection)
-            if found_collection:
-                return found_collection
-    return None
-
-
-def structure_collection_data(generator):
-    collections = []
-    for item in generator:
-        parent_collection = item.get("parentCollection", {}).get("referenceName")
-        collection = {
-            "name": item["name"],
-            "friendly_name": item["friendlyName"],
-            "description": item["description"],
-            "parent_collection": parent_collection,
-            "subcollections": []
-        }
-        if parent_collection:
-            parent = find_collection(collections, parent_collection)
-            if parent:
-                parent["subcollections"].append(collection)
-            else:
-                collections.append(collection)
-        else:
-            collections.append(collection)
-
-    return collections
-
-
 def nest_collections(data):
+    """
+    Nest the collections data into a hierarchical structure.
+
+    Args:
+        data (generator): A generator yielding collection data.
+
+    Returns:
+        list: A list of dictionaries representing the nested collections.
+              Each dictionary contains the following keys:
+              - 'name': The name of the collection.
+              - 'friendly_name': The friendly name of the collection.
+              - 'description': The description of the collection.
+              - 'parent_collection': The name of the parent collection (if any).
+              - 'subcollections': A list of nested subcollections (if any),
+                                  each represented as a dictionary with the same structure.
+    """
     collections = {}
     for item in data:
         name = item.get('name')
@@ -100,6 +81,21 @@ def nest_collections(data):
 
 
 def flatten_collections(data):
+    """
+    Flattens the nested collections data into a flat list of dictionaries.
+
+    Args:
+        data (generator): A generator yielding collection data.
+
+    Returns:
+        list: A flat list of dictionaries representing the collections.
+              Each dictionary contains the following keys:
+              - 'name': The name of the collection.
+              - 'friendly_name': The friendly name of the collection.
+              - 'description': The description of the collection.
+              - 'parent_collection': The name of the parent collection (if any).
+              - 'subcollections': A list of names of subcollections (if any).
+    """
     collections = {}
     data = list(data)  # Convert generator to list
     for item in data:
@@ -157,6 +153,13 @@ def get_flattened_collections():
 
 
 def get_existing_collection_names():
+    """
+    Retrieves a list of existing collection names.
+
+    Returns:
+        List[str]: A list of existing collection names.
+
+    """
     collections = get_flattened_collections()
     collection_names = []
     for c in collections:
@@ -165,6 +168,13 @@ def get_existing_collection_names():
 
 
 def create_unique_collection_name():
+    """
+    Generates a unique collection name.
+
+    Returns:
+        str: A unique collection name.
+
+    """
     existing_names = get_existing_collection_names()
     while True:
         # Generate a 6-character random name
@@ -212,6 +222,17 @@ def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
 
 
 def get_all_entities_in_collection(collection_name: str):
+    """
+    Retrieves all entities in the specified collection.
+
+    Args:
+        collection_name (str): The name of the collection to retrieve entities from.
+
+    Returns:
+        List[Dict[str, Any]]: A list of dictionaries representing the entities in the collection.
+            Each dictionary contains the entity properties.
+
+    """
     json_str = '{"collectionId": "' + collection_name + '"}'
     json_obj = json.loads(json_str)
     result = CLIENT.discovery.search_entities(query = collection_name, search_filter=json_obj)
@@ -227,6 +248,16 @@ def get_all_entities_in_collection(collection_name: str):
 
 
 def delete_collection(collection_name: str):
+    """
+    Deletes a collection with the specified name.
+
+    Args:
+        collection_name (str): The name of the collection to delete.
+
+    Returns:
+        Any: The result of the delete operation.
+
+    """
     result = CLIENT.collections.delete_collection(collection_name)
     return result
 
