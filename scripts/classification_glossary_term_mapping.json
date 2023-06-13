@@ -1,0 +1,16 @@
+{
+  "Classifications": [
+    {
+      "name": "Bill of Materials",
+      "created": true,
+      "connected_to_glossary_term": false,
+      "regex": ""
+    },
+    {
+      "name": "Volume",
+      "created": true,
+      "connected_to_glossary_term": false,
+      "regex": ""
+    }
+  ]
+}
