@@ -1,6 +1,7 @@
 ##! /usr/bin/env python3
 
 
+LAST_UPDATED = "06/14/2023"
 COLLECTIONS_IMPLEMENTED =   [
     {
       "friendly_name": "hbi-qa01-datamgmt-pview",
