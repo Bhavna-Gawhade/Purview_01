@@ -23,84 +23,84 @@ COLLECTIONS_IMPLEMENTED =   [
         },
         {
           "friendly_name": "Shared-Hub",
-          "description": None,
+          "description": "This collection contains resources pertaining to Shared-Hub",
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": [
             {
               "friendly_name": "Human Resources",
-              "description": None,
+              "description": "This collection contains resources pertaining to Human Resources",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Legal & Corporate",
-              "description": None,
+              "description": "This collection contains resources pertaining to Legal & Corporate",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Sustainability & Real Estate",
-              "description": None,
+              "description": "This collection contains resources pertaining to Sustainability & Real Estate",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Consumer Behavior",
-              "description": None,
+              "description": "This collection contains resources pertaining to Consumer Behavior",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Product Design & Development",
-              "description": None,
+              "description": "This collection contains resources pertaining to Product Design & Development",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Global Finance",
-              "description": None,
+              "description": "This collection contains resources pertaining to Global Finance",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Demand Planning",
-              "description": None,
+              "description": "This collection contains resources pertaining to Demand Planning",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Supply Chain Planning",
-              "description": None,
+              "description": "This collection contains resources pertaining to Supply Chain Planning",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Procurement",
-              "description": None,
+              "description": "This collection contains resources pertaining to Procurement",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Manufacturing",
-              "description": None,
+              "description": "This collection contains resources pertaining to Manufacturing",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Logistics",
-              "description": None,
+              "description": "This collection contains resources pertaining to Logistics",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Inventory",
-              "description": None,
+              "description": "This collection contains resources pertaining to Inventory",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Sales & Marketing",
-              "description": None,
+              "description": "This collection contains resources pertaining to Sales & Marketing",
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             }
@@ -108,48 +108,48 @@ COLLECTIONS_IMPLEMENTED =   [
         },
         {
           "friendly_name": "Source",
-          "description": None,
+          "description": "This collection contains resources pertaining to Source",
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": [
             {
               "friendly_name": "Finance",
-              "description": None,
+              "description": "This collection contains resources pertaining to Finance",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Material Article",
-              "description": None,
+              "description": "This collection contains resources pertaining to Material Article",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Customer",
-              "description": None,
+              "description": "This collection contains resources pertaining to Customer",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Supplier",
-              "description": None,
+              "description": "This collection contains resources pertaining to Supplier",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Plant",
-              "description": None,
+              "description": "This collection contains resources pertaining to Plant",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Human Resources",
-              "description": None,
+              "description": "This collection contains resources pertaining to Human Resources",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Consumer",
-              "description": None,
+              "description": "This collection contains resources pertaining to Consumer",
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             }
@@ -157,7 +157,7 @@ COLLECTIONS_IMPLEMENTED =   [
         },
         {
           "friendly_name": "Unclassified",
-          "description": None,
+          "description": "This collection holds all resources that have been scanned, but not yet classified",
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": []
         }
