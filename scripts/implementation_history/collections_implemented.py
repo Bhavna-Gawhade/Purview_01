@@ -1,8 +1,11 @@
-  [
+##! /usr/bin/env python3
+
+
+COLLECTIONS_IMPLEMENTED =   [
     {
       "friendly_name": "hbi-qa01-datamgmt-pview",
       "description": "The root collection.",
-      "parent_collection_friendly_name": null,
+      "parent_collection_friendly_name": None,
       "subcollections": [
         {
           "friendly_name": "HBI Production",
@@ -11,7 +14,7 @@
           "subcollections": [
             {
               "friendly_name": "HBI-Shared-Hub",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "HBI Production",
               "subcollections": []
             }
@@ -19,84 +22,84 @@
         },
         {
           "friendly_name": "Shared-Hub",
-          "description": null,
+          "description": None,
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": [
             {
               "friendly_name": "Human Resources",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Legal & Corporate",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Sustainability & Real Estate",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Consumer Behavior",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Product Design & Development",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Global Finance",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Demand Planning",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Supply Chain Planning",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Procurement",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Manufacturing",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Logistics",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Inventory",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             },
             {
               "friendly_name": "Sales & Marketing",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Shared-Hub",
               "subcollections": []
             }
@@ -104,48 +107,48 @@
         },
         {
           "friendly_name": "Source",
-          "description": null,
+          "description": None,
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": [
             {
               "friendly_name": "Finance",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Material Article",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Customer",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Supplier",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Plant",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Human Resources",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             },
             {
               "friendly_name": "Consumer",
-              "description": null,
+              "description": None,
               "parent_collection_friendly_name": "Source",
               "subcollections": []
             }
@@ -153,7 +156,7 @@
         },
         {
           "friendly_name": "Unclassified",
-          "description": null,
+          "description": None,
           "parent_collection_friendly_name": "hbi-qa01-datamgmt-pview",
           "subcollections": []
         }
