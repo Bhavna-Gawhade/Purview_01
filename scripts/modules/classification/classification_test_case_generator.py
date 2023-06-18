@@ -75,6 +75,23 @@ def create_names_from_keywords(classification: dict, mappings: list):
     print()
 
 
+def generate_variations(keywords, mapping):
+    if not keywords:
+        return ['']
+    
+    keyword = keywords[0]
+    abbreviations = mapping.get(keyword, [keyword])
+    
+    variations = []
+    remaining_variations = generate_variations(keywords[1:], mapping)
+    
+    for abbreviation in abbreviations:
+        for variation in remaining_variations:
+            variations.append(abbreviation + ' ' + variation)
+    
+    return variations
+
+
 def create_testing_column_names(classifications_file_path: str, mappings_file_path: str):
     column_names = []
     classifications = process_classifications_file(classifications_file_path)
