@@ -28,17 +28,63 @@ CLASSIFICATION_EXCEL_FILE = "Classification_Regex_Rules.xlsx"
 # Functions
 # ---------------
 
-def create_column_names():
+def process_classifications_file(file_path):
+    file = pd.read_excel(file_path)
+    classifications_dict = []
+    for row in file.iterrows():
+        x = {
+            "classification_name": row["Classification_Name"],
+            "keywords": row['Keywords'].split(","),
+            "common_abbreviations": row['Common_Abbreviations'].split(",")
+        }
+        classifications_dict.append(x)
+    return classifications_dict
+
+
+def process_mappings_file(file_path):
+    file = pd.read_excel(file_path)
+    mappings = []
+    for row in file.iterrows():
+        abbreviations_str = row['Abbreviations']
+        abbreviations = [word.strip() for word in abbreviations_str.split(",")]
+        x = {
+            "word": row['Word'],
+            "abbreviations": abbreviations
+        }
+        mappings.append(x)
+    return mappings
+
+
+def get_all_variations_of_keyword(keyword: str, mappings: list):
+    variations = []
+    variations.append(keyword)
+    for word in keyword:
+        abbreviations_of_word = mappings["word"]
+        for x in abbreviations_of_word:
+            name = ""
+
+
+def create_names_from_keywords(classification: dict, mappings: list):
+    names = []
+    for keyword in classification["keywords"]:
+        all_variations_of_keyword = get_all_variations_of_keyword(keyword, mappings)
+        # test cases for full name
+
+        # test cases for abbreviations substituted in
+        print()
     print()
 
 
-def process_excel_file(file_path):
-    df = pd.read_excel(file_path)
-    for index, row in df.iterrows():
-        column1_value = row['Column1']
-        column2_value = row['Column2']
-        column3_value = row['Column3']
+def create_testing_column_names(classifications_file_path: str, mappings_file_path: str):
+    column_names = []
+    classifications = process_classifications_file(classifications_file_path)
+    mappings = process_mappings_file(mappings_file_path)
+    testing_column_names = []
+    for c in classifications:
+        names = create_names_from_keywords(c, mappings)
+        testing_column_names.append(names)
 
+    
 
 def get_excel_column_names(file_path):
     df = pd.read_excel(file_path)
