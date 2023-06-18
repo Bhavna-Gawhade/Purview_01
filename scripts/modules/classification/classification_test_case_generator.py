@@ -142,6 +142,23 @@ def generate_test_case_csv_file(keywords: list, common_abbreviations: list):
 
 def main():
     print()
+
+    # Example keywords and mapping
+    keywords = ['apple banana pie', 'pies apple', 'bunny banana']
+    mapping = {
+        'apple': ['a', 'ap'],
+        'banana': ['b', 'ba']
+    }
+
+    # Generate variations
+    output = []
+    for keyword in keywords:
+        variations = generate_variations(keyword.split(), mapping)
+        output.extend(variations)
+
+    # Print variations
+    for variation in output:
+        print(variation)
     
 
 if __name__ == '__main__':
