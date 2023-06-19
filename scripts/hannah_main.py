@@ -5,6 +5,9 @@
 # ---------------
 from modules import entity, collection
 from modules.classification.classification_test_case_generator import *
+from modules.classification.classification_regex_generator import *
+from modules.classification.shared_generator_functions import *
+
 
 
 # Import Packages
@@ -47,8 +50,6 @@ def main():
     pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
     print(pass_file_names)
     """
-    pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
-    print(pass_file_names)
 
     '''
     valuation_class_pass_file_name = 'test_CSVs/to_pass/material_type_to_pass_test_column_names.csv'
@@ -56,6 +57,9 @@ def main():
     print(column_names)
     print(len(column_names))
     '''
+
+    all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
+    print(all_regex)
 
 
 

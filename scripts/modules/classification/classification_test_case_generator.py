@@ -3,19 +3,19 @@
 
 # Function Imports
 # ---------------
-from modules import entity
+
+from modules.classification.shared_generator_functions import *
 from utils import get_credentials, create_purview_client
 
 
 # Package Imports
 # ---------------
+
 from pyapacheatlas.core import AtlasEntity, AtlasClassification
 from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
-import json
 import csv
 from pathlib import Path
 import pandas as pd
-import re
 import random
 import string
 import os
