@@ -3,7 +3,8 @@
 
 # Import Functions
 # ---------------
-from modules import entity, classification, collection
+from modules import entity, collection
+from modules.classification.classification_test_case_generator import *
 
 
 # Import Packages
@@ -24,6 +25,9 @@ PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+CLASSIFICATION_EXCEL_FILE = "Classification_Regex_Rules.xlsx"
+MAPPINGS_EXCEL_FILE = "Keyword_to_Common_Abbreviation_Mappings.xlsx"
+
 
 # Functions
 # ---------------
@@ -34,6 +38,9 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 
 def main():
     print()
+
+    pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
+    print(pass_file_names)
 
     
 if __name__ == '__main__':
