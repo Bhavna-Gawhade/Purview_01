@@ -18,6 +18,7 @@ import pandas as pd
 import re
 import random
 import string
+import os
 
 
 # Constants
@@ -59,41 +60,32 @@ def process_mappings_file(file_path):
     return mappings
 
 
-def generate_variations(keywords: list, mappings: list):
-    if not keywords:
-        return ['']
-
-    keyword = keywords[0]
-    abbreviations = next((item.get(keyword, [keyword]) for item in mappings), [keyword])
-
-    variations = []
-    remaining_variations = generate_variations(keywords[1:], mappings)
-
-    for abbreviation in abbreviations:
-        for variation in remaining_variations:
-            variations.append(abbreviation + ' ' + variation)
-
-    return variations
+def generate_variations(keywords, mappings):
+    variations = set(keywords)
+    for keyword in keywords:
+        for mapping in mappings:
+            word = mapping['word']
+            abbreviations = mapping['abbreviations']
+            if word in keyword:
+                mapping_variations = [keyword.replace(word, abbreviation) for abbreviation in abbreviations]
+                variations.update(mapping_variations)
+                variations.add(keyword)
+                variations.update(abbreviations)
+                variations.update(generate_variations(mapping_variations, mappings))
+    return list(variations)
 
 
 def get_keyword_variations(classification: dict, mappings: list):
-    output = []
     keywords = classification["keywords"]
-    for keyword in keywords:
-        variations = generate_variations(keyword.split(), mappings)
-        output.extend(variations)
-
-    return output
-
-
-def create_testing_column_names(classifications_file_path: str, mappings_file_path: str):
-    column_names = []
-    classifications = process_classifications_file(classifications_file_path)
-    mappings = process_mappings_file(mappings_file_path)
-    testing_column_names = []
-    for c in classifications:
-        names = get_keyword_variations(c, mappings)
-        testing_column_names.append(names)
+    variations = generate_variations(keywords, mappings)
+    stripped_variations = strip_strings(variations)
+    unique_variations = []
+    for variation in stripped_variations:
+        if not any(variation.startswith(abbreviation) for abbreviation in mappings[0]['abbreviations']):
+            unique_variations.append(variation)
+    
+    unique_variations = list(set(unique_variations))
+    return unique_variations
 
 
 def get_excel_column_names(file_path):
@@ -109,8 +101,12 @@ def to_snake_case(input_str: str):
 
 
 def create_test_case_csv_file(classification_name: str, to_pass_or_fail: str, column_names: list):
+    directory = 'test_CSVs/to_pass'
+    os.makedirs(directory, exist_ok=True) # Create the directory if it doesn't exist
     snake_case_classification_name = to_snake_case(classification_name)
-    file_name = 'test_CSVs/' + to_pass_or_fail + '/' + snake_case_classification_name + '_' + to_pass_or_fail + '_test_column_names.csv'
+    file_name_without_path = snake_case_classification_name + '_' + to_pass_or_fail + '_test_column_names.csv'
+    file_name = os.path.join(directory, file_name_without_path)
+
     with open(file_name, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(column_names)
@@ -156,19 +152,28 @@ def get_all_paddings(variations: list):
         pad_with_random_special_chars = random.choice(special_chars) + variation + random.choice(special_chars)
         pad_with_random_letters = random.choice(string.ascii_letters) + variation + random.choice(string.ascii_letters)
         all_paddings.extend([current, pad_with_spaces, pad_with_underscores, pad_with_random_special_chars, pad_with_random_letters])
+    
+    return all_paddings
 
 
 def generate_pass_column_names(variations: list):
     # Get all cases for each variation
     all_letter_cases = get_all_letter_cases(variations)
+    unique_all_letter_cases = list(set(all_letter_cases))
 
     # Get all spacings between the words
-    all_spacings_between = get_all_spacings_between(all_letter_cases)
+    all_spacings_between = get_all_spacings_between(unique_all_letter_cases)
+    unique_all_spacings_between = list(set(all_spacings_between))
 
     # Pad the variations
-    padded_and_complete_variations = get_all_paddings(all_spacings_between)
+    padded_and_complete_variations = get_all_paddings(unique_all_spacings_between)
+    unique_padded_and_complete_variations = list(set(padded_and_complete_variations))
 
-    return padded_and_complete_variations
+    return unique_padded_and_complete_variations
+
+
+def strip_strings(strings):
+    return [string.strip() for string in strings]
 
 
 def generate_pass_test_file(classification: dict, mappings: list):
@@ -188,10 +193,6 @@ def generate_pass_test_file(classification: dict, mappings: list):
 def generate_all_pass_test_files(classifications_file_path: str, mappings_file_path: str):
     pass_test_file_names = []
     classifications = process_classifications_file(classifications_file_path)
-
-    print(classifications)
-    raise Exception
-
     mappings = process_mappings_file(mappings_file_path)
     for c in classifications:
         test_file_name = generate_pass_test_file(c, mappings)
