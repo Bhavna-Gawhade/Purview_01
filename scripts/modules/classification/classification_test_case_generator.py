@@ -70,7 +70,7 @@ def generate_variations(keywords, mappings):
                 mapping_variations = [keyword.replace(word, abbreviation) for abbreviation in abbreviations]
                 variations.update(mapping_variations)
                 variations.add(keyword)
-                variations.update(abbreviations)
+                #variations.update(abbreviations)
                 variations.update(generate_variations(mapping_variations, mappings))
     return list(variations)
 
@@ -91,6 +91,13 @@ def get_keyword_variations(classification: dict, mappings: list):
 def get_excel_column_names(file_path):
     df = pd.read_excel(file_path)
     column_names = df.columns.tolist()
+    return column_names
+
+
+def get_csv_column_names(file_name):
+    with open(file_name, 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        column_names = next(reader)  # Read the first row
     return column_names
 
 
@@ -198,6 +205,7 @@ def generate_all_pass_test_files(classifications_file_path: str, mappings_file_p
     for c in classifications:
         test_file_name = generate_pass_test_file(c, mappings)
         pass_test_file_names.append(test_file_name)
+        
     return pass_test_file_names
 
 

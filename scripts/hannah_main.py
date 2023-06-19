@@ -39,9 +39,27 @@ MAPPINGS_EXCEL_FILE = "Keyword_to_Common_Abbreviation_Mappings.xlsx"
 def main():
     print()
 
+    """
+    pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
+    print(pass_file_names)
+    """
     pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
     print(pass_file_names)
 
+    '''
+    valuation_class_pass_file_name = 'test_CSVs/to_pass/material_type_to_pass_test_column_names.csv'
+    column_names = get_csv_column_names(valuation_class_pass_file_name)
+    print(column_names)
+    print(len(column_names))
+    '''
+
+
+
+
     
+
+
+
+
 if __name__ == '__main__':
     main()
