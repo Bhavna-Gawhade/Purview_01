@@ -39,6 +39,10 @@ MAPPINGS_EXCEL_FILE = "Keyword_to_Common_Abbreviation_Mappings.xlsx"
 def main():
     print()
 
+    profit_center_regex = r"/\b.*Profit[^A-Za-z0-9]?(Center|CTR).*\b/|Profit[^A-Za-z0-9]?(Center|CTR)"
+    storage_location_regex = r"/\b.*Storage[^A-Za-z0-9]?(Location|LOC).*\b/|Storage[^A-Za-z0-9]?(Location|LOC)|/\b.*Warehouse.*\b/|Warehouse|/\b.*SLOC.*\b/|SLOC"
+    
+    
     """
     pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
     print(pass_file_names)
