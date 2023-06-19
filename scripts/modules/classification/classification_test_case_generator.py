@@ -110,6 +110,7 @@ def create_test_case_csv_file(classification_name: str, to_pass_or_fail: str, co
     with open(file_name, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(column_names)
+        writer.writerow(['0'] * len(column_names))
 
     print(f'CSV file "{file_name}" created successfully.')
     return file_name
