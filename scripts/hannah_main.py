@@ -85,6 +85,8 @@ def main():
             sap_s4hana_types.append(name)
     print(sap_s4hana_types)
 
+    s4hana = ['sap_s4hana_class_dependencies_views', 'sap_s4hana_function_group_function_modules', 'sap_s4hana_package_classes', 'sap_s4hana_package_views', 'sap_s4hana_package_packages', 'sap_s4hana_package_programs', 'sap_s4hana_table_fields', 'sap_s4hana_foreign_key_check_table', 'sap_s4hana_view_view_fields', 'sap_s4hana_table_primary_key_field', 'sap_s4hana_transaction_class', 'sap_s4hana_view_view_query', 'sap_s4hana_class_dependencies_tables', 'sap_s4hana_package_subpackages', 'sap_s4hana_domain_domain_values', 'sap_s4hana_index_member_table_fields', 'sap_s4hana_instance_application_components', 'sap_s4hana_function_group_dependencies_views', 'sap_s4hana_table_field_data_element', 'sap_s4hana_program_dependencies_views', 'sap_s4hana_index_index_members', 'sap_s4hana_package_function_groups', 'sap_s4hana_package_domains', 'sap_s4hana_program_dependencies_tables', 'sap_s4hana_application_component_packages', 'sap_s4hana_transaction_program', 'sap_s4hana_package_tables', 'sap_s4hana_function_group_dependencies_tables', 'sap_s4hana_table_foreign_keys', 'sap_s4hana_application_component_application_components', 'sap_s4hana_transaction_function_group', 'sap_s4hana_table_indexes', 'sap_s4hana_package_transactions', 'sap_s4hana_foreign_key_fields', 'sap_s4hana_data_element_domain', 'sap_s4hana_package_data_elements', 'sap_s4hana_instance_packages']
+
 
     
 
