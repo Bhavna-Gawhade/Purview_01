@@ -50,7 +50,7 @@ def get_entity_from_qualified_name(qualified_name):
 
     Returns:
         dict: The entity found based on the qualified name.
-"""
+    """
     entities_found = CLIENT.discovery.search_entities(query=qualified_name)
 
     # Extract entities from the generator
@@ -71,6 +71,20 @@ def get_entity_from_qualified_name(qualified_name):
     entity = entities[0]
 
     return entity
+
+
+def get_all_typedefs():
+    all_typedefs = CLIENT.get_all_typedefs()
+    entity_defs = all_typedefs["entityDefs"]
+    all_type_names = []
+
+    for entity in entity_defs:
+        rel_attr_defs = entity["relationshipAttributeDefs"]
+        for td in rel_attr_defs:
+            all_type_names.append(td["relationshipTypeName"])
+
+    unique_type_names = list(set(all_type_names))
+    return unique_type_names
 
 
 def upload_custom_type_def(type_def: EntityTypeDef):

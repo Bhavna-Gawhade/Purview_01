@@ -30,6 +30,55 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # Functions
 # ---------------
 
+def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
+    """
+    Changes the key names in a dictionary based on a given key mapping.
+
+    Args:
+        dictionary (dict): The input dictionary.
+        key_mapping (dict): A dictionary containing the mapping of old key names to new key names.
+
+    Returns:
+        dict: The dictionary with updated key names.
+    """
+    new_dict = {}
+    for old_key, new_key in key_mapping.items():
+        if old_key in dictionary:
+            new_dict[new_key] = dictionary[old_key]
+        else:
+            new_dict[new_key] = None
+    return new_dict
+
+
+def get_all_guids_of_entities_with_glossary_term(glossary_term_name: str, glossary_name: str):
+    json_str = '{"term": "'+ glossary_term_name +'", "glossary": "' + glossary_name + '"}'
+    json_obj = json.loads(json_str)
+    result = CLIENT.discovery.search_entities(query = glossary_term_name, search_filter=json_obj)
+
+    all_guids_with_glossary_term = []
+    mapping = {"id": "guid"}
+    for r in result:
+        # Change each entity's "id" to "guid" so assignTerms can find the guids of each entity
+        updated_dict = change_key_names(r, mapping)
+        all_guids_with_glossary_term.append(updated_dict)
+
+    return all_guids_with_glossary_term
+
+
+def get_all_entitities_with_glossary_term(glossary_term_name: str, glossary_name: str):
+    all_guids = get_all_guids_of_entities_with_glossary_term(glossary_term_name, glossary_name)
+    all_entities = []
+    for guid_dict in all_guids:
+        entities_from_guid = CLIENT.get_entity(guid_dict["guid"])["entities"]
+        entity = entities_from_guid[0] # there should just be one entity per guid
+        all_entities.append(entity)
+    return all_entities
+
+
+def remove_term_from_all_entities(entities_with_glossary_term: list, term_name: str, glossary_name: str):
+    result = CLIENT.glossary.delete_assignedTerm(entities=entities_with_glossary_term, termName = term_name, glossary_name = glossary_name)
+    return result
+
 
 
 # Main Processing
@@ -41,77 +90,4 @@ def main():
     print()
 
 if __name__ == "__main__":
-    """
-    This sample provides an example of creating a single term.
-
-    In this example, we create Purview terms and have a framework for adding
-    a parent term to it as well.
-    """
-
-    # Authenticate against your Purview service
-    oauth = ServicePrincipalAuthentication(
-        tenant_id=os.environ.get("TENANT_ID", ""),
-        client_id=os.environ.get("CLIENT_ID", ""),
-        client_secret=os.environ.get("CLIENT_SECRET", "")
-    )
-    client = PurviewClient(
-        account_name = os.environ.get("PURVIEW_NAME", ""),
-        authentication=oauth
-    )
-
-    # When uploading a term, you need to provide which Glossary
-    # you are uploading to and that pointer is the guid of the
-    # glossary. By default, Purview has one glossary named
-    # "Glossary" and the below method will get it for us.
-    default_glossary = client.glossary.get_glossary()
-
-    # This is a single term with no hierarchy or term templates
-    # you must provide a name, qualifiedName (with an @Glossary
-    # at the end).
-    term = PurviewGlossaryTerm(
-        name="This is my term",
-        qualifiedName = "This is my term@Glossary",
-        glossaryGuid = default_glossary["guid"],
-        longDescription = "This is a long description",
-        status = "Draft" # Should be Draft, Approved, Alert, or Expired
-    )
-
-    # For this term, I will add a hierarchical term / parent term
-    term2 = PurviewGlossaryTerm(
-        name="This is my hierarchical term",
-        qualifiedName = "This is my hierarchical term@Glossary",
-        glossaryGuid = default_glossary["guid"],
-        longDescription = "This is a long description",
-        status = "Draft" # Should be Draft, Approved, Alert, or Expired
-    )
-    ## The add_hierarchy method requires the parent formal name
-    ## and the parent guid. You should be able to look them up
-    ## from the default_glossary["terms"] by iterating over the
-    ## list until you find your parent term.
-    term2.add_hierarchy(parentFormalName="my parent", parentGuid="xxx-yyy-zzz")
-
-    # For this term, I will add term template attributes
-    ## attributes takes in a dictionary that contains a key that
-    ## is the name of your term template and has a value that is
-    ## another dictionary but contains the attribute names and
-    ## values expected for that term template
-    term3 = PurviewGlossaryTerm(
-        name="This is my template term",
-        qualifiedName = "This is my template term@Glossary",
-        glossaryGuid = default_glossary["guid"],
-        longDescription = "This is a long description",
-        status = "Draft", # Should be Draft, Approved, Alert, or Expired
-        attributes = {
-            "termTemplateName":{
-                "attribute1": "xxx",
-                "attribute2": "yyy"
-            }
-        }
-    )
-
-    # With the terms defined, you can upload them!
-    term_results = client.glossary.upload_term(term)
-    # Alternatively, you can upload multiple
-    # terms_results = client.glossary.upload_terms([term, term2, term3])
-
-    print(json.dumps(term_results, indent=2))
+    main()
