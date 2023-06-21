@@ -60,17 +60,25 @@ def main():
     print(len(column_names))
     '''
 
-    '''
+    
     all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
-    print(all_regex)
-    '''
+    for x in all_regex:
+        print(x)
+        print("\n")
+
+    export_to_excel(all_regex, "all_regex_terms.xlsx")
+
+    
+
+    """
 
     classification_name = "Division"
     glossary_term_name = "Division"
     result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
     print(result)
 
-    
+    """
+
 
 
 

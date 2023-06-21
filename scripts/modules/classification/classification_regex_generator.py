@@ -35,79 +35,59 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # Functions
 # ---------------
 
-def generate_regex_partial(keyword: str, mapping: dict, word: str):
-    abbreviations = mapping["abbreviations"]
-    crafted_str = "(" + word
-    for abbrev in abbreviations:
-        crafted_str = crafted_str + "|" + abbrev
-    crafted_str = crafted_str + ")" + "[^A-Za-z0-9]"
-    regex_partial = keyword.replace(word, crafted_str)
-    return regex_partial
-
-def create_regex_pipes(keywords: list, mappings: dict):
-    storage_location_regex = r"/\b.*Storage[^A-Za-z0-9]?(Location|LOC).*\b/|Storage[^A-Za-z0-9]?(Location|LOC)|/\b.*Warehouse.*\b/|Warehouse|/\b.*SLOC.*\b/|SLOC"
-    pipe0 = r"/\b.*Storage[^A-Za-z0-9]?(Location|LOC).*\b/"
-    pipe1 = r"Storage[^A-Za-z0-9]?(Location|LOC)"
-    pipe2 = r"/\b.*Warehouse.*\b/"
-    pipe3 = r"Warehouse"
-    pipe4 = r"/\b.*SLOC.*\b/"
-    pipe5 = r"SLOC"
+def handle_word(word: str, mappings_dict: dict):
+    word_component = ""
+    if word in mappings_dict:
+        abbreviations = mappings_dict[word]
+        word_component = f"({'|'.join([word] + abbreviations)})"
+    else:
+        word_component = "(" + word + ")"
+    return word_component
 
 
-    testing_alt_storage_location_regex = r"/\b.*Storage[^A-Za-z0-9]?(Location|LOC).*\b/|/\b.*Warehouse.*\b/|/\b.*SLOC.*\b/"
-
-    regex_partials = []
-
-    
-    
-
-    mapping_dict = {mapping['word']: mapping['abbreviations'] for mapping in mappings}
-
+def create_regex_string(keywords: list, mappings_dict: dict):
+    regex_components = []
     for keyword in keywords:
-        # create two pipes
-
-        # if the keyword has an abbreviation mapping in it, handle here
-        replaced_string = keyword
-    
-        for key, value in mapping_dict.items():
-            replaced_string = replaced_string.replace(key, value)
-
-        '''
-        words = keyword.split()
-        for word in words:
-            for mapping in mappings:
-                if mapping['word'] in word:
-                    regex_partial = generate_regex_partial(keyword, mapping, word)
-
-                    print(regex_partial)
-
-                    regex_partials.append(regex_partial)
-                # if not, handle here
-        ''' 
-
-    print("hereee")
-    raise Exception
+        keyword_components = [handle_word(word, mappings_dict) for word in keyword.split()]
+        regex_components.append("[^A-Za-z0-9]?".join(keyword_components))
+    regex_string = ".*" + "|.*".join(regex_components) + ".*"
+    return regex_string
 
 
-def create_regex(classification: dict, mappings: list):
+def get_regex_dict(classification: dict, mappings_dict: dict):
     keywords = classification["keywords"]
-    regex = create_regex_pipes(keywords, mappings)
+    regex = create_regex_string(keywords, mappings_dict)
     regex_dict = {
         "classification_name": classification["classification_name"],
+        "keywords": keywords,
         "regex": regex
     }
     return regex_dict
 
 
 def generate_all_regex(classifications_file_path: str, mappings_file_path: str):
-    all_regex = []
+    all_regex_dicts = []
     classifications = process_classifications_file(classifications_file_path)
     mappings = process_mappings_file(mappings_file_path)
+    mappings_dict = {mapping['word']: mapping['abbreviations'] for mapping in mappings}
+
     for c in classifications:
-        regex_dict = create_regex(c, mappings)
-        all_regex.append(regex_dict)
+        regex_dict = get_regex_dict(c, mappings_dict)
+        all_regex_dicts.append(regex_dict)
         
-    return all_regex
+    return all_regex_dicts
+
+
+def export_to_excel(all_regex_dicts, file_path):
+    data = []
+    for regex_dict in all_regex_dicts:
+        classification_name = regex_dict["classification_name"]
+        keywords = ", ".join(regex_dict["keywords"])
+        regex = regex_dict["regex"]
+        data.append([classification_name, keywords, regex])
+    
+    df = pd.DataFrame(data, columns=["Classification_Name", "Keywords", "REGEX"])
+    df.to_excel(file_path, index=False)
     
 
 

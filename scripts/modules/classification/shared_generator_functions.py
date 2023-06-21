@@ -33,7 +33,6 @@ def process_classifications_file(file_path):
         x = {
             "classification_name": row["Classification_Name"],
             "keywords": row['Keywords'].split(",")
-            #"common_abbreviations": row['Common_Abbreviations'].split(",")
         }
         classifications_dict.append(x)
     return classifications_dict
