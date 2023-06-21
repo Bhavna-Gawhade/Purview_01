@@ -29,9 +29,6 @@ PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
-CLASSIFICATION_EXCEL_FILE = "Classification_Regex_Rules.xlsx"
-MAPPINGS_EXCEL_FILE = "Keyword_to_Common_Abbreviation_Mappings.xlsx"
-
 
 # Functions
 # ---------------
@@ -68,6 +65,9 @@ def main():
     print(result)
 
     """
+
+    classification_info = ""
+    abbreviation_mappings = ""
 
 
 
