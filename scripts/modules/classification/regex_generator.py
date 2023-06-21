@@ -13,14 +13,8 @@ from modules.classification.shared_generator_functions import *
 
 from pyapacheatlas.core import AtlasEntity, AtlasClassification
 from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
-import json
-import csv
 from pathlib import Path
 import pandas as pd
-import re
-import random
-import string
-import os
 
 
 # Constants
@@ -89,7 +83,6 @@ def export_to_excel(all_regex_dicts, file_path):
     df = pd.DataFrame(data, columns=["Classification_Name", "Keywords", "REGEX"])
     df.to_excel(file_path, index=False)
     
-
 
 # Main Processing
 # ---------------

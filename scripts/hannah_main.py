@@ -4,8 +4,8 @@
 # Import Functions
 # ---------------
 from modules import entity, collection, glossary
-from modules.classification.classification_test_case_generator import *
-from modules.classification.classification_regex_generator import *
+from modules.classification.test_case_generator import *
+from modules.classification.regex_generator import *
 from modules.classification.shared_generator_functions import *
 from modules.classification.classification import *
 
@@ -59,16 +59,6 @@ def main():
     print(column_names)
     print(len(column_names))
     '''
-
-    
-    all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
-    for x in all_regex:
-        print(x)
-        print("\n")
-
-    export_to_excel(all_regex, "all_regex_terms.xlsx")
-
-    
 
     """
 
