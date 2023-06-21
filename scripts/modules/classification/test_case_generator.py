@@ -33,33 +33,6 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # Functions
 # ---------------
 
-def process_classifications_file(file_path):
-    file = pd.read_excel(file_path)
-    classifications_dict = []
-    for index, row in file.iterrows():
-        x = {
-            "classification_name": row["Classification_Name"],
-            "keywords": row['Keywords'].split(",")
-            #"common_abbreviations": row['Common_Abbreviations'].split(",")
-        }
-        classifications_dict.append(x)
-    return classifications_dict
-
-
-def process_mappings_file(file_path):
-    file = pd.read_excel(file_path)
-    mappings = []
-    for index, row in file.iterrows():
-        abbreviations_str = row['Abbreviations']
-        abbreviations = [word.strip() for word in abbreviations_str.split(",")]
-        x = {
-            "word": row['Word'],
-            "abbreviations": abbreviations
-        }
-        mappings.append(x)
-    return mappings
-
-
 def generate_variations(keywords, mappings):
     variations = set(keywords)
     for keyword in keywords:
@@ -135,7 +108,6 @@ def get_all_spacings_between(variations: list):
     return all_spacings
 
 
-
 def get_all_letter_cases(variations: list):
     all_cases = []
     for variation in variations:
@@ -151,7 +123,7 @@ def get_all_letter_cases(variations: list):
 
 def get_all_paddings(variations: list):
     all_paddings = []
-    special_chars = ['!', '&', '*', '+', '.', '-', '/', ':', '_', '~', "|"]  # Add more special characters if desired
+    special_chars = ['!', '&', '*', '.', '/', ':', '_', '~', "|"]  # DO NOT USE '+' or '-'
 
     for variation in variations:
         current = variation
@@ -198,15 +170,40 @@ def generate_pass_test_file(classification: dict, mappings: list):
     return pass_file_name
 
 
-def generate_all_pass_test_files(classifications_file_path: str, mappings_file_path: str):
+def generate_all_pass_test_files(excel_file_path: str, classifications_sheet_name: str, mappings_sheet_name: str):
     pass_test_file_names = []
-    classifications = process_classifications_file(classifications_file_path)
-    mappings = process_mappings_file(mappings_file_path)
+    classifications = process_classifications_sheet(excel_file_path, classifications_sheet_name)
+    mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
     for c in classifications:
         test_file_name = generate_pass_test_file(c, mappings)
         pass_test_file_names.append(test_file_name)
         
     return pass_test_file_names
+
+
+def generate_fail_test_file(classification: dict, mappings: list):
+    # Get variations of the keywords
+    variations = get_keyword_variations(classification, mappings)
+
+    # Create test cases from the variations
+    pass_column_names = generate_pass_column_names(variations)
+
+    # Populate the CSV test file
+    pass_file_name = create_test_case_csv_file(classification["classification_name"], "to_pass", pass_column_names)
+
+    # Return the file name
+    return pass_file_name
+
+
+def generate_all_fail_test_files(excel_file_path: str, classifications_sheet_name: str, mappings_sheet_name: str):
+    fail_test_file_names = []
+    classifications = process_classifications_sheet(excel_file_path, classifications_sheet_name)
+    mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
+    for c in classifications:
+        test_file_name = generate_fail_test_file(c, mappings)
+        fail_test_file_names.append(test_file_name)
+        
+    return fail_test_file_names
 
 
 # Main Processing

@@ -26,10 +26,10 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # Functions
 # ---------------
 
-def process_classifications_file(file_path):
-    file = pd.read_excel(file_path)
+def process_classifications_sheet(excel_file_path: str, sheet_name: str):
+    classification_sheet = extract_sheet_from_excel(excel_file_path, sheet_name)
     classifications_dict = []
-    for index, row in file.iterrows():
+    for index, row in classification_sheet.iterrows():
         x = {
             "classification_name": row["Classification_Name"],
             "keywords": row['Keywords'].split(",")
@@ -38,10 +38,10 @@ def process_classifications_file(file_path):
     return classifications_dict
 
 
-def process_mappings_file(file_path):
-    file = pd.read_excel(file_path)
+def process_mappings_sheet(excel_file_path: str, sheet_name: str):
+    mappings_sheet = extract_sheet_from_excel(excel_file_path, sheet_name)
     mappings = []
-    for index, row in file.iterrows():
+    for index, row in mappings_sheet.iterrows():
         abbreviations_str = row['Abbreviations']
         abbreviations = [word.strip() for word in abbreviations_str.split(",")]
         x = {

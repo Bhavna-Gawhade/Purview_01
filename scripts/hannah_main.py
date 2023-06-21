@@ -69,10 +69,8 @@ def main():
     file_path = "Classifications_from_Glossary_Terms.xlsx"
     classification_info_sheet_name = "TERM_INFO"
     abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
-    classification_info = extract_sheet_from_excel(file_path, classification_info_sheet_name)
-    abbreviation_mappings = extract_sheet_from_excel(file_path, abbreviation_mappings_sheet_name)
 
-    print(type(classification_info))
+    print()
 
 
 

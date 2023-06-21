@@ -59,10 +59,10 @@ def get_regex_dict(classification: dict, mappings_dict: dict):
     return regex_dict
 
 
-def generate_all_regex(classifications_file_path: str, mappings_file_path: str):
+def generate_all_regex(excel_file_path: str, classification_sheet_name: str, mappings_sheet_name: str):
     all_regex_dicts = []
-    classifications = process_classifications_file(classifications_file_path)
-    mappings = process_mappings_file(mappings_file_path)
+    classifications = process_classifications_sheet(excel_file_path, classification_sheet_name)
+    mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
     mappings_dict = {mapping['word']: mapping['abbreviations'] for mapping in mappings}
 
     for c in classifications:
