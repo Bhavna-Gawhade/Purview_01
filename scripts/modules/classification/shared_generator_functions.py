@@ -52,6 +52,11 @@ def process_mappings_file(file_path):
     return mappings
 
 
+def extract_sheet_from_excel(file_path, sheet_name):
+    excel_sheet = pd.read_excel(file_path, sheet_name=sheet_name)
+    return excel_sheet
+
+
 # Main Processing
 # ---------------
 

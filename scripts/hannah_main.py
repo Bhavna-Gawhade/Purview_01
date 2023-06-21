@@ -69,6 +69,11 @@ def main():
 
     """
 
+    file_path = "example.xlsx"
+    sheet_name = "Sheet1"
+    extracted_sheet = extract_sheet_from_excel(file_path, sheet_name)
+    print(type(extracted_sheet))
+
 
 
 

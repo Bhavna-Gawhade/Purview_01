@@ -57,3 +57,13 @@ def example_associate_classification_entities_with_glossary_term():
     result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
     print(result)
 ```
+
+
+## Extract an Excel Sheet from an Excel File
+
+```python
+def example_extract_sheet_from_excel():
+    file_path = "example.xlsx"
+    sheet_name = "Sheet1"
+    extracted_sheet = extract_sheet_from_excel(file_path, sheet_name)
+```
