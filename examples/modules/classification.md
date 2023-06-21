@@ -11,10 +11,21 @@ def example_generate_all_regex():
     for x in all_regex:
         print(x)
         print("\n")
+```
 
+<br />
+
+## Exporting Generated REGEX Strings for Classifications
+
+```python
+from modules.classification.regex_generator import *
+
+def example_generate_all_regex():
+    all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
     export_to_excel(all_regex, "all_regex_terms.xlsx")
 ```
 
+<br />
 
 ## Generating Bulk Creation of Pass Testing Files for Classifications
 
@@ -28,6 +39,7 @@ def example_generate_all_pass_test_files():
     print(pass_file_names)
 ```
 
+<br />
 
 ## Associate a Classification with a Glossary Term
 
