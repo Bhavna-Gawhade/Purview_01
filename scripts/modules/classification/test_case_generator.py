@@ -43,7 +43,6 @@ def generate_variations(keywords, mappings):
                 mapping_variations = [keyword.replace(word, abbreviation) for abbreviation in abbreviations]
                 variations.update(mapping_variations)
                 variations.add(keyword)
-                #variations.update(abbreviations)
                 variations.update(generate_variations(mapping_variations, mappings))
     return list(variations)
 
@@ -179,6 +178,31 @@ def generate_all_pass_test_files(excel_file_path: str, classifications_sheet_nam
         pass_test_file_names.append(test_file_name)
         
     return pass_test_file_names
+
+
+def check_if_standalone_allowed(keywords, mappings):
+    standalone_allowed = []
+    for keyword in keywords:
+        for mapping in mappings:
+            word = mapping['word']
+            abbreviations = mapping['abbreviations']
+            if word.lower() == keyword.lower():
+                standalone_allowed.append(word)
+    return standalone_allowed
+
+
+def get_not_allowed_standalone_words(keywords, mappings):
+    standalone_allowed = check_if_standalone_allowed(keywords, mappings)
+    standalone_not_allowed = []
+    for keyword in keywords:
+        if keyword not in standalone_allowed:
+            standalone_not_allowed.append(keyword)
+    return standalone_not_allowed
+
+
+def get_fail_column_names(standalone_not_allowed):
+    print()
+    ## FINISH THIS CODE
 
 
 def generate_fail_test_file(classification: dict, mappings: list):
