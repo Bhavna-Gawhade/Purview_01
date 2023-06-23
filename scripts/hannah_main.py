@@ -70,6 +70,10 @@ def main():
     classification_info_sheet_name = "TERM_INFO"
     abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
 
+    all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
+
+    export_to_excel(all_regex, "all_regex_terms.xlsx")
+
     print()
 
 

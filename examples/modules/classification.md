@@ -7,7 +7,10 @@
 from modules.classification.regex_generator import *
 
 def example_generate_all_regex():
-    all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
     for x in all_regex:
         print(x)
         print("\n")
@@ -20,8 +23,11 @@ def example_generate_all_regex():
 ```python
 from modules.classification.regex_generator import *
 
-def example_generate_all_regex():
-    all_regex = generate_all_regex(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
+def example_export_regex_to_excel():
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
     export_to_excel(all_regex, "all_regex_terms.xlsx")
 ```
 
