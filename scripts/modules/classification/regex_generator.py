@@ -43,8 +43,8 @@ def create_regex_string(keywords: list, mappings_dict: dict):
     regex_components = []
     for keyword in keywords:
         keyword_components = [handle_word(word, mappings_dict) for word in keyword.split()]
-        regex_components.append("[^A-Za-z0-9]?".join(keyword_components))
-    regex_string = ".*" + "|.*".join(regex_components) + ".*"
+        regex_components.append("[^A-Za-z0-9]?".join(keyword_components) + ".*")  # Changed this line
+    regex_string = ".*" + "|.*".join(regex_components) + ".*"  # Changed this line
     return regex_string
 
 
