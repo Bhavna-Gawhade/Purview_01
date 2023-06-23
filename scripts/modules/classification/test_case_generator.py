@@ -98,6 +98,7 @@ def create_test_case_csv_file(classification_name: str, to_pass_or_fail: str, co
 def get_all_spacings_between(variations: list):
     all_spacings = []
     special_chars = ['!', '&', '*', '+', '.', '-', '/', ':', '_', '~', "|"]  # Add more special characters if desired
+    
     for variation in variations:
         current_with_space = variation
         no_space = variation.replace(" ", "")
@@ -123,14 +124,14 @@ def get_all_letter_cases(variations: list):
 def get_all_paddings(variations: list):
     all_paddings = []
     special_chars = ['!', '&', '*', '.', '/', ':', '_', '~', "|"]  # DO NOT USE '+' or '-'
+    chars_to_use = list(string.ascii_letters) + special_chars
 
     for variation in variations:
         current = variation
         pad_with_spaces = ' ' + variation + ' '
         pad_with_underscores = '_' + variation + '_'
-        pad_with_random_special_chars = random.choice(special_chars) + variation + random.choice(special_chars)
-        pad_with_random_letters = random.choice(string.ascii_letters) + variation + random.choice(string.ascii_letters)
-        all_paddings.extend([current, pad_with_spaces, pad_with_underscores, pad_with_random_special_chars, pad_with_random_letters])
+        pad_with_special_chars_or_random_letters = random.choice(chars_to_use) + variation + random.choice(chars_to_use)
+        all_paddings.extend([current, pad_with_spaces, pad_with_underscores, pad_with_special_chars_or_random_letters])
     
     return all_paddings
 
@@ -162,8 +163,11 @@ def generate_pass_test_file(classification: dict, mappings: list):
     # Create test cases from the variations
     pass_column_names = generate_pass_column_names(variations)
 
+    # Purview only works with 1000 column names or less in a csv file, so cap it a 1000
+    capped_pass_column_names = random.sample(pass_column_names, k=min(1000, len(pass_column_names)))
+
     # Populate the CSV test file
-    pass_file_name = create_test_case_csv_file(classification["classification_name"], "to_pass", pass_column_names)
+    pass_file_name = create_test_case_csv_file(classification["classification_name"], "to_pass", capped_pass_column_names)
 
     # Return the file name
     return pass_file_name
