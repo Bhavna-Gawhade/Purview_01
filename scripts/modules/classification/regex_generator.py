@@ -53,6 +53,7 @@ def get_regex_dict(classification: dict, mappings_dict: dict):
     regex = create_regex_string(keywords, mappings_dict)
     regex_dict = {
         "classification_name": classification["classification_name"],
+        "glossary_term": classification["glossary_term"],
         "keywords": keywords,
         "regex": regex
     }

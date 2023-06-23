@@ -32,6 +32,7 @@ def process_classifications_sheet(excel_file_path: str, sheet_name: str):
     for index, row in classification_sheet.iterrows():
         x = {
             "classification_name": row["Classification_Name"],
+            "glossary_term": row["Associated_Glossary_Terms"],
             "keywords": row['Keywords'].split(",")
         }
         classifications_dict.append(x)
