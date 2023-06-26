@@ -1,0 +1,147 @@
+{
+    "$schema": "../schema/payload.schema.json",
+    "processId": 305,
+    "parentProcessId": null,
+    "displayName": "WinningPortfolioSKUList_SourceToStage",
+    "processType": "Data",
+    "dataFactoryInstance": "01",
+    "pipelineName": "common_driver_netapp_to_stage_wildcard",
+    "isActive": true,
+    "configurationPayload": {
+        "processPayload": [
+            {
+                "processSystem": "dataFactory",
+                "processType": "copy",
+                "label": "Source -> Raw Ingest",
+                "processConfig": {
+                    "logging": true,
+                    "loggingPath": "raw/Inventory/US/Manual/WinningPortfolioSKUList/Log/"
+                }
+            },
+            {
+                "processSystem": "dataFactory",
+                "processType": "dataFlow",
+                "label": "Raw Ingest -> Raw Archive",
+                "processConfig": {
+                    "computeType": "General purpose",
+                    "runInParallel": false,
+                    "continueAfterSinkError": false,
+                    "targetPartitionSize": 128
+                }
+            },
+            {
+                "processSystem": "databricks",
+                "processType": "notebook",
+                "label": "Raw Ingest -> Staging Ingest",
+                "processConfig": {
+                    "notebookPath": "/Common/DataPlatform/Workflows/Pipelines/Staging/Common/common_raw_ingest_to_staging_ingest",
+                    "linkedService": {
+                        "jobComplexity": "simple",
+                        "jobSize": "small",
+                        "clusterConfig": {
+                            "workerType": "Standard_F4s",
+                            "workers": "8",
+                            "driverType": "Standard_F4s"
+                        }
+                    }
+                }
+            },
+            {
+                "processSystem": "databricks",
+                "processType": "notebook",
+                "label": "Staging Ingest -> Staging Archive",
+                "processConfig": {
+                    "notebookPath": "/Common/DataPlatform/Workflows/Pipelines/Staging/Common/common_staging_ingest_to_archive",
+                    "linkedService": {
+                        "jobComplexity": "simple",
+                        "jobSize": "small",
+                        "clusterConfig": {
+                            "workerType": "Standard_F4s",
+                            "workers": "8",
+                            "driverType": "Standard_F4s"
+                        }
+                    }
+                }
+            }
+        ],
+        "dataPayload": [
+            {
+                "dataSystem": "dataFactory",
+                "type": "csv",
+                "label": "Source File",
+                "config": {
+                    "directory": "Inventory/Winning Portfolio SKU List",
+                    "file": "WinningPortfolioSKUList*.csv",
+                    "log": "raw/Inventory/US/Manual/WinningPortfolioSKUList/Log/",
+                    "columnDelimiter": ",",
+                    "header": true
+                }
+            },
+            {
+                "dataSystem": "dataFactory",
+                "type": "csv",
+                "label": "Raw Ingest",
+                "config": {
+                    "container": "raw",
+                    "directory": "Inventory/US/Manual/WinningPortfolioSKUList/Ingest",
+                    "file": "WinningPortfolioSKUList*.csv",
+                    "log": "raw/Inventory/US/Manual/WinningPortfolioSKUList/Log/",
+                    "columnDelimiter": ",",
+                    "header": true
+                }
+            },
+            {
+                "dataSystem": "dataFactory",
+                "type": "csv",
+                "label": "Raw Archive",
+                "config": {
+                    "container": "raw",
+                    "directory": "Inventory/US/Manual/WinningPortfolioSKUList/Archive",
+                    "file": "WinningPortfolioSKUList*.csv",
+                    "log": "raw/Inventory/US/Manual/WinningPortfolioSKUList/Log/",
+                    "columnDelimiter": ",",
+                    "header": true
+                }
+            },
+            {
+                "dataSystem": "databricks",
+                "label": "Raw Ingest Source",
+                "dataSource": "csv",
+                "dataConfig": {
+                    "entityName": "WinningPortfolioSKUList",
+                    "path": "/mnt/raw/Inventory/US/Manual/WinningPortfolioSKUList/Ingest/@@Year@@/@@Month@@/@@Day@@/*.csv",
+                    "options": {
+                        "inferSchema": "True",
+                        "header": "True",
+                        "dateFormat": "yyyy-MM-dd",
+                        "timestampFormat": "yyyy-MM-dd HH:mm:ss.SSSSSSS",
+                        "sep": ","
+                    }
+                }
+            },
+            {
+                "label": "Staging Ingest Sink",
+                "dataSystem": "databricks",
+                "dataSource": "delta",
+                "dataConfig": {
+                    "path": "/mnt/stage/Inventory/US/Manual/WinningPortfolioSKUList/Ingest",
+                    "mode": "overwrite",
+                    "options": {
+                        "overwriteSchema": true
+                    }
+                }
+            },
+            {
+                "label": "Staging Archive Sink",
+                "dataSystem": "databricks",
+                "dataSource": "delta",
+                "dataConfig": {
+                    "path": "/mnt/stage/Inventory/US/Manual/WinningPortfolioSKUList/Archive",
+                    "mergeColumns": [
+                        "SKUGlobal"
+                    ]
+                }
+            }
+        ]
+    }
+}
