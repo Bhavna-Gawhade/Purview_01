@@ -72,12 +72,29 @@ def main():
     abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
     generate_all_pass_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
     """
-
+    """
     file_path = "Classifications_from_Glossary_Terms.xlsx"
     classification_info_sheet_name = "TERM_INFO"
     abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
     all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
     export_to_excel(all_regex, "all_regex_terms.xlsx")
+    """
+    """
+    glossary_term_name = "Division"
+    glossary_name = "Glossary"
+    entities_with_glossary_term = glossary.get_all_entitities_with_glossary_term(glossary_term_name, glossary_name)
+    result = glossary.remove_term_from_all_entities(entities_with_glossary_term, glossary_term_name, glossary_name)
+    print(result)
+    
+    """
+
+    # Specify the names of the classification and glossary term you would like to connect
+    classification_name = "Division"
+    glossary_term_name = "Division"
+    
+    # Associate the classification and glossary term
+    result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
+    print(result)
 
 
 
