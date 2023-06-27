@@ -8,6 +8,8 @@ from modules.classification.test_case_generator import *
 from modules.classification.regex_generator import *
 from modules.classification.shared_generator_functions import *
 from modules.classification.classification import *
+from modules.lineage.json_payload_lineage import *
+from modules.lineage.shared_lineage_functions import *
 
 
 
@@ -19,6 +21,7 @@ from pyapacheatlas.core import AtlasEntity, AtlasProcess
 from azure.core.exceptions import HttpResponseError
 from utils import get_credentials, create_purview_client
 import json
+import datetime
 
 
 # Constants
@@ -40,62 +43,31 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 def main():
     print()
 
-    '''
-    profit_center_regex = r"/\b.*Profit[^A-Za-z0-9]?(Center|CTR).*\b/|Profit[^A-Za-z0-9]?(Center|CTR)"
-    storage_location_regex = r"/\b.*Storage[^A-Za-z0-9]?(Location|LOC).*\b/|Storage[^A-Za-z0-9]?(Location|LOC)|/\b.*Warehouse.*\b/|Warehouse|/\b.*SLOC.*\b/|SLOC"
-    '''
-    
-    '''
-    pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE, MAPPINGS_EXCEL_FILE)
-    print(pass_file_names)
-    '''
-
-    '''
-    valuation_class_pass_file_name = 'test_CSVs/to_pass/material_type_to_pass_test_column_names.csv'
-    column_names = get_csv_column_names(valuation_class_pass_file_name)
-    print(column_names)
-    print(len(column_names))
-    '''
-
     """
-
     classification_name = "Division"
     glossary_term_name = "Division"
     result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
     print(result)
-
     """
 
-    """    
+    """
+    FINISH TESTING
+
+
     file_path = "Classifications_from_Glossary_Terms.xlsx"
     classification_info_sheet_name = "TERM_INFO"
-    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
-    generate_all_pass_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
-    """
-    """
-    file_path = "Classifications_from_Glossary_Terms.xlsx"
-    classification_info_sheet_name = "TERM_INFO"
-    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
-    all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
-    export_to_excel(all_regex, "all_regex_terms.xlsx")
-    """
-    """
-    glossary_term_name = "Division"
-    glossary_name = "Glossary"
-    entities_with_glossary_term = glossary.get_all_entitities_with_glossary_term(glossary_term_name, glossary_name)
-    result = glossary.remove_term_from_all_entities(entities_with_glossary_term, glossary_term_name, glossary_name)
-    print(result)
-    
-    """
+    classifications_dict = process_classifications_sheet(file_path, classification_info_sheet_name)
+    for c in classifications_dict:
+        classification_name = c["classification_name"]
+        glossary_term_name = c["glossary_term"]
+        print(classification_name)
+        result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
+        print(result)
+    """   
 
-    # Specify the names of the classification and glossary term you would like to connect
-    classification_name = "Division"
-    glossary_term_name = "Division"
+   
+   
     
-    # Associate the classification and glossary term
-    result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
-    print(result)
-
 
 
 if __name__ == '__main__':

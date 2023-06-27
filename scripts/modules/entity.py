@@ -9,6 +9,7 @@ from utils import get_credentials, create_purview_client
 # Package Imports
 # ---------------
 from pyapacheatlas.core.typedef import EntityTypeDef
+from pyapacheatlas.core import AtlasEntity, AtlasProcess, PurviewClient
 from pathlib import Path
 
 
@@ -37,9 +38,20 @@ INGESTION_FRAMEWORK_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
+TESTING_DEF = EntityTypeDef(
+  name = "dev_testing_typedef",
+  superTypes = ["DataSet"]
+)
+
 
 # Functions
 # ---------------
+
+def create_entity(name: str, type_name: str, qualified_name: str):
+    atlas_entity = AtlasEntity(name = name, typeName = type_name, qualified_name = qualified_name)
+    result = CLIENT.upload_entities(atlas_entity)
+    return result
+
 
 def get_entity_from_qualified_name(qualified_name):
     """

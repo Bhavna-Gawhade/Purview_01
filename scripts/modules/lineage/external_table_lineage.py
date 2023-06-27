@@ -5,7 +5,7 @@
 # ---------------
 from utils import get_credentials, create_purview_client
 from modules import *
-from shared_lineage_functions import *
+from modules.lineage.shared_lineage_functions import *
 
 
 # Imports

@@ -5,7 +5,7 @@
 # ---------------
 from utils import get_credentials, create_purview_client
 from modules.entity import *
-from shared_lineage_functions import *
+from modules.lineage.shared_lineage_functions import *
 
 
 # Imports
@@ -187,6 +187,8 @@ def process_payload(data: dict):
         source_payloads = []
         target_payloads = []
         process_info_list = []
+
+        print("HERE")
 
         # Process and extract process payloads
         for payload in process_payloads:
