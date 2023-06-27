@@ -35,3 +35,15 @@ def example_upload_custom_typedef():
     result = upload_custom_type_def(TESTING_DEF)
     print(json.dumps(result))
 ```
+
+<br />
+
+## Get Entity from GUID
+
+```python
+def example_get_entity_from_guid():
+    guid = "1c940301-a3a5-43a1-8977-479eaa338122"
+    result = CLIENT.get_entity(guid)
+    result_entities = result["entities"]
+    print(result_entities)
+```

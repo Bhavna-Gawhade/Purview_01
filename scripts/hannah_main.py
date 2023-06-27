@@ -65,6 +65,10 @@ def main():
         print(result)
     """   
 
+    guid = "1c940301-a3a5-43a1-8977-479eaa338122"
+    gotten = CLIENT.get_entity(guid)
+    print(gotten)
+
    
    
     
