@@ -64,6 +64,25 @@ def example_associate_classification_entities_with_glossary_term():
     print(result)
 ```
 
+<br />
+
+## Bulk Associate Classifications with a Glossary Terms from Excel
+
+```python
+def example_bulk_associate_classifications_and_glossary_terms_from_excel():
+    excel_file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    classifications_dict = process_classifications_sheet(excel_file_path, classification_info_sheet_name)
+    for c in classifications_dict:
+        classification_name = c["classification_name"]
+        glossary_term_name = c["glossary_term"]
+        result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
+        print(classification_name + ":")
+        print(result)
+
+```
+
+<br />
 
 ## Extract an Excel Sheet from an Excel File
 

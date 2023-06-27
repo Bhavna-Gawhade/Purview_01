@@ -5,6 +5,9 @@
 # ---------------
 from modules import entity
 from utils import get_credentials, create_purview_client
+from modules.classification.regex_generator import *
+from modules.classification.shared_generator_functions import *
+from modules.classification.classification import *
 
 
 # Package Imports
@@ -94,6 +97,16 @@ def associate_classification_and_glossary_term(classification_name: str, glossar
             print("Could not link classification: '" + classification_name + "' for glossary term: '" + glossary_term_name)
             print("Please evaluate the error further. Make sure the proper Glossary Term name is used.")
             return None
+        
+        
+def bulk_associate_classifications_and_glossary_terms_from_excel(excel_file_path: str, classification_info_sheet_name: str):
+    classifications_dict = process_classifications_sheet(excel_file_path, classification_info_sheet_name)
+    for c in classifications_dict:
+        classification_name = c["classification_name"]
+        glossary_term_name = c["glossary_term"]
+        result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
+        print(classification_name + ":")
+        print(result)
 
 
 def get_entity_classification(qualified_name: str):
