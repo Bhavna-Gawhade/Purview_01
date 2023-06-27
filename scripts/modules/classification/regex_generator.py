@@ -53,6 +53,7 @@ def get_regex_dict(classification: dict, mappings_dict: dict):
     regex = create_regex_string(keywords, mappings_dict)
     regex_dict = {
         "classification_name": classification["classification_name"],
+        "classification_description": classification["glossary_term"],
         "glossary_term": classification["glossary_term"],
         "keywords": keywords,
         "regex": regex
@@ -77,11 +78,13 @@ def export_to_excel(all_regex_dicts, file_path):
     data = []
     for regex_dict in all_regex_dicts:
         classification_name = regex_dict["classification_name"]
+        classification_description = regex_dict["classification_description"]
+        glossary_term = regex_dict["glossary_term"]
         keywords = ", ".join(regex_dict["keywords"])
         regex = regex_dict["regex"]
-        data.append([classification_name, keywords, regex])
+        data.append([classification_name, classification_description, glossary_term, keywords, regex])
     
-    df = pd.DataFrame(data, columns=["Classification_Name", "Keywords", "REGEX"])
+    df = pd.DataFrame(data, columns=["Classification_Name", "Classification_Description", "Glossary_Term", "Keywords", "REGEX"])
     df.to_excel(file_path, index=False)
     
 

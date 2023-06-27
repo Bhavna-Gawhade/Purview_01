@@ -50,8 +50,9 @@ def main():
     print(result)
     """
 
-    
+    """
     #FINISH TESTING
+    # SAVE THIS AS AN EXAMPLE AND AN ACTUAL FUNC
 
 
     file_path = "Classifications_from_Glossary_Terms.xlsx"
@@ -63,6 +64,14 @@ def main():
         print(classification_name)
         result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
         print(result)
+
+    """    
+
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    all_regex = generate_all_regex(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
+    export_to_excel(all_regex, "all_regex_terms.xlsx")
        
 
 
