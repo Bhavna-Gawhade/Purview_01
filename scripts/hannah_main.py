@@ -50,8 +50,8 @@ def main():
     print(result)
     """
 
-    """
-    FINISH TESTING
+    
+    #FINISH TESTING
 
 
     file_path = "Classifications_from_Glossary_Terms.xlsx"
@@ -63,15 +63,7 @@ def main():
         print(classification_name)
         result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
         print(result)
-    """   
-
-    guid = "1c940301-a3a5-43a1-8977-479eaa338122"
-    gotten = CLIENT.get_entity(guid)
-    print(gotten)
-
-   
-   
-    
+       
 
 
 if __name__ == '__main__':

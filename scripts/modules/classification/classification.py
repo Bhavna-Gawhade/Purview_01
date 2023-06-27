@@ -83,20 +83,17 @@ def associate_classification_and_glossary_term(classification_name: str, glossar
         result: The result of associating the classification with the glossary term.
     """
     entities_with_classification = get_all_entities_with_classification(classification_name)
-
-    print(entities_with_classification)
-
     if len(entities_with_classification) == 0:
         print("The classification: '" + classification_name + "' for glossary term: '" + glossary_term_name + "' has no instances at this time.")
         return None
     else: 
-        results = []
-        for e in entities_with_classification:
-            entity = CLIENT.get_entity(e["guid"])["entities"]
-            print(entity)
-            result = CLIENT.glossary.assignTerm(entities = list(entity), termName = glossary_term_name, glossary_name = "Glossary")
-            results.append(result)
-        return results
+        try:
+            result = CLIENT.glossary.assignTerm(entities = entities_with_classification, termName = glossary_term_name, glossary_name = "Glossary")
+            return result
+        except:
+            print("Could not link classification: '" + classification_name + "' for glossary term: '" + glossary_term_name)
+            print("Please evaluate the error further. Make sure the proper Glossary Term name is used.")
+            return None
 
 
 def get_entity_classification(qualified_name: str):
