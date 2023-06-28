@@ -306,13 +306,41 @@ def generate_plm():
     print(json.dumps(results, indent=2))
 
 
-def generate_entity(name, typename, system_name):
+def create_column_entity(tabular_schema, qual_name_header, column_name, type):
+    col = AtlasEntity(
+        name = column_name,
+        typeName = "column",
+        qualified_name = qual_name_header + column_name + "/",
+        attributes = {
+            "type": type
+        },
+        relationshipAttributes = {
+            "composeSchema": tabular_schema.to_json(minimum=True)
+        }
+    )
+    return col
+
+
+def create_all_column_entities(tabular_schema, qual_name_header, columns_dict):
+    all_cols = []
+    for key, value in columns_dict.items():
+        column_name = key
+        type = value
+        col = create_column_entity(tabular_schema, qual_name_header, column_name, type)
+        all_cols.append(col)
+    return all_cols
+
+
+def generate_entity(name, typename, system_name, columns_dict):
     # Create a Tabular Schema entity
     ts = AtlasEntity(
         name = name + "_tabular_schema",
         typeName = "tabular_schema",
         qualified_name = "pyapache://" + system_name + "/" + name + "_tabular_schema/"
     )
+
+    qual_name_header = "pyapache://" + system_name + "/" + name + "_tabular_schema/"
+    all_cols = create_all_column_entities(ts, qual_name_header, columns_dict)
 
     # Create a resource set that references the tabular schema
     rs = AtlasEntity(
@@ -325,9 +353,8 @@ def generate_entity(name, typename, system_name):
     )
 
     # Upload entities
-    results = CLIENT.upload_entities(
-        [rs.to_json(), ts.to_json()]
-    )
+    entities = [rs.to_json(), ts.to_json()] + all_cols
+    results = CLIENT.upload_entities(entities)
     # Print out results to see the guid assignemnts
     print(json.dumps(results, indent=2))
 

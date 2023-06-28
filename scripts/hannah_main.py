@@ -12,6 +12,7 @@ from modules.lineage.json_payload_lineage import *
 from modules.lineage.shared_lineage_functions import *
 from utils import get_credentials, create_purview_client
 from generate_demo_entities import *
+from generate_demo_columns import *
 
 
 # Import Packages
@@ -115,10 +116,11 @@ def main():
     '''
 
 
-    name = "Demand_Planning_Forecast"
-    system_name = "DataLake"
-    typename = "azure_datalake_gen2_resource_set"
-    generate_entity(name, typename, system_name)
+    name = "stage.InventoryAvailability"
+    system_name = "SQL_DW"
+    typename = "azure_sql_dw_table"
+    columns_dict = INVENTORY_SCHEMA
+    generate_entity(name, typename, system_name, columns_dict)
 
 
 if __name__ == '__main__':
