@@ -45,13 +45,6 @@ def main():
     print()
 
     """
-    classification_name = "Division"
-    glossary_term_name = "Division"
-    result = associate_classification_and_glossary_term(classification_name, glossary_term_name)
-    print(result)
-    """
-
-    """
     #FINISH TESTING
     # SAVE THIS AS AN EXAMPLE AND AN ACTUAL FUNC
 
@@ -69,14 +62,15 @@ def main():
     """ 
 
 
-
-    
-
-
     """
     names = get_all_typedefs()
-    print(names)
+    for n in names:
+        if "sap_s4hana" in n:
+            print(n)
+
     """
+    """
+
 
     column = "column"
     tabular_schema = "tabular_schema"
@@ -91,15 +85,16 @@ def main():
     sql_dw = "mssql://hbi-qa01-analytics-dwsrv.database.windows.net/hbiqa01dw"
     sql_server = "mssql://hbi-qa01-analytics-dwsrv.database.windows.net"
     s4_hana_instance = "sap_s4hana://vhhbrmd1ci_MD1_00_220/"
+    matdoc_extract = "sap_s4hana://vhhbrmd1ci_MD1_00_220/MATDOC_EXTRACT"
 
-    entity = get_entity_typename_from_qualified_name(gen2_storage_account)
+    entity = get_entity_typename_from_qualified_name(matdoc_extract)
     print(entity)
 
     gen2_storage_account_typename = "azure_storage_account"
     gen2_service_typename = "azure_datalake_gen2_service"
     sql_server_typename = "azure_sql_server"
 
-
+    """
 
 
     #generate_plm()
@@ -118,6 +113,12 @@ def main():
 
     print(json.dumps(results, indent=2))
     '''
+
+
+    name = "Demand_Planning_Forecast"
+    system_name = "DataLake"
+    typename = "azure_datalake_gen2_resource_set"
+    generate_entity(name, typename, system_name)
 
 
 if __name__ == '__main__':

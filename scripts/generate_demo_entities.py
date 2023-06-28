@@ -304,3 +304,31 @@ def generate_plm():
     )
     # Print out results to see the guid assignemnts
     print(json.dumps(results, indent=2))
+
+
+def generate_entity(name, typename, system_name):
+    # Create a Tabular Schema entity
+    ts = AtlasEntity(
+        name = name + "_tabular_schema",
+        typeName = "tabular_schema",
+        qualified_name = "pyapache://" + system_name + "/" + name + "_tabular_schema/"
+    )
+
+    # Create a resource set that references the tabular schema
+    rs = AtlasEntity(
+        name = name,
+        typeName = typename,
+        qualified_name = "pyapache://" + system_name + "/" + name + "/",
+        relationshipAttributes = {
+            "tabular_schema": ts.to_json(minimum=True)
+        }
+    )
+
+    # Upload entities
+    results = CLIENT.upload_entities(
+        [rs.to_json(), ts.to_json()]
+    )
+    # Print out results to see the guid assignemnts
+    print(json.dumps(results, indent=2))
+
+
