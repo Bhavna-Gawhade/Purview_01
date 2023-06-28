@@ -38,9 +38,19 @@ INGESTION_FRAMEWORK_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
-TESTING_DEF = EntityTypeDef(
+TESTING_DATASET_DEF = EntityTypeDef(
   name = "dev_testing_typedef",
   superTypes = ["DataSet"]
+)
+
+TESTING_COLUMN_DEF = EntityTypeDef(
+  name = "dev_column_testing_typedef",
+  superTypes = ["column"]
+)
+
+TESTING_RESOURCE_SET_DEF = EntityTypeDef(
+  name = "dev_resource_set_testing_typedef",
+  superTypes = ["ResourceSet"]
 )
 
 
