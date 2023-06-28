@@ -73,8 +73,34 @@ def main():
     
 
 
-    
+    """
     names = get_all_typedefs()
+    print(names)
+    """
+
+    column = "column"
+    tabular_schema = "tabular_schema"
+    dl = "azure_datalake_gen2_resource_set"
+    db = "sap_s4hana_instance_packages", "azure_sql_db_schemas"
+    dw = "azure_sql_server_data_warehouses", "azure_sql_dw_schemas", "azure_sql_dw_schema_tables"
+    power_bi = "powerbi_dataset"
+
+
+    gen2_storage_account = "https://hbipdextdynamicactionsa.core.windows.net"
+    gen2_service = "https://hbipdextdynamicactionsa.dfs.core.windows.net"
+    sql_dw = "mssql://hbi-qa01-analytics-dwsrv.database.windows.net/hbiqa01dw"
+    sql_server = "mssql://hbi-qa01-analytics-dwsrv.database.windows.net"
+    s4_hana_instance = "sap_s4hana://vhhbrmd1ci_MD1_00_220/"
+
+    entity = get_entity_typename_from_qualified_name(gen2_storage_account)
+    print(entity)
+
+    gen2_storage_account_typename = "azure_storage_account"
+    gen2_service_typename = "azure_datalake_gen2_service"
+    sql_server_typename = "azure_sql_server"
+
+
+
 
     #generate_plm()
     #generate_mdg()

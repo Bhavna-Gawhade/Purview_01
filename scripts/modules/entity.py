@@ -95,6 +95,22 @@ def get_entity_from_qualified_name(qualified_name):
     return entity
 
 
+def get_entity_typename_from_qualified_name(qualified_name):
+    entities_found = CLIENT.discovery.search_entities(query=qualified_name)
+    entities = []
+    for entity in entities_found:
+        if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
+            entities.append(entity)
+
+    if len(entities) > 1:
+        raise ValueError(f"More than one entity was returned. There should only be one entity returned from a qualified name. The qualified name used was: {qualified_name}")
+    elif len(entities) == 0:
+        raise ValueError(f"No entity was found with this qualified name: {qualified_name}")
+
+    entity_typename = entities[0]["entityType"]
+    return entity_typename
+
+
 def get_all_typedefs():
     all_typedefs = CLIENT.get_all_typedefs()
     entity_defs = all_typedefs["entityDefs"]

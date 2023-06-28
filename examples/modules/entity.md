@@ -47,3 +47,31 @@ def example_get_entity_from_guid():
     result_entities = result["entities"]
     print(result_entities)
 ```
+
+<br />
+
+## Get Entity from Qualified Name
+
+```python
+from modules import entity
+
+def example_get_entity_from_qualified_name():
+    qualified_name = "https://example"
+    entity = get_entity_from_qualified_name(qualified_name)
+    print(entity)
+```
+
+<br />
+
+## Get Entity Typename from Qualified Name
+
+```python
+from modules import entity
+
+def example_get_entity_typename_from_qualified_name():
+    qualified_name = "https://example"
+    entity_typename = get_entity_typename_from_qualified_name(qualified_name)
+    print(entity_typename)
+```
+
+
