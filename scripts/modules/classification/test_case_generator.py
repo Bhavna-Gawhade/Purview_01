@@ -198,7 +198,7 @@ def get_base_fail_column_names(keywords: list, allowed_standalone_keywords: list
     for keyword in keywords:
         words = keyword.split()
         for word in words:
-            if word not in allowed_standalone_keywords:
+            if word.lower() not in [kw.lower() for kw in allowed_standalone_keywords]:
                 base_fail_column_names.append(word)
 
     for mapping in mappings:
