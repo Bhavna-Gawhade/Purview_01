@@ -79,8 +79,7 @@ def to_snake_case(input_str: str):
     return snake_case_string
 
 
-def create_test_case_csv_file(classification_name: str, to_pass_or_fail: str, column_names: list):
-    directory = 'test_CSVs/to_pass'
+def create_test_case_csv_file(directory: str, classification_name: str, to_pass_or_fail: str, column_names: list):
     os.makedirs(directory, exist_ok=True) # Create the directory if it doesn't exist
     snake_case_classification_name = to_snake_case(classification_name)
     file_name_without_path = snake_case_classification_name + '_' + to_pass_or_fail + '_test_column_names.csv'
@@ -167,7 +166,8 @@ def generate_pass_test_file(classification: dict, mappings: list):
     capped_pass_column_names = random.sample(pass_column_names, k=min(1000, len(pass_column_names)))
 
     # Populate the CSV test file
-    pass_file_name = create_test_case_csv_file(classification["classification_name"], "to_pass", capped_pass_column_names)
+    directory = 'test_CSVs/to_pass'
+    pass_file_name = create_test_case_csv_file(directory, classification["classification_name"], "to_pass", capped_pass_column_names)
 
     # Return the file name
     return pass_file_name
@@ -184,43 +184,68 @@ def generate_all_pass_test_files(excel_file_path: str, classifications_sheet_nam
     return pass_test_file_names
 
 
-def check_if_standalone_allowed(keywords, mappings):
-    standalone_allowed = []
+def get_allowed_standalone_keywords(keywords: list):
+    allowed_standalone_keywords = []
     for keyword in keywords:
-        for mapping in mappings:
-            word = mapping['word']
-            abbreviations = mapping['abbreviations']
-            if word.lower() == keyword.lower():
-                standalone_allowed.append(word)
-    return standalone_allowed
+        words = keyword.split()
+        if len(words) == 1:
+            allowed_standalone_keywords.append(words[0])
+    return allowed_standalone_keywords
 
 
-def get_not_allowed_standalone_words(keywords, mappings):
-    standalone_allowed = check_if_standalone_allowed(keywords, mappings)
-    standalone_not_allowed = []
+def get_base_fail_column_names(keywords: list, allowed_standalone_keywords: list, mappings: list):
+    base_fail_column_names = []
     for keyword in keywords:
-        if keyword not in standalone_allowed:
-            standalone_not_allowed.append(keyword)
-    return standalone_not_allowed
+        words = keyword.split()
+        for word in words:
+            if word not in allowed_standalone_keywords:
+                base_fail_column_names.append(word)
+
+    for mapping in mappings:
+        if mapping["word"] in base_fail_column_names:
+            base_fail_column_names.extend(mapping["abbreviations"])
+
+    unique_base_fail_column_names = list(set(base_fail_column_names))
+    return unique_base_fail_column_names
 
 
-def get_fail_column_names(standalone_not_allowed):
-    print()
-    ## FINISH THIS CODE
+def get_all_fail_column_names(base_fail_column_names: list):
+    all_fail_column_names = []
+    special_chars = ['!', '&', '*', '.', '/', ':', '_', '~', "|"]  # DO NOT USE '+' or '-'
+
+    for item in base_fail_column_names:
+        current = item
+        pad_with_spaces = ' ' + item + ' '
+        pad_with_underscores = '_' + item + '_'
+        pad_with_special_chars_or_random_letters = random.choice(special_chars) + item + random.choice(special_chars)
+        all_fail_column_names.extend([current, pad_with_spaces, pad_with_underscores, pad_with_special_chars_or_random_letters])
+
+        all_upper = item.upper()
+        all_lower = item.lower()
+        mixed_case = ''.join([char.upper() if random.choice([True, False]) else char.lower() for char in item])
+        title_case = item.title()
+        all_fail_column_names.extend([all_upper, all_lower, mixed_case, title_case])
+    
+    unique_all_fail_column_names = list(set(all_fail_column_names))
+    return unique_all_fail_column_names
 
 
 def generate_fail_test_file(classification: dict, mappings: list):
-    # Get variations of the keywords
-    variations = get_keyword_variations(classification, mappings)
+    # Get keywords and mappings to use 
+    keywords = classification["keywords"]
+    allowed_standalone_keywords = get_allowed_standalone_keywords(keywords)
+    base_fail_column_names = get_base_fail_column_names(keywords, allowed_standalone_keywords, mappings)
+    all_fail_column_names = get_all_fail_column_names(base_fail_column_names)
 
-    # Create test cases from the variations
-    pass_column_names = generate_pass_column_names(variations)
+    # Purview only works with 1000 column names or less in a csv file, so cap it a 1000
+    capped_fail_column_names = random.sample(all_fail_column_names, k=min(1000, len(all_fail_column_names)))
 
     # Populate the CSV test file
-    pass_file_name = create_test_case_csv_file(classification["classification_name"], "to_pass", pass_column_names)
+    directory = 'test_CSVs/to_fail'
+    fail_file_name = create_test_case_csv_file(directory, classification["classification_name"], "to_fail", capped_fail_column_names)
 
     # Return the file name
-    return pass_file_name
+    return fail_file_name
 
 
 def generate_all_fail_test_files(excel_file_path: str, classifications_sheet_name: str, mappings_sheet_name: str):

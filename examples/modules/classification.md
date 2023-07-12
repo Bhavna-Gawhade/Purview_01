@@ -41,11 +41,32 @@ The classifications should pass each of the testing column names in these genera
 from modules.classification.test_case_generator import *
 
 def example_generate_all_pass_test_files():
-    pass_file_names = generate_all_pass_test_files(CLASSIFICATION_EXCEL_FILE_NAME, MAPPINGS_EXCEL_FILE_NAME)
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    pass_file_names = generate_all_pass_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
     print(pass_file_names)
 ```
 
 <br />
+
+## Generating Bulk Creation of Fail Testing Files for Classifications
+
+The classifications should fail each of the testing column names in these generated files.
+
+```python
+from modules.classification.test_case_generator import *
+
+def example_generate_all_fail_test_files():
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    fail_file_names = generate_all_fail_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
+    print(fail_file_names)
+```
+
+<br />
+
 
 ## Associate a Classification with a Glossary Term
 

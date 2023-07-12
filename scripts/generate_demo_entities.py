@@ -358,4 +358,3 @@ def generate_entity(name, typename, system_name, columns_dict):
     # Print out results to see the guid assignemnts
     print(json.dumps(results, indent=2))
 
-

@@ -39,6 +39,7 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # ---------------
 
 
+
 # Main Function
 # ---------------
 
@@ -115,12 +116,19 @@ def main():
     print(json.dumps(results, indent=2))
     '''
 
-
-    name = "stage.InventoryAvailability"
-    system_name = "SQL_DW"
-    typename = "azure_sql_dw_table"
-    columns_dict = INVENTORY_SCHEMA
+    """
+    name = "MATERIAL_MASTER"
+    system_name = "DSP"
+    typename = "sap_s4hana_table"
+    columns_dict = MATERIAL_MASTER_SCHEMA
     generate_entity(name, typename, system_name, columns_dict)
+    """
+
+    file_path = "Classifications_from_Glossary_Terms.xlsx"
+    classification_info_sheet_name = "TERM_INFO"
+    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
+    fail_file_names = generate_all_fail_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
+    print(fail_file_names)
 
 
 if __name__ == '__main__':
