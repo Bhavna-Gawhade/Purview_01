@@ -34,6 +34,16 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # ---------------
 
 def generate_variations(keywords, mappings):
+    """
+    Generates variations of keywords based on mappings.
+
+    Parameters:
+        keywords (list): A list of keywords.
+        mappings (list): A list of mappings containing word and abbreviation information.
+
+    Returns:
+        list: A list of generated variations.
+    """
     variations = set(keywords)
     for keyword in keywords:
         for mapping in mappings:
@@ -48,6 +58,16 @@ def generate_variations(keywords, mappings):
 
 
 def get_keyword_variations(classification: dict, mappings: list):
+    """
+    Generates keyword variations for a classification based on mappings.
+
+    Parameters:
+        classification (dict): A dictionary representing a classification.
+        mappings (list): A list of mappings containing word and abbreviation information.
+
+    Returns:
+        list: A list of keyword variations.
+    """
     keywords = classification["keywords"]
     variations = generate_variations(keywords, mappings)
     stripped_variations = strip_strings(variations)
@@ -61,12 +81,30 @@ def get_keyword_variations(classification: dict, mappings: list):
 
 
 def get_excel_column_names(file_path):
+    """
+    Retrieves column names from an Excel file.
+
+    Parameters:
+        file_path (str): The file path to the Excel file.
+
+    Returns:
+        list: A list of column names.
+    """
     df = pd.read_excel(file_path)
     column_names = df.columns.tolist()
     return column_names
 
 
 def get_csv_column_names(file_name):
+    """
+    Retrieves column names from a CSV file.
+
+    Parameters:
+        file_name (str): The file name of the CSV file.
+
+    Returns:
+        list: A list of column names.
+    """
     with open(file_name, 'r') as csvfile:
         reader = csv.reader(csvfile)
         column_names = next(reader)  # Read the first row
@@ -74,12 +112,33 @@ def get_csv_column_names(file_name):
 
 
 def to_snake_case(input_str: str):
+    """
+    Converts a string to snake case.
+
+    Parameters:
+        input_str (str): The input string.
+
+    Returns:
+        str: The string converted to snake case.
+    """
     snake_case_string = input_str.replace(' ', '_')
     snake_case_string = snake_case_string.lower()
     return snake_case_string
 
 
 def create_test_case_csv_file(directory: str, classification_name: str, to_pass_or_fail: str, column_names: list):
+    """
+    Creates a test case CSV file.
+
+    Parameters:
+        directory (str): The directory to store the CSV file.
+        classification_name (str): The name of the classification.
+        to_pass_or_fail (str): Indicates whether the test case is for "to_pass" or "to_fail".
+        column_names (list): A list of column names.
+
+    Returns:
+        str: The file name of the created CSV file.
+    """
     os.makedirs(directory, exist_ok=True) # Create the directory if it doesn't exist
     snake_case_classification_name = to_snake_case(classification_name)
     file_name_without_path = snake_case_classification_name + '_' + to_pass_or_fail + '_test_column_names.csv'
@@ -95,6 +154,15 @@ def create_test_case_csv_file(directory: str, classification_name: str, to_pass_
 
 
 def get_all_spacings_between(variations: list):
+    """
+    Generates variations by adding different spacings between the words.
+
+    Parameters:
+        variations (list): A list of variations.
+
+    Returns:
+        list: A list of variations with different spacings between the words.
+    """
     all_spacings = []
     special_chars = ['!', '&', '*', '+', '.', '-', '/', ':', '_', '~', "|"]  # Add more special characters if desired
     
@@ -108,6 +176,15 @@ def get_all_spacings_between(variations: list):
 
 
 def get_all_letter_cases(variations: list):
+    """
+    Generates variations by changing the letter cases.
+
+    Parameters:
+        variations (list): A list of variations.
+
+    Returns:
+        list: A list of variations with different letter cases.
+    """
     all_cases = []
     for variation in variations:
         current = variation
@@ -121,6 +198,15 @@ def get_all_letter_cases(variations: list):
 
 
 def get_all_paddings(variations: list):
+    """
+    Generates variations by adding different paddings.
+
+    Parameters:
+        variations (list): A list of variations.
+
+    Returns:
+        list: A list of variations with different paddings.
+    """
     all_paddings = []
     special_chars = ['!', '&', '*', '.', '/', ':', '_', '~', "|"]  # DO NOT USE '+' or '-'
     chars_to_use = list(string.ascii_letters) + special_chars
@@ -136,6 +222,15 @@ def get_all_paddings(variations: list):
 
 
 def generate_pass_column_names(variations: list):
+    """
+    Generates column names for passing test cases.
+
+    Parameters:
+        variations (list): A list of variations.
+
+    Returns:
+        list: A list of column names for passing test cases.
+    """
     # Get all cases for each variation
     all_letter_cases = get_all_letter_cases(variations)
     unique_all_letter_cases = list(set(all_letter_cases))
@@ -152,10 +247,29 @@ def generate_pass_column_names(variations: list):
 
 
 def strip_strings(strings):
+    """
+    Strips leading and trailing spaces from a list of strings.
+
+    Parameters:
+        strings (list): A list of strings.
+
+    Returns:
+        list: A list of stripped strings.
+    """
     return [string.strip() for string in strings]
 
 
 def generate_pass_test_file(classification: dict, mappings: list):
+    """
+    Generates a CSV test file for passing test cases.
+
+    Parameters:
+        classification (dict): A dictionary representing a classification.
+        mappings (list): A list of mappings containing word and abbreviation information.
+
+    Returns:
+        str: The file name of the created CSV test file.
+    """
     # Get variations of the keywords
     variations = get_keyword_variations(classification, mappings)
 
@@ -174,6 +288,17 @@ def generate_pass_test_file(classification: dict, mappings: list):
 
 
 def generate_all_pass_test_files(excel_file_path: str, classifications_sheet_name: str, mappings_sheet_name: str):
+    """
+    Generates CSV test files for all passing test cases.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        classifications_sheet_name (str): The name of the sheet containing classification information.
+        mappings_sheet_name (str): The name of the sheet containing mappings information.
+
+    Returns:
+        list: A list of file names for the created CSV test files.
+    """
     pass_test_file_names = []
     classifications = process_classifications_sheet(excel_file_path, classifications_sheet_name)
     mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
@@ -185,6 +310,15 @@ def generate_all_pass_test_files(excel_file_path: str, classifications_sheet_nam
 
 
 def get_allowed_standalone_keywords(keywords: list):
+    """
+    Retrieves allowed standalone keywords from a list of keywords.
+
+    Parameters:
+        keywords (list): A list of keywords.
+
+    Returns:
+        list: A list of allowed standalone keywords.
+    """
     allowed_standalone_keywords = []
     for keyword in keywords:
         words = keyword.split()
@@ -194,6 +328,17 @@ def get_allowed_standalone_keywords(keywords: list):
 
 
 def get_base_fail_column_names(keywords: list, allowed_standalone_keywords: list, mappings: list):
+    """
+    Retrieves base fail column names based on keywords, allowed standalone keywords, and mappings.
+
+    Parameters:
+        keywords (list): A list of keywords.
+        allowed_standalone_keywords (list): A list of allowed standalone keywords.
+        mappings (list): A list of mappings containing word and abbreviation information.
+
+    Returns:
+        list: A list of base fail column names.
+    """
     base_fail_column_names = []
     for keyword in keywords:
         words = keyword.split()
@@ -210,6 +355,15 @@ def get_base_fail_column_names(keywords: list, allowed_standalone_keywords: list
 
 
 def get_all_fail_column_names(base_fail_column_names: list):
+    """
+    Generates all fail column names based on base fail column names.
+
+    Parameters:
+        base_fail_column_names (list): A list of base fail column names.
+
+    Returns:
+        list: A list of all fail column names.
+    """
     all_fail_column_names = []
     special_chars = ['!', '&', '*', '.', '/', ':', '_', '~', "|"]  # DO NOT USE '+' or '-'
 
@@ -231,6 +385,16 @@ def get_all_fail_column_names(base_fail_column_names: list):
 
 
 def generate_fail_test_file(classification: dict, mappings: list):
+    """
+    Generates a CSV test file for failing test cases.
+
+    Parameters:
+        classification (dict): A dictionary representing a classification.
+        mappings (list): A list of mappings containing word and abbreviation information.
+
+    Returns:
+        str: The file name of the created CSV test file.
+    """
     # Get keywords and mappings to use 
     keywords = classification["keywords"]
     allowed_standalone_keywords = get_allowed_standalone_keywords(keywords)
@@ -249,6 +413,17 @@ def generate_fail_test_file(classification: dict, mappings: list):
 
 
 def generate_all_fail_test_files(excel_file_path: str, classifications_sheet_name: str, mappings_sheet_name: str):
+    """
+    Generates CSV test files for all failing test cases.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        classifications_sheet_name (str): The name of the sheet containing classification information.
+        mappings_sheet_name (str): The name of the sheet containing mappings information.
+
+    Returns:
+        list: A list of file names for the created CSV test files.
+    """
     fail_test_file_names = []
     classifications = process_classifications_sheet(excel_file_path, classifications_sheet_name)
     mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)

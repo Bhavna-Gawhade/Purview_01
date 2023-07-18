@@ -30,6 +30,16 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # ---------------
 
 def handle_word(word: str, mappings_dict: dict):
+    """
+    Handles a word by checking if it exists in the mappings dictionary and returns the corresponding word component.
+
+    Parameters:
+        word (str): The word to handle.
+        mappings_dict (dict): A dictionary containing word mappings.
+
+    Returns:
+        str: The word component based on the mappings dictionary.
+    """
     word_component = ""
     if word in mappings_dict:
         abbreviations = mappings_dict[word]
@@ -40,6 +50,16 @@ def handle_word(word: str, mappings_dict: dict):
 
 
 def create_regex_string(keywords: list, mappings_dict: dict):
+    """
+    Creates a regex string by processing a list of keywords and a mappings dictionary.
+
+    Parameters:
+        keywords (list): A list of keywords.
+        mappings_dict (dict): A dictionary containing word mappings.
+
+    Returns:
+        str: The resulting regex string.
+    """
     regex_components = []
     for keyword in keywords:
         keyword_components = [handle_word(word, mappings_dict) for word in keyword.split()]
@@ -49,6 +69,16 @@ def create_regex_string(keywords: list, mappings_dict: dict):
 
 
 def get_regex_dict(classification: dict, mappings_dict: dict):
+    """
+    Generates a dictionary containing regex information for a given classification.
+
+    Parameters:
+        classification (dict): A dictionary representing a classification.
+        mappings_dict (dict): A dictionary containing word mappings.
+
+    Returns:
+        dict: The dictionary containing regex information.
+    """
     keywords = classification["keywords"]
     regex = create_regex_string(keywords, mappings_dict)
     regex_dict = {
@@ -62,6 +92,17 @@ def get_regex_dict(classification: dict, mappings_dict: dict):
 
 
 def generate_all_regex(excel_file_path: str, classification_sheet_name: str, mappings_sheet_name: str):
+    """
+    Generates a list of dictionaries containing regex information for all classifications.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        classification_sheet_name (str): The name of the sheet containing classification information.
+        mappings_sheet_name (str): The name of the sheet containing mappings information.
+
+    Returns:
+        list: A list of dictionaries containing regex information.
+    """
     all_regex_dicts = []
     classifications = process_classifications_sheet(excel_file_path, classification_sheet_name)
     mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
@@ -75,6 +116,16 @@ def generate_all_regex(excel_file_path: str, classification_sheet_name: str, map
 
 
 def export_to_excel(all_regex_dicts, file_path):
+    """
+    Exports a list of regex dictionaries to an Excel file.
+
+    Parameters:
+        all_regex_dicts (list): A list of dictionaries containing regex information.
+        file_path: The file path where the Excel file will be saved.
+
+    Returns:
+        None
+    """
     data = []
     for regex_dict in all_regex_dicts:
         classification_name = regex_dict["classification_name"]

@@ -100,6 +100,16 @@ def associate_classification_and_glossary_term(classification_name: str, glossar
         
         
 def bulk_associate_classifications_and_glossary_terms_from_excel(excel_file_path: str, classification_info_sheet_name: str):
+    """
+    Reads an Excel file and associates classifications with corresponding glossary terms in bulk.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        classification_info_sheet_name (str): The name of the sheet containing classification information.
+
+    Returns:
+        None
+    """
     classifications_dict = process_classifications_sheet(excel_file_path, classification_info_sheet_name)
     for c in classifications_dict:
         classification_name = c["classification_name"]

@@ -27,6 +27,16 @@ CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purv
 # ---------------
 
 def process_classifications_sheet(excel_file_path: str, sheet_name: str):
+    """
+    Processes the classification sheet from an Excel file and returns a list of dictionaries representing classifications.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        sheet_name (str): The name of the sheet containing classification information.
+
+    Returns:
+        list: A list of dictionaries representing classifications.
+    """
     classification_sheet = extract_sheet_from_excel(excel_file_path, sheet_name)
     classifications_dict = []
     for index, row in classification_sheet.iterrows():
@@ -40,6 +50,16 @@ def process_classifications_sheet(excel_file_path: str, sheet_name: str):
 
 
 def process_mappings_sheet(excel_file_path: str, sheet_name: str):
+    """
+    Processes the mappings sheet from an Excel file and returns a list of dictionaries representing mappings.
+
+    Parameters:
+        excel_file_path (str): The file path to the Excel file.
+        sheet_name (str): The name of the sheet containing mappings information.
+
+    Returns:
+        list: A list of dictionaries representing mappings.
+    """
     mappings_sheet = extract_sheet_from_excel(excel_file_path, sheet_name)
     mappings = []
     for index, row in mappings_sheet.iterrows():
@@ -54,6 +74,16 @@ def process_mappings_sheet(excel_file_path: str, sheet_name: str):
 
 
 def extract_sheet_from_excel(file_path, sheet_name):
+    """
+    Extracts a specific sheet from an Excel file and returns it as a pandas DataFrame.
+
+    Parameters:
+        file_path: The file path to the Excel file.
+        sheet_name: The name of the sheet to extract.
+
+    Returns:
+        pd.DataFrame: The extracted sheet as a pandas DataFrame.
+    """
     excel_sheet = pd.read_excel(file_path, sheet_name=sheet_name)
     return excel_sheet
 
