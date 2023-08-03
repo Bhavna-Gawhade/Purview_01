@@ -137,6 +137,11 @@ def upload_custom_type_def(type_def: EntityTypeDef):
     return result
 
 
+def search_by_entity_type(entity_type_name):
+    result = CLIENT.discovery.browse(entityType=entity_type_name)
+    print(result)
+
+
 # Main Processing
 # ---------------
 

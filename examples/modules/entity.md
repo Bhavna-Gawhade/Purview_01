@@ -74,4 +74,20 @@ def example_get_entity_typename_from_qualified_name():
     print(entity_typename)
 ```
 
+## Get Entities by Typename, or Search by Entity Type
+
+```python
+from modules import entity
+
+def example_search_by_entity_type():
+    entity_type_name = "sap_s4hana_table"
+    result = search_by_entity_type(entity_type_name)
+    print(result)
+
+def example_search_by_entity_type_with_limit():
+    entity_type_name = "sap_s4hana_table"
+    result = CLIENT.discovery.browse(entityType = entity_type_name, limit = 5)    
+    print(result)   
+```
+
 
