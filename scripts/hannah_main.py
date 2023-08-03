@@ -35,9 +35,10 @@ CREDS = get_credentials(cred_type= 'default')
 CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 
+ENT = 'e'
+
 # Functions
 # ---------------
-
 
 
 # Main Function
@@ -124,11 +125,79 @@ def main():
     generate_entity(name, typename, system_name, columns_dict)
     """
 
-    file_path = "Classifications_from_Glossary_Terms.xlsx"
-    classification_info_sheet_name = "TERM_INFO"
-    abbreviation_mappings_sheet_name = "ABBREVIATION_MAPPINGS"
-    fail_file_names = generate_all_fail_test_files(file_path, classification_info_sheet_name, abbreviation_mappings_sheet_name)
-    print(fail_file_names)
+
+
+    """
+    # Example usage
+    #json_file_path = 'path/to/your/json/file.json'
+    PROJ_PATH = Path(__file__).resolve().parent.parent
+    json_file_path = PROJ_PATH.joinpath('examples/source_code','US.SAP.FGInventoryAvailability.json')
+    try:
+        result = process_json_file(json_file_path)
+        print(result)
+    except ValueError as e:
+        print(str(e))
+
+    # Add in admin info
+    qualified_name_headers = {
+        "ingestion_header": "https://hbiqa01analyticsdls.dfs.core.windows.net",
+        "synapse_table_header": "mssql://hbi-qa01-analytics-dwsrv.database.windows.net/hbiqa01dw"
+    }
+    entity_type_name = "ingestion_framework"
+
+    raise Exception
+    print("HERE")
+
+    # Upload the lineage based off of the payload
+    results = upload_lineage_from_payload(result, qualified_name_headers, entity_type_name)
+    for result in results:
+        print(json.dumps(result, indent=4))
+        print()
+
+    """
+    '''
+    def export_to_excel(all_regex_dicts, file_path):
+        """
+        Exports a list of regex dictionaries to an Excel file.
+
+        Parameters:
+            all_regex_dicts (list): A list of dictionaries containing regex information.
+            file_path: The file path where the Excel file will be saved.
+
+        Returns:
+            None
+        """
+        data = []
+        for regex_dict in all_regex_dicts:
+            classification_name = regex_dict["classification_name"]
+            classification_description = regex_dict["classification_description"]
+            glossary_term = regex_dict["glossary_term"]
+            keywords = ", ".join(regex_dict["keywords"])
+            regex = regex_dict["regex"]
+            data.append([classification_name, classification_description, glossary_term, keywords, regex])
+        
+        df = pd.DataFrame(data, columns=["Classification_Name", "Classification_Description", "Glossary_Term", "Keywords", "REGEX"])
+        df.to_excel(file_path, index=False)
+    '''
+
+
+    mara_path = "sap_s4hana://vhhbrmd1ci_MD1_00_220/MARA"
+    marm_path = "sap_s4hana://vhhbrmd1ci_MD1_00_220/MARM"
+    # for anything with this in their qualified path, pull the info and export to excel
+    
+    entity_type_name = "sap_s4hana_table"
+    example_entity = CLIENT.discovery.browse(entityType=entity_type_name, limit=1)
+    print(example_entity)
+
+    
+    #CLIENT.glossary.assignTerm()
+
+
+
+
+    
+
+
 
 
 if __name__ == '__main__':
