@@ -1,3 +1,8 @@
+# Hanes repo
+scripts/inputs/BIDW
+scripts/inputs/BIDW/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
