@@ -1,0 +1,1871 @@
+{
+  "definitions": {
+    "ZV_DWC_SODELDOC": {
+      "kind": "entity",
+      "elements": {
+        "VBELN": {
+          "@EndUserText.label": "Delivery",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "POSNR": {
+          "@EndUserText.label": "Delivery Item",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "ABLAD": {
+          "@EndUserText.label": "Unloading Point",
+          "type": "cds.String",
+          "length": 25,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BZIRK": {
+          "@EndUserText.label": "Sales District",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FAKSK": {
+          "@EndUserText.label": "Billing Block in SD Document",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "INCO1": {
+          "@EndUserText.label": "Incoterms (Part 1)",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "INCO2": {
+          "@EndUserText.label": "Incoterms (Part 2)",
+          "type": "cds.String",
+          "length": 28,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KDGRP": {
+          "@EndUserText.label": "Customer Group",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KUNAG": {
+          "@EndUserText.label": "Sold-To Party",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KUNNR": {
+          "@EndUserText.label": "Ship-to party",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LFART": {
+          "@EndUserText.label": "Delivery Type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LFDAT": {
+          "@EndUserText.label": "Delivery Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIFNR": {
+          "@EndUserText.label": "Vendor's account number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIFSK": {
+          "@EndUserText.label": "Delivery Block (Document Header)",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LSTEL": {
+          "@EndUserText.label": "Loading Point",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ROUTE": {
+          "@EndUserText.label": "Route",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VBTYP": {
+          "@EndUserText.label": "SD Document Category",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VKORG": {
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSTEL": {
+          "@EndUserText.label": "Shipping Point / Receiving Point",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WADAT": {
+          "@EndUserText.label": "Planned Goods Movement Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WADAT_IST": {
+          "@EndUserText.label": "Actual Goods Movement Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WAERK": {
+          "@EndUserText.label": "SD document currency",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STWAE": {
+          "@EndUserText.label": "Statistics Currency",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BOLNR": {
+          "@EndUserText.label": "Bill of Lading",
+          "type": "cds.String",
+          "length": 35,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TRAID": {
+          "@EndUserText.label": "Means of Transport ID",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TRATY": {
+          "@EndUserText.label": "Means-of-Transport Type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TRMTYP": {
+          "@EndUserText.label": "Means of Transport",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KOSTK": {
+          "@EndUserText.label": "Picking Status/Putaway Status (All Items)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KOQUK": {
+          "@EndUserText.label": "Status of Pick Confirmation",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BLDAT": {
+          "@EndUserText.label": "Document Date in Document",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "AEDAT": {
+          "@EndUserText.label": "Date of Last Change",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "AKTNR": {
+          "@EndUserText.label": "Promotion",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BRGEW": {
+          "@EndUserText.label": "Gross weight",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CHARG": {
+          "@EndUserText.label": "Batch Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "EAN11": {
+          "@EndUserText.label": "International Article Number (EAN/UPC)",
+          "type": "cds.String",
+          "length": 18,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ERDAT": {
+          "@EndUserText.label": "Date on which the record was created",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ERNAM": {
+          "@EndUserText.label": "Name of Person who Created the Object",
+          "type": "cds.String",
+          "length": 12,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ERZET": {
+          "@EndUserText.label": "Entry time",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FAKSP": {
+          "@EndUserText.label": "Billing Block",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GEWEI": {
+          "@EndUserText.label": "Weight Unit",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GSBER": {
+          "@EndUserText.label": "Business Area",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SGT_RCAT": {
+          "@EndUserText.label": "Requirement Segment",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SGT_SCAT": {
+          "@EndUserText.label": "Stock Segment",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KOMKZ": {
+          "@EndUserText.label": "Indicator for picking control",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KVGR1": {
+          "@EndUserText.label": "Freight Terms",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KVGR2": {
+          "@EndUserText.label": "Customer  Planning Group",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KVGR3": {
+          "@EndUserText.label": "Invoice Output Type",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KVGR4": {
+          "@EndUserText.label": "Customer group 4",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KVGR5": {
+          "@EndUserText.label": "Customer group 5",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KZVBR": {
+          "@EndUserText.label": "Consumption posting",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LFIMG": {
+          "@EndUserText.label": "Actual quantity delivered (in sales units)",
+          "precision": 18,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGMNG": {
+          "@EndUserText.label": "Actual quantity delivered in stockkeeping units",
+          "precision": 18,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGNUM": {
+          "@EndUserText.label": "Warehouse Number / Warehouse Complex",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGORT": {
+          "@EndUserText.label": "Storage location",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGPLA": {
+          "@EndUserText.label": "Storage Bin",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGTYP": {
+          "@EndUserText.label": "Storage Type",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MATKL": {
+          "@EndUserText.label": "Material Group",
+          "type": "cds.String",
+          "length": 9,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MATWA": {
+          "@EndUserText.label": "Material entered",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEINS": {
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MVGR1": {
+          "@EndUserText.label": "Material group 1",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MVGR2": {
+          "@EndUserText.label": "Material group 2",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MVGR3": {
+          "@EndUserText.label": "Material group 3",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MVGR4": {
+          "@EndUserText.label": "Material group 4",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MVGR5": {
+          "@EndUserText.label": "Listing/Exclusion Group",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NTGEW": {
+          "@EndUserText.label": "Net weight",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "POSAR": {
+          "@EndUserText.label": "Item Type",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PRODH": {
+          "@EndUserText.label": "Product hierarchy",
+          "type": "cds.String",
+          "length": 18,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PSTYV": {
+          "@EndUserText.label": "Delivery item category",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STADAT": {
+          "@EndUserText.label": "Statistics date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UMVKN": {
+          "@EndUserText.label": "Denominator (Divisor) for Conversion of Sales Qty into SKU",
+          "precision": 5,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UMVKZ": {
+          "@EndUserText.label": "Numerator (factor) for conversion of sales quantity into SKU",
+          "precision": 5,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VBEAF": {
+          "@EndUserText.label": "Fixed shipping processing time in days (= setup time)",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VBEAV": {
+          "@EndUserText.label": "Variable shipping processing time in days",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VGBEL": {
+          "@EndUserText.label": "Document number of the reference document",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VGPOS": {
+          "@EndUserText.label": "Item number of the reference item",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VGTYP": {
+          "@EndUserText.label": "Document Category of Preceding SD Document",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VKBUR": {
+          "@EndUserText.label": "Sales office",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VKGRP": {
+          "@EndUserText.label": "Sales group",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VOLEH": {
+          "@EndUserText.label": "Volume unit",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VOLUM": {
+          "@EndUserText.label": "Volume",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VRKME": {
+          "@EndUserText.label": "Sales unit",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VTWEG": {
+          "@EndUserText.label": "Distribution Channel",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WERKS": {
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PRCTR": {
+          "@EndUserText.label": "Profit Center",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WBSTA": {
+          "@EndUserText.label": "Goods Movement Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "EMCST": {
+          "@EndUserText.label": "Embargo Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVWAK": {
+          "@EndUserText.label": "Goods Movement Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PKSTA": {
+          "@EndUserText.label": "Packing Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BESTA": {
+          "@EndUserText.label": "Delivery Confirmation Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FKIVP": {
+          "@EndUserText.label": "Intercompany Billing Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FKSTA": {
+          "@EndUserText.label": "Delivery-Related Billing Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GBSTA": {
+          "@EndUserText.label": "Overall Processing Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KOSTA": {
+          "@EndUserText.label": "Picking Status/Putaway Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LVSTA": {
+          "@EndUserText.label": "Status of Warehouse Management Activities (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVALL": {
+          "@EndUserText.label": "Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVFAK": {
+          "@EndUserText.label": "Billing Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVPAK": {
+          "@EndUserText.label": "Packing Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVPIK": {
+          "@EndUserText.label": "Picking/Putaway Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UVVLK": {
+          "@EndUserText.label": "Delivery Incompletion Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SLCST": {
+          "@EndUserText.label": "Watch List Screening Status (Item)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SPART": {
+          "@EndUserText.label": "Division",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GR_WT_KG": {
+          "@EndUserText.label": "GR_WT_KG",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UNIT_KG": {
+          "@EndUserText.label": "UNIT_KG",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NT_WT_KG": {
+          "@EndUserText.label": "NT_WT_KG",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VOLUME_CDM": {
+          "@EndUserText.label": "VOLUME_CDM",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DEB_CRED": {
+          "@EndUserText.label": "DEB_CRED",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ANZPK": {
+          "@EndUserText.label": "Total Number of Packages in Delivery",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "SO Delivery Data - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_SODELDOC$F",
+      "@DataWarehouse.pinToMemory": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

@@ -1,0 +1,936 @@
+{
+  "definitions": {
+    "ZV_DWC_EDID4": {
+      "kind": "entity",
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_EDID4$F",
+      "elements": {
+        "DOCNUM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "IDoc number",
+          "notNull": true,
+          "key": true,
+          "length": 16,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "COUNTER": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Counter in cluster table",
+          "notNull": true,
+          "key": true,
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SEGNUM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Number of SAP segment",
+          "notNull": true,
+          "key": true,
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SEGNAM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Name of SAP segment",
+          "length": 30,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PSGNUM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Number of the hierarchically higher SAP segment",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HLEVEL": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Hierarchy level",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DATAAGING": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Data Filter Value for Data Aging",
+          "length": 8,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DTINT2": {
+          "type": "cds.hana.SMALLINT",
+          "@DataWarehouse.native.dataType": "SMALLINT",
+          "@EndUserText.label": "Length field for VARC field",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DOCREL": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SAP Release for IDoc",
+          "length": 4,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STATUS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Status of IDoc",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DOCTYP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "IDoc Type",
+          "length": 8,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DIRECT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Direction for IDoc",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVPOR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Receiver port (SAP System, EDI subsystem)",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVPRT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner Type of Receiver",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVPRN": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner Number of Receiver",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVSAD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Recipient address (SADR)",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVSNA": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SADR flag for international recipient address",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVSCA": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Communication type (SADR) of recipient",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVSDF": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SADR default flag for recipient address",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVSLF": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sequential Number of Recipient Address (SADR)",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVLAD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical Address of Receiver",
+          "length": 70,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "EDI Standard",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STDVRS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Version of EDI standard",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STDMES": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "EDI message type",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MESCOD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical Message Variant",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MESFCT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical message function",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "OUTMOD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Output Mode",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TEST": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Test Flag",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDPOR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sender port (SAP System, EDI subsystem)",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDPRT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner type of sender",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDPRN": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner Number of Sender",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDSAD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sender address (SADR)",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDSNA": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SADR flag for international sender address",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDSCA": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Communication type (SADR) of sender",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDSDF": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SADR default flag for sender address",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDSLF": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sequential Number of the Sender Address (SADR)",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDLAD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical address of sender",
+          "length": 70,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "REFINT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Reference to interchange file",
+          "length": 14,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "REFGRP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Reference to message group",
+          "length": 14,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "REFMES": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Reference to message",
+          "length": 14,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ARCKEY": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "EDI archive key",
+          "length": 70,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CREDAT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "IDoc Created On",
+          "length": 8,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CRETIM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "IDoc Created at",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MESTYP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Message Type",
+          "length": 30,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "IDOCTP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Basic type",
+          "length": 30,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CIMTYP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Extension",
+          "length": 30,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RCVPFC": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner Function of Receiver",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SNDPFC": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Partner Function of Sender",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SERIAL": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Serialization field",
+          "length": 20,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "EXPRSS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Overriding in inbound processing",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UPDDAT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Date on which control record was last changed",
+          "length": 8,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UPDTIM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Time at which control record was last changed",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAXSEGNUM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Number of data records",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        },
+        {
+          "#": "SQL_DATA_SOURCE"
+        }
+      ],
+      "@EndUserText.label": "IDoc Data Records - Transaction Data"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

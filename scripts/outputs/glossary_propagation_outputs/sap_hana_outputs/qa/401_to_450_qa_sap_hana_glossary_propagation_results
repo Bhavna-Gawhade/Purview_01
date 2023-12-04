@@ -1,0 +1,206 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 401 to 450
+Ran on SAP HANA Views
+_____________________________________________________________
+
+Glossary Term Number: 401
+No matches for glossary term, Sales area (floor space) unit
+Glossary Term Number: 402
+No matches for glossary term, Sales office
+Glossary Term Number: 403
+No matches for glossary term, Sales organization for retail price determination
+Glossary Term Number: 404
+Assigned glossary term, Season Active in Inventory Management, to 8 entities
+Unique column names that the glossary term was applied to:
+   FSH_SEAIM
+
+Glossary Term Number: 405
+Assigned glossary term, Shipping Point-Receiving Point, to 58 entities
+Unique column names that the glossary term was applied to:
+   VSTEL
+
+Glossary Term Number: 406
+Assigned glossary term, Source List Requirement, to 4 entities
+Unique column names that the glossary term was applied to:
+   KORDB
+
+Glossary Term Number: 407
+No matches for glossary term, Space management profile
+Glossary Term Number: 408
+Assigned glossary term, Store Category, to 4 entities
+Unique column names that the glossary term was applied to:
+   STORETYPE
+
+Glossary Term Number: 409
+Assigned glossary term, Structure for Name Formation, to 4 entities
+Unique column names that the glossary term was applied to:
+   NSCHEMA
+
+Glossary Term Number: 410
+Assigned glossary term, Superior Department Store, to 4 entities
+Unique column names that the glossary term was applied to:
+   DEP_STORE
+
+Glossary Term Number: 411
+Assigned glossary term, Supply Region, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZONE1
+
+Glossary Term Number: 412
+Assigned glossary term, Take Regular Vendor into Account, to 4 entities
+Unique column names that the glossary term was applied to:
+   BZQHL
+
+Glossary Term Number: 413
+Assigned glossary term, Tax Indicator: Plant-Purchasing, to 4 entities
+Unique column names that the glossary term was applied to:
+   TAXIW
+
+Glossary Term Number: 414
+Assigned glossary term, Text Name of 1st Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA1
+
+Glossary Term Number: 415
+Assigned glossary term, Text Name of 3rd Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA3
+
+Glossary Term Number: 416
+Assigned glossary term, Text Name of the 2nd Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA2
+
+Glossary Term Number: 417
+No matches for glossary term, Time increment for investement buying algorithm
+Glossary Term Number: 418
+Assigned glossary term, Update of Activity Consumption in the Quantity Structure, to 4 entities
+Unique column names that the glossary term was applied to:
+   MGVLAUPD
+
+Glossary Term Number: 419
+Assigned glossary term, Updating is Active for Mixed Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   MISCH
+
+Glossary Term Number: 420
+Assigned glossary term, Updating is Active in Actual Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   MGVUPD
+
+Glossary Term Number: 421
+Assigned glossary term, Variance Key, to 4 entities
+Unique column names that the glossary term was applied to:
+   AWSLS
+
+Glossary Term Number: 422
+Assigned glossary term, Vendor type (refinery/mill/other) (Brazil), to 4 entities
+Unique column names that the glossary term was applied to:
+   OIHVTYPE
+
+Glossary Term Number: 423
+Assigned glossary term, Sales District, to 70 entities
+Unique column names that the glossary term was applied to:
+   BZIRK
+   FSH_KVGR6
+
+Glossary Term Number: 424
+Assigned glossary term, City, to 44 entities
+Unique column names that the glossary term was applied to:
+   ORT01
+   CITY1
+
+Glossary Term Number: 425
+Assigned glossary term, Language Key, to 42 entities
+Unique column names that the glossary term was applied to:
+   SPRAS
+   LANGU
+
+Glossary Term Number: 426
+Assigned glossary term, Name 1, to 44 entities
+Unique column names that the glossary term was applied to:
+   NAME1
+   NAME_ORG1
+
+Glossary Term Number: 427
+Assigned glossary term, Name 2, to 14 entities
+Unique column names that the glossary term was applied to:
+   NAME2
+   NAME_ORG2
+
+Glossary Term Number: 428
+Assigned glossary term, PO Box, to 26 entities
+Unique column names that the glossary term was applied to:
+   PO_BOX
+
+Glossary Term Number: 429
+Assigned glossary term, Tax Jurisdiction, to 8 entities
+Unique column names that the glossary term was applied to:
+   TXJCD
+
+Glossary Term Number: 430
+Assigned glossary term, Street and House Number, to 6 entities
+Unique column names that the glossary term was applied to:
+   STRAS
+
+Glossary Term Number: 431
+Assigned glossary term, Purchasing Organization, to 14 entities
+Unique column names that the glossary term was applied to:
+   EKORG
+
+Glossary Term Number: 432
+No matches for glossary term, Blocked Source of Supply
+Glossary Term Number: 433
+No matches for glossary term, Fixed Supplier
+Glossary Term Number: 434
+No matches for glossary term, Number of Source List Record
+Glossary Term Number: 435
+Assigned glossary term, Plant from Which Material is Procured, to 14 entities
+Unique column names that the glossary term was applied to:
+   RESWK
+
+Glossary Term Number: 436
+No matches for glossary term, Purchasing Document Category
+Glossary Term Number: 437
+Assigned glossary term, Source List Record Valid From, to 2 entities
+Unique column names that the glossary term was applied to:
+   VDATU
+
+Glossary Term Number: 438
+Assigned glossary term, Source List Record Valid To, to 2 entities
+Unique column names that the glossary term was applied to:
+   BDATU
+
+Glossary Term Number: 439
+No matches for glossary term, Source List Usage in Materials Planning
+Glossary Term Number: 440
+No matches for glossary term, ACH Prenotification flag
+Glossary Term Number: 441
+No matches for glossary term, Address Group
+Glossary Term Number: 442
+Assigned glossary term, Address Number Key, to 6 entities
+Unique column names that the glossary term was applied to:
+   ADDRNUMBER
+
+Glossary Term Number: 443
+No matches for glossary term, Address UUID
+Glossary Term Number: 444
+No matches for glossary term, Approved Payment Term
+Glossary Term Number: 445
+Assigned glossary term, Authorization Group, to 4 entities
+Unique column names that the glossary term was applied to:
+   BEGRU
+
+Glossary Term Number: 446
+No matches for glossary term, Automatic evaluated receipt settlement for return items
+Glossary Term Number: 447
+Assigned glossary term, BP Grouping, to 2 entities
+Unique column names that the glossary term was applied to:
+   BU_GROUP
+
+Glossary Term Number: 448
+No matches for glossary term, BP Relationship Number
+Glossary Term Number: 449
+No matches for glossary term, BP Role
+Glossary Term Number: 450
+No matches for glossary term, Bank Account Name

@@ -24,13 +24,18 @@ import json
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    
 
 # Functions
 # ---------------
 
-def create_attribute(attribute_group_name: str, attribute_names: list):
+def create_attribute(client, attribute_group_name: str, attribute_names: list):
     """
     Creates an attribute group with multiple attribute definitions.
 
@@ -51,11 +56,11 @@ def create_attribute(attribute_group_name: str, attribute_names: list):
         attributeDefs=attr_list
     )
 
-    response = CLIENT.upload_typedefs(businessMetadataDefs=[bizdef], force_update=True)
+    response = client.upload_typedefs(businessMetadataDefs=[bizdef], force_update=True)
     return response
 
 
-def add_attributes_to_entity(entity: AtlasEntity, attribute_group_name: str, attribute_name: str, attribute_value: str):
+def add_attributes_to_entity(client, entity: AtlasEntity, attribute_group_name: str, attribute_name: str, attribute_value: str):
     """
     Adds attributes to a business metadata group associated with an entity.
 
@@ -68,7 +73,7 @@ def add_attributes_to_entity(entity: AtlasEntity, attribute_group_name: str, att
     Returns:
         dict: The response of the update operation.
     """
-    response_update = CLIENT.update_businessMetadata(
+    response_update = client.update_businessMetadata(
         guid=entity.guid,
         businessMetadata={
             attribute_group_name: {attribute_name: attribute_value}
@@ -77,7 +82,7 @@ def add_attributes_to_entity(entity: AtlasEntity, attribute_group_name: str, att
     return response_update
     
 
-def delete_attribute(guid: str, attribute_group_name: str, attribute_name: str):
+def delete_attribute(client, guid: str, attribute_group_name: str, attribute_name: str):
     """
     Deletes a specific attribute from a business metadata group associated with an entity.
 
@@ -89,7 +94,7 @@ def delete_attribute(guid: str, attribute_group_name: str, attribute_name: str):
     Returns:
         dict: The response of the deletion operation.
     """
-    response_deleted = CLIENT.delete_businessMetadata(
+    response_deleted = client.delete_businessMetadata(
         guid=guid,
         businessMetadata={attribute_group_name: {attribute_name: ""}}
     )

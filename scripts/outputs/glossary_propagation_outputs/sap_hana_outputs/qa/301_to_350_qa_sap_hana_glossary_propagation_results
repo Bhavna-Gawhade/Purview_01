@@ -1,0 +1,190 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 301 to 350
+Ran on SAP HANA Views
+_____________________________________________________________
+
+Glossary Term Number: 301
+Assigned glossary term, Valuation type, to 22 entities
+Unique column names that the glossary term was applied to:
+   BWTAR
+
+Glossary Term Number: 302
+No matches for glossary term, Value of Total Valuated Stock
+Glossary Term Number: 303
+Assigned glossary term, Volume Rebate Group, to 16 entities
+Unique column names that the glossary term was applied to:
+   BONUS
+
+Glossary Term Number: 304
+Assigned glossary term, Volume unit, to 54 entities
+Unique column names that the glossary term was applied to:
+   VOLEH
+   ERVOE
+
+Glossary Term Number: 305
+Assigned glossary term, Weight Unit, to 60 entities
+Unique column names that the glossary term was applied to:
+   GEWEI
+
+Glossary Term Number: 306
+Assigned glossary term, Width, to 12 entities
+Unique column names that the glossary term was applied to:
+   BREIT
+
+Glossary Term Number: 307
+Assigned glossary term, Material Type, to 34 entities
+Unique column names that the glossary term was applied to:
+   MTART
+
+Glossary Term Number: 308
+Assigned glossary term, Old Material Number, to 10 entities
+Unique column names that the glossary term was applied to:
+   BISMT
+
+Glossary Term Number: 309
+Assigned glossary term, Put Up Code, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPUTUPCODE
+
+Glossary Term Number: 310
+Assigned glossary term, Storage Location, to 58 entities
+Unique column names that the glossary term was applied to:
+   LGORT
+
+Glossary Term Number: 311
+Assigned glossary term, Valuation Class, to 4 entities
+Unique column names that the glossary term was applied to:
+   BKLAS
+
+Glossary Term Number: 312
+Assigned glossary term, Delivering Plant (Own or External), to 12 entities
+Unique column names that the glossary term was applied to:
+   DWERK
+
+Glossary Term Number: 313
+Assigned glossary term, Profit Center, to 106 entities
+Unique column names that the glossary term was applied to:
+   PRCTR
+
+Glossary Term Number: 314
+Assigned glossary term, Purchasing Group, to 22 entities
+Unique column names that the glossary term was applied to:
+   EKGRP
+
+Error with a guid for glossary term: Denominator for Conversion to Base Units of Measure
+
+Glossary Term Number: 316
+Assigned glossary term, Planned Delivery Time in Days, to 6 entities
+Unique column names that the glossary term was applied to:
+   PLIFZ
+
+Glossary Term Number: 317
+Assigned glossary term, Price unit, to 54 entities
+Unique column names that the glossary term was applied to:
+   PEINH
+
+Glossary Term Number: 318
+Assigned glossary term, Material Number, to 224 entities
+Unique column names that the glossary term was applied to:
+   MATNR
+
+Glossary Term Number: 319
+Assigned glossary term, Listing procedure for store or other assortment categories, to 6 entities
+Unique column names that the glossary term was applied to:
+   LSTFL
+
+Glossary Term Number: 320
+Assigned glossary term, Valuation Area, to 48 entities
+Unique column names that the glossary term was applied to:
+   BWKEY
+
+Glossary Term Number: 321
+Assigned glossary term, Plant, to 182 entities
+Unique column names that the glossary term was applied to:
+   WERKS
+
+Glossary Term Number: 322
+No matches for glossary term, Transportation Chain
+Glossary Term Number: 323
+No matches for glossary term, Article Number Used by Vendor
+Glossary Term Number: 324
+No matches for glossary term, Available (Deliverable) From
+Glossary Term Number: 325
+No matches for glossary term, Available (Deliverable) Until
+Glossary Term Number: 326
+No matches for glossary term, Certificate Category
+Glossary Term Number: 327
+No matches for glossary term, Certificate Number
+Glossary Term Number: 328
+No matches for glossary term, Certificate of Origin Number
+Glossary Term Number: 329
+No matches for glossary term, Certificate of Origin Valid Until
+Glossary Term Number: 330
+No matches for glossary term, Condition Group
+Glossary Term Number: 331
+Assigned glossary term, Denominator for Conv of Order Price Unit into Order Unit, to 2 entities
+Unique column names that the glossary term was applied to:
+   BPUMN
+
+Glossary Term Number: 332
+No matches for glossary term, Effective price
+Glossary Term Number: 333
+No matches for glossary term, Manufacturer
+Glossary Term Number: 334
+Assigned glossary term, Max Order Quantity, to 4 entities
+Unique column names that the glossary term was applied to:
+   BSTMA
+
+Glossary Term Number: 335
+No matches for glossary term, No Evaluated Receipt Settlement (ERS)
+Glossary Term Number: 336
+No matches for glossary term, Number of purchasing info record
+Glossary Term Number: 337
+Assigned glossary term, Numerator for Conversion of Order Price Unit into Order Unit, to 2 entities
+Unique column names that the glossary term was applied to:
+   BPUMZ
+
+Glossary Term Number: 338
+Assigned glossary term, Order Price Unit (Purchasing), to 2 entities
+Unique column names that the glossary term was applied to:
+   BPRME
+
+Glossary Term Number: 339
+Assigned glossary term, Overdelivery Tolerance Limit, to 2 entities
+Unique column names that the glossary term was applied to:
+   UEBTO
+
+Glossary Term Number: 340
+No matches for glossary term, Salesperson Responsible in the Event of Queries
+Glossary Term Number: 341
+No matches for glossary term, Shipping Instructions
+Glossary Term Number: 342
+No matches for glossary term, Sort Sequence Number
+Glossary Term Number: 343
+No matches for glossary term, Standard Purchase Order Quantity
+Glossary Term Number: 344
+Assigned glossary term, Underdelivery Tolerance Limit, to 2 entities
+Unique column names that the glossary term was applied to:
+   UNTTO
+
+Glossary Term Number: 345
+Assigned glossary term, Unlimited Overdelivery Allowed, to 2 entities
+Unique column names that the glossary term was applied to:
+   UEBTK
+
+Glossary Term Number: 346
+No matches for glossary term, Variable Purchase Order Unit Active
+Glossary Term Number: 347
+No matches for glossary term, Vendor Merchandise Category
+Glossary Term Number: 348
+No matches for glossary term, Vendor Subrange
+Glossary Term Number: 349
+Assigned glossary term, Activate Variant Grouping, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_GROUP_PR
+
+Glossary Term Number: 350
+Assigned glossary term, Activating Requirements Planning, to 4 entities
+Unique column names that the glossary term was applied to:
+   BEDPL
+

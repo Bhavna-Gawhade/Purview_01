@@ -1,0 +1,47 @@
+{
+  "definitions": {
+    "TA_OTC_PKMS_DELIVERIES": {
+      "kind": "entity",
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "elements": {
+        "C0": {
+          "@EndUserText.label": "Legacy Plant",
+          "type": "cds.String",
+          "length": 3
+        },
+        "C1": {
+          "@EndUserText.label": "Delivery Number",
+          "type": "cds.Integer64"
+        },
+        "C2": {
+          "@EndUserText.label": "PO Number",
+          "type": "cds.String",
+          "length": 26
+        },
+        "C3": {
+          "@EndUserText.label": "Delivery Created On",
+          "type": "cds.Date"
+        },
+        "C4": {
+          "@EndUserText.label": "WM PickTicket status",
+          "type": "cds.Integer"
+        }
+      },
+      "@EndUserText.label": "PKMS Deliveries Table",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      }
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

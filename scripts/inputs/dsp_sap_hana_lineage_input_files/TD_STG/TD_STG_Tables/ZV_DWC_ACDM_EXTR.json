@@ -1,0 +1,534 @@
+{
+  "definitions": {
+    "ZV_DWC_ACDM_EXTR": {
+      "kind": "entity",
+      "elements": {
+        "RLDNR": {
+          "@EndUserText.label": "Ledger in General Ledger Accounting",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "RBUKRS": {
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KALNR": {
+          "@EndUserText.label": "Cost Estimate Number for Cost Est. w/o Qty Structure",
+          "type": "cds.String",
+          "length": 12,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "FISCYEARPER": {
+          "@EndUserText.label": "Period/Year",
+          "type": "cds.String",
+          "length": 7,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "BELNR": {
+          "@EndUserText.label": "Accounting Document Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "DOCLN": {
+          "@EndUserText.label": "Six-Character Posting Item for Ledger",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BWKEY": {
+          "@EndUserText.label": "Valuation area",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BWTAR": {
+          "@EndUserText.label": "Valuation Type",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RYEAR": {
+          "@EndUserText.label": "General Ledger Fiscal Year",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "POPER": {
+          "@EndUserText.label": "Posting period",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ML_SOBKZ": {
+          "@EndUserText.label": "Special Stock Indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ML_KDAUF": {
+          "@EndUserText.label": "Sales Document Number of Valuated Special Inventory",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ML_KDPOS": {
+          "@EndUserText.label": "Sales Document Item Number of Valuated Special Inventory",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ML_LIFNR": {
+          "@EndUserText.label": "Supplier of Valuated Special Inventory",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ML_PSPNR": {
+          "@EndUserText.label": "WBS Element (internal) of Valuated Special Inventory",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VMSL": {
+          "@EndUserText.label": "Valuation quantity",
+          "precision": 23,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HSL": {
+          "@EndUserText.label": "Amount in Company Code Currency",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KSL": {
+          "@EndUserText.label": "Amount in Global Currency",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "OSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 1",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 2",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 3",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 4",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 5",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ESL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 6",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 7",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GSL": {
+          "@EndUserText.label": "Amount in Freely Defined Currency 8",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HVKWRT": {
+          "@EndUserText.label": "Value at Sales Price in Local Currency",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SDM_VERSION": {
+          "@EndUserText.label": "SilentDataMigration: Version Field for ML Tables",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ACDOC_EEW_DUMMY": {
+          "@EndUserText.label": "Dummy function in length 1",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "CDS view for ACDOCA_M_EXTRACT - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_ACDM_EXTR$F"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

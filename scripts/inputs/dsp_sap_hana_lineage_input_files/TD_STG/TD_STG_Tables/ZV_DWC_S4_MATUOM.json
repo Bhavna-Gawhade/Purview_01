@@ -1,0 +1,736 @@
+{
+  "definitions": {
+    "ZV_DWC_S4_MATUOM": {
+      "kind": "entity",
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_S4_MATUOM$F",
+      "elements": {
+        "MATNR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Material Number",
+          "notNull": true,
+          "key": true,
+          "length": 40,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEINH": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Alternative Unit of Measure for Stockkeeping Unit",
+          "notNull": true,
+          "key": true,
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UMREZ": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Numerator for Conversion to Base Units of Measure",
+          "precision": 5,
+          "scale": 0,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UMREN": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Denominator for conversion to base units of measure",
+          "precision": 5,
+          "scale": 0,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "EANNR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "European Article Number (EAN) - obsolete!!!!!",
+          "length": 13,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "EAN11": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "International Article Number (EAN/UPC)",
+          "length": 18,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NUMTP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Category of International Article Number (EAN)",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LAENG": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Length",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BREIT": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Width",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HOEHE": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Height",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEABM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Unit of Dimension for Length/Width/Height",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VOLUM": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Volume",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VOLEH": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Volume unit",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BRGEW": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Gross weight",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GEWEI": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Weight Unit",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MESUB": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Lower-Level Unit of Measure in a Packing Hierarchy",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ATINN": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Internal characteristic",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MESRT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Unit of measure sort number",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "XFHDW": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Leading batch-specific unit of measure",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "XBEWW": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Valuation based on the batch-specific unit of measure",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KZWSO": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Units of measure usage",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MSEHI": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Unit of Measurement of Characteristic",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BFLMEMARM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Generic Material with Logistical Variants",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GTINVARIANT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Global Trade Item Number Variant",
+          "length": 2,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NESTFTR": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Remaining Volume after Nesting (in Percentage)",
+          "precision": 3,
+          "scale": 0,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAXSTACK": {
+          "type": "cds.hana.TINYINT",
+          "@DataWarehouse.native.dataType": "TINYINT",
+          "@EndUserText.label": "Maximum Stacking Factor",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TOPLOADFULL": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Maximum Top Load on Full Package",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TOPLOADFULLUOM": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Unit of Measure of Maximum Top Load on Full Package",
+          "length": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CAPAUSE": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Capacity Usage",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TY2TQ": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "EWM-CW: Category of Unit of Measure",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DUMMYUOMINCLEEWPS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "MD Product UOM",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/TY2TQ": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Type of Parallel Unit of Measure",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/NCODE": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "National Code",
+          "length": 40,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/NCODETY": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "National Code Type",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/RCODE": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Registration Code",
+          "length": 40,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/SERUSE": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Serialization Indicator",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/SYNCCHG": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator Changed Since Integration",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/SERNOMANAGED": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Serial Number Management Type",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/SERNOPROVBUP": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Business Partner (Customer) to Provide Serial Number",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/UOMSYNC": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Synchronization Active for UoM",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/STTPEC/SERGTIN": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Serialization Relevance Indicator",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PCBUT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Piece Unit of Measure Category",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        },
+        {
+          "#": "SQL_DATA_SOURCE"
+        }
+      ],
+      "@EndUserText.label": "Units of Measure for Material - Transaction Data"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

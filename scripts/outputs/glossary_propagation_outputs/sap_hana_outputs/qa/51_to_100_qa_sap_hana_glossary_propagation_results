@@ -1,0 +1,227 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 51 to 100
+Ran on SAP HANA Views
+_____________________________________________________________
+
+Glossary Term Number: 51
+Assigned glossary term, Unloading Point, to 6 entities
+Unique column names that the glossary term was applied to:
+   ABLAD
+
+Glossary Term Number: 52
+Assigned glossary term, VAS Required, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZVASREQD
+
+Glossary Term Number: 53
+No matches for glossary term, VAT Registration Number
+Glossary Term Number: 54
+Assigned glossary term, Distribution Center, to 6 entities
+Unique column names that the glossary term was applied to:
+   FSH_MSOCDC
+
+Glossary Term Number: 55
+Assigned glossary term, Identification Number, to 10 entities
+Unique column names that the glossary term was applied to:
+   IDNUMBER
+
+Glossary Term Number: 56
+Assigned glossary term, Name 3, to 6 entities
+Unique column names that the glossary term was applied to:
+   NAME_ORG3
+   NAME3
+
+Glossary Term Number: 57
+Assigned glossary term, Reconciliation Account in General Ledger, to 10 entities
+Unique column names that the glossary term was applied to:
+   AKONT
+
+Glossary Term Number: 58
+Assigned glossary term, Search Term 1, to 4 entities
+Unique column names that the glossary term was applied to:
+   SORT1
+
+Glossary Term Number: 59
+Assigned glossary term, Search Term 2, to 4 entities
+Unique column names that the glossary term was applied to:
+   SORT2
+
+Glossary Term Number: 60
+Assigned glossary term, Street 2, to 10 entities
+Unique column names that the glossary term was applied to:
+   STR_SUPPL1
+
+Glossary Term Number: 61
+Assigned glossary term, Incoterm 1, to 32 entities
+Unique column names that the glossary term was applied to:
+   INCO1
+
+Glossary Term Number: 62
+Assigned glossary term, Incoterm 2, to 32 entities
+Unique column names that the glossary term was applied to:
+   INCO2
+
+Glossary Term Number: 63
+Assigned glossary term, Telephone number, to 34 entities
+Unique column names that the glossary term was applied to:
+   TELF1
+   TEL_NUMBER
+
+Glossary Term Number: 64
+No matches for glossary term, BIC Number
+Glossary Term Number: 65
+No matches for glossary term, Bank Branch
+Glossary Term Number: 66
+No matches for glossary term, Bank Number
+Glossary Term Number: 67
+No matches for glossary term, Format of File with Bank Data
+Glossary Term Number: 68
+Assigned glossary term, Growth Team Identification, to 26 entities
+Unique column names that the glossary term was applied to:
+   ZZGTID
+
+Glossary Term Number: 69
+No matches for glossary term, Name of Bank
+Glossary Term Number: 70
+No matches for glossary term, SWIFT/BIC
+Glossary Term Number: 71
+Assigned glossary term, Cost Center, to 46 entities
+Unique column names that the glossary term was applied to:
+   KOSTL
+
+Glossary Term Number: 72
+Assigned glossary term, General Ledger Account, to 16 entities
+Unique column names that the glossary term was applied to:
+   SAKNR
+
+Glossary Term Number: 73
+No matches for glossary term, ABC Indicator
+Glossary Term Number: 74
+Assigned glossary term, Account Assignment Group for this Material, to 6 entities
+Unique column names that the glossary term was applied to:
+   KTGRM
+
+Glossary Term Number: 75
+Assigned glossary term, Alternative BOM, to 8 entities
+Unique column names that the glossary term was applied to:
+   STLAL
+
+Glossary Term Number: 76
+Assigned glossary term, Alternative BOM Text, to 4 entities
+Unique column names that the glossary term was applied to:
+   STKTX
+
+Glossary Term Number: 77
+Assigned glossary term, Alternative Unit of Measure for Stockkeeping Unit, to 10 entities
+Unique column names that the glossary term was applied to:
+   MEINH
+
+Glossary Term Number: 78
+No matches for glossary term, Assortment List Type
+Glossary Term Number: 79
+Assigned glossary term, Assortment grade, to 6 entities
+Unique column names that the glossary term was applied to:
+   SSTUF
+
+Glossary Term Number: 80
+Assigned glossary term, Attribute Code, to 20 entities
+Unique column names that the glossary term was applied to:
+   FSH_MG_AT2
+
+Glossary Term Number: 81
+Assigned glossary term, Attribution Method, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZATTRIBMETH
+
+Glossary Term Number: 82
+Assigned glossary term, BOM Item Number, to 76 entities
+Unique column names that the glossary term was applied to:
+   POSNR
+
+Glossary Term Number: 83
+Assigned glossary term, BOM Item Text (Line 1), to 4 entities
+Unique column names that the glossary term was applied to:
+   POTX1
+
+Glossary Term Number: 84
+Assigned glossary term, BOM Item Text (Line 2), to 4 entities
+Unique column names that the glossary term was applied to:
+   POTX2
+
+Glossary Term Number: 85
+Assigned glossary term, BOM Usage, to 8 entities
+Unique column names that the glossary term was applied to:
+   STLAN
+
+Glossary Term Number: 86
+Assigned glossary term, BOM Version, to 4 entities
+Unique column names that the glossary term was applied to:
+   BOM_VERSN
+
+Glossary Term Number: 87
+Assigned glossary term, BOM Version Status, to 4 entities
+Unique column names that the glossary term was applied to:
+   VERSNST
+
+Glossary Term Number: 88
+Assigned glossary term, BOM category, to 10 entities
+Unique column names that the glossary term was applied to:
+   STLTY
+
+Glossary Term Number: 89
+Assigned glossary term, BOM component, to 16 entities
+Unique column names that the glossary term was applied to:
+   IDNRK
+
+Glossary Term Number: 90
+Assigned glossary term, BOM item node number, to 8 entities
+Unique column names that the glossary term was applied to:
+   STLKN
+
+Glossary Term Number: 91
+Assigned glossary term, BUSINESS SEGMENT DESCRIPTION, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZBUSSSEGDESC
+
+Glossary Term Number: 92
+Assigned glossary term, Base UOM Description, to 2 entities
+Unique column names that the glossary term was applied to:
+   MSEHL
+
+Glossary Term Number: 93
+Assigned glossary term, Base Unit of Measure for BOM, to 8 entities
+Unique column names that the glossary term was applied to:
+   BMEIN
+
+Glossary Term Number: 94
+Assigned glossary term, Base quantity, to 32 entities
+Unique column names that the glossary term was applied to:
+   BMENG
+
+Glossary Term Number: 95
+Assigned glossary term, Batch management requirement indicator, to 8 entities
+Unique column names that the glossary term was applied to:
+   XCHPF
+
+Glossary Term Number: 96
+Assigned glossary term, Bill of Material, to 10 entities
+Unique column names that the glossary term was applied to:
+   STLNR
+
+Glossary Term Number: 97
+Assigned glossary term, Bill of Material Status, to 4 entities
+Unique column names that the glossary term was applied to:
+   STLST
+
+Glossary Term Number: 98
+Assigned glossary term, Brand, to 16 entities
+Unique column names that the glossary term was applied to:
+   BRAND_ID
+
+Glossary Term Number: 99
+No matches for glossary term, Capacity Group
+Glossary Term Number: 100
+Assigned glossary term, Catalog Group, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZCATALOGGROUP
+

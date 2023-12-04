@@ -1,0 +1,238 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 51 to 100
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 51
+No matches for glossary term, From
+
+Glossary Term Number: 52
+Assigned glossary term, Group for Calculation Schema, to 8 entities
+Unique column names that the glossary term was applied to:
+   KALSK
+
+Glossary Term Number: 53
+Assigned glossary term, IBAN, to 8 entities
+Unique column names that the glossary term was applied to:
+   IBAN
+
+Glossary Term Number: 54
+Assigned glossary term, Incoterm Location 1, to 8 entities
+Unique column names that the glossary term was applied to:
+   INCO2_L
+
+Glossary Term Number: 55
+Assigned glossary term, Industry Key, to 16 entities
+Unique column names that the glossary term was applied to:
+   IND_SECTOR
+   BRSCH
+
+Glossary Term Number: 56
+Assigned glossary term, Industry System, to 8 entities
+Unique column names that the glossary term was applied to:
+   ISTYPE
+
+Glossary Term Number: 57
+Assigned glossary term, Industry is Standard for BP in Industry System, to 8 entities
+Unique column names that the glossary term was applied to:
+   ISDEF
+
+Glossary Term Number: 58
+Assigned glossary term, Last Name of Business Partner, to 8 entities
+Unique column names that the glossary term was applied to:
+   NAME_LAST
+
+Glossary Term Number: 59
+Assigned glossary term, Lawson field for Bank Account Type, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZ_BANK_ACC_TYPE
+
+Glossary Term Number: 60
+Assigned glossary term, Name 4, to 16 entities
+Unique column names that the glossary term was applied to:
+   NAME4
+   NAME_ORG4
+
+Glossary Term Number: 61
+Assigned glossary term, Name of Bank Account, to 8 entities
+Unique column names that the glossary term was applied to:
+   ACCNAME
+
+Glossary Term Number: 62
+Assigned glossary term, Order Acknowledgment Requirement, to 8 entities
+Unique column names that the glossary term was applied to:
+   KZABS
+
+Glossary Term Number: 63
+No matches for glossary term, PO Box Postal Code
+
+Glossary Term Number: 64
+Assigned glossary term, PO Issue Method, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZPOISSUE
+
+Glossary Term Number: 65
+Assigned glossary term, Partner Category, to 8 entities
+Unique column names that the glossary term was applied to:
+   TYPE
+
+Glossary Term Number: 66
+Assigned glossary term, Partner Converted, to 8 entities
+Unique column names that the glossary term was applied to:
+   TD_SWITCH
+
+Glossary Term Number: 67
+Assigned glossary term, Partner counter, to 8 entities
+Unique column names that the glossary term was applied to:
+   PARZA
+
+Glossary Term Number: 68
+Assigned glossary term, Payment Block, to 8 entities
+Unique column names that the glossary term was applied to:
+   SPERZ
+
+Glossary Term Number: 69
+Assigned glossary term, Payment Method, to 16 entities
+Unique column names that the glossary term was applied to:
+   ZTERM
+   ZWELS
+
+Glossary Term Number: 70
+Assigned glossary term, Payment currency, to 8 entities
+Unique column names that the glossary term was applied to:
+   REL_CUR
+
+Glossary Term Number: 71
+Assigned glossary term, Plant Level Relevant, to 8 entities
+Unique column names that the glossary term was applied to:
+   WERKR
+
+Glossary Term Number: 72
+Assigned glossary term, Posting block for company code, to 8 entities
+Unique column names that the glossary term was applied to:
+   SPERR
+
+Glossary Term Number: 73
+Assigned glossary term, Preferred Vendor, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZPRFRD
+
+Glossary Term Number: 74
+Assigned glossary term, Purchase Order Currency, to 8 entities
+Unique column names that the glossary term was applied to:
+   WAERS
+
+Glossary Term Number: 75
+Assigned glossary term, Purchasing block at purchasing organization level, to 8 entities
+Unique column names that the glossary term was applied to:
+   SPERM
+
+Glossary Term Number: 76
+Assigned glossary term, Reference Details, to 8 entities
+Unique column names that the glossary term was applied to:
+   BKREF
+
+Glossary Term Number: 77
+Assigned glossary term, Reference to other vendor, to 8 entities
+Unique column names that the glossary term was applied to:
+   LIFN2
+
+Glossary Term Number: 78
+Assigned glossary term, Relationship Category, to 8 entities
+Unique column names that the glossary term was applied to:
+   RELTYP
+
+Glossary Term Number: 79
+Assigned glossary term, Remittance e-mail address, to 8 entities
+Unique column names that the glossary term was applied to:
+   INTAD
+
+Glossary Term Number: 80
+Assigned glossary term, Scheduling Procedure, to 8 entities
+Unique column names that the glossary term was applied to:
+   SCHEDULING_TYPE
+
+Glossary Term Number: 81
+Assigned glossary term, Search term for matchcode search 1 (Name 1), to 8 entities
+Unique column names that the glossary term was applied to:
+   MCOD1
+
+Glossary Term Number: 82
+Assigned glossary term, Search term for matchcode search 2 (Name 2), to 8 entities
+Unique column names that the glossary term was applied to:
+   MCOD2
+
+Glossary Term Number: 83
+Assigned glossary term, Search term for matchcode search 3 (City), to 8 entities
+Unique column names that the glossary term was applied to:
+   MCOD3
+
+Glossary Term Number: 84
+No matches for glossary term, Sender Number
+
+Glossary Term Number: 85
+No matches for glossary term, Sequence Number
+
+Glossary Term Number: 86
+Assigned glossary term, Sort field, to 8 entities
+Unique column names that the glossary term was applied to:
+   SORTL
+
+Glossary Term Number: 87
+Assigned glossary term, Standard carrier access code, to 8 entities
+Unique column names that the glossary term was applied to:
+   SCACD
+
+Glossary Term Number: 88
+No matches for glossary term, Street 1
+
+Glossary Term Number: 89
+No matches for glossary term, Street 3
+
+Glossary Term Number: 90
+No matches for glossary term, Street 4
+
+Glossary Term Number: 91
+No matches for glossary term, Street 5
+
+Glossary Term Number: 92
+No matches for glossary term, Time Zone
+
+Glossary Term Number: 93
+Assigned glossary term, Trading Partner, to 8 entities
+Unique column names that the glossary term was applied to:
+   VBUND
+
+Glossary Term Number: 94
+No matches for glossary term, Transportation Zone
+
+Glossary Term Number: 95
+Assigned glossary term, Valid From, to 24 entities
+Unique column names that the glossary term was applied to:
+   BK_VALID_FROM
+   VALID_FROM
+
+Glossary Term Number: 96
+Assigned glossary term, Valid To, to 16 entities
+Unique column names that the glossary term was applied to:
+   VALID_TO
+
+Glossary Term Number: 97
+No matches for glossary term, Vendor Contact Name
+
+Glossary Term Number: 98
+Assigned glossary term, Vendor account group, to 8 entities
+Unique column names that the glossary term was applied to:
+   KTOKK
+
+Glossary Term Number: 99
+Assigned glossary term, Changed by, to 8 entities
+Unique column names that the glossary term was applied to:
+   CHUSR
+
+Glossary Term Number: 100
+Assigned glossary term, Created By, to 40 entities
+Unique column names that the glossary term was applied to:
+   CRUSR
+   ERNAM
+

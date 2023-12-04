@@ -73,6 +73,20 @@ def process_mappings_sheet(excel_file_path: str, sheet_name: str):
     return mappings
 
 
+def process_ignore_words_sheet(excel_file_path: str, sheet_name: str):
+    ignore_words_sheet = extract_sheet_from_excel(excel_file_path, sheet_name)
+    ignore_words = []
+    for index, row in ignore_words_sheet.iterrows():
+        ignore_words_str = row['Words_to_Ignore']
+        ignore_words_split = [word.strip() for word in ignore_words_str.split(",")]
+        x = {
+            "classification_name": row['Classification_Name'],
+            "ignore_words": ignore_words_split
+        }
+        ignore_words.append(x)
+    return ignore_words
+
+
 def extract_sheet_from_excel(file_path, sheet_name):
     """
     Extracts a specific sheet from an Excel file and returns it as a pandas DataFrame.

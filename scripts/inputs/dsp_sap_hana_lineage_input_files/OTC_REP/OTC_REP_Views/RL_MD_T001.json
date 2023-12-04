@@ -1,0 +1,667 @@
+{
+  "definitions": {
+    "RL_MD_T001": {
+      "kind": "entity",
+      "elements": {
+        "BUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_T00"
+          },
+          "@Analytics.dimension": true,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": false,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "ZCOUNT": {
+          "@EndUserText.label": "COUNT",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "_HL_MD_T00": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "BUKRS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_T00",
+                "BUKRS"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_T001",
+          "@EndUserText.label": "Company Code Master data(Reporting) to Company Code Master data"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "MD_STG.HL_MD_T001"
+            ],
+            "as": "HL_MD_T001"
+          },
+          "columns": [
+            {
+              "as": "BUKRS",
+              "key": true,
+              "ref": [
+                "HL_MD_T001",
+                "BUKRS"
+              ]
+            },
+            {
+              "as": "ZCOUNT",
+              "val": 1
+            },
+            {
+              "ref": [
+                "_HL_MD_T00"
+              ]
+            }
+          ],
+          "mixin": {
+            "_HL_MD_T00": {
+              "type": "cds.Association",
+              "@EndUserText.label": "Company Code Master data(Reporting) to Company Code Master data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "BUKRS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_T00",
+                    "BUKRS"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_T001"
+            }
+          }
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "Company Code Master Data Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"bf73d878-9ad0-4fa0-a1f6-166993d63404\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_MD_T001\",\"label\":\"Company Code Master Data Report\",\"modificationDate\":1665766733126,\"deploymentDate\":1661995548886,\"#objectStatus\":\"2\",\"output\":\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\",\"nodes\":{\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\":{\"name\":\"RL_MD_T001\"},\"aa70086f-d351-46b6-8fb8-9b548b7e6bae\":{\"name\":\"MD_STG.HL_MD_T001\"},\"c46c2b6c-7995-4d43-b2b3-3793c07de3d6\":{\"name\":\"Calculated Columns 1\"},\"4d0baa3b-b7b2-4e15-8fed-17a2efe99bab\":{\"name\":\"Projection 1\"},\"b8a963d9-2665-4213-b923-69f88cc7796d\":{\"name\":\"MD_STG.HL_MD_T001\"}},\"associations\":{\"23ca9e0a-2b3b-46d7-939f-5556421929a2\":{\"name\":\"_HL_MD_T00\"}},\"contexts\":{\"950a64d7-ba91-4b8b-92c9-c04bb1b03674\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"21c4da70-8ad9-404f-ac62-8a4b8948e8e3\":{}}},\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_MD_T001\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1665766733126,\"deploymentDate\":1661995548886,\"#objectStatus\":\"2\",\"elements\":{\"47f2f140-99ec-4eac-b3ca-ea58f39bc514\":{\"name\":\"Calculated_1\"},\"3fd3f97f-a452-4a22-ad66-ceb9cde25e16\":{\"name\":\"BUKRS\"}},\"associations\":{\"23ca9e0a-2b3b-46d7-939f-5556421929a2\":{\"name\":\"_HL_MD_T00\"}}},\"aa70086f-d351-46b6-8fb8-9b548b7e6bae\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.HL_MD_T001\",\"label\":\"Company Code Master data\",\"type\":4,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"isHiddenInUi\":false,\"modificationDate\":1665764823147,\"deploymentDate\":1665764841618,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_T001\",\"context\":\"950a64d7-ba91-4b8b-92c9-c04bb1b03674\",\"elements\":{\"8a94ebdf-623e-4e4b-b275-2386639809ff\":{\"name\":\"BUKRS\"},\"96ec0770-4e64-4e16-82fd-10bcbe63b8b0\":{\"name\":\"BUTXT\"},\"f0f8a4a7-6bbc-417a-bed5-56ec39838a56\":{\"name\":\"ORT01\"},\"7d1449ee-9cd1-49d1-bf26-1dcfe4d699b4\":{\"name\":\"LAND1\"},\"db94dea2-e4f5-45b1-93ac-693778f42fed\":{\"name\":\"WAERS\"},\"a0195eed-cde1-483e-906d-e7197d006459\":{\"name\":\"SPRAS\"}},\"successorNode\":\"4d0baa3b-b7b2-4e15-8fed-17a2efe99bab\"},\"c46c2b6c-7995-4d43-b2b3-3793c07de3d6\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"cea21d36-7b4a-4ba0-8b59-a65955eae007\":{\"name\":\"Calculated_1\"},\"98d34d06-9d87-465c-8389-fa7ec3a020b3\":{\"name\":\"BUKRS\"}},\"successorNode\":\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\"},\"4d0baa3b-b7b2-4e15-8fed-17a2efe99bab\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"a6cf05c8-628d-4208-89df-18b56e586064\":{\"name\":\"BUKRS\"},\"9af478d6-0612-4be4-8c84-56c2c56f6df4\":{\"name\":\"BUTXT\"},\"5f4ca7f0-f096-4326-946a-e5aa820cbca9\":{\"name\":\"ORT01\"},\"852c24a3-f694-4c03-b0e9-ca5c83a1dfc9\":{\"name\":\"LAND1\"},\"d278dd03-81f4-4096-9bfa-02b74de2fdfa\":{\"name\":\"WAERS\"},\"36590a29-1909-4a76-a609-204243cb2c26\":{\"name\":\"SPRAS\"}},\"successorNode\":\"c46c2b6c-7995-4d43-b2b3-3793c07de3d6\"},\"b8a963d9-2665-4213-b923-69f88cc7796d\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_T001\",\"label\":\"Company Code Master data\",\"type\":\"View (Dimension)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"modificationDate\":1665764823147,\"deploymentDate\":1665764841618,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_T0012\",\"elements\":{\"2ab9fc03-e0f6-4d7a-964a-97501c1207bc\":{\"name\":\"BUKRS\"},\"b5e33596-e891-4904-aae3-d5fc79566c61\":{\"name\":\"BUTXT\"},\"f8f91703-0295-4977-9b64-5734e8ff8714\":{\"name\":\"ORT01\"},\"be2d9e1e-e087-499d-8170-6537bc60e9d6\":{\"name\":\"LAND1\"},\"6208caeb-b674-4dd8-bf1e-d458555a4f54\":{\"name\":\"WAERS\"},\"e665db32-a60f-42a3-9ef1-9cda760d443c\":{\"name\":\"SPRAS\"}},\"context\":\"950a64d7-ba91-4b8b-92c9-c04bb1b03674\"},\"23ca9e0a-2b3b-46d7-939f-5556421929a2\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_T00\",\"label\":\"Company Code Master data(Reporting) to Company Code Master data\",\"source\":\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\",\"target\":\"b8a963d9-2665-4213-b923-69f88cc7796d\",\"mappings\":{\"5f0354b0-f780-4bc7-8c88-4d6534d8448f\":{}}},\"950a64d7-ba91-4b8b-92c9-c04bb1b03674\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"21c4da70-8ad9-404f-ac62-8a4b8948e8e3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"d704cfd7-d7a1-4875-820a-a14e323b32b3\":{},\"074c6d72-b5ac-46ed-9bef-db3b0b66dff4\":{\"name\":\"Entity Symbol 1\"},\"9efd46ba-b096-4883-872a-51c8068b97f7\":{},\"8cea4973-f6df-4c44-888b-b847b48a3910\":{},\"b83b3a93-b6d3-4b10-bf27-0df861bca6cd\":{},\"0ff8c712-2e49-46ec-9859-dad5b9aa9531\":{},\"83f7d6ef-41fa-464f-8d58-abdd1517360d\":{}}},\"47f2f140-99ec-4eac-b3ca-ea58f39bc514\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"COUNT\",\"newName\":\"ZCOUNT\",\"indexOrder\":7,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true},\"3fd3f97f-a452-4a22-ad66-ceb9cde25e16\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":2,\"expression\":\"BUKRS\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_T00\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\"},\"8a94ebdf-623e-4e4b-b275-2386639809ff\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a6cf05c8-628d-4208-89df-18b56e586064\",\"labelElement\":\"96ec0770-4e64-4e16-82fd-10bcbe63b8b0\"},\"96ec0770-4e64-4e16-82fd-10bcbe63b8b0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"indexOrder\":2,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"9af478d6-0612-4be4-8c84-56c2c56f6df4\"},\"f0f8a4a7-6bbc-417a-bed5-56ec39838a56\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"indexOrder\":3,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"5f4ca7f0-f096-4326-946a-e5aa820cbca9\"},\"7d1449ee-9cd1-49d1-bf26-1dcfe4d699b4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T0\",\"successorElement\":\"852c24a3-f694-4c03-b0e9-ca5c83a1dfc9\"},\"db94dea2-e4f5-45b1-93ac-693778f42fed\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WAERS\",\"label\":\"Currency Key\",\"newName\":\"WAERS\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TC\",\"successorElement\":\"d278dd03-81f4-4096-9bfa-02b74de2fdfa\"},\"a0195eed-cde1-483e-906d-e7197d006459\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":6,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\",\"successorElement\":\"36590a29-1909-4a76-a609-204243cb2c26\"},\"cea21d36-7b4a-4ba0-8b59-a65955eae007\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"COUNT\",\"newName\":\"ZCOUNT\",\"indexOrder\":7,\"expression\":\"1\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"47f2f140-99ec-4eac-b3ca-ea58f39bc514\"},\"98d34d06-9d87-465c-8389-fa7ec3a020b3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":1,\"expression\":\"BUKRS\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"3fd3f97f-a452-4a22-ad66-ceb9cde25e16\"},\"a6cf05c8-628d-4208-89df-18b56e586064\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"98d34d06-9d87-465c-8389-fa7ec3a020b3\"},\"9af478d6-0612-4be4-8c84-56c2c56f6df4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"isRemoved\":true,\"indexOrder\":2,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5f4ca7f0-f096-4326-946a-e5aa820cbca9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"isRemoved\":true,\"indexOrder\":3,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"852c24a3-f694-4c03-b0e9-ca5c83a1dfc9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"isRemoved\":true,\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"d278dd03-81f4-4096-9bfa-02b74de2fdfa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WAERS\",\"label\":\"Currency Key\",\"newName\":\"WAERS\",\"isRemoved\":true,\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"36590a29-1909-4a76-a609-204243cb2c26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"isRemoved\":true,\"indexOrder\":6,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"2ab9fc03-e0f6-4d7a-964a-97501c1207bc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"b5e33596-e891-4904-aae3-d5fc79566c61\"},\"b5e33596-e891-4904-aae3-d5fc79566c61\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"indexOrder\":2,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"f8f91703-0295-4977-9b64-5734e8ff8714\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"indexOrder\":3,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"be2d9e1e-e087-499d-8170-6537bc60e9d6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T0\"},\"6208caeb-b674-4dd8-bf1e-d458555a4f54\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WAERS\",\"label\":\"Currency Key\",\"newName\":\"WAERS\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TC\"},\"e665db32-a60f-42a3-9ef1-9cda760d443c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":6,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\"},\"5f0354b0-f780-4bc7-8c88-4d6534d8448f\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"3fd3f97f-a452-4a22-ad66-ceb9cde25e16\",\"target\":\"2ab9fc03-e0f6-4d7a-964a-97501c1207bc\"},\"d704cfd7-d7a1-4875-820a-a14e323b32b3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"f5d276c0-f658-4e7f-9b85-eed46f4810a9\"},\"074c6d72-b5ac-46ed-9bef-db3b0b66dff4\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"aa70086f-d351-46b6-8fb8-9b548b7e6bae\"},\"9efd46ba-b096-4883-872a-51c8068b97f7\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"c46c2b6c-7995-4d43-b2b3-3793c07de3d6\"},\"8cea4973-f6df-4c44-888b-b847b48a3910\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"9efd46ba-b096-4883-872a-51c8068b97f7\",\"targetSymbol\":\"d704cfd7-d7a1-4875-820a-a14e323b32b3\"},\"b83b3a93-b6d3-4b10-bf27-0df861bca6cd\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"4d0baa3b-b7b2-4e15-8fed-17a2efe99bab\"},\"0ff8c712-2e49-46ec-9859-dad5b9aa9531\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"074c6d72-b5ac-46ed-9bef-db3b0b66dff4\",\"targetSymbol\":\"b83b3a93-b6d3-4b10-bf27-0df861bca6cd\"},\"83f7d6ef-41fa-464f-8d58-abdd1517360d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"b83b3a93-b6d3-4b10-bf27-0df861bca6cd\",\"targetSymbol\":\"9efd46ba-b096-4883-872a-51c8068b97f7\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "MD_STG.ZV_DWC_T002T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "SPTXT"
+            }
+          ]
+        },
+        "SPRSL": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "SPTXT": {
+          "@EndUserText.label": "Name of Language",
+          "type": "cds.String",
+          "length": 16,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Language Key Texts - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T002T$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_TCURT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "WAERS": {
+          "@EndUserText.label": "Currency Key",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LTEXT"
+            }
+          ]
+        },
+        "LTEXT": {
+          "@EndUserText.label": "Long Text",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "KTEXT": {
+          "@EndUserText.label": "Short text",
+          "type": "cds.String",
+          "length": 15,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Currency Code Names - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TCURT$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T005T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "LAND1": {
+          "@EndUserText.label": "Country/Region Key",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LANDX50"
+            }
+          ]
+        },
+        "LANDX": {
+          "@EndUserText.label": "Name of Country (Short Name)",
+          "type": "cds.String",
+          "length": 15,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NATIO": {
+          "@EndUserText.label": "Nationality",
+          "type": "cds.String",
+          "length": 15,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LANDX50": {
+          "@EndUserText.label": "Country Name",
+          "type": "cds.String",
+          "length": 50,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "NATIO50": {
+          "@EndUserText.label": "Nationality (Max. 50 Characters)",
+          "type": "cds.String",
+          "length": 50,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PRQ_SPREGT": {
+          "@EndUserText.label": "Super region per country text",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Country Names - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T005T$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_T001": {
+      "kind": "entity",
+      "elements": {
+        "BUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@Analytics.dimension": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BUTXT"
+            }
+          ],
+          "notNull": true
+        },
+        "BUTXT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Company Code or Company",
+          "type": "cds.String",
+          "length": 25,
+          "@Analytics.dimension": true,
+          "@Semantics.text": true,
+          "@Analytics.hidden": true
+        },
+        "ORT01": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "City",
+          "type": "cds.String",
+          "length": 25,
+          "@Analytics.dimension": true
+        },
+        "LAND1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Country/Region Key",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T0"
+          },
+          "@Analytics.dimension": true
+        },
+        "WAERS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Currency Key",
+          "type": "cds.String",
+          "length": 5,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_TC"
+          },
+          "@Analytics.dimension": true
+        },
+        "SPRAS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T1"
+          },
+          "@Analytics.dimension": true
+        },
+        "_ZV_DWC_T0": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "LAND1"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T0",
+                "LAND1"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T005T",
+          "@EndUserText.label": "Company Code Master data to Country Names - Transaction Data"
+        },
+        "_ZV_DWC_TC": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "WAERS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_TC",
+                "WAERS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TCURT",
+          "@EndUserText.label": "Company Code Master data to Currency Code Names - Transaction Data"
+        },
+        "_ZV_DWC_T1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SPRAS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T1",
+                "SPRAS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T002T",
+          "@EndUserText.label": "Company Code Master data to Language Key Texts - Transaction Data"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "Company Code Master data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

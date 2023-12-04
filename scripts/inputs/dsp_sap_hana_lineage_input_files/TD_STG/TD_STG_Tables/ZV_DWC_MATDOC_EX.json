@@ -1,0 +1,742 @@
+{
+  "definitions": {
+    "ZV_DWC_MATDOC_EX": {
+      "kind": "entity",
+      "elements": {
+        "KEY1": {
+          "@EndUserText.label": "KEY1",
+          "type": "cds.Binary",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KEY2": {
+          "@EndUserText.label": "KEY2",
+          "type": "cds.Binary",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KEY3": {
+          "@EndUserText.label": "KEY3",
+          "type": "cds.Binary",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KEY4": {
+          "@EndUserText.label": "KEY4",
+          "type": "cds.Binary",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KEY5": {
+          "@EndUserText.label": "KEY5",
+          "type": "cds.Binary",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KEY6": {
+          "@EndUserText.label": "KEY6",
+          "type": "cds.Binary",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "VARBINARY",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "RECORD_TYPE": {
+          "@EndUserText.label": "Record Type",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BUKRS": {
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MATBF": {
+          "@EndUserText.label": "Material in Respect of Which Stock is Managed",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WERKS": {
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGORT_SID": {
+          "@EndUserText.label": "Storage Location (Stock Identifier)",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CHARG_SID": {
+          "@EndUserText.label": "Batch Number (Stock Identifier)",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIFNR_SID": {
+          "@EndUserText.label": "Supplier for Special Stock",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAT_KDAUF": {
+          "@EndUserText.label": "Sales order number of valuated sales order stock",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAT_KDPOS": {
+          "@EndUserText.label": "Sales Order Item of Valuated Sales Order Stock",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAT_PSPNR": {
+          "@EndUserText.label": "Valuated Sales Order Stock WBS Element",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KUNNR_SID": {
+          "@EndUserText.label": "Customer for Special Stock",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SOBKZ": {
+          "@EndUserText.label": "Special Stock Indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LBBSA_SID": {
+          "@EndUserText.label": "Stock Type of Goods Movement (Stock Identifier)",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DISUB_OWNER_SID": {
+          "@EndUserText.label": "Additional Supplier for Special Stock",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RESOURCENAME_SID": {
+          "@EndUserText.label": "Resource Name (Stock Identifier)",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PERIV": {
+          "@EndUserText.label": "Fiscal Year Variant",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GJPER": {
+          "@EndUserText.label": "Period/Year",
+          "type": "cds.String",
+          "length": 7,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GJPER_CURR_PER": {
+          "@EndUserText.label": "Period/Year",
+          "type": "cds.String",
+          "length": 7,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STOCK_IND_L2": {
+          "@EndUserText.label": "Stock Qty and Value not Relevant for Pre-Compaction (Level2)",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STOCK_VKWRT_L1": {
+          "@EndUserText.label": "Value at Sales Prices for CDS Views on Batch Level",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STOCK_VKWRT_L2": {
+          "@EndUserText.label": "Value at Sales Prices for CDS Views on StorageLocation Level",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STOCK_QTY_L1": {
+          "@EndUserText.label": "Stock Quantity for CDS Views on Batch Level",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "STOCK_QTY_L2": {
+          "@EndUserText.label": "Stock Quantity for CDS Views on Storage Location Level",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/STOCK_QTY_L1": {
+          "@EndUserText.label": "Stock Quantity for CDS Views on Batch Level in PUoM",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/STOCK_QTY_L2": {
+          "@EndUserText.label": "Stock Quantity for CDS Views on Storage Location Lvl in PUoM",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KZBWS": {
+          "@EndUserText.label": "Valuation of Special Stock",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "XOBEW": {
+          "@EndUserText.label": "Vendor Stock Valuation Indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CPUDT_L1": {
+          "@EndUserText.label": "Created On - Batch Level",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CPUDT_L2": {
+          "@EndUserText.label": "Created On - Storage Location Level",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEINS": {
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WAERS": {
+          "@EndUserText.label": "Currency Key",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CONSUMPTION_QTY": {
+          "@EndUserText.label": "Consumption Quantity",
+          "precision": 31,
+          "scale": 14,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/MEINS": {
+          "@EndUserText.label": "Parallel Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/CONSUMPTION_QTY": {
+          "@EndUserText.label": "Consumption Quantity in PUoM",
+          "precision": 31,
+          "scale": 14,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "/CWM/MEINS_SID": {
+          "@EndUserText.label": "Parallel Unit of Measure (Stock Identifier)",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Material Document Summarized - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_MATDOC_EX$F",
+      "@DataWarehouse.pinToMemory": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

@@ -1,0 +1,5 @@
+Glossary Terms Propagated Across SAP HANA Assets
+Ran for Glossary Terms 301 to 350
+Ran on SAP HANA Views and Tables
+_____________________________________________________________
+

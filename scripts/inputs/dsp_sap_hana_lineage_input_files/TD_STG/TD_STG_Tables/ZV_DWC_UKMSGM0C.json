@@ -1,0 +1,151 @@
+{
+  "definitions": {
+    "ZV_DWC_UKMSGM0C": {
+      "kind": "entity",
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_UKMSGM0C$F",
+      "elements": {
+        "CREDIT_SGMNT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Credit Segment",
+          "notNull": true,
+          "key": true,
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CURRENCY": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Credit Segment Currency",
+          "length": 5,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIMIT_VALID_CHCK": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Check Credit Limit Validity",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KURST": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Exchange Rate Type",
+          "length": 4,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAIN_CRED_SGMNT": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator for Main Credit Segment",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MAIN_CREDSGM_ADD": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Additive Contribution to Main Credit Segment",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FLEXIBLE_CHECK": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Flexible Check of Credit Limit Utilization",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        },
+        {
+          "#": "SQL_DATA_SOURCE"
+        }
+      ],
+      "@EndUserText.label": "CDS for SAP Credit Management: Segment Data - Transaction Data"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

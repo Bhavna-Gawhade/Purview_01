@@ -1,0 +1,145 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 451 to 500
+Ran on SAP HANA Views
+_____________________________________________________________
+
+Glossary Term Number: 451
+No matches for glossary term, Bank Account Number
+Glossary Term Number: 452
+No matches for glossary term, Bank ID
+Glossary Term Number: 453
+No matches for glossary term, Bank details ID
+Glossary Term Number: 454
+Assigned glossary term, Block Key for Payment, to 10 entities
+Unique column names that the glossary term was applied to:
+   ZAHLS
+
+Glossary Term Number: 455
+No matches for glossary term, Business Partner GUID
+Glossary Term Number: 456
+No matches for glossary term, Caller Number
+Glossary Term Number: 457
+No matches for glossary term, Central Archiving Flag
+Glossary Term Number: 458
+Assigned glossary term, Central Block for BP, to 2 entities
+Unique column names that the glossary term was applied to:
+   XBLCK
+
+Glossary Term Number: 459
+Assigned glossary term, Central Deletion Block, to 4 entities
+Unique column names that the glossary term was applied to:
+   NODEL
+
+Glossary Term Number: 460
+No matches for glossary term, Changed at
+Glossary Term Number: 461
+No matches for glossary term, Changed on
+Glossary Term Number: 462
+Assigned glossary term, Check Flag for Double Invoices or Credit Memos, to 4 entities
+Unique column names that the glossary term was applied to:
+   REPRF
+
+Glossary Term Number: 463
+No matches for glossary term, Check digit for the international location number
+Glossary Term Number: 464
+No matches for glossary term, City file test status
+Glossary Term Number: 465
+No matches for glossary term, Company Name
+Glossary Term Number: 466
+No matches for glossary term, Created at
+Glossary Term Number: 467
+No matches for glossary term, Date of Change
+Glossary Term Number: 468
+Assigned glossary term, Default Partner, to 4 entities
+Unique column names that the glossary term was applied to:
+   DEFPA
+
+Glossary Term Number: 469
+No matches for glossary term, Describe RNC
+Glossary Term Number: 470
+No matches for glossary term, Describe Remittance is sent
+Glossary Term Number: 471
+No matches for glossary term, Describe Status of FCPA
+Glossary Term Number: 472
+No matches for glossary term, Describe Tax Number(CALA/Vietnam)
+Glossary Term Number: 473
+Assigned glossary term, District, to 8 entities
+Unique column names that the glossary term was applied to:
+   ORT02
+
+Glossary Term Number: 474
+No matches for glossary term, EDI Number
+Glossary Term Number: 475
+Assigned glossary term, Email Address Search Field, to 2 entities
+Unique column names that the glossary term was applied to:
+   SMTP_SRCH
+
+Glossary Term Number: 476
+No matches for glossary term, Evaluated Receipt Settlement (ERS)
+Glossary Term Number: 477
+Assigned glossary term, Fax Number, to 10 entities
+Unique column names that the glossary term was applied to:
+   FAX_NUMBER
+   TELFX
+
+Glossary Term Number: 478
+Assigned glossary term, First Name of Business Partner, to 2 entities
+Unique column names that the glossary term was applied to:
+   NAME_FIRST
+
+Glossary Term Number: 479
+No matches for glossary term, Group for Calculation Schema
+Glossary Term Number: 480
+No matches for glossary term, IBAN
+Glossary Term Number: 481
+No matches for glossary term, Incoterm Location 1
+Glossary Term Number: 482
+Assigned glossary term, Industry Key, to 4 entities
+Unique column names that the glossary term was applied to:
+   BRSCH
+
+Glossary Term Number: 483
+No matches for glossary term, Industry System
+Glossary Term Number: 484
+No matches for glossary term, Industry is Standard for BP in Industry System
+Glossary Term Number: 485
+Assigned glossary term, Last Name of Business Partner, to 2 entities
+Unique column names that the glossary term was applied to:
+   NAME_LAST
+
+Glossary Term Number: 486
+No matches for glossary term, Lawson field for Bank Account Type
+Glossary Term Number: 487
+Assigned glossary term, Name 4, to 2 entities
+Unique column names that the glossary term was applied to:
+   NAME_ORG4
+
+Glossary Term Number: 488
+No matches for glossary term, Name of Bank Account
+Glossary Term Number: 489
+No matches for glossary term, Order Acknowledgment Requirement
+Glossary Term Number: 490
+No matches for glossary term, PO Box Postal Code
+Glossary Term Number: 491
+No matches for glossary term, PO Issue Method
+Glossary Term Number: 492
+No matches for glossary term, Partner Converted
+Glossary Term Number: 493
+Assigned glossary term, Partner counter, to 6 entities
+Unique column names that the glossary term was applied to:
+   PARZA
+
+Glossary Term Number: 494
+No matches for glossary term, Payment Block
+Glossary Term Number: 495
+No matches for glossary term, Payment currency
+Glossary Term Number: 496
+No matches for glossary term, Plant Level Relevant
+Glossary Term Number: 497
+No matches for glossary term, Preferred Vendor
+Glossary Term Number: 498
+No matches for glossary term, Reference Details
+Glossary Term Number: 499
+No matches for glossary term, Reference to other vendor
+Glossary Term Number: 500
+No matches for glossary term, Relationship Category

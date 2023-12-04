@@ -1,0 +1,310 @@
+{
+  "definitions": {
+    "RL_OTC_AFS_ZTLF_DELVNO_XREF": {
+      "kind": "entity",
+      "elements": {
+        "ZVBELN_OLD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Original delivery number after the split",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "ZVBELN_NEW": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "New delivery number after the split",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "BOLNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Bill of lading",
+          "type": "cds.String",
+          "length": 35
+        },
+        "ANZPK": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Total number of packages in delivery",
+          "type": "cds.String",
+          "length": 5
+        },
+        "ZSTATUS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Status",
+          "type": "cds.String",
+          "length": 1
+        },
+        "ERDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date on Which Record Was Created",
+          "type": "cds.String",
+          "length": 8
+        },
+        "Count": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "TD_STG.IL_OTC_AFS_ZTLF_DELVNO_XREF"
+            ],
+            "as": "IL_OTC_AFS_ZTLF_DELVNO_XREF"
+          },
+          "columns": [
+            {
+              "as": "ZVBELN_OLD",
+              "key": true,
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "ZVBELN_OLD"
+              ]
+            },
+            {
+              "as": "ZVBELN_NEW",
+              "key": true,
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "ZVBELN_NEW"
+              ]
+            },
+            {
+              "as": "BOLNR",
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "BOLNR"
+              ]
+            },
+            {
+              "as": "ANZPK",
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "ANZPK"
+              ]
+            },
+            {
+              "as": "ZSTATUS",
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "ZSTATUS"
+              ]
+            },
+            {
+              "as": "ERDAT",
+              "ref": [
+                "IL_OTC_AFS_ZTLF_DELVNO_XREF",
+                "ERDAT"
+              ]
+            },
+            {
+              "as": "Count",
+              "val": 1
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@Consumption.dbHints": [
+        "USE_OLAP_PLAN",
+        "USE_OLAP_PLAN"
+      ],
+      "@EndUserText.label": "AFS Split Delivery Details",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true
+    },
+    "TD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "TD_STG",
+      "@DataWarehouse.space.schema": "TD_STG",
+      "@DataWarehouse.space.name": "TD_STG"
+    },
+    "TD_STG.IL_OTC_AFS_ZTLF_DELVNO_XREF": {
+      "kind": "entity",
+      "elements": {
+        "ZVBELN_OLD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Original delivery number after the split",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "ZVBELN_NEW": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "New delivery number after the split",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "BOLNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Bill of lading",
+          "type": "cds.String",
+          "length": 35
+        },
+        "ANZPK": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Total number of packages in delivery",
+          "type": "cds.String",
+          "length": 5
+        },
+        "ZSTATUS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Status",
+          "type": "cds.String",
+          "length": 1
+        },
+        "ERDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date on Which Record Was Created",
+          "type": "cds.String",
+          "length": 8
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "AFS Split Delivery Details - IL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0",
+  "editorSettings": {
+    "RL_OTC_AFS_ZTLF_DELVNO_XREF": {
+      "editor": {
+        "lastModifier": "GRAPHICALVIEWBUILDER",
+        "default": "GRAPHICALVIEWBUILDER"
+      },
+      "uiModel": "{\"contents\":{\"58899f2e-ca50-4012-93ce-fa9647ad89c7\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_OTC_AFS_ZTLF_DELVNO_XREF\",\"label\":\"AFS Split Delivery Details\",\"modificationDate\":1692022398376,\"deploymentDate\":1692022419341,\"#objectStatus\":\"1\",\"output\":\"4fe412a7-4915-454c-b0d0-edfe27ae80e4\",\"nodes\":{\"4fe412a7-4915-454c-b0d0-edfe27ae80e4\":{\"name\":\"RL_OTC_AFS_ZTLF_DELVNO_XREF\"},\"f63e64c9-5224-4a3f-bc0f-dcc291ca9717\":{\"name\":\"Calculated Columns 1\"},\"08a74a94-9445-4cf3-9416-3a7aca912c2b\":{\"name\":\"TD_STG.IL_OTC_AFS_ZTLF_DELVNO_XREF\"},\"afc06bfc-1f9c-44b6-be44-e34e6e1866fd\":{\"name\":\"Projection 2\"}},\"contexts\":{\"7bc18913-6310-4bd5-9227-cc8b74a073b0\":{\"name\":\"BW_AFS_STG\"},\"c6749b44-cbc8-4e1c-917b-93144c0fe974\":{\"name\":\"TD_STG\"}},\"diagrams\":{\"42b0ff3a-1860-4b3a-af28-82e5453cb7fa\":{}}},\"4fe412a7-4915-454c-b0d0-edfe27ae80e4\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_OTC_AFS_ZTLF_DELVNO_XREF\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"isUseOLAPDBHint\":true,\"modificationDate\":1692022398376,\"deploymentDate\":1692022419341,\"#objectStatus\":\"1\",\"elements\":{\"bafcb816-fb43-4d36-87fb-f7570c0897d0\":{\"name\":\"Calculated_1\"},\"dac72e45-ce67-4aa5-b30a-350697051ecf\":{\"name\":\"ZVBELN_OLD\"},\"718b8d48-f9b6-4c26-9bd2-8bb7640ad001\":{\"name\":\"ZVBELN_NEW\"},\"49778373-7554-4d4b-b520-1068d5a6113e\":{\"name\":\"BOLNR\"},\"c1a580b1-66bc-4d57-95ae-a287810dcf66\":{\"name\":\"ANZPK\"},\"de9d5a5a-66af-4218-a3a2-b7e1f36b0bb3\":{\"name\":\"ZSTATUS\"},\"c3d8a2f6-513d-489a-8fa9-e1085d804861\":{\"name\":\"ERDAT\"}}},\"f63e64c9-5224-4a3f-bc0f-dcc291ca9717\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"61e899f1-59bf-4804-947c-0768a95b7b23\":{\"name\":\"Calculated_1\"},\"a133e194-0a56-49ba-8a94-4f9852c88bec\":{\"name\":\"ZVBELN_OLD\"},\"54ec4559-fa1f-4bb1-aba2-3d8079979ceb\":{\"name\":\"ZVBELN_NEW\"},\"a88e3b15-1767-42c8-b742-d366e0e8bb13\":{\"name\":\"BOLNR\"},\"17a1d606-ea63-4a1d-8f0b-5a1452666747\":{\"name\":\"ANZPK\"},\"64e0b610-851a-463d-8dd2-adbec0b1adc5\":{\"name\":\"ZSTATUS\"},\"ea3a6eaf-df39-4382-8698-93a9b8dcd9de\":{\"name\":\"ERDAT\"}},\"successorNode\":\"4fe412a7-4915-454c-b0d0-edfe27ae80e4\"},\"08a74a94-9445-4cf3-9416-3a7aca912c2b\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"TD_STG.IL_OTC_AFS_ZTLF_DELVNO_XREF\",\"label\":\"AFS Split Delivery Details - IL\",\"type\":3,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1691558000131,\"deploymentDate\":1692031960368,\"#objectStatus\":\"1\",\"alias\":\"IL_OTC_AFS_ZTLF_DELVNO_XREF\",\"context\":\"c6749b44-cbc8-4e1c-917b-93144c0fe974\",\"elements\":{\"69ed1f5f-3d5e-414a-8dc3-ab443c55c8d9\":{\"name\":\"ZVBELN_OLD\"},\"07697b2c-90c6-4f81-9a27-bcc096faa6cd\":{\"name\":\"ZVBELN_NEW\"},\"af1a978f-5945-41a6-bccc-b2d1c118afda\":{\"name\":\"BOLNR\"},\"5230d21b-b251-4727-85f7-dfd73fb9e2fb\":{\"name\":\"ANZPK\"},\"d65498b8-1e6f-49ba-bd2d-637a6b691590\":{\"name\":\"ZSTATUS\"},\"5e15ce77-dfc6-44f0-871f-528a8c4c764a\":{\"name\":\"ERDAT\"}},\"successorNode\":\"afc06bfc-1f9c-44b6-be44-e34e6e1866fd\"},\"afc06bfc-1f9c-44b6-be44-e34e6e1866fd\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 2\",\"elements\":{\"03480fa6-4a0a-4ece-a57a-ed3033ea9f0f\":{\"name\":\"ZVBELN_OLD\"},\"83f210a2-4755-45e4-ba30-5106b2eff7bc\":{\"name\":\"ZVBELN_NEW\"},\"bcf4b063-9070-4a45-b64f-fd1740cf03df\":{\"name\":\"BOLNR\"},\"4f11230d-8512-4b79-9559-3f3cdf055f3d\":{\"name\":\"ANZPK\"},\"828aaab4-1a44-419b-8926-dda56c0589d9\":{\"name\":\"ZSTATUS\"},\"a49038b2-7c40-44b7-8745-6fa384e3adab\":{\"name\":\"ERDAT\"}},\"successorNode\":\"f63e64c9-5224-4a3f-bc0f-dcc291ca9717\"},\"7bc18913-6310-4bd5-9227-cc8b74a073b0\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"BW_AFS_STG\",\"label\":\"BW & AFS Legacy Data\",\"crossSpace\":{\"schema\":\"BW_AFS_STG\",\"space\":\"BW_AFS_STG\"}},\"c6749b44-cbc8-4e1c-917b-93144c0fe974\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"TD_STG\",\"label\":\"Dev-Transaction Data Staging\",\"crossSpace\":{\"schema\":\"TD_STG\",\"space\":\"TD_STG\"}},\"42b0ff3a-1860-4b3a-af28-82e5453cb7fa\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"ff61b692-3769-4cf0-8f82-2a53f6171102\":{},\"df201941-a0ba-43de-a419-9ef60c992749\":{},\"84bb41b9-af23-4ae3-b9e2-0d5a52d9de56\":{},\"c1527fcf-ddbb-4487-9225-0bc5736e13fa\":{},\"551847f3-e96c-437f-89aa-974e0f7dc201\":{\"name\":\"Entity Symbol 2\"},\"b0f37924-17d2-48b6-a79f-7a23de511c4a\":{},\"744c6636-6bee-42b4-b91c-a163e30af83a\":{},\"2146c1c0-df4a-4421-b609-3f860ac04c9a\":{},\"5a31e7ed-ef8f-4c75-9f76-abcf1be6998b\":{}}},\"bafcb816-fb43-4d36-87fb-f7570c0897d0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":7,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true},\"dac72e45-ce67-4aa5-b30a-350697051ecf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_OLD\",\"label\":\"Original delivery number after the split\",\"newName\":\"ZVBELN_OLD\",\"indexOrder\":1,\"expression\":\"ZVBELN_OLD\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"718b8d48-f9b6-4c26-9bd2-8bb7640ad001\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_NEW\",\"label\":\"New delivery number after the split\",\"newName\":\"ZVBELN_NEW\",\"indexOrder\":2,\"expression\":\"ZVBELN_NEW\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"49778373-7554-4d4b-b520-1068d5a6113e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BOLNR\",\"label\":\"Bill of lading\",\"newName\":\"BOLNR\",\"indexOrder\":3,\"expression\":\"BOLNR\",\"isCalculated\":true,\"length\":35,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"c1a580b1-66bc-4d57-95ae-a287810dcf66\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ANZPK\",\"label\":\"Total number of packages in delivery\",\"newName\":\"ANZPK\",\"indexOrder\":4,\"expression\":\"ANZPK\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"de9d5a5a-66af-4218-a3a2-b7e1f36b0bb3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZSTATUS\",\"label\":\"Status\",\"newName\":\"ZSTATUS\",\"indexOrder\":5,\"expression\":\"ZSTATUS\",\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"c3d8a2f6-513d-489a-8fa9-e1085d804861\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ERDAT\",\"label\":\"Date on Which Record Was Created\",\"newName\":\"ERDAT\",\"indexOrder\":6,\"expression\":\"ERDAT\",\"isCalculated\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"61e899f1-59bf-4804-947c-0768a95b7b23\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":7,\"expression\":\"1\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"bafcb816-fb43-4d36-87fb-f7570c0897d0\"},\"a133e194-0a56-49ba-8a94-4f9852c88bec\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_OLD\",\"label\":\"Original delivery number after the split\",\"newName\":\"ZVBELN_OLD\",\"indexOrder\":0,\"expression\":\"ZVBELN_OLD\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"dac72e45-ce67-4aa5-b30a-350697051ecf\"},\"54ec4559-fa1f-4bb1-aba2-3d8079979ceb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_NEW\",\"label\":\"New delivery number after the split\",\"newName\":\"ZVBELN_NEW\",\"indexOrder\":1,\"expression\":\"ZVBELN_NEW\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"718b8d48-f9b6-4c26-9bd2-8bb7640ad001\"},\"a88e3b15-1767-42c8-b742-d366e0e8bb13\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BOLNR\",\"label\":\"Bill of lading\",\"newName\":\"BOLNR\",\"indexOrder\":2,\"expression\":\"BOLNR\",\"isCalculated\":true,\"length\":35,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"49778373-7554-4d4b-b520-1068d5a6113e\"},\"17a1d606-ea63-4a1d-8f0b-5a1452666747\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ANZPK\",\"label\":\"Total number of packages in delivery\",\"newName\":\"ANZPK\",\"indexOrder\":3,\"expression\":\"ANZPK\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"c1a580b1-66bc-4d57-95ae-a287810dcf66\"},\"64e0b610-851a-463d-8dd2-adbec0b1adc5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZSTATUS\",\"label\":\"Status\",\"newName\":\"ZSTATUS\",\"indexOrder\":4,\"expression\":\"ZSTATUS\",\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"de9d5a5a-66af-4218-a3a2-b7e1f36b0bb3\"},\"ea3a6eaf-df39-4382-8698-93a9b8dcd9de\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ERDAT\",\"label\":\"Date on Which Record Was Created\",\"newName\":\"ERDAT\",\"indexOrder\":5,\"expression\":\"ERDAT\",\"isCalculated\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"c3d8a2f6-513d-489a-8fa9-e1085d804861\"},\"ff61b692-3769-4cf0-8f82-2a53f6171102\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"4fe412a7-4915-454c-b0d0-edfe27ae80e4\"},\"df201941-a0ba-43de-a419-9ef60c992749\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"f63e64c9-5224-4a3f-bc0f-dcc291ca9717\"},\"84bb41b9-af23-4ae3-b9e2-0d5a52d9de56\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"df201941-a0ba-43de-a419-9ef60c992749\",\"targetSymbol\":\"ff61b692-3769-4cf0-8f82-2a53f6171102\"},\"c1527fcf-ddbb-4487-9225-0bc5736e13fa\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.JoinSymbol\",\"x\":-100,\"y\":-29.290088357492493,\"isHidden\":true},\"551847f3-e96c-437f-89aa-974e0f7dc201\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 2\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 2\",\"object\":\"08a74a94-9445-4cf3-9416-3a7aca912c2b\"},\"b0f37924-17d2-48b6-a79f-7a23de511c4a\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.JoinSymbol\",\"x\":5,\"y\":-23.55832829693516,\"isHidden\":true},\"744c6636-6bee-42b4-b91c-a163e30af83a\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"afc06bfc-1f9c-44b6-be44-e34e6e1866fd\"},\"2146c1c0-df4a-4421-b609-3f860ac04c9a\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"744c6636-6bee-42b4-b91c-a163e30af83a\",\"targetSymbol\":\"df201941-a0ba-43de-a419-9ef60c992749\"},\"5a31e7ed-ef8f-4c75-9f76-abcf1be6998b\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"551847f3-e96c-437f-89aa-974e0f7dc201\",\"targetSymbol\":\"744c6636-6bee-42b4-b91c-a163e30af83a\"},\"69ed1f5f-3d5e-414a-8dc3-ab443c55c8d9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_OLD\",\"label\":\"Original delivery number after the split\",\"newName\":\"ZVBELN_OLD\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"03480fa6-4a0a-4ece-a57a-ed3033ea9f0f\"},\"07697b2c-90c6-4f81-9a27-bcc096faa6cd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_NEW\",\"label\":\"New delivery number after the split\",\"newName\":\"ZVBELN_NEW\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"83f210a2-4755-45e4-ba30-5106b2eff7bc\"},\"af1a978f-5945-41a6-bccc-b2d1c118afda\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BOLNR\",\"label\":\"Bill of lading\",\"newName\":\"BOLNR\",\"indexOrder\":2,\"length\":35,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"bcf4b063-9070-4a45-b64f-fd1740cf03df\"},\"5230d21b-b251-4727-85f7-dfd73fb9e2fb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ANZPK\",\"label\":\"Total number of packages in delivery\",\"newName\":\"ANZPK\",\"indexOrder\":3,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"4f11230d-8512-4b79-9559-3f3cdf055f3d\"},\"d65498b8-1e6f-49ba-bd2d-637a6b691590\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZSTATUS\",\"label\":\"Status\",\"newName\":\"ZSTATUS\",\"indexOrder\":4,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"828aaab4-1a44-419b-8926-dda56c0589d9\"},\"5e15ce77-dfc6-44f0-871f-528a8c4c764a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ERDAT\",\"label\":\"Date on Which Record Was Created\",\"newName\":\"ERDAT\",\"indexOrder\":5,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"a49038b2-7c40-44b7-8745-6fa384e3adab\"},\"03480fa6-4a0a-4ece-a57a-ed3033ea9f0f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_OLD\",\"label\":\"Original delivery number after the split\",\"newName\":\"ZVBELN_OLD\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a133e194-0a56-49ba-8a94-4f9852c88bec\"},\"83f210a2-4755-45e4-ba30-5106b2eff7bc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZVBELN_NEW\",\"label\":\"New delivery number after the split\",\"newName\":\"ZVBELN_NEW\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"54ec4559-fa1f-4bb1-aba2-3d8079979ceb\"},\"bcf4b063-9070-4a45-b64f-fd1740cf03df\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BOLNR\",\"label\":\"Bill of lading\",\"newName\":\"BOLNR\",\"indexOrder\":2,\"length\":35,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"a88e3b15-1767-42c8-b742-d366e0e8bb13\"},\"4f11230d-8512-4b79-9559-3f3cdf055f3d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ANZPK\",\"label\":\"Total number of packages in delivery\",\"newName\":\"ANZPK\",\"indexOrder\":3,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"17a1d606-ea63-4a1d-8f0b-5a1452666747\"},\"828aaab4-1a44-419b-8926-dda56c0589d9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZSTATUS\",\"label\":\"Status\",\"newName\":\"ZSTATUS\",\"indexOrder\":4,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"64e0b610-851a-463d-8dd2-adbec0b1adc5\"},\"a49038b2-7c40-44b7-8745-6fa384e3adab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ERDAT\",\"label\":\"Date on Which Record Was Created\",\"newName\":\"ERDAT\",\"indexOrder\":5,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"ea3a6eaf-df39-4382-8698-93a9b8dcd9de\"}}}"
+    }
+  }
+}

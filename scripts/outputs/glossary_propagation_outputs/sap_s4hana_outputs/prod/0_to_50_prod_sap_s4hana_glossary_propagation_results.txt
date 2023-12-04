@@ -1,0 +1,239 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 0 to 50
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 1
+Assigned glossary term, ACH Prenotification flag, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZ_ACH_PRENOTIF
+
+Glossary Term Number: 2
+No matches for glossary term, Address Group
+
+Glossary Term Number: 3
+Assigned glossary term, Address Key, to 2 entities
+Unique column names that the glossary term was applied to:
+   ADRNR
+
+Glossary Term Number: 4
+No matches for glossary term, Address Number Key
+
+Glossary Term Number: 5
+No matches for glossary term, Address UUID
+
+Glossary Term Number: 6
+Assigned glossary term, Approved Payment Term, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZAPRPAY
+
+Glossary Term Number: 7
+Assigned glossary term, Authorization Group, to 2 entities
+Unique column names that the glossary term was applied to:
+   BEGRU
+
+Glossary Term Number: 8
+Assigned glossary term, Automatic evaluated receipt settlement for return items, to 2 entities
+Unique column names that the glossary term was applied to:
+   XERSR
+
+Glossary Term Number: 9
+Assigned glossary term, BP Grouping, to 2 entities
+Unique column names that the glossary term was applied to:
+   BU_GROUP
+
+Glossary Term Number: 10
+Assigned glossary term, BP Relationship Number, to 2 entities
+Unique column names that the glossary term was applied to:
+   RELNR
+
+Glossary Term Number: 11
+Assigned glossary term, BP Role, to 2 entities
+Unique column names that the glossary term was applied to:
+   RLTYP
+
+Glossary Term Number: 12
+Assigned glossary term, Bank Account Name, to 2 entities
+Unique column names that the glossary term was applied to:
+   KOINH
+
+Glossary Term Number: 13
+Assigned glossary term, Bank Account Number, to 2 entities
+Unique column names that the glossary term was applied to:
+   BANKN
+
+Glossary Term Number: 14
+Assigned glossary term, Bank Country Key, to 2 entities
+Unique column names that the glossary term was applied to:
+   BANKS
+
+Glossary Term Number: 15
+No matches for glossary term, Bank ID
+
+Glossary Term Number: 16
+Assigned glossary term, Bank details ID, to 2 entities
+Unique column names that the glossary term was applied to:
+   BKVID
+
+Glossary Term Number: 17
+Assigned glossary term, Block Key for Payment, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZAHLS
+
+Glossary Term Number: 18
+Assigned glossary term, Business Partner GUID, to 2 entities
+Unique column names that the glossary term was applied to:
+   PARTNER_GUID
+
+Glossary Term Number: 19
+Assigned glossary term, Business Partner Number, to 2 entities
+Unique column names that the glossary term was applied to:
+   PARTNER
+
+Glossary Term Number: 20
+No matches for glossary term, Caller Number
+
+Glossary Term Number: 21
+Assigned glossary term, Central Archiving Flag, to 2 entities
+Unique column names that the glossary term was applied to:
+   XDELE
+
+Glossary Term Number: 22
+Assigned glossary term, Central Block for BP, to 2 entities
+Unique column names that the glossary term was applied to:
+   XBLCK
+
+Glossary Term Number: 23
+Assigned glossary term, Central Deletion Block, to 2 entities
+Unique column names that the glossary term was applied to:
+   NODEL
+
+Glossary Term Number: 24
+Assigned glossary term, Central Deletion Flag, to 2 entities
+Unique column names that the glossary term was applied to:
+   LOEVM
+
+Glossary Term Number: 25
+Assigned glossary term, Central posting block, to 2 entities
+Unique column names that the glossary term was applied to:
+   SPERR
+
+Glossary Term Number: 26
+Assigned glossary term, Centrally imposed purchasing block, to 2 entities
+Unique column names that the glossary term was applied to:
+   SPERM
+
+Glossary Term Number: 27
+Assigned glossary term, Changed at, to 2 entities
+Unique column names that the glossary term was applied to:
+   CHTIM
+
+Glossary Term Number: 28
+Assigned glossary term, Changed on, to 2 entities
+Unique column names that the glossary term was applied to:
+   CHDAT
+
+Glossary Term Number: 29
+Assigned glossary term, Check Flag for Double Invoices or Credit Memos, to 2 entities
+Unique column names that the glossary term was applied to:
+   REPRF
+
+Glossary Term Number: 30
+Assigned glossary term, Check digit for the international location number, to 4 entities
+Unique column names that the glossary term was applied to:
+   BUBKZ
+   LOCATION_3
+
+Glossary Term Number: 31
+No matches for glossary term, City file test status
+
+Glossary Term Number: 32
+No matches for glossary term, City postal code
+
+Glossary Term Number: 33
+No matches for glossary term, Company Name
+
+Glossary Term Number: 34
+Assigned glossary term, Created at, to 2 entities
+Unique column names that the glossary term was applied to:
+   CRTIM
+
+Glossary Term Number: 35
+Assigned glossary term, Currency Key, to 2 entities
+Unique column names that the glossary term was applied to:
+   WAERS
+
+Glossary Term Number: 36
+Assigned glossary term, Date of Change, to 2 entities
+Unique column names that the glossary term was applied to:
+   BK_MOVE_DATE
+
+Glossary Term Number: 37
+Assigned glossary term, Default Partner, to 2 entities
+Unique column names that the glossary term was applied to:
+   DEFPA
+
+Glossary Term Number: 38
+Assigned glossary term, Deletion Flag for Master Record (Company Code Level), to 2 entities
+Unique column names that the glossary term was applied to:
+   LOEVM
+
+Glossary Term Number: 39
+Assigned glossary term, Deletion Indicator for Supplier at Purchasing Level, to 2 entities
+Unique column names that the glossary term was applied to:
+   LOEVM
+
+Glossary Term Number: 40
+Assigned glossary term, Describe RNC, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZUSERNAME5
+
+Glossary Term Number: 41
+Assigned glossary term, Describe Remittance is sent, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZUSERNAME4
+
+Glossary Term Number: 42
+Assigned glossary term, Describe Status of FCPA, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZUSERNAME1
+
+Glossary Term Number: 43
+Assigned glossary term, Describe Tax Number(CALA/Vietnam), to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZUSERNAME6
+
+Glossary Term Number: 44
+Assigned glossary term, District, to 2 entities
+Unique column names that the glossary term was applied to:
+   ORT02
+
+Glossary Term Number: 45
+Assigned glossary term, EDI Number, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZEDINUM
+
+Glossary Term Number: 46
+Assigned glossary term, Email Address, to 2 entities
+Unique column names that the glossary term was applied to:
+   SMTP_ADDRESS
+
+Glossary Term Number: 47
+No matches for glossary term, Email Address Search Field
+
+Glossary Term Number: 48
+Assigned glossary term, Evaluated Receipt Settlement (ERS), to 2 entities
+Unique column names that the glossary term was applied to:
+   XERSY
+
+Glossary Term Number: 49
+Assigned glossary term, Fax Number, to 4 entities
+Unique column names that the glossary term was applied to:
+   FAX_NUMBER
+   TELFX
+
+Glossary Term Number: 50
+Assigned glossary term, First Name of Business Partner, to 2 entities
+Unique column names that the glossary term was applied to:
+   NAME_FIRST
+

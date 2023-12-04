@@ -1,0 +1,68 @@
+##! /usr/bin/env python3
+
+
+# Function Imports
+# ---------------
+from modules import entity
+from modules.collection.collection_shared_functions import *
+from utils import get_credentials, create_purview_client
+
+
+# Package Imports
+# ---------------
+from pyapacheatlas.core import AtlasEntity, AtlasClassification
+from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
+import json
+from pathlib import Path
+import random
+import string
+
+
+# Constants
+# ---------------
+
+REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
+
+
+# Functions
+# ---------------
+
+def pull_and_move_s4hana_application_component_and_nested_entities_to_collection(client, application_component_guid, collection_id):
+    application_component_details = client.get_entity(application_component_guid).get("entities")[0]
+    guids_to_move_for_this_app_comp = [application_component_guid]
+    packages_in_application_component = application_component_details.get("relationshipAttributes").get("packages")
+
+    for package in packages_in_application_component:
+        guids_to_move = collect_nested_packages_and_entities(client, package.get("guid"))
+        guids_to_move_for_this_app_comp.extend(guids_to_move)
+
+    print("Collected all guids to be moved")
+    result = client.collections.move_entities(guids = guids_to_move_for_this_app_comp, collection = collection_id)
+    print("Moved " + str(len(guids_to_move_for_this_app_comp)) + " assets within this application component")
+    print("Moved to the collection with the ID of: " + collection_id)
+    print()
+    return result
+
+
+def move_sap_s4hana_to_collection():
+    # run on QA to move S4 HANA MDG application components
+    # send to Sravanthi once Charlie gives back list of items to move
+    application_component_guid = "5107e860-54fd-4ef6-b960-3fb7284504a7"
+    collection_id = "x9hxp5"
+    result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(CLIENT, app_comp_guid, collection_id)
+    print(result)
+
+
+# Main Processing
+# ---------------
+
+def main():
+    print()
+    
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,955 @@
+{
+  "definitions": {
+    "ZV_DWC_SHIPITEM": {
+      "kind": "entity",
+      "elements": {
+        "TKNUM": {
+          "@EndUserText.label": "Shipment Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "TSNUM": {
+          "@EndUserText.label": "Stage of transport number",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "TPNUM": {
+          "@EndUserText.label": "Shipment item",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "ABFER": {
+          "@EndUserText.label": "Shipment completion type",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ABWST": {
+          "@EndUserText.label": "Processing control",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BFART": {
+          "@EndUserText.label": "Service Level",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DTDIS": {
+          "@EndUserText.label": "Date of end of planning",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SHTYP": {
+          "@EndUserText.label": "Shipment type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TPLST": {
+          "@EndUserText.label": "Transportation planning point",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DISTZ": {
+          "@EndUserText.label": "Distance",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KNOTA": {
+          "@EndUserText.label": "Departure Point",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KNOTZ": {
+          "@EndUserText.label": "Destination point",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KUNNA": {
+          "@EndUserText.label": "Departure point: Customer",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KUNNZ": {
+          "@EndUserText.label": "Customer number for destination point",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LAUFK": {
+          "@EndUserText.label": "Leg indicator for shipment stage",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIFNA": {
+          "@EndUserText.label": "Vendor number of departure point",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LIFNZ": {
+          "@EndUserText.label": "Vendor number of destination point",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LSTEL": {
+          "@EndUserText.label": "Point of departure: Loading point at shipping point",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LSTEZ": {
+          "@EndUserText.label": "Destination: Loading point at shipping point",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEDST": {
+          "@EndUserText.label": "Distance Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ROUTE": {
+          "@EndUserText.label": "Route for shipment stage",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SDABW": {
+          "@EndUserText.label": "Special Processing Indicator",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TDLNR": {
+          "@EndUserText.label": "Number of forwarding agent in the shipment stage",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSART": {
+          "@EndUserText.label": "Shipping type for shipment stage",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSTEL": {
+          "@EndUserText.label": "Shipping point at point of departure",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSTEZ": {
+          "@EndUserText.label": "Shipping point at destination",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WERKA": {
+          "@EndUserText.label": "Plant at point of departure",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WERKZ": {
+          "@EndUserText.label": "Plant at destination point",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HDR_DALBG": {
+          "@EndUserText.label": "Current date for start of loading",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DALEN": {
+          "@EndUserText.label": "Actual date for end of loading",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DAREG": {
+          "@EndUserText.label": "Actual date of check-in",
+          "type": "cds.String",
+          "length": 8
+        },
+        "DPTBG": {
+          "@EndUserText.label": "Planned date for start of shipment",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HDR_DATBG": {
+          "@EndUserText.label": "Current date for start of shipment",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DATEN": {
+          "@EndUserText.label": "Actual Date for End of Shipment",
+          "type": "cds.String",
+          "length": 8
+        },
+        "DATBG": {
+          "@EndUserText.label": "Current date for start of shipment",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HDR_DPABF": {
+          "@EndUserText.label": "Planned date for shipment completion",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DPLBG": {
+          "@EndUserText.label": "Planned date for start of loading",
+          "type": "cds.String",
+          "length": 8
+        },
+        "DPTEN": {
+          "@EndUserText.label": "Planned date for end of shipment",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HDR_DPLEN": {
+          "@EndUserText.label": "Planned date for end of loading",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DPREG": {
+          "@EndUserText.label": "Planned date of check-in",
+          "type": "cds.String",
+          "length": 8
+        },
+        "DATEN": {
+          "@EndUserText.label": "Actual Date for End of Shipment",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "HDR_DPTBG": {
+          "@EndUserText.label": "Planned date for start of shipment",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DPTEN": {
+          "@EndUserText.label": "Planned date for end of shipment",
+          "type": "cds.String",
+          "length": 8
+        },
+        "HDR_DTABF": {
+          "@EndUserText.label": "Current date of shipment completion",
+          "type": "cds.String",
+          "length": 8
+        },
+        "TSTYP": {
+          "@EndUserText.label": "Stage category",
+          "type": "cds.String",
+          "length": 1
+        },
+        "TSRFO": {
+          "@EndUserText.label": "Stage of transport sequence",
+          "type": "cds.String",
+          "length": 4
+        },
+        "INCO1": {
+          "@EndUserText.label": "Incoterms for printout",
+          "type": "cds.String",
+          "length": 3
+        },
+        "ADRNA": {
+          "@EndUserText.label": "Departure point: Address",
+          "type": "cds.String",
+          "length": 10
+        },
+        "LGORTA": {
+          "@EndUserText.label": "Departure point: Storage location in plant",
+          "type": "cds.String",
+          "length": 4
+        },
+        "BELAD": {
+          "@EndUserText.label": "Point of departure: Additional info (e.g. loading point)",
+          "type": "cds.String",
+          "length": 25
+        },
+        "AEDAT": {
+          "@EndUserText.label": "Date of Last Change",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ADRNZ": {
+          "@EndUserText.label": "Destination address",
+          "type": "cds.String",
+          "length": 10
+        },
+        "ERDAT": {
+          "@EndUserText.label": "Date on which the record was created",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LGORTZ": {
+          "@EndUserText.label": "Destination: Storage location in plant",
+          "type": "cds.String",
+          "length": 4
+        },
+        "SIGNI": {
+          "@EndUserText.label": "Container ID",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UPTBG": {
+          "@EndUserText.label": "Stage: Planned shipment start time",
+          "type": "cds.String",
+          "length": 6
+        },
+        "TEXT1": {
+          "@EndUserText.label": "Addit.text 1",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UATBG": {
+          "@EndUserText.label": "Stage: Current shipment start time",
+          "type": "cds.String",
+          "length": 6
+        },
+        "TEXT2": {
+          "@EndUserText.label": "Addit.text 2",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UPTEN": {
+          "@EndUserText.label": "Stage: Planned shipemnt end time",
+          "type": "cds.String",
+          "length": 6
+        },
+        "TEXT3": {
+          "@EndUserText.label": "Addit.text 3",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "UATEN": {
+          "@EndUserText.label": "Stage: Actual shipment end time",
+          "type": "cds.String",
+          "length": 6
+        },
+        "TEXT4": {
+          "@EndUserText.label": "Addit.text 4",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FAHZT": {
+          "@EndUserText.label": "Travelling time only between two locations",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "VBELN": {
+          "@EndUserText.label": "Delivery",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GESZT": {
+          "@EndUserText.label": "Total travelling time between two locations incl. breaks",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "TPRFO": {
+          "@EndUserText.label": "Itinerary of shipment items",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEIZT": {
+          "@EndUserText.label": "Unit of measure for travelling times",
+          "type": "cds.String",
+          "length": 3
+        },
+        "ERNAM": {
+          "@EndUserText.label": "Name of Person who Created the Object",
+          "type": "cds.String",
+          "length": 12,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FAHZTD": {
+          "@EndUserText.label": "Plan: Actual duration at stage level (in hours:minutes)",
+          "precision": 11,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "ERZET": {
+          "@EndUserText.label": "Entry time",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GESZTD": {
+          "@EndUserText.label": "Planned total time at stage level (in days)",
+          "precision": 11,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "PKSTA": {
+          "@EndUserText.label": "There are Packed Deliveries Dependent on Shipping",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "GESZTDA": {
+          "@EndUserText.label": "Actual total time at stage of shipment (in days)",
+          "precision": 11,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "FAHZTDA": {
+          "@EndUserText.label": "Actual duration of shipment stage (in hours:minutes)",
+          "precision": 11,
+          "scale": 0,
+          "type": "cds.Decimal"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Shipment Item - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_SHIPITEM$F"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

@@ -1,0 +1,702 @@
+{
+  "definitions": {
+    "IL_SCM_INVENTORY_RECON": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "notNull": true
+        },
+        "WERKS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "LGORT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Storage location",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "CHARG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Batch Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "ZCLABS_WMS": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Unrestricted Quantity External",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCSPEM_WMS": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Blocked Quantity Ext",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCINSM_WMS": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Inspection Quantity External",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCUMLM_WMS": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Intransit Quantity External",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCLABS_S4": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Unrestricted Quantity SAP",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCSPEM_S4": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Blocked Quantity SAP",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCINSM_S4": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Inspection Quantity SAP",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "ZCUMLM_S4": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Intransit Quantity SAP",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal"
+        },
+        "MEINS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3
+        },
+        "ZCREDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date External",
+          "type": "cds.Date",
+          "notNull": true
+        },
+        "ZCREDAT_S4": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date SAP",
+          "type": "cds.Date"
+        },
+        "TIME_STAMP": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "ZC_DWC_INV_RECO"
+            ]
+          },
+          "columns": [
+            {
+              "as": "MATNR",
+              "key": true,
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "MATNR"
+              ]
+            },
+            {
+              "as": "WERKS",
+              "key": true,
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "WERKS"
+              ]
+            },
+            {
+              "as": "LGORT",
+              "key": true,
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "LGORT"
+              ]
+            },
+            {
+              "as": "CHARG",
+              "key": true,
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "CHARG"
+              ]
+            },
+            {
+              "as": "ZCLABS_WMS",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCLABS_WMS"
+              ]
+            },
+            {
+              "as": "ZCSPEM_WMS",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCSPEM_WMS"
+              ]
+            },
+            {
+              "as": "ZCINSM_WMS",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCINSM_WMS"
+              ]
+            },
+            {
+              "as": "ZCUMLM_WMS",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCUMLM_WMS"
+              ]
+            },
+            {
+              "as": "ZCLABS_S4",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCLABS_S4"
+              ]
+            },
+            {
+              "as": "ZCSPEM_S4",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCSPEM_S4"
+              ]
+            },
+            {
+              "as": "ZCINSM_S4",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCINSM_S4"
+              ]
+            },
+            {
+              "as": "ZCUMLM_S4",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCUMLM_S4"
+              ]
+            },
+            {
+              "as": "MEINS",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "MEINS"
+              ]
+            },
+            {
+              "as": "ZCREDAT",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCREDAT"
+              ]
+            },
+            {
+              "as": "ZCREDAT_S4",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "ZCREDAT_S4"
+              ]
+            },
+            {
+              "as": "TIME_STAMP",
+              "ref": [
+                "ZC_DWC_INV_RECO",
+                "TIME_STAMP"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Inventory Reconciliation Master Report - IL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"05531d8d-bd7f-4d4e-b01b-a7c7551790b2\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"IL_SCM_INVENTORY_RECON\",\"label\":\"Inventory Reconciliation Master Report - IL\",\"modificationDate\":1668594337420,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"2fbcbc3b-0039-4d9f-89cb-e26923f52315\",\"nodes\":{\"2fbcbc3b-0039-4d9f-89cb-e26923f52315\":{\"name\":\"IL_SCM_INVENTORY_RECON\"},\"64df6c70-b74a-4fec-9154-2c5bda06c1f2\":{\"name\":\"ZC_DWC_INV_RECO\"},\"c1d8b211-0fe5-42f7-8252-5f31c22a0a99\":{\"name\":\"Projection 1\"},\"a9f08fbc-44ed-4ba7-8f6c-ae935bdea29a\":{\"name\":\"Calculated Columns 1\"}},\"diagrams\":{\"3e8f3aac-7035-40a9-90f4-56388ab369e3\":{}}},\"2fbcbc3b-0039-4d9f-89cb-e26923f52315\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"IL_SCM_INVENTORY_RECON\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1668594337420,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"fd3b666b-3538-4eb5-91a7-1bbf3572c473\":{\"name\":\"MATNR\"},\"8efb2d8a-7701-4afd-86c9-caa1ad7a93be\":{\"name\":\"WERKS\"},\"59af03b3-9b97-4f42-a1ee-00bcf4463a39\":{\"name\":\"LGORT\"},\"b5253a0e-9992-42c7-b5b5-8bb1f23e524d\":{\"name\":\"CHARG\"},\"35d8a16b-9e20-4ed4-a358-29a1084aa2f2\":{\"name\":\"ZCLABS_WMS\"},\"8184e075-f0be-4554-a144-8d20791c6ac7\":{\"name\":\"ZCSPEM_WMS\"},\"cde3ab4b-5815-4d39-8acf-21627c975172\":{\"name\":\"ZCINSM_WMS\"},\"837fbfe1-7ac0-49df-93a6-d45c8c66e37e\":{\"name\":\"ZCUMLM_WMS\"},\"6c68d3f2-8202-4550-8594-36a61e116c26\":{\"name\":\"ZCLABS_S4\"},\"f0b6be09-f2f6-49af-8426-f9694ed7fbf8\":{\"name\":\"ZCSPEM_S4\"},\"95e08592-cb87-4b45-8954-4a313c418a22\":{\"name\":\"ZCINSM_S4\"},\"43b9e170-4df3-478f-9aa4-d325296bece8\":{\"name\":\"ZCUMLM_S4\"},\"c845bc69-7767-428e-9b22-6b344bee6548\":{\"name\":\"MEINS\"},\"93a97c3e-3e2a-42ee-85c9-0dc2a2d46faf\":{\"name\":\"ZCREDAT\"},\"9c2316d1-361d-4ee0-83d5-691569c30b21\":{\"name\":\"ZCREDAT_S4\"},\"a7e4fad3-bde4-45dd-a625-6e0ad9bb3ef6\":{\"name\":\"TIME_STAMP\"}}},\"64df6c70-b74a-4fec-9154-2c5bda06c1f2\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"ZC_DWC_INV_RECO\",\"label\":\"ZP2P_INV_RECO CDS View - Transaction Data\",\"type\":8,\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZC_DWC_INV_RECO$F\"},\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1668594337420,\"deploymentDate\":1668678058137,\"#objectStatus\":\"1\",\"elements\":{\"6d508b6e-85b8-4b01-8cd6-363e6124622a\":{\"name\":\"MATNR\"},\"48029f7f-6713-4603-b3f5-a6d5913371e2\":{\"name\":\"WERKS\"},\"89e09b1e-a222-4455-b780-0f10e2ec6cd2\":{\"name\":\"LGORT\"},\"82725d8f-e529-4075-b01d-2a47eaaa9dc7\":{\"name\":\"CHARG\"},\"8f820c65-4a91-4e53-8aee-24e510dba3b6\":{\"name\":\"ZCLABS_WMS\"},\"bee97bf8-58e1-4730-85d4-56178f03764d\":{\"name\":\"ZCSPEM_WMS\"},\"8915cebc-d3ec-40af-8381-ae35f2fa8e26\":{\"name\":\"ZCINSM_WMS\"},\"def7a0de-6dcc-4b10-b848-ff32a25043c3\":{\"name\":\"ZCUMLM_WMS\"},\"8881faaf-119c-482b-9165-bf7595fb7cc6\":{\"name\":\"ZCLABS_S4\"},\"253ef5a7-ef17-49af-ba8e-6a5e268cd32a\":{\"name\":\"ZCSPEM_S4\"},\"6eda8ff5-8d37-4cf2-bd0e-39e9225920b4\":{\"name\":\"ZCINSM_S4\"},\"0ed60bb2-d80b-423f-a495-f27a8e603d42\":{\"name\":\"ZCUMLM_S4\"},\"9968d43b-e874-47da-89b8-e25d0891f7d1\":{\"name\":\"MEINS\"},\"74425ea0-0257-4cd8-a973-2456b83b2878\":{\"name\":\"ZCREDAT\"},\"17183d03-ce1b-4f18-9956-f37afd303a1e\":{\"name\":\"ZCREDAT_S4\"},\"bb9d0128-fc84-453f-9beb-836251a2dd9a\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"c1d8b211-0fe5-42f7-8252-5f31c22a0a99\"},\"c1d8b211-0fe5-42f7-8252-5f31c22a0a99\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"c872c8b9-9a5f-433f-ba19-472df6bd140a\":{\"name\":\"MATNR\"},\"91138944-18a5-4d07-9cdb-a11deaa93b07\":{\"name\":\"WERKS\"},\"f9131bf0-399b-4a6b-92d3-f07eb28babbd\":{\"name\":\"LGORT\"},\"6d91e2d3-63ce-421d-bc00-7d3c652e4245\":{\"name\":\"CHARG\"},\"cf0a0cee-21c3-4d4e-8f9c-7e32bf897e5f\":{\"name\":\"ZCLABS_WMS\"},\"ad5a4b20-3eb8-43f7-9422-eb9a0e4b749c\":{\"name\":\"ZCSPEM_WMS\"},\"597e2249-a68e-4671-b5df-a783404d042d\":{\"name\":\"ZCINSM_WMS\"},\"508735f0-5947-47d0-80d5-1986a1f67ca6\":{\"name\":\"ZCUMLM_WMS\"},\"a18deac6-f077-4c9a-9aca-211f21b642e3\":{\"name\":\"ZCLABS_S4\"},\"8af97b64-f119-40ac-bf68-1167f696fe05\":{\"name\":\"ZCSPEM_S4\"},\"004222c3-7d6d-4233-9142-f1753db0c236\":{\"name\":\"ZCINSM_S4\"},\"09c498c2-fcc4-4134-9821-a72ef23abfd7\":{\"name\":\"ZCUMLM_S4\"},\"04af27be-be09-4b2e-b2ac-be06305ba27b\":{\"name\":\"MEINS\"},\"53050c92-7a39-4bbf-8745-dfafa447dce0\":{\"name\":\"ZCREDAT\"},\"55114c6c-d59b-4358-8e24-3ae81ee1c546\":{\"name\":\"ZCREDAT_S4\"},\"78e04acf-c1e2-4488-84ab-93a5490d46e2\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"a9f08fbc-44ed-4ba7-8f6c-ae935bdea29a\"},\"a9f08fbc-44ed-4ba7-8f6c-ae935bdea29a\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"6fc1c555-b720-400d-9c37-224554864401\":{\"name\":\"MATNR\"},\"05612f93-b4bb-41a0-a86c-0caef059689d\":{\"name\":\"WERKS\"},\"3fbfccb4-27ec-4709-8eb4-5d6e137803e0\":{\"name\":\"LGORT\"},\"c2ad8836-cd67-44aa-a482-2a647b11e7ab\":{\"name\":\"CHARG\"},\"97031e1f-8a71-466a-b08d-4f3961ecb5e4\":{\"name\":\"ZCLABS_WMS\"},\"e40c04db-23ff-4cea-8e9b-62045f2cb4de\":{\"name\":\"ZCSPEM_WMS\"},\"0cad339e-6f79-4a6c-9b13-960fc424e0f4\":{\"name\":\"ZCINSM_WMS\"},\"73a23110-840f-4c11-a940-de6a90ff71aa\":{\"name\":\"ZCUMLM_WMS\"},\"56639bbe-7ea5-493b-a1d9-880b113377bf\":{\"name\":\"ZCLABS_S4\"},\"08c795f4-b0b0-48e5-9901-f46d9cc93d0c\":{\"name\":\"ZCSPEM_S4\"},\"7bb581cf-fea3-4571-b2ea-99084b97e58e\":{\"name\":\"ZCINSM_S4\"},\"f46b1545-f044-4d3d-8f6f-7b827f63f7b9\":{\"name\":\"ZCUMLM_S4\"},\"768810d8-e1a5-489f-8142-a3cf6b45d4fd\":{\"name\":\"MEINS\"},\"467b4701-33a9-48e4-9158-6abd0d8b2310\":{\"name\":\"ZCREDAT\"},\"a7d7354f-299c-4b2c-aff0-715bd8800694\":{\"name\":\"ZCREDAT_S4\"},\"e0e53c0f-7b07-4979-b61c-54de9b379839\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"2fbcbc3b-0039-4d9f-89cb-e26923f52315\"},\"3e8f3aac-7035-40a9-90f4-56388ab369e3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"a3f9845d-d979-4923-9d2f-908367ea1580\":{},\"3ee8e232-fd90-40c3-bcaa-8f8b53a26241\":{\"name\":\"Entity Symbol 1\"},\"99df961f-60ab-463f-9e25-fa8046d77874\":{},\"7b4ca3ec-78fe-4e0c-a8e3-84f5616ff680\":{},\"c9c791d5-2459-411f-a5f2-6793fa84b97d\":{},\"328c5b22-aede-4570-8987-3db755b71df3\":{},\"539c8bf6-1494-4182-83e1-f8936e07e5a6\":{}}},\"fd3b666b-3538-4eb5-91a7-1bbf3572c473\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"8efb2d8a-7701-4afd-86c9-caa1ad7a93be\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"59af03b3-9b97-4f42-a1ee-00bcf4463a39\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"b5253a0e-9992-42c7-b5b5-8bb1f23e524d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARG\",\"label\":\"Batch Number\",\"newName\":\"CHARG\",\"indexOrder\":3,\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"35d8a16b-9e20-4ed4-a358-29a1084aa2f2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_WMS\",\"label\":\"Unrestricted Quantity External\",\"newName\":\"ZCLABS_WMS\",\"indexOrder\":4,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"8184e075-f0be-4554-a144-8d20791c6ac7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_WMS\",\"label\":\"Blocked Quantity Ext\",\"newName\":\"ZCSPEM_WMS\",\"indexOrder\":5,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"cde3ab4b-5815-4d39-8acf-21627c975172\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_WMS\",\"label\":\"Inspection Quantity External\",\"newName\":\"ZCINSM_WMS\",\"indexOrder\":6,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"837fbfe1-7ac0-49df-93a6-d45c8c66e37e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_WMS\",\"label\":\"Intransit Quantity External\",\"newName\":\"ZCUMLM_WMS\",\"indexOrder\":7,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"6c68d3f2-8202-4550-8594-36a61e116c26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_S4\",\"label\":\"Unrestricted Quantity SAP\",\"newName\":\"ZCLABS_S4\",\"indexOrder\":8,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"f0b6be09-f2f6-49af-8426-f9694ed7fbf8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_S4\",\"label\":\"Blocked Quantity SAP\",\"newName\":\"ZCSPEM_S4\",\"indexOrder\":9,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"95e08592-cb87-4b45-8954-4a313c418a22\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_S4\",\"label\":\"Inspection Quantity SAP\",\"newName\":\"ZCINSM_S4\",\"indexOrder\":10,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"43b9e170-4df3-478f-9aa4-d325296bece8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_S4\",\"label\":\"Intransit Quantity SAP\",\"newName\":\"ZCUMLM_S4\",\"indexOrder\":11,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"c845bc69-7767-428e-9b22-6b344bee6548\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MEINS\",\"label\":\"Base Unit of Measure\",\"newName\":\"MEINS\",\"indexOrder\":12,\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"93a97c3e-3e2a-42ee-85c9-0dc2a2d46faf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT\",\"label\":\"Date External\",\"newName\":\"ZCREDAT\",\"indexOrder\":13,\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"9c2316d1-361d-4ee0-83d5-691569c30b21\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT_S4\",\"label\":\"Date SAP\",\"newName\":\"ZCREDAT_S4\",\"indexOrder\":14,\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"a7e4fad3-bde4-45dd-a625-6e0ad9bb3ef6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":15,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"6d508b6e-85b8-4b01-8cd6-363e6124622a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"c872c8b9-9a5f-433f-ba19-472df6bd140a\"},\"48029f7f-6713-4603-b3f5-a6d5913371e2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"91138944-18a5-4d07-9cdb-a11deaa93b07\"},\"89e09b1e-a222-4455-b780-0f10e2ec6cd2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"f9131bf0-399b-4a6b-92d3-f07eb28babbd\"},\"82725d8f-e529-4075-b01d-2a47eaaa9dc7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARG\",\"label\":\"Batch Number\",\"newName\":\"CHARG\",\"indexOrder\":3,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"6d91e2d3-63ce-421d-bc00-7d3c652e4245\"},\"8f820c65-4a91-4e53-8aee-24e510dba3b6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_WMS\",\"label\":\"Unrestricted Qty WMS\",\"newName\":\"ZCLABS_WMS\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"cf0a0cee-21c3-4d4e-8f9c-7e32bf897e5f\"},\"bee97bf8-58e1-4730-85d4-56178f03764d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_WMS\",\"label\":\"Blocked Qty WMS\",\"newName\":\"ZCSPEM_WMS\",\"indexOrder\":5,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"ad5a4b20-3eb8-43f7-9422-eb9a0e4b749c\"},\"8915cebc-d3ec-40af-8381-ae35f2fa8e26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_WMS\",\"label\":\"Quality Qty WMS\",\"newName\":\"ZCINSM_WMS\",\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"597e2249-a68e-4671-b5df-a783404d042d\"},\"def7a0de-6dcc-4b10-b848-ff32a25043c3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_WMS\",\"label\":\"In transit Qty WMS\",\"newName\":\"ZCUMLM_WMS\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"508735f0-5947-47d0-80d5-1986a1f67ca6\"},\"8881faaf-119c-482b-9165-bf7595fb7cc6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_S4\",\"label\":\"Unrestricted Qty S/4\",\"newName\":\"ZCLABS_S4\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"a18deac6-f077-4c9a-9aca-211f21b642e3\"},\"253ef5a7-ef17-49af-ba8e-6a5e268cd32a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_S4\",\"label\":\"Blocked Qty S/4\",\"newName\":\"ZCSPEM_S4\",\"indexOrder\":9,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"8af97b64-f119-40ac-bf68-1167f696fe05\"},\"6eda8ff5-8d37-4cf2-bd0e-39e9225920b4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_S4\",\"label\":\"Quality Qty S/4\",\"newName\":\"ZCINSM_S4\",\"indexOrder\":10,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"004222c3-7d6d-4233-9142-f1753db0c236\"},\"0ed60bb2-d80b-423f-a495-f27a8e603d42\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_S4\",\"label\":\"In transit Qty S/4\",\"newName\":\"ZCUMLM_S4\",\"indexOrder\":11,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"09c498c2-fcc4-4134-9821-a72ef23abfd7\"},\"9968d43b-e874-47da-89b8-e25d0891f7d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MEINS\",\"label\":\"Base Unit of Measure\",\"newName\":\"MEINS\",\"indexOrder\":12,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"04af27be-be09-4b2e-b2ac-be06305ba27b\"},\"74425ea0-0257-4cd8-a973-2456b83b2878\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT\",\"label\":\"Date Updated WMS Stock Update\",\"newName\":\"ZCREDAT\",\"indexOrder\":13,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"53050c92-7a39-4bbf-8745-dfafa447dce0\"},\"17183d03-ce1b-4f18-9956-f37afd303a1e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT_S4\",\"label\":\"Date Updated S4 Stock Update\",\"newName\":\"ZCREDAT_S4\",\"indexOrder\":14,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"55114c6c-d59b-4358-8e24-3ae81ee1c546\"},\"bb9d0128-fc84-453f-9beb-836251a2dd9a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":15,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"78e04acf-c1e2-4488-84ab-93a5490d46e2\"},\"c872c8b9-9a5f-433f-ba19-472df6bd140a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"6fc1c555-b720-400d-9c37-224554864401\"},\"91138944-18a5-4d07-9cdb-a11deaa93b07\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"05612f93-b4bb-41a0-a86c-0caef059689d\"},\"f9131bf0-399b-4a6b-92d3-f07eb28babbd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"3fbfccb4-27ec-4709-8eb4-5d6e137803e0\"},\"6d91e2d3-63ce-421d-bc00-7d3c652e4245\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARG\",\"label\":\"Batch Number\",\"newName\":\"CHARG\",\"indexOrder\":3,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"c2ad8836-cd67-44aa-a482-2a647b11e7ab\"},\"cf0a0cee-21c3-4d4e-8f9c-7e32bf897e5f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_WMS\",\"label\":\"Unrestricted Quantity External\",\"newName\":\"ZCLABS_WMS\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"97031e1f-8a71-466a-b08d-4f3961ecb5e4\"},\"ad5a4b20-3eb8-43f7-9422-eb9a0e4b749c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_WMS\",\"label\":\"Blocked Quantity Ext\",\"newName\":\"ZCSPEM_WMS\",\"indexOrder\":5,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"e40c04db-23ff-4cea-8e9b-62045f2cb4de\"},\"597e2249-a68e-4671-b5df-a783404d042d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_WMS\",\"label\":\"Inspection Quantity External\",\"newName\":\"ZCINSM_WMS\",\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"0cad339e-6f79-4a6c-9b13-960fc424e0f4\"},\"508735f0-5947-47d0-80d5-1986a1f67ca6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_WMS\",\"label\":\"Intransit Quantity External\",\"newName\":\"ZCUMLM_WMS\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"73a23110-840f-4c11-a940-de6a90ff71aa\"},\"a18deac6-f077-4c9a-9aca-211f21b642e3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_S4\",\"label\":\"Unrestricted Quantity SAP\",\"newName\":\"ZCLABS_S4\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"56639bbe-7ea5-493b-a1d9-880b113377bf\"},\"8af97b64-f119-40ac-bf68-1167f696fe05\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_S4\",\"label\":\"Blocked Quantity SAP\",\"newName\":\"ZCSPEM_S4\",\"indexOrder\":9,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"08c795f4-b0b0-48e5-9901-f46d9cc93d0c\"},\"004222c3-7d6d-4233-9142-f1753db0c236\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_S4\",\"label\":\"Inspection Quantity SAP\",\"newName\":\"ZCINSM_S4\",\"indexOrder\":10,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"7bb581cf-fea3-4571-b2ea-99084b97e58e\"},\"09c498c2-fcc4-4134-9821-a72ef23abfd7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_S4\",\"label\":\"Intransit Quantity SAP\",\"newName\":\"ZCUMLM_S4\",\"indexOrder\":11,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"f46b1545-f044-4d3d-8f6f-7b827f63f7b9\"},\"04af27be-be09-4b2e-b2ac-be06305ba27b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MEINS\",\"label\":\"Base Unit of Measure\",\"newName\":\"MEINS\",\"indexOrder\":12,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"768810d8-e1a5-489f-8142-a3cf6b45d4fd\"},\"53050c92-7a39-4bbf-8745-dfafa447dce0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT\",\"label\":\"Date External\",\"newName\":\"ZCREDAT\",\"indexOrder\":13,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"467b4701-33a9-48e4-9158-6abd0d8b2310\"},\"55114c6c-d59b-4358-8e24-3ae81ee1c546\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT_S4\",\"label\":\"Date SAP\",\"newName\":\"ZCREDAT_S4\",\"indexOrder\":14,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"a7d7354f-299c-4b2c-aff0-715bd8800694\"},\"78e04acf-c1e2-4488-84ab-93a5490d46e2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":15,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"e0e53c0f-7b07-4979-b61c-54de9b379839\"},\"a3f9845d-d979-4923-9d2f-908367ea1580\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"2fbcbc3b-0039-4d9f-89cb-e26923f52315\"},\"3ee8e232-fd90-40c3-bcaa-8f8b53a26241\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"64df6c70-b74a-4fec-9154-2c5bda06c1f2\"},\"99df961f-60ab-463f-9e25-fa8046d77874\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"c1d8b211-0fe5-42f7-8252-5f31c22a0a99\"},\"7b4ca3ec-78fe-4e0c-a8e3-84f5616ff680\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"3ee8e232-fd90-40c3-bcaa-8f8b53a26241\",\"targetSymbol\":\"99df961f-60ab-463f-9e25-fa8046d77874\"},\"c9c791d5-2459-411f-a5f2-6793fa84b97d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"a9f08fbc-44ed-4ba7-8f6c-ae935bdea29a\"},\"328c5b22-aede-4570-8987-3db755b71df3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"99df961f-60ab-463f-9e25-fa8046d77874\",\"targetSymbol\":\"c9c791d5-2459-411f-a5f2-6793fa84b97d\"},\"539c8bf6-1494-4182-83e1-f8936e07e5a6\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"c9c791d5-2459-411f-a5f2-6793fa84b97d\",\"targetSymbol\":\"a3f9845d-d979-4923-9d2f-908367ea1580\"},\"6fc1c555-b720-400d-9c37-224554864401\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"expression\":\"MATNR\",\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"fd3b666b-3538-4eb5-91a7-1bbf3572c473\"},\"05612f93-b4bb-41a0-a86c-0caef059689d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"expression\":\"WERKS\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8efb2d8a-7701-4afd-86c9-caa1ad7a93be\"},\"3fbfccb4-27ec-4709-8eb4-5d6e137803e0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"expression\":\"LGORT\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"59af03b3-9b97-4f42-a1ee-00bcf4463a39\"},\"c2ad8836-cd67-44aa-a482-2a647b11e7ab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARG\",\"label\":\"Batch Number\",\"newName\":\"CHARG\",\"indexOrder\":3,\"expression\":\"CHARG\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"b5253a0e-9992-42c7-b5b5-8bb1f23e524d\"},\"97031e1f-8a71-466a-b08d-4f3961ecb5e4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_WMS\",\"label\":\"Unrestricted Quantity External\",\"newName\":\"ZCLABS_WMS\",\"indexOrder\":4,\"expression\":\"ZCLABS_WMS\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"35d8a16b-9e20-4ed4-a358-29a1084aa2f2\"},\"e40c04db-23ff-4cea-8e9b-62045f2cb4de\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_WMS\",\"label\":\"Blocked Quantity Ext\",\"newName\":\"ZCSPEM_WMS\",\"indexOrder\":5,\"expression\":\"ZCSPEM_WMS\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"8184e075-f0be-4554-a144-8d20791c6ac7\"},\"0cad339e-6f79-4a6c-9b13-960fc424e0f4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_WMS\",\"label\":\"Inspection Quantity External\",\"newName\":\"ZCINSM_WMS\",\"indexOrder\":6,\"expression\":\"ZCINSM_WMS\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"cde3ab4b-5815-4d39-8acf-21627c975172\"},\"73a23110-840f-4c11-a940-de6a90ff71aa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_WMS\",\"label\":\"Intransit Quantity External\",\"newName\":\"ZCUMLM_WMS\",\"indexOrder\":7,\"expression\":\"ZCUMLM_WMS\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"837fbfe1-7ac0-49df-93a6-d45c8c66e37e\"},\"56639bbe-7ea5-493b-a1d9-880b113377bf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCLABS_S4\",\"label\":\"Unrestricted Quantity SAP\",\"newName\":\"ZCLABS_S4\",\"indexOrder\":8,\"expression\":\"ZCLABS_S4\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"6c68d3f2-8202-4550-8594-36a61e116c26\"},\"08c795f4-b0b0-48e5-9901-f46d9cc93d0c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCSPEM_S4\",\"label\":\"Blocked Quantity SAP\",\"newName\":\"ZCSPEM_S4\",\"indexOrder\":9,\"expression\":\"ZCSPEM_S4\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"f0b6be09-f2f6-49af-8426-f9694ed7fbf8\"},\"7bb581cf-fea3-4571-b2ea-99084b97e58e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCINSM_S4\",\"label\":\"Inspection Quantity SAP\",\"newName\":\"ZCINSM_S4\",\"indexOrder\":10,\"expression\":\"ZCINSM_S4\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"95e08592-cb87-4b45-8954-4a313c418a22\"},\"f46b1545-f044-4d3d-8f6f-7b827f63f7b9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCUMLM_S4\",\"label\":\"Intransit Quantity SAP\",\"newName\":\"ZCUMLM_S4\",\"indexOrder\":11,\"expression\":\"ZCUMLM_S4\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"43b9e170-4df3-478f-9aa4-d325296bece8\"},\"768810d8-e1a5-489f-8142-a3cf6b45d4fd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MEINS\",\"label\":\"Base Unit of Measure\",\"newName\":\"MEINS\",\"indexOrder\":12,\"expression\":\"MEINS\",\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c845bc69-7767-428e-9b22-6b344bee6548\"},\"467b4701-33a9-48e4-9158-6abd0d8b2310\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT\",\"label\":\"Date External\",\"newName\":\"ZCREDAT\",\"indexOrder\":13,\"expression\":\"ZCREDAT\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"93a97c3e-3e2a-42ee-85c9-0dc2a2d46faf\"},\"a7d7354f-299c-4b2c-aff0-715bd8800694\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCREDAT_S4\",\"label\":\"Date SAP\",\"newName\":\"ZCREDAT_S4\",\"indexOrder\":14,\"expression\":\"ZCREDAT_S4\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"9c2316d1-361d-4ee0-83d5-691569c30b21\"},\"e0e53c0f-7b07-4979-b61c-54de9b379839\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":15,\"expression\":\"TIME_STAMP\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"a7e4fad3-bde4-45dd-a625-6e0ad9bb3ef6\"}}}"
+    },
+    "ZC_DWC_INV_RECO": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "WERKS": {
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "LGORT": {
+          "@EndUserText.label": "Storage location",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "CHARG": {
+          "@EndUserText.label": "Batch Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "ZCLABS_WMS": {
+          "@EndUserText.label": "Unrestricted Qty WMS",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCSPEM_WMS": {
+          "@EndUserText.label": "Blocked Qty WMS",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCINSM_WMS": {
+          "@EndUserText.label": "Quality Qty WMS",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCUMLM_WMS": {
+          "@EndUserText.label": "In transit Qty WMS",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCLABS_S4": {
+          "@EndUserText.label": "Unrestricted Qty S/4",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCSPEM_S4": {
+          "@EndUserText.label": "Blocked Qty S/4",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCINSM_S4": {
+          "@EndUserText.label": "Quality Qty S/4",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCUMLM_S4": {
+          "@EndUserText.label": "In transit Qty S/4",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "MEINS": {
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCREDAT": {
+          "@EndUserText.label": "Date Updated WMS Stock Update",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ZCREDAT_S4": {
+          "@EndUserText.label": "Date Updated S4 Stock Update",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "ZP2P_INV_RECO CDS View - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZC_DWC_INV_RECO$F"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

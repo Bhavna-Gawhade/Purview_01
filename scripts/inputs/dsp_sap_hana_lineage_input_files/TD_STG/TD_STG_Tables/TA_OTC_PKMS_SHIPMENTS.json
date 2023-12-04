@@ -1,0 +1,53 @@
+{
+  "definitions": {
+    "TA_OTC_PKMS_SHIPMENTS": {
+      "kind": "entity",
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "elements": {
+        "Pickticket#": {
+          "@EndUserText.label": "Pickticket#",
+          "type": "cds.Integer64"
+        },
+        "Processed Date": {
+          "@EndUserText.label": "Processed Date",
+          "type": "cds.Date"
+        },
+        "Total Shipped Qty": {
+          "@EndUserText.label": "Total Shipped Qty",
+          "precision": 7,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "Invoicing Status": {
+          "@EndUserText.label": "Invoicing Status",
+          "type": "cds.String",
+          "length": 13
+        },
+        "Source": {
+          "@EndUserText.label": "Source",
+          "type": "cds.String",
+          "length": 10
+        },
+        "Count": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer"
+        }
+      },
+      "@EndUserText.label": "PKMS Shipments Table",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      }
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

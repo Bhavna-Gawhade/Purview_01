@@ -1,0 +1,3085 @@
+{
+  "definitions": {
+    "RL_FIN_FIGL_AC_BAL": {
+      "kind": "entity",
+      "elements": {
+        "RYEAR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year",
+          "type": "cds.String",
+          "length": 4,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "RTCUR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Transaction Currency",
+          "type": "cds.String",
+          "length": 5,
+          "@Semantics.currencyCode": true,
+          "notNull": true
+        },
+        "RUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@Semantics.unitOfMeasure": true,
+          "notNull": true
+        },
+        "RVERS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Version",
+          "type": "cds.String",
+          "length": 3,
+          "notNull": true
+        },
+        "RACCT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "GL Account Number",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_GLA"
+          },
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_SK"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "RBUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_COM"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "RCNTR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Cost Center",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_BI"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "PRCTR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Profit Center",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_CE"
+          },
+          "notNull": true
+        },
+        "RFAREA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Functional Area",
+          "type": "cds.String",
+          "length": 16,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "KOKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Controlling Area",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_BI"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "SEGMENT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Segment",
+          "type": "cds.String",
+          "length": 10,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "RASSC": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Trading Partner No.",
+          "type": "cds.String",
+          "length": 6,
+          "notNull": true
+        },
+        "QUANUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "@Semantics.unitOfMeasure": true,
+          "notNull": true
+        },
+        "VALUETYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Reporting Value Type",
+          "type": "cds.String",
+          "length": 3,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "CURTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Currency type",
+          "type": "cds.String",
+          "length": 2,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_CUR"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": true,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "FISCPER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year/period",
+          "type": "cds.String",
+          "length": 7,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "FISCVAR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year variant",
+          "type": "cds.String",
+          "length": 2,
+          "notNull": true
+        },
+        "CHARTACCTS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Chart of Accounts",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_GLA"
+          },
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_SK"
+          },
+          "notNull": true
+        },
+        "VALUTYP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Valuation View",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_VAL"
+          },
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": true,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "CURRUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Currency",
+          "type": "cds.String",
+          "length": 5,
+          "@Semantics.currencyCode": true
+        },
+        "BALANCE": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Accumulated Balance",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CURRUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "DEBIT": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Total Debit Postings",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CURRUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "ZLOGSYS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Source System",
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true
+        },
+        "CREDIT": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Total Credit Postings",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CURRUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "TURNOVER": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Sales of the Period",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CURRUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "QUANTITY": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Consumption Quantity",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.quantity.unitOfMeasure": {
+            "=": "RUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          },
+          "notNull": true
+        },
+        "LOGSYS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical system",
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true
+        },
+        "CUMULATIVE_BAL": {
+          "@EndUserText.label": "Cumulative Balance",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CURRUNIT"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          },
+          "@Analytics.hidden": true
+        },
+        "_ZV_DWC_BI": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "RCNTR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_BI",
+                "KOSTL"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "KOKRS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_BI",
+                "KOKRS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_BIW_CSKT",
+          "@EndUserText.label": "GL Account Balance Master Report to Data Collection of Cost Center Texts for BW - Transaction Data"
+        },
+        "_ZV_DWC_CE": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "PRCTR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_CE",
+                "PRCTR"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_CEPCT",
+          "@EndUserText.label": "GL Account Balance Master Report to Texts for Profit Center Master Data - Transaction Data"
+        },
+        "_HL_MD_CUR": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "CURTYPE"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_CUR",
+                "DOMVALUE_L"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_CURTYPE_TEXT",
+          "@EndUserText.label": "GL Account Balance Master Report to Currency Type Texts"
+        },
+        "_HL_MD_VAL": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VALUTYP"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_VAL",
+                "DOMVALUE_L"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_VALUTYP_TEXT",
+          "@EndUserText.label": "GL Account Balance Master Report to Valuation View Texts"
+        },
+        "_ZV_DWC_SK": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "CHARTACCTS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_SK",
+                "KTOPL"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "RACCT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_SK",
+                "SAKNR"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_SKAT",
+          "@EndUserText.label": "GL Account Balance Master Report to Chart of Accounts: Description - Transaction Data"
+        },
+        "_HL_MD_COM": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "RBUKRS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_COM",
+                "BUKRS"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_COMP_CODE_TEXT",
+          "@EndUserText.label": "GL Account Balance Master Report to Company Codes Texts"
+        },
+        "_HL_MD_GLA": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "RACCT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_GLA",
+                "GLACCOUNT"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "CHARTACCTS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_GLA",
+                "CHARTOFACCOUNTS"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_GLACCOUNT",
+          "@EndUserText.label": "GL Account Balance Master Report to GL Account Master Data"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "TD_STG.HL_FIN_FIGL_AC_BAL"
+            ],
+            "as": "HL_FIN_FIGL_AC_BAL"
+          },
+          "columns": [
+            {
+              "as": "RYEAR",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RYEAR"
+              ]
+            },
+            {
+              "as": "RTCUR",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RTCUR"
+              ]
+            },
+            {
+              "as": "RUNIT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RUNIT"
+              ]
+            },
+            {
+              "as": "RVERS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RVERS"
+              ]
+            },
+            {
+              "as": "RACCT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RACCT"
+              ]
+            },
+            {
+              "as": "RBUKRS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RBUKRS"
+              ]
+            },
+            {
+              "as": "RCNTR",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RCNTR"
+              ]
+            },
+            {
+              "as": "PRCTR",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "PRCTR"
+              ]
+            },
+            {
+              "as": "RFAREA",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RFAREA"
+              ]
+            },
+            {
+              "as": "KOKRS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "KOKRS"
+              ]
+            },
+            {
+              "as": "SEGMENT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "SEGMENT"
+              ]
+            },
+            {
+              "as": "RASSC",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "RASSC"
+              ]
+            },
+            {
+              "as": "QUANUNIT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "QUANUNIT"
+              ]
+            },
+            {
+              "as": "VALUETYPE",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "VALUETYPE"
+              ]
+            },
+            {
+              "as": "CURTYPE",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "CURTYPE"
+              ]
+            },
+            {
+              "as": "FISCPER",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "FISCPER"
+              ]
+            },
+            {
+              "as": "FISCVAR",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "FISCVAR"
+              ]
+            },
+            {
+              "as": "CHARTACCTS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "CHARTACCTS"
+              ]
+            },
+            {
+              "as": "VALUTYP",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "VALUTYP"
+              ]
+            },
+            {
+              "as": "CURRUNIT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "CURRUNIT"
+              ]
+            },
+            {
+              "as": "BALANCE",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "BALANCE"
+              ]
+            },
+            {
+              "as": "DEBIT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "DEBIT"
+              ]
+            },
+            {
+              "as": "ZLOGSYS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "ZLOGSYS"
+              ]
+            },
+            {
+              "as": "CREDIT",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "CREDIT"
+              ]
+            },
+            {
+              "as": "TURNOVER",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "TURNOVER"
+              ]
+            },
+            {
+              "as": "QUANTITY",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "QUANTITY"
+              ]
+            },
+            {
+              "as": "LOGSYS",
+              "ref": [
+                "HL_FIN_FIGL_AC_BAL",
+                "LOGSYS"
+              ]
+            },
+            {
+              "as": "CUMULATIVE_BAL",
+              "xpr": [
+                {
+                  "ref": [
+                    "HL_FIN_FIGL_AC_BAL",
+                    "DEBIT"
+                  ]
+                },
+                "-",
+                {
+                  "ref": [
+                    "HL_FIN_FIGL_AC_BAL",
+                    "CREDIT"
+                  ]
+                }
+              ]
+            },
+            {
+              "ref": [
+                "_ZV_DWC_BI"
+              ]
+            },
+            {
+              "ref": [
+                "_ZV_DWC_CE"
+              ]
+            },
+            {
+              "ref": [
+                "_HL_MD_CUR"
+              ]
+            },
+            {
+              "ref": [
+                "_HL_MD_VAL"
+              ]
+            },
+            {
+              "ref": [
+                "_ZV_DWC_SK"
+              ]
+            },
+            {
+              "ref": [
+                "_HL_MD_COM"
+              ]
+            },
+            {
+              "ref": [
+                "_HL_MD_GLA"
+              ]
+            }
+          ],
+          "mixin": {
+            "_ZV_DWC_BI": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Data Collection of Cost Center Texts for BW - Transaction Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "RCNTR"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_ZV_DWC_BI",
+                    "KOSTL"
+                  ]
+                },
+                "and",
+                {
+                  "ref": [
+                    "$projection",
+                    "KOKRS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_ZV_DWC_BI",
+                    "KOKRS"
+                  ]
+                }
+              ],
+              "target": "MD_STG.ZV_DWC_BIW_CSKT"
+            },
+            "_ZV_DWC_CE": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Texts for Profit Center Master Data - Transaction Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "PRCTR"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_ZV_DWC_CE",
+                    "PRCTR"
+                  ]
+                }
+              ],
+              "target": "MD_STG.ZV_DWC_CEPCT"
+            },
+            "_HL_MD_CUR": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Currency Type Texts",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "CURTYPE"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_CUR",
+                    "DOMVALUE_L"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_CURTYPE_TEXT"
+            },
+            "_HL_MD_VAL": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Valuation View Texts",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "VALUTYP"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_VAL",
+                    "DOMVALUE_L"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_VALUTYP_TEXT"
+            },
+            "_ZV_DWC_SK": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Chart of Accounts: Description - Transaction Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "CHARTACCTS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_ZV_DWC_SK",
+                    "KTOPL"
+                  ]
+                },
+                "and",
+                {
+                  "ref": [
+                    "$projection",
+                    "RACCT"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_ZV_DWC_SK",
+                    "SAKNR"
+                  ]
+                }
+              ],
+              "target": "MD_STG.ZV_DWC_SKAT"
+            },
+            "_HL_MD_COM": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to Company Codes Texts",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "RBUKRS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_COM",
+                    "BUKRS"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_COMP_CODE_TEXT"
+            },
+            "_HL_MD_GLA": {
+              "type": "cds.Association",
+              "@EndUserText.label": "GL Account Balance Master Report to GL Account Master Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "RACCT"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_GLA",
+                    "GLACCOUNT"
+                  ]
+                },
+                "and",
+                {
+                  "ref": [
+                    "$projection",
+                    "CHARTACCTS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_GLA",
+                    "CHARTOFACCOUNTS"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_GLACCOUNT"
+            }
+          }
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "GL Account Balance Master Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"7f33b29d-5d58-4d03-bee7-ae658ce3d273\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_FIN_FIGL_AC_BAL\",\"label\":\"GL Account Balance Master Report\",\"modificationDate\":1677855521453,\"deploymentDate\":1677682999460,\"#objectStatus\":\"2\",\"output\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"nodes\":{\"3ea64efe-e508-410a-aa41-31de8d6854ff\":{\"name\":\"RL_FIN_FIGL_AC_BAL\"},\"84fadf77-f0b9-4491-a9b4-e971028b8d5e\":{\"name\":\"TD_STG.HL_FIN_FIGL_AC_BAL\"},\"14a3f81f-6370-4c56-ba9d-bcc9a0d16719\":{\"name\":\"Projection 1\"},\"9811f53e-c931-466c-9ce6-9c0979b19d37\":{\"name\":\"MD_STG.ZV_DWC_BIW_CSKT\"},\"57fad536-7ed0-4a77-a016-c9d0203f6ba6\":{\"name\":\"MD_STG.ZV_DWC_CEPCT\"},\"ab8b53cb-7910-446e-9a3f-7bd26dbf8bfa\":{\"name\":\"MD_STG.HL_MD_CURTYPE_TEXT\"},\"9778d983-1309-487b-b0cb-8f4f80a7a03d\":{\"name\":\"MD_STG.HL_MD_VALUTYP_TEXT\"},\"c2c2d3b5-1bbe-45de-93c9-93c12a81abeb\":{\"name\":\"MD_STG.ZV_DWC_SKAT\"},\"bca6d88e-7694-434d-9fa8-a2d922760452\":{\"name\":\"MD_STG.HL_MD_COMP_CODE_TEXT\"},\"4ed2dfb7-8fa8-47d4-bf82-59cf26e0c6b9\":{\"name\":\"Calculated Columns 1\"},\"67d2014f-7a59-4764-a6ef-c3369776171f\":{\"name\":\"MD_STG.HL_MD_GLACCOUNT\"}},\"associations\":{\"3996dd47-7d7b-4c64-9535-f3cd8dd1448d\":{\"name\":\"_ZV_DWC_BI\"},\"3e0b1065-bd4a-4753-921b-59c3df22e8ae\":{\"name\":\"_ZV_DWC_CE\"},\"466c22b3-8961-4697-a0b1-8f1fba63335e\":{\"name\":\"_HL_MD_CUR\"},\"2fc37360-4c3b-4dd3-b56c-238413bae790\":{\"name\":\"_HL_MD_VAL\"},\"ec8bb32c-9adb-467b-b96b-f0644b728fb7\":{\"name\":\"_ZV_DWC_SK\"},\"e3e20ad0-8bfe-4ebf-9a8a-a7b04ca0bebc\":{\"name\":\"_HL_MD_COM\"},\"b8aebd30-ec33-4360-ba3c-54732a9295c5\":{\"name\":\"_HL_MD_GLA\"}},\"contexts\":{\"4bad6c2e-a819-440a-9f12-5b298a137e40\":{\"name\":\"TD_STG\"},\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"7ddc7e21-b384-44f9-a0e2-1c30be7b7694\":{}}},\"3ea64efe-e508-410a-aa41-31de8d6854ff\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_FIN_FIGL_AC_BAL\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1677855521453,\"deploymentDate\":1677682999460,\"#objectStatus\":\"2\",\"elements\":{\"9d23f3b7-d337-41d2-9612-e7571e9d37dc\":{\"name\":\"RYEAR\"},\"78d5524c-0cc5-420e-be54-963ec491528f\":{\"name\":\"RTCUR\"},\"642553c6-c2f0-4eea-abec-7e61156fa078\":{\"name\":\"RUNIT\"},\"034bf0be-c08f-4ab8-bcf7-ce2f04cd3e40\":{\"name\":\"RVERS\"},\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\":{\"name\":\"RACCT\"},\"d9010c70-6801-4c8d-b6a3-11e5ded9adff\":{\"name\":\"RBUKRS\"},\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\":{\"name\":\"RCNTR\"},\"15fa236d-9ad9-4b38-9223-b8b3cd053fad\":{\"name\":\"PRCTR\"},\"015eb413-9e8f-4f46-a4fa-905b1d4a6c5c\":{\"name\":\"RFAREA\"},\"2c4ae192-1a8d-418d-8786-271baac2132c\":{\"name\":\"KOKRS\"},\"e8da9d3e-2921-4ea7-937a-367156fa8673\":{\"name\":\"SEGMENT\"},\"2767488a-bd18-416d-b6d8-e20afed40a19\":{\"name\":\"RASSC\"},\"245f9e82-f815-47d9-9196-3c0f6fc76199\":{\"name\":\"QUANUNIT\"},\"fdac1db2-d983-4bc1-8d79-24100a910646\":{\"name\":\"VALUETYPE\"},\"ffeba930-a131-4c30-86ab-1f028bce3b1c\":{\"name\":\"CURTYPE\"},\"8275308b-358f-4761-889d-29abfba7ca29\":{\"name\":\"FISCPER\"},\"1fcc330f-7a50-457a-9151-29c887fe468f\":{\"name\":\"FISCVAR\"},\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\":{\"name\":\"CHARTACCTS\"},\"f5c887be-e718-4a99-85fa-cebece58e8ff\":{\"name\":\"VALUTYP\"},\"956402cb-9b90-4094-bfec-5cf594eb83fa\":{\"name\":\"CURRUNIT\"},\"b230ee89-9014-4db0-95c8-ea1ea9b42987\":{\"name\":\"BALANCE\"},\"0f720ccd-025c-4e95-b71f-ca5ceabf5e14\":{\"name\":\"DEBIT\"},\"969a562b-96ce-4621-b7da-a21f29400425\":{\"name\":\"ZLOGSYS\"},\"8c99b2ed-3676-4cb0-9789-cb5ebe18a3df\":{\"name\":\"CREDIT\"},\"93c46dff-685e-40b8-9cac-c09c5d4b8d06\":{\"name\":\"TURNOVER\"},\"0039f7bd-cbeb-4fcd-b4ad-8b1f33836dc6\":{\"name\":\"QUANTITY\"},\"f3507b61-23df-4fa5-ba5f-6f8e86c54ae0\":{\"name\":\"LOGSYS\"},\"c095d38c-809d-4660-8c2a-c988ee5f058e\":{\"name\":\"Calculated_1\"}},\"associations\":{\"3996dd47-7d7b-4c64-9535-f3cd8dd1448d\":{\"name\":\"_ZV_DWC_BI\"},\"466c22b3-8961-4697-a0b1-8f1fba63335e\":{\"name\":\"_HL_MD_CUR\"},\"2fc37360-4c3b-4dd3-b56c-238413bae790\":{\"name\":\"_HL_MD_VAL\"},\"ec8bb32c-9adb-467b-b96b-f0644b728fb7\":{\"name\":\"_ZV_DWC_SK\"},\"b8aebd30-ec33-4360-ba3c-54732a9295c5\":{\"name\":\"_HL_MD_GLA\"}}},\"84fadf77-f0b9-4491-a9b4-e971028b8d5e\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"TD_STG.HL_FIN_FIGL_AC_BAL\",\"label\":\"General Ledger: Leading Ledger Balances - HL\",\"type\":3,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1667824027728,\"deploymentDate\":1667824049319,\"#objectStatus\":\"1\",\"alias\":\"HL_FIN_FIGL_AC_BAL\",\"context\":\"4bad6c2e-a819-440a-9f12-5b298a137e40\",\"elements\":{\"aa8c8df7-de40-4508-848e-dbb7ffde3bcf\":{\"name\":\"RYEAR\"},\"4f52bf21-d4bd-46df-b2a2-496d90899a68\":{\"name\":\"RTCUR\"},\"cd1868cf-37d2-42ea-90b0-e203d31a416a\":{\"name\":\"RUNIT\"},\"f9bbae67-a50b-4c09-aaa9-a7afff42a836\":{\"name\":\"RVERS\"},\"0875d781-264b-44c9-8567-12bec30c94a7\":{\"name\":\"RACCT\"},\"192927bc-b56e-4065-b552-233de7140279\":{\"name\":\"RBUKRS\"},\"8a5db712-78b3-4868-b253-5cc41726bdfc\":{\"name\":\"RCNTR\"},\"e26f6123-725e-4da3-a99c-0db857743f4b\":{\"name\":\"PRCTR\"},\"764b12d6-4085-4201-b9aa-012ee9c7f871\":{\"name\":\"RFAREA\"},\"b8ac74af-5432-40bf-a476-92873256a418\":{\"name\":\"KOKRS\"},\"a3bf35d1-c013-4958-aa73-ad9561fad1f2\":{\"name\":\"SEGMENT\"},\"761ca775-7454-4539-88ee-c15c3d16df65\":{\"name\":\"RASSC\"},\"26f25e3e-f0f3-40a8-8ba7-14ba7e49027f\":{\"name\":\"QUANUNIT\"},\"5261a850-a7f2-40e1-bb11-82cbbcf504d0\":{\"name\":\"VALUETYPE\"},\"6d159e0e-8982-4d8e-96ad-20682631b385\":{\"name\":\"CURTYPE\"},\"40a86fce-03ac-48e3-b701-d4603c92913c\":{\"name\":\"FISCPER\"},\"3c2bed16-256b-4e1b-83cb-0fdd58c58811\":{\"name\":\"FISCVAR\"},\"fe69d4bb-7123-4ad5-808f-e827aad0ffe6\":{\"name\":\"CHARTACCTS\"},\"b905a54c-7903-4d6c-8fc4-723843e60fdb\":{\"name\":\"VALUTYP\"},\"87aa6ef6-4516-44ec-a49b-04bf3fd34b8b\":{\"name\":\"CURRUNIT\"},\"5c82e0e6-61ad-4da2-b04f-3048c5224ccc\":{\"name\":\"BALANCE\"},\"c2b30d5d-9b1a-44f6-8b32-30dbb9b35060\":{\"name\":\"DEBIT\"},\"87bd5669-c379-433a-9aea-312007fc2ac0\":{\"name\":\"ZLOGSYS\"},\"be95d03c-3459-4a67-8cde-b33ae1201584\":{\"name\":\"CREDIT\"},\"f0ccedda-35a6-4904-8ad4-ddc405c7e7c0\":{\"name\":\"TURNOVER\"},\"17b6ec0e-0fe3-4d72-8129-da70b8860164\":{\"name\":\"QUANTITY\"},\"28cf25e7-f32e-4a4e-b2b8-2ee1fff561db\":{\"name\":\"LOGSYS\"}},\"successorNode\":\"14a3f81f-6370-4c56-ba9d-bcc9a0d16719\"},\"14a3f81f-6370-4c56-ba9d-bcc9a0d16719\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"620b8f45-d687-48f5-b124-adfcd77dfc78\":{\"name\":\"RYEAR\"},\"64f12db8-bf68-4014-821f-1a958b091bdb\":{\"name\":\"RTCUR\"},\"f6db8585-568c-418f-aeed-1aed98575340\":{\"name\":\"RUNIT\"},\"2224880a-ec8b-49ca-84b6-1b5b1d2b1cd6\":{\"name\":\"RVERS\"},\"4c30b690-cb79-4d9a-a55b-9d8c81276c87\":{\"name\":\"RACCT\"},\"6811de78-2f42-4c20-a588-828343b9ea47\":{\"name\":\"RBUKRS\"},\"c516f691-b1c3-4c6f-aa5c-902136bfdb7f\":{\"name\":\"RCNTR\"},\"41d5b5ff-459c-4f0b-84d5-8489fbdaa0c8\":{\"name\":\"PRCTR\"},\"2737eb1a-5150-4589-b340-8bfc242e86c5\":{\"name\":\"RFAREA\"},\"c5e97142-a4da-4779-8d81-efba33937305\":{\"name\":\"KOKRS\"},\"8780dcf4-62c8-4434-82dc-f1d04723a6bf\":{\"name\":\"SEGMENT\"},\"145c6689-31c6-41d5-85d0-bfced29834e6\":{\"name\":\"RASSC\"},\"190ad058-1624-4912-90e7-a4cff1716196\":{\"name\":\"QUANUNIT\"},\"e05fa86e-ea6b-4376-9411-571b4ddf1bf3\":{\"name\":\"VALUETYPE\"},\"565a6f37-6d2e-4289-aa9d-28bb7bf1e7fc\":{\"name\":\"CURTYPE\"},\"98977945-148b-45fe-a8c9-4ced28709f60\":{\"name\":\"FISCPER\"},\"b1d8f013-43ac-4427-847a-4e42feae4f45\":{\"name\":\"FISCVAR\"},\"98aafa54-e6ca-4d54-bbc7-287e9467f076\":{\"name\":\"CHARTACCTS\"},\"600ac82c-7c02-49d3-899f-741c599cb260\":{\"name\":\"VALUTYP\"},\"8057fffd-b4c0-4af4-8e80-4d5e107ecaf7\":{\"name\":\"CURRUNIT\"},\"ff9ed5a1-7c72-4192-84d7-1bc2b841a57e\":{\"name\":\"BALANCE\"},\"5c3d8a25-4875-4d19-ba40-c0220d642721\":{\"name\":\"DEBIT\"},\"2739b11d-a2b1-4cb4-a9ee-659654bcf1ee\":{\"name\":\"ZLOGSYS\"},\"374985f6-2502-4b08-a971-cb48ad3ecd30\":{\"name\":\"CREDIT\"},\"e0aaf9c2-34a3-4a5e-b224-da4614857d98\":{\"name\":\"TURNOVER\"},\"e3db886a-06e2-4a88-a9cb-a74e73251b89\":{\"name\":\"QUANTITY\"},\"a4089fa0-7475-4b91-acd1-03520ca1040b\":{\"name\":\"LOGSYS\"}},\"successorNode\":\"4ed2dfb7-8fa8-47d4-bf82-59cf26e0c6b9\"},\"9811f53e-c931-466c-9ce6-9c0979b19d37\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.ZV_DWC_BIW_CSKT\",\"label\":\"Data Collection of Cost Center Texts for BW - Transaction Data\",\"type\":\"Remote Table (Text)\",\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZV_DWC_BIW_CSKT$F\"},\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"isAllowConsumption\":false,\"modificationDate\":1661882682739,\"deploymentDate\":1665764261238,\"#objectStatus\":\"1\",\"alias\":\"ZV_DWC_BIW_CSKT\",\"elements\":{\"4f64c684-9750-417b-8478-16be99094895\":{\"name\":\"SPRAS\"},\"01c6bcfe-fa47-4e34-838b-b22f466c8417\":{\"name\":\"KOKRS\"},\"440aef55-a753-46dd-b44d-25f7a98d4bb7\":{\"name\":\"KOSTL\"},\"a88e2a3a-0900-4a2b-9c7f-7e31bd64a797\":{\"name\":\"DATBI\"},\"ab18db5e-5b9f-4fcd-8bd2-7a6b23c87377\":{\"name\":\"KTEXT\"},\"ae13788c-efb5-4eb8-b91c-1c818c3d684f\":{\"name\":\"LTEXT\"},\"87a4302f-4ecd-409a-bc75-0dcaa1a19b5e\":{\"name\":\"MCTXT\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"57fad536-7ed0-4a77-a016-c9d0203f6ba6\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.ZV_DWC_CEPCT\",\"label\":\"Texts for Profit Center Master Data - Transaction Data\",\"type\":\"Remote Table (Text)\",\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZV_DWC_CEPCT$F\"},\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"isAllowConsumption\":false,\"modificationDate\":1656421410796,\"deploymentDate\":1676557809888,\"#objectStatus\":\"1\",\"alias\":\"ZV_DWC_CEPCT\",\"elements\":{\"6706c3c1-772c-40ba-8584-7fcd5ed472e6\":{\"name\":\"SPRAS\"},\"26287b88-34f9-4811-be80-ed4edaa733ab\":{\"name\":\"PRCTR\"},\"d97bf348-056f-4a53-bdf1-e1912bd15d44\":{\"name\":\"DATBI\"},\"dd772948-b0ba-476f-b6d8-380623a0a6d5\":{\"name\":\"KOKRS\"},\"9adcf586-9a54-4154-b245-5fdc88f2a367\":{\"name\":\"KTEXT\"},\"3ad5b9c8-70c0-4008-bc30-f6b4ba514470\":{\"name\":\"LTEXT\"},\"82c04cc3-1afe-46b4-a4aa-022c28e497b2\":{\"name\":\"MCTXT\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"ab8b53cb-7910-446e-9a3f-7bd26dbf8bfa\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_CURTYPE_TEXT\",\"label\":\"Currency Type Texts\",\"type\":\"View (Text)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"modificationDate\":1666786590771,\"deploymentDate\":1666786608942,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_CURTYPE_TEXT\",\"elements\":{\"9babe458-3d53-42d8-9851-7c7acabd1a65\":{\"name\":\"DOMNAME\"},\"d5273bf5-c586-4a01-a65a-9e82d82f6aa2\":{\"name\":\"DDLANGUAGE\"},\"5f55fba0-ccf2-433b-b1a6-fc31d7d60350\":{\"name\":\"RSCURTYPE\"},\"4fe96204-56c0-4489-843a-e555b599e3a7\":{\"name\":\"AS4LOCAL\"},\"a54d7a8b-8e37-4656-a6de-5f64f0013fca\":{\"name\":\"AS4VERS\"},\"4a92becf-ceca-49a6-a828-292dc724041a\":{\"name\":\"RSCURTYPE_DDTEXT\"},\"8b7a7f87-388b-4e65-8f2d-2c8642f9f32d\":{\"name\":\"DOMVAL_LD\"},\"accb1196-9b0d-476a-bc57-f1dbe80b11d0\":{\"name\":\"DOMVAL_HD\"},\"cd4873e9-ae5e-4825-800a-125f31fe8da4\":{\"name\":\"DOMVALUE_L\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"9778d983-1309-487b-b0cb-8f4f80a7a03d\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_VALUTYP_TEXT\",\"label\":\"Valuation View Texts\",\"type\":\"View (Text)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"modificationDate\":1666786351534,\"deploymentDate\":1666786369822,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_VALUTYP_TEXT\",\"elements\":{\"b355a8b8-8eee-475d-9980-449e64e9f2a1\":{\"name\":\"DOMNAME\"},\"d686b9d1-51db-403f-9cf8-905ae91f240c\":{\"name\":\"DDLANGUAGE\"},\"e12107ca-a7a3-477a-b05a-1185c502560f\":{\"name\":\"VALUTYP\"},\"eae4668d-01e3-4e96-9c82-4674da95286b\":{\"name\":\"AS4VERS\"},\"d619637b-088e-4043-a5d8-5c10fbc678bd\":{\"name\":\"VALUTYP_DDTEXT\"},\"602bf7ac-3ba1-4ccf-b6ad-ea90f989b473\":{\"name\":\"AS4LOCAL\"},\"595bf616-b82c-4f76-afb2-303f6555e033\":{\"name\":\"DOMVALUE_L\"},\"f408206d-6d8e-4c07-ad28-6113a0958e88\":{\"name\":\"DOMVAL_LD\"},\"90b4412a-346f-4136-a8e9-3adc8516c82d\":{\"name\":\"DOMVAL_HD\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"c2c2d3b5-1bbe-45de-93c9-93c12a81abeb\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.ZV_DWC_SKAT\",\"label\":\"G/L Account Text\",\"type\":\"Remote Table (Text)\",\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZV_DWC_SKAT$F\"},\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"isAllowConsumption\":false,\"modificationDate\":1664887937097,\"deploymentDate\":1665764011494,\"#objectStatus\":\"1\",\"alias\":\"ZV_DWC_SKAT\",\"elements\":{\"f47a7718-420e-4cb0-8318-f5398af0c368\":{\"name\":\"SPRAS\"},\"c910bfe4-76aa-486f-82fa-e1d7033f013e\":{\"name\":\"KTOPL\"},\"46e50b3a-14f1-4895-b875-9bd2964f010b\":{\"name\":\"SAKNR\"},\"a4ddc43d-0170-4e48-82ed-3b08762f8f02\":{\"name\":\"TXT20\"},\"b12a68a5-9cdc-492b-9125-9cac0a463b1c\":{\"name\":\"TXT50\"},\"9a083367-0b39-4b47-9682-e435e49f5566\":{\"name\":\"MCOD1\"},\"2ca42846-6902-4ddc-8bed-d727067d9106\":{\"name\":\"LAST_CHANGED_TS\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"bca6d88e-7694-434d-9fa8-a2d922760452\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_COMP_CODE_TEXT\",\"label\":\"Company Codes Texts\",\"type\":\"View (Text)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"TEXT\",\"modificationDate\":1675084215655,\"deploymentDate\":1675084233538,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_COMP_CODE_TEXT\",\"elements\":{\"069a342e-f740-464e-80fb-766638a26ceb\":{\"name\":\"BUKRS\"},\"f4bbe4ea-4432-4927-8ddb-10e847491b89\":{\"name\":\"SPRAS\"},\"d23f2f6e-3b82-4ede-a790-caf9dbda7bbf\":{\"name\":\"BUTXT\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"4ed2dfb7-8fa8-47d4-bf82-59cf26e0c6b9\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"538f1d20-ef17-4737-ac5b-881c21398cce\":{\"name\":\"RYEAR\"},\"9e22b10f-bd0f-4143-b030-e420a7503cf4\":{\"name\":\"RTCUR\"},\"05b28c86-d622-4d8a-9e6b-ced765f965a0\":{\"name\":\"RUNIT\"},\"0e056edb-a88c-4142-a4c2-741bc8a28a72\":{\"name\":\"RVERS\"},\"c1230531-37e9-433d-b026-20e5e9e77113\":{\"name\":\"RACCT\"},\"1853c601-9957-4237-84bf-ba97b418abc2\":{\"name\":\"RBUKRS\"},\"33319e44-1eab-4d39-9fe2-4020f00bb4e9\":{\"name\":\"RCNTR\"},\"6bc46039-9239-4db6-82fa-cfc9d1fb28ca\":{\"name\":\"PRCTR\"},\"53f95af7-e376-4f2d-862b-ff2facef0eb0\":{\"name\":\"RFAREA\"},\"e8e2c8f4-ce63-4bcd-a31d-dcc7f6d9a03a\":{\"name\":\"KOKRS\"},\"0671bd0e-897f-4c12-80dd-dafcdff79f3a\":{\"name\":\"SEGMENT\"},\"9477d5a5-4a85-4fee-85d0-3abb32b456d9\":{\"name\":\"RASSC\"},\"b57d708e-1739-4ed6-8152-e45aa6b086cf\":{\"name\":\"QUANUNIT\"},\"4da35b38-c554-47b5-af20-bffb446fb76d\":{\"name\":\"VALUETYPE\"},\"ac8a1550-ded1-41dc-9e13-54dffe0b6754\":{\"name\":\"CURTYPE\"},\"9ef5e198-c729-4f15-8eb1-149830e6a765\":{\"name\":\"FISCPER\"},\"fdbb1f9d-acb0-4146-94c5-bd10a99bfdbd\":{\"name\":\"FISCVAR\"},\"9b7198a5-df97-4ab7-ad20-7a9347980dda\":{\"name\":\"CHARTACCTS\"},\"55f6f2bb-2d4e-44b3-8243-a90171d7551d\":{\"name\":\"VALUTYP\"},\"c22f90fc-3b41-466f-849b-4d3cd5150d86\":{\"name\":\"CURRUNIT\"},\"0c4b06da-20d7-4e7b-8ad6-84c3ec5a8a87\":{\"name\":\"BALANCE\"},\"1085814c-7178-4cba-8881-725c25904a56\":{\"name\":\"DEBIT\"},\"ea3cb21e-b97c-46c7-9bbe-a31a361f126a\":{\"name\":\"ZLOGSYS\"},\"c2588184-b3cc-4cbf-9db8-309dd0cef317\":{\"name\":\"CREDIT\"},\"102c8111-144a-480d-9b18-b938035f1183\":{\"name\":\"TURNOVER\"},\"d1417c03-13bf-44f7-a245-09ffccac8443\":{\"name\":\"QUANTITY\"},\"444b447b-77ee-4d61-a1a2-1c2b22b2371a\":{\"name\":\"LOGSYS\"},\"e198742f-ac56-44b6-bee7-2e519f69cee4\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\"},\"67d2014f-7a59-4764-a6ef-c3369776171f\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_GLACCOUNT\",\"label\":\"GL Account Master Data\",\"type\":\"View (Dimension)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"modificationDate\":1665763994083,\"deploymentDate\":1665764011494,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_GLACCOUNT\",\"elements\":{\"9d60f4a4-1738-4701-bd24-279271f29890\":{\"name\":\"CHARTOFACCOUNTS\"},\"92d35887-76b7-45a0-a35e-0369b5da4e74\":{\"name\":\"GLACCOUNT\"},\"e87e0bc5-26f6-4f8d-96e9-de8911e0e099\":{\"name\":\"ISBALANCESHEETACCOUNT\"},\"77e30221-9639-40fa-a2b4-930aa06047fa\":{\"name\":\"GLACCOUNTGROUP\"},\"c3d45e03-875c-4abe-83e1-f34da97eb622\":{\"name\":\"CORPORATEGROUPACCOUNT\"},\"19b42daa-c67a-467f-b4a0-e3c90c795710\":{\"name\":\"PROFITLOSSACCOUNTTYPE\"},\"cb272289-d187-4fff-85ff-e9b029c32c98\":{\"name\":\"SAMPLEGLACCOUNT\"},\"03c05b91-7990-4e5a-8f87-06c52c49f765\":{\"name\":\"ACCOUNTISMARKEDFORDELETION\"},\"e819ad4f-4614-49f9-8bae-e571b8f4a401\":{\"name\":\"ACCOUNTISBLOCKEDFORCREATION\"},\"83fdea77-8c8f-438a-843c-9cf5c9f77bd6\":{\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\"},\"47e526c0-0db7-4516-9993-d31e063d301d\":{\"name\":\"ACCOUNTISBLOCKEDFORPLANNING\"},\"020e9eb5-3158-423b-a2ad-5d73e4cdc2e0\":{\"name\":\"PARTNERCOMPANY\"},\"b6a05da4-0314-4260-a0b6-472e7f5f09cf\":{\"name\":\"FUNCTIONALAREA\"},\"5106efb3-e545-4df4-b3d6-a602495d5feb\":{\"name\":\"CREATIONDATE\"},\"b4c8a88d-7772-441f-ad6f-c4736f2c33d1\":{\"name\":\"CREATEDBYUSER\"},\"5e21cb45-cce8-49a2-bff7-b3427f88f534\":{\"name\":\"LASTCHANGEDATETIME\"},\"510d3075-18e5-42a6-b3d7-f1dd586cb65f\":{\"name\":\"GLACCOUNTTYPE\"},\"dcb391d8-8e4c-4e6f-b694-12a8b4d3408c\":{\"name\":\"GLACCOUNTSUBTYPE\"},\"73ad76d6-222a-4d79-a8dd-4c4ca841c267\":{\"name\":\"GLACCOUNTEXTERNAL\"},\"ccd817f9-ed77-44c9-b42d-702418f61d5c\":{\"name\":\"BANKRECONCILIATIONACCOUNT\"},\"53ded892-020f-4845-a565-4ea016556116\":{\"name\":\"ISPROFITLOSSACCOUNT\"},\"5f8c911c-3f3b-467c-8e82-eee60185217f\":{\"name\":\"CA_CREATIONDATE\"}},\"context\":\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\"},\"3996dd47-7d7b-4c64-9535-f3cd8dd1448d\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_ZV_DWC_BI\",\"label\":\"GL Account Balance Master Report to Data Collection of Cost Center Texts for BW - Transaction Data\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"9811f53e-c931-466c-9ce6-9c0979b19d37\",\"mappings\":{\"629215d5-cf93-470a-bef9-0d56045ad40f\":{},\"69d68ddc-f389-4484-a2ed-dd9e7cf927dc\":{}}},\"3e0b1065-bd4a-4753-921b-59c3df22e8ae\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_ZV_DWC_CE\",\"label\":\"GL Account Balance Master Report to Texts for Profit Center Master Data - Transaction Data\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"57fad536-7ed0-4a77-a016-c9d0203f6ba6\",\"mappings\":{\"2cd5510f-20c9-4ff9-be68-68d339d18b3f\":{}}},\"466c22b3-8961-4697-a0b1-8f1fba63335e\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_CUR\",\"label\":\"GL Account Balance Master Report to Currency Type Texts\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"ab8b53cb-7910-446e-9a3f-7bd26dbf8bfa\",\"mappings\":{\"99f8ef58-a5b7-4148-a4b5-d6edd5028a52\":{}}},\"2fc37360-4c3b-4dd3-b56c-238413bae790\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_VAL\",\"label\":\"GL Account Balance Master Report to Valuation View Texts\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"9778d983-1309-487b-b0cb-8f4f80a7a03d\",\"mappings\":{\"e188ce27-8def-4639-b31f-2fab79b990a4\":{}}},\"ec8bb32c-9adb-467b-b96b-f0644b728fb7\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_ZV_DWC_SK\",\"label\":\"GL Account Balance Master Report to Chart of Accounts: Description - Transaction Data\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"c2c2d3b5-1bbe-45de-93c9-93c12a81abeb\",\"mappings\":{\"22be5931-59a6-4022-ad94-de0dbeeba0e1\":{},\"e0167f2a-bcae-428a-8716-4f2d74ad96d6\":{}}},\"e3e20ad0-8bfe-4ebf-9a8a-a7b04ca0bebc\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_COM\",\"label\":\"GL Account Balance Master Report to Company Codes Texts\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"bca6d88e-7694-434d-9fa8-a2d922760452\",\"mappings\":{\"537b29db-23db-4911-80ce-2416ed981449\":{}}},\"b8aebd30-ec33-4360-ba3c-54732a9295c5\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_GLA\",\"label\":\"GL Account Balance Master Report to GL Account Master Data\",\"source\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\",\"target\":\"67d2014f-7a59-4764-a6ef-c3369776171f\",\"mappings\":{\"8709a9ad-816b-44f5-a165-3861f7487c8e\":{},\"9c662e2e-3f89-452b-addf-e727f52652c9\":{}}},\"4bad6c2e-a819-440a-9f12-5b298a137e40\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"TD_STG\",\"label\":\"Dev-Transaction Data Staging\",\"crossSpace\":{\"schema\":\"TD_STG\",\"space\":\"TD_STG\"}},\"d9205b51-62fe-4d4e-a56f-56bffd93aa5a\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"7ddc7e21-b384-44f9-a0e2-1c30be7b7694\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"59e3a3c7-fcd9-4841-85b4-fc355addf722\":{},\"ea6466ef-59f5-4d71-aa3b-352a3d606104\":{\"name\":\"Entity Symbol 1\"},\"047d9810-b5c8-4a5b-830c-4575607fb197\":{},\"48966776-1c92-4f72-9e61-07e3401b519f\":{},\"a7fe4b62-d431-499e-aac2-18686312c3b9\":{},\"5e059b1b-537c-464c-8210-f54fd3190dd0\":{},\"852ab320-b50a-4287-8fd1-1fda838f6c2e\":{}}},\"9d23f3b7-d337-41d2-9612-e7571e9d37dc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RYEAR\",\"label\":\"Fiscal year\",\"newName\":\"RYEAR\",\"indexOrder\":0,\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"78d5524c-0cc5-420e-be54-963ec491528f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RTCUR\",\"label\":\"Transaction Currency\",\"newName\":\"RTCUR\",\"indexOrder\":1,\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.currencyCode\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"642553c6-c2f0-4eea-abec-7e61156fa078\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RUNIT\",\"label\":\"Base Unit of Measure\",\"newName\":\"RUNIT\",\"indexOrder\":2,\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.unitOfMeasure\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"034bf0be-c08f-4ab8-bcf7-ce2f04cd3e40\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RVERS\",\"label\":\"Version\",\"newName\":\"RVERS\",\"indexOrder\":3,\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RACCT\",\"label\":\"GL Account Number\",\"newName\":\"RACCT\",\"indexOrder\":4,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_GLA\",\"foreignText\":\"_ZV_DWC_SK\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"d9010c70-6801-4c8d-b6a3-11e5ded9adff\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RBUKRS\",\"label\":\"Company Code\",\"newName\":\"RBUKRS\",\"indexOrder\":5,\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_COM\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RCNTR\",\"label\":\"Cost Center\",\"newName\":\"RCNTR\",\"indexOrder\":6,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"15fa236d-9ad9-4b38-9223-b8b3cd053fad\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PRCTR\",\"label\":\"Profit Center\",\"newName\":\"PRCTR\",\"indexOrder\":7,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CE\",\"isNotNull\":true},\"015eb413-9e8f-4f46-a4fa-905b1d4a6c5c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RFAREA\",\"label\":\"Functional Area\",\"newName\":\"RFAREA\",\"indexOrder\":8,\"isCalculated\":true,\"length\":16,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"2c4ae192-1a8d-418d-8786-271baac2132c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":9,\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"e8da9d3e-2921-4ea7-937a-367156fa8673\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SEGMENT\",\"label\":\"Segment\",\"newName\":\"SEGMENT\",\"indexOrder\":10,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"2767488a-bd18-416d-b6d8-e20afed40a19\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RASSC\",\"label\":\"Trading Partner No.\",\"newName\":\"RASSC\",\"indexOrder\":11,\"isCalculated\":true,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"245f9e82-f815-47d9-9196-3c0f6fc76199\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANUNIT\",\"label\":\"Unit of Measure\",\"newName\":\"QUANUNIT\",\"indexOrder\":12,\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.unitOfMeasure\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"fdac1db2-d983-4bc1-8d79-24100a910646\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUETYPE\",\"label\":\"Reporting Value Type\",\"newName\":\"VALUETYPE\",\"indexOrder\":13,\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"ffeba930-a131-4c30-86ab-1f028bce3b1c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURTYPE\",\"label\":\"Currency type\",\"newName\":\"CURTYPE\",\"indexOrder\":14,\"isCalculated\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_CUR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMandatory\":true,\"filterMultipleSelections\":true},\"8275308b-358f-4761-889d-29abfba7ca29\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCPER\",\"label\":\"Fiscal year/period\",\"newName\":\"FISCPER\",\"indexOrder\":15,\"isCalculated\":true,\"length\":7,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"1fcc330f-7a50-457a-9151-29c887fe468f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCVAR\",\"label\":\"Fiscal year variant\",\"newName\":\"FISCVAR\",\"indexOrder\":16,\"isCalculated\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARTACCTS\",\"label\":\"Chart of Accounts\",\"newName\":\"CHARTACCTS\",\"indexOrder\":17,\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_GLA\",\"foreignText\":\"_ZV_DWC_SK\",\"isNotNull\":true},\"f5c887be-e718-4a99-85fa-cebece58e8ff\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP\",\"label\":\"Valuation View\",\"newName\":\"VALUTYP\",\"indexOrder\":18,\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_VAL\",\"isNotNull\":true,\"filterSelectionType\":\"RANGE\",\"filterMandatory\":true,\"filterMultipleSelections\":true},\"956402cb-9b90-4094-bfec-5cf594eb83fa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRUNIT\",\"label\":\"Currency\",\"newName\":\"CURRUNIT\",\"indexOrder\":19,\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.currencyCode\",\"nativeDataType\":\"NVARCHAR\"},\"b230ee89-9014-4db0-95c8-ea1ea9b42987\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BALANCE\",\"label\":\"Accumulated Balance\",\"newName\":\"BALANCE\",\"indexOrder\":20,\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\",\"nativeDataType\":\"DECIMAL\",\"unitTypeElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"0f720ccd-025c-4e95-b71f-ca5ceabf5e14\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DEBIT\",\"label\":\"Total Debit Postings\",\"newName\":\"DEBIT\",\"indexOrder\":21,\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\",\"nativeDataType\":\"DECIMAL\",\"unitTypeElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"969a562b-96ce-4621-b7da-a21f29400425\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZLOGSYS\",\"label\":\"Source System\",\"newName\":\"ZLOGSYS\",\"indexOrder\":22,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"8c99b2ed-3676-4cb0-9789-cb5ebe18a3df\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREDIT\",\"label\":\"Total Credit Postings\",\"newName\":\"CREDIT\",\"indexOrder\":23,\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\",\"nativeDataType\":\"DECIMAL\",\"unitTypeElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"93c46dff-685e-40b8-9cac-c09c5d4b8d06\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TURNOVER\",\"label\":\"Sales of the Period\",\"newName\":\"TURNOVER\",\"indexOrder\":24,\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\",\"nativeDataType\":\"DECIMAL\",\"unitTypeElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"0039f7bd-cbeb-4fcd-b4ad-8b1f33836dc6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANTITY\",\"label\":\"Consumption Quantity\",\"newName\":\"QUANTITY\",\"indexOrder\":25,\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"isMeasure\":true,\"semanticType\":\"@Semantics.quantity.unitOfMeasure\",\"nativeDataType\":\"DECIMAL\",\"isNotNull\":true,\"unitTypeElement\":\"642553c6-c2f0-4eea-abec-7e61156fa078\"},\"f3507b61-23df-4fa5-ba5f-6f8e86c54ae0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LOGSYS\",\"label\":\"Logical system\",\"newName\":\"LOGSYS\",\"indexOrder\":26,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"c095d38c-809d-4660-8c2a-c988ee5f058e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Cumulative Balance\",\"newName\":\"CUMULATIVE_BAL\",\"indexOrder\":27,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"isMeasure\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.amount.currencyCode\",\"unitTypeElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"aa8c8df7-de40-4508-848e-dbb7ffde3bcf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RYEAR\",\"label\":\"Fiscal year\",\"newName\":\"RYEAR\",\"indexOrder\":0,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"620b8f45-d687-48f5-b124-adfcd77dfc78\"},\"4f52bf21-d4bd-46df-b2a2-496d90899a68\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RTCUR\",\"label\":\"Transaction Currency\",\"newName\":\"RTCUR\",\"indexOrder\":1,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"64f12db8-bf68-4014-821f-1a958b091bdb\"},\"cd1868cf-37d2-42ea-90b0-e203d31a416a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RUNIT\",\"label\":\"Base Unit of Measure\",\"newName\":\"RUNIT\",\"indexOrder\":2,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"f6db8585-568c-418f-aeed-1aed98575340\"},\"f9bbae67-a50b-4c09-aaa9-a7afff42a836\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RVERS\",\"label\":\"Version\",\"newName\":\"RVERS\",\"indexOrder\":3,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2224880a-ec8b-49ca-84b6-1b5b1d2b1cd6\"},\"0875d781-264b-44c9-8567-12bec30c94a7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RACCT\",\"label\":\"Account Number\",\"newName\":\"RACCT\",\"indexOrder\":4,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_SK\",\"isNotNull\":true,\"successorElement\":\"4c30b690-cb79-4d9a-a55b-9d8c81276c87\"},\"192927bc-b56e-4065-b552-233de7140279\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RBUKRS\",\"label\":\"Company Code\",\"newName\":\"RBUKRS\",\"indexOrder\":5,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"6811de78-2f42-4c20-a588-828343b9ea47\"},\"8a5db712-78b3-4868-b253-5cc41726bdfc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RCNTR\",\"label\":\"Cost Center\",\"newName\":\"RCNTR\",\"indexOrder\":6,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"successorElement\":\"c516f691-b1c3-4c6f-aa5c-902136bfdb7f\"},\"e26f6123-725e-4da3-a99c-0db857743f4b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PRCTR\",\"label\":\"Profit Center\",\"newName\":\"PRCTR\",\"indexOrder\":7,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CE\",\"isNotNull\":true,\"successorElement\":\"41d5b5ff-459c-4f0b-84d5-8489fbdaa0c8\"},\"764b12d6-4085-4201-b9aa-012ee9c7f871\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RFAREA\",\"label\":\"Functional Area\",\"newName\":\"RFAREA\",\"indexOrder\":8,\"length\":16,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2737eb1a-5150-4589-b340-8bfc242e86c5\"},\"b8ac74af-5432-40bf-a476-92873256a418\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":9,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"successorElement\":\"c5e97142-a4da-4779-8d81-efba33937305\"},\"a3bf35d1-c013-4958-aa73-ad9561fad1f2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SEGMENT\",\"label\":\"Segment\",\"newName\":\"SEGMENT\",\"indexOrder\":10,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8780dcf4-62c8-4434-82dc-f1d04723a6bf\"},\"761ca775-7454-4539-88ee-c15c3d16df65\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RASSC\",\"label\":\"Trading Partner No.\",\"newName\":\"RASSC\",\"indexOrder\":11,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"145c6689-31c6-41d5-85d0-bfced29834e6\"},\"26f25e3e-f0f3-40a8-8ba7-14ba7e49027f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANUNIT\",\"label\":\"Unit of Measure\",\"newName\":\"QUANUNIT\",\"indexOrder\":12,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"190ad058-1624-4912-90e7-a4cff1716196\"},\"5261a850-a7f2-40e1-bb11-82cbbcf504d0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUETYPE\",\"label\":\"Reporting Value Type\",\"newName\":\"VALUETYPE\",\"indexOrder\":13,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"e05fa86e-ea6b-4376-9411-571b4ddf1bf3\"},\"6d159e0e-8982-4d8e-96ad-20682631b385\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURTYPE\",\"label\":\"Currency type\",\"newName\":\"CURTYPE\",\"indexOrder\":14,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_CUR\",\"isNotNull\":true,\"successorElement\":\"565a6f37-6d2e-4289-aa9d-28bb7bf1e7fc\"},\"40a86fce-03ac-48e3-b701-d4603c92913c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCPER\",\"label\":\"Fiscal year/period\",\"newName\":\"FISCPER\",\"indexOrder\":15,\"length\":7,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"98977945-148b-45fe-a8c9-4ced28709f60\"},\"3c2bed16-256b-4e1b-83cb-0fdd58c58811\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCVAR\",\"label\":\"Fiscal year variant\",\"newName\":\"FISCVAR\",\"indexOrder\":16,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"b1d8f013-43ac-4427-847a-4e42feae4f45\"},\"fe69d4bb-7123-4ad5-808f-e827aad0ffe6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARTACCTS\",\"label\":\"Chart of Accounts\",\"newName\":\"CHARTACCTS\",\"indexOrder\":17,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_SK\",\"isNotNull\":true,\"successorElement\":\"98aafa54-e6ca-4d54-bbc7-287e9467f076\"},\"b905a54c-7903-4d6c-8fc4-723843e60fdb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP\",\"label\":\"Valuation View\",\"newName\":\"VALUTYP\",\"indexOrder\":18,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_VAL\",\"isNotNull\":true,\"successorElement\":\"600ac82c-7c02-49d3-899f-741c599cb260\"},\"87aa6ef6-4516-44ec-a49b-04bf3fd34b8b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRUNIT\",\"label\":\"Currency\",\"newName\":\"CURRUNIT\",\"indexOrder\":19,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"8057fffd-b4c0-4af4-8e80-4d5e107ecaf7\"},\"5c82e0e6-61ad-4da2-b04f-3048c5224ccc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BALANCE\",\"label\":\"Accumulated Balance\",\"newName\":\"BALANCE\",\"indexOrder\":20,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"ff9ed5a1-7c72-4192-84d7-1bc2b841a57e\"},\"c2b30d5d-9b1a-44f6-8b32-30dbb9b35060\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DEBIT\",\"label\":\"Total Debit Postings\",\"newName\":\"DEBIT\",\"indexOrder\":21,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"5c3d8a25-4875-4d19-ba40-c0220d642721\"},\"87bd5669-c379-433a-9aea-312007fc2ac0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZLOGSYS\",\"label\":\"Source System\",\"newName\":\"ZLOGSYS\",\"indexOrder\":22,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2739b11d-a2b1-4cb4-a9ee-659654bcf1ee\"},\"be95d03c-3459-4a67-8cde-b33ae1201584\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREDIT\",\"label\":\"Total Credit Postings\",\"newName\":\"CREDIT\",\"indexOrder\":23,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"374985f6-2502-4b08-a971-cb48ad3ecd30\"},\"f0ccedda-35a6-4904-8ad4-ddc405c7e7c0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TURNOVER\",\"label\":\"Sales of the Period\",\"newName\":\"TURNOVER\",\"indexOrder\":24,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"e0aaf9c2-34a3-4a5e-b224-da4614857d98\"},\"17b6ec0e-0fe3-4d72-8129-da70b8860164\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANTITY\",\"label\":\"Consumption Quantity\",\"newName\":\"QUANTITY\",\"indexOrder\":25,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"isNotNull\":true,\"successorElement\":\"e3db886a-06e2-4a88-a9cb-a74e73251b89\"},\"28cf25e7-f32e-4a4e-b2b8-2ee1fff561db\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LOGSYS\",\"label\":\"Logical system\",\"newName\":\"LOGSYS\",\"indexOrder\":26,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a4089fa0-7475-4b91-acd1-03520ca1040b\"},\"620b8f45-d687-48f5-b124-adfcd77dfc78\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RYEAR\",\"label\":\"Fiscal year\",\"newName\":\"RYEAR\",\"indexOrder\":0,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"538f1d20-ef17-4737-ac5b-881c21398cce\"},\"64f12db8-bf68-4014-821f-1a958b091bdb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RTCUR\",\"label\":\"Transaction Currency\",\"newName\":\"RTCUR\",\"indexOrder\":1,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9e22b10f-bd0f-4143-b030-e420a7503cf4\"},\"f6db8585-568c-418f-aeed-1aed98575340\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RUNIT\",\"label\":\"Base Unit of Measure\",\"newName\":\"RUNIT\",\"indexOrder\":2,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"05b28c86-d622-4d8a-9e6b-ced765f965a0\"},\"2224880a-ec8b-49ca-84b6-1b5b1d2b1cd6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RVERS\",\"label\":\"Version\",\"newName\":\"RVERS\",\"indexOrder\":3,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0e056edb-a88c-4142-a4c2-741bc8a28a72\"},\"4c30b690-cb79-4d9a-a55b-9d8c81276c87\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RACCT\",\"label\":\"GL Account Number\",\"newName\":\"RACCT\",\"indexOrder\":4,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"c1230531-37e9-433d-b026-20e5e9e77113\"},\"6811de78-2f42-4c20-a588-828343b9ea47\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RBUKRS\",\"label\":\"Company Code\",\"newName\":\"RBUKRS\",\"indexOrder\":5,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"1853c601-9957-4237-84bf-ba97b418abc2\"},\"c516f691-b1c3-4c6f-aa5c-902136bfdb7f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RCNTR\",\"label\":\"Cost Center\",\"newName\":\"RCNTR\",\"indexOrder\":6,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"successorElement\":\"33319e44-1eab-4d39-9fe2-4020f00bb4e9\"},\"41d5b5ff-459c-4f0b-84d5-8489fbdaa0c8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PRCTR\",\"label\":\"Profit Center\",\"newName\":\"PRCTR\",\"indexOrder\":7,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CE\",\"isNotNull\":true,\"successorElement\":\"6bc46039-9239-4db6-82fa-cfc9d1fb28ca\"},\"2737eb1a-5150-4589-b340-8bfc242e86c5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RFAREA\",\"label\":\"Functional Area\",\"newName\":\"RFAREA\",\"indexOrder\":8,\"length\":16,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"53f95af7-e376-4f2d-862b-ff2facef0eb0\"},\"c5e97142-a4da-4779-8d81-efba33937305\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":9,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"e8e2c8f4-ce63-4bcd-a31d-dcc7f6d9a03a\"},\"8780dcf4-62c8-4434-82dc-f1d04723a6bf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SEGMENT\",\"label\":\"Segment\",\"newName\":\"SEGMENT\",\"indexOrder\":10,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0671bd0e-897f-4c12-80dd-dafcdff79f3a\"},\"145c6689-31c6-41d5-85d0-bfced29834e6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RASSC\",\"label\":\"Trading Partner No.\",\"newName\":\"RASSC\",\"indexOrder\":11,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9477d5a5-4a85-4fee-85d0-3abb32b456d9\"},\"190ad058-1624-4912-90e7-a4cff1716196\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANUNIT\",\"label\":\"Unit of Measure\",\"newName\":\"QUANUNIT\",\"indexOrder\":12,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"b57d708e-1739-4ed6-8152-e45aa6b086cf\"},\"e05fa86e-ea6b-4376-9411-571b4ddf1bf3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUETYPE\",\"label\":\"Reporting Value Type\",\"newName\":\"VALUETYPE\",\"indexOrder\":13,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"4da35b38-c554-47b5-af20-bffb446fb76d\"},\"565a6f37-6d2e-4289-aa9d-28bb7bf1e7fc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURTYPE\",\"label\":\"Currency type\",\"newName\":\"CURTYPE\",\"indexOrder\":14,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"ac8a1550-ded1-41dc-9e13-54dffe0b6754\"},\"98977945-148b-45fe-a8c9-4ced28709f60\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCPER\",\"label\":\"Fiscal year/period\",\"newName\":\"FISCPER\",\"indexOrder\":15,\"length\":7,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9ef5e198-c729-4f15-8eb1-149830e6a765\"},\"b1d8f013-43ac-4427-847a-4e42feae4f45\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCVAR\",\"label\":\"Fiscal year variant\",\"newName\":\"FISCVAR\",\"indexOrder\":16,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"fdbb1f9d-acb0-4146-94c5-bd10a99bfdbd\"},\"98aafa54-e6ca-4d54-bbc7-287e9467f076\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARTACCTS\",\"label\":\"Chart of Accounts\",\"newName\":\"CHARTACCTS\",\"indexOrder\":17,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9b7198a5-df97-4ab7-ad20-7a9347980dda\"},\"600ac82c-7c02-49d3-899f-741c599cb260\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP\",\"label\":\"Valuation View\",\"newName\":\"VALUTYP\",\"indexOrder\":18,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"55f6f2bb-2d4e-44b3-8243-a90171d7551d\"},\"8057fffd-b4c0-4af4-8e80-4d5e107ecaf7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRUNIT\",\"label\":\"Currency\",\"newName\":\"CURRUNIT\",\"indexOrder\":19,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c22f90fc-3b41-466f-849b-4d3cd5150d86\"},\"ff9ed5a1-7c72-4192-84d7-1bc2b841a57e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BALANCE\",\"label\":\"Accumulated Balance\",\"newName\":\"BALANCE\",\"indexOrder\":20,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"0c4b06da-20d7-4e7b-8ad6-84c3ec5a8a87\"},\"5c3d8a25-4875-4d19-ba40-c0220d642721\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DEBIT\",\"label\":\"Total Debit Postings\",\"newName\":\"DEBIT\",\"indexOrder\":21,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"1085814c-7178-4cba-8881-725c25904a56\"},\"2739b11d-a2b1-4cb4-a9ee-659654bcf1ee\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZLOGSYS\",\"label\":\"Source System\",\"newName\":\"ZLOGSYS\",\"indexOrder\":22,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"ea3cb21e-b97c-46c7-9bbe-a31a361f126a\"},\"374985f6-2502-4b08-a971-cb48ad3ecd30\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREDIT\",\"label\":\"Total Credit Postings\",\"newName\":\"CREDIT\",\"indexOrder\":23,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"c2588184-b3cc-4cbf-9db8-309dd0cef317\"},\"e0aaf9c2-34a3-4a5e-b224-da4614857d98\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TURNOVER\",\"label\":\"Sales of the Period\",\"newName\":\"TURNOVER\",\"indexOrder\":24,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"102c8111-144a-480d-9b18-b938035f1183\"},\"e3db886a-06e2-4a88-a9cb-a74e73251b89\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANTITY\",\"label\":\"Consumption Quantity\",\"newName\":\"QUANTITY\",\"indexOrder\":25,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"isNotNull\":true,\"successorElement\":\"d1417c03-13bf-44f7-a245-09ffccac8443\"},\"a4089fa0-7475-4b91-acd1-03520ca1040b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LOGSYS\",\"label\":\"Logical system\",\"newName\":\"LOGSYS\",\"indexOrder\":26,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"444b447b-77ee-4d61-a1a2-1c2b22b2371a\"},\"4f64c684-9750-417b-8478-16be99094895\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":0,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"01c6bcfe-fa47-4e34-838b-b22f466c8417\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"ae13788c-efb5-4eb8-b91c-1c818c3d684f\"},\"440aef55-a753-46dd-b44d-25f7a98d4bb7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOSTL\",\"label\":\"Cost Center\",\"newName\":\"KOSTL\",\"indexOrder\":2,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"ae13788c-efb5-4eb8-b91c-1c818c3d684f\"},\"a88e2a3a-0900-4a2b-9c7f-7e31bd64a797\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATBI\",\"label\":\"Valid To Date\",\"newName\":\"DATBI\",\"indexOrder\":3,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true},\"ab18db5e-5b9f-4fcd-8bd2-7a6b23c87377\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTEXT\",\"label\":\"General Name\",\"newName\":\"KTEXT\",\"indexOrder\":4,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"ae13788c-efb5-4eb8-b91c-1c818c3d684f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LTEXT\",\"label\":\"Description\",\"newName\":\"LTEXT\",\"indexOrder\":5,\"length\":40,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"87a4302f-4ecd-409a-bc75-0dcaa1a19b5e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MCTXT\",\"label\":\"Search Term for Matchcode Use\",\"newName\":\"MCTXT\",\"indexOrder\":6,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"6706c3c1-772c-40ba-8584-7fcd5ed472e6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":0,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"26287b88-34f9-4811-be80-ed4edaa733ab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PRCTR\",\"label\":\"Profit Center\",\"newName\":\"PRCTR\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"3ad5b9c8-70c0-4008-bc30-f6b4ba514470\"},\"d97bf348-056f-4a53-bdf1-e1912bd15d44\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATBI\",\"label\":\"Valid To Date\",\"newName\":\"DATBI\",\"indexOrder\":2,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true},\"dd772948-b0ba-476f-b6d8-380623a0a6d5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":3,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"9adcf586-9a54-4154-b245-5fdc88f2a367\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTEXT\",\"label\":\"General Name\",\"newName\":\"KTEXT\",\"indexOrder\":4,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"3ad5b9c8-70c0-4008-bc30-f6b4ba514470\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LTEXT\",\"label\":\"Long Text\",\"newName\":\"LTEXT\",\"indexOrder\":5,\"length\":40,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"82c04cc3-1afe-46b4-a4aa-022c28e497b2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MCTXT\",\"label\":\"Search term for matchcode search\",\"newName\":\"MCTXT\",\"indexOrder\":6,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"9babe458-3d53-42d8-9851-7c7acabd1a65\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMNAME\",\"label\":\"Domain name\",\"newName\":\"DOMNAME\",\"indexOrder\":0,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"d5273bf5-c586-4a01-a65a-9e82d82f6aa2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DDLANGUAGE\",\"label\":\"Language Key\",\"newName\":\"DDLANGUAGE\",\"indexOrder\":1,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"5f55fba0-ccf2-433b-b1a6-fc31d7d60350\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RSCURTYPE\",\"label\":\"Currency Type\",\"newName\":\"RSCURTYPE\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\"},\"4fe96204-56c0-4489-843a-e555b599e3a7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AS4LOCAL\",\"label\":\"Activation State of Repository Object\",\"newName\":\"AS4LOCAL\",\"indexOrder\":3,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"a54d7a8b-8e37-4656-a6de-5f64f0013fca\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AS4VERS\",\"label\":\"Version of the entry (not used)\",\"newName\":\"AS4VERS\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true},\"4a92becf-ceca-49a6-a828-292dc724041a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RSCURTYPE_DDTEXT\",\"label\":\"Currency Type Text\",\"newName\":\"RSCURTYPE_DDTEXT\",\"indexOrder\":5,\"length\":60,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"8b7a7f87-388b-4e65-8f2d-2c8642f9f32d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVAL_LD\",\"label\":\"Language-specific values for domains, lower limit\",\"newName\":\"DOMVAL_LD\",\"indexOrder\":6,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"accb1196-9b0d-476a-bc57-f1dbe80b11d0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVAL_HD\",\"label\":\"Language-specific values for domains, upper limit\",\"newName\":\"DOMVAL_HD\",\"indexOrder\":7,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"cd4873e9-ae5e-4825-800a-125f31fe8da4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVALUE_L\",\"label\":\"Values for Domains: Single Value/Lower Limit\",\"newName\":\"DOMVALUE_L\",\"indexOrder\":8,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"b355a8b8-8eee-475d-9980-449e64e9f2a1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMNAME\",\"label\":\"Domain name\",\"newName\":\"DOMNAME\",\"indexOrder\":0,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"d686b9d1-51db-403f-9cf8-905ae91f240c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DDLANGUAGE\",\"label\":\"Language Key\",\"newName\":\"DDLANGUAGE\",\"indexOrder\":1,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"e12107ca-a7a3-477a-b05a-1185c502560f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP\",\"label\":\"Valuation View\",\"newName\":\"VALUTYP\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\"},\"eae4668d-01e3-4e96-9c82-4674da95286b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AS4VERS\",\"label\":\"Version of the entry (not used)\",\"newName\":\"AS4VERS\",\"indexOrder\":3,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true},\"d619637b-088e-4043-a5d8-5c10fbc678bd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP_DDTEXT\",\"label\":\"Valuation View Text\",\"newName\":\"VALUTYP_DDTEXT\",\"indexOrder\":4,\"length\":60,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"602bf7ac-3ba1-4ccf-b6ad-ea90f989b473\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AS4LOCAL\",\"label\":\"Activation State of Repository Object\",\"newName\":\"AS4LOCAL\",\"indexOrder\":5,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"595bf616-b82c-4f76-afb2-303f6555e033\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVALUE_L\",\"label\":\"Values for Domains: Single Value/Lower Limit\",\"newName\":\"DOMVALUE_L\",\"indexOrder\":6,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"f408206d-6d8e-4c07-ad28-6113a0958e88\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVAL_LD\",\"label\":\"Language-specific values for domains, lower limit\",\"newName\":\"DOMVAL_LD\",\"indexOrder\":7,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"90b4412a-346f-4136-a8e9-3adc8516c82d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DOMVAL_HD\",\"label\":\"Language-specific values for domains, upper limit\",\"newName\":\"DOMVAL_HD\",\"indexOrder\":8,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"f47a7718-420e-4cb0-8318-f5398af0c368\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":0,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"c910bfe4-76aa-486f-82fa-e1d7033f013e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTOPL\",\"label\":\"Chart of Accounts\",\"newName\":\"KTOPL\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"a4ddc43d-0170-4e48-82ed-3b08762f8f02\"},\"46e50b3a-14f1-4895-b875-9bd2964f010b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SAKNR\",\"label\":\"G/L Account Number\",\"newName\":\"SAKNR\",\"indexOrder\":2,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"b12a68a5-9cdc-492b-9125-9cac0a463b1c\"},\"a4ddc43d-0170-4e48-82ed-3b08762f8f02\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TXT20\",\"label\":\"G/L account short text\",\"newName\":\"TXT20\",\"indexOrder\":3,\"length\":20,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"b12a68a5-9cdc-492b-9125-9cac0a463b1c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TXT50\",\"label\":\"G/L Account Long Text\",\"newName\":\"TXT50\",\"indexOrder\":4,\"length\":50,\"precision\":0,\"scale\":0,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"9a083367-0b39-4b47-9682-e435e49f5566\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MCOD1\",\"label\":\"Search Term for Matchcode Search\",\"newName\":\"MCOD1\",\"indexOrder\":5,\"length\":25,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"2ca42846-6902-4ddc-8bed-d727067d9106\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAST_CHANGED_TS\",\"label\":\"UTC Time Stamp in Short Form (YYYYMMDDhhmmss)\",\"newName\":\"LAST_CHANGED_TS\",\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\"},\"069a342e-f740-464e-80fb-766638a26ceb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company Code\",\"newName\":\"BUKRS\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"d23f2f6e-3b82-4ede-a790-caf9dbda7bbf\"},\"f4bbe4ea-4432-4927-8ddb-10e847491b89\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language\",\"newName\":\"SPRAS\",\"indexOrder\":1,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.language\",\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"d23f2f6e-3b82-4ede-a790-caf9dbda7bbf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Company Code Description\",\"newName\":\"BUTXT\",\"indexOrder\":2,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"538f1d20-ef17-4737-ac5b-881c21398cce\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RYEAR\",\"label\":\"Fiscal year\",\"newName\":\"RYEAR\",\"indexOrder\":0,\"expression\":\"RYEAR\",\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9d23f3b7-d337-41d2-9612-e7571e9d37dc\"},\"9e22b10f-bd0f-4143-b030-e420a7503cf4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RTCUR\",\"label\":\"Transaction Currency\",\"newName\":\"RTCUR\",\"indexOrder\":1,\"expression\":\"RTCUR\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"78d5524c-0cc5-420e-be54-963ec491528f\"},\"05b28c86-d622-4d8a-9e6b-ced765f965a0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RUNIT\",\"label\":\"Base Unit of Measure\",\"newName\":\"RUNIT\",\"indexOrder\":2,\"expression\":\"RUNIT\",\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"642553c6-c2f0-4eea-abec-7e61156fa078\"},\"0e056edb-a88c-4142-a4c2-741bc8a28a72\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RVERS\",\"label\":\"Version\",\"newName\":\"RVERS\",\"indexOrder\":3,\"expression\":\"RVERS\",\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"034bf0be-c08f-4ab8-bcf7-ce2f04cd3e40\"},\"c1230531-37e9-433d-b026-20e5e9e77113\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RACCT\",\"label\":\"GL Account Number\",\"newName\":\"RACCT\",\"indexOrder\":4,\"expression\":\"RACCT\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\"},\"1853c601-9957-4237-84bf-ba97b418abc2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RBUKRS\",\"label\":\"Company Code\",\"newName\":\"RBUKRS\",\"indexOrder\":5,\"expression\":\"RBUKRS\",\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"d9010c70-6801-4c8d-b6a3-11e5ded9adff\"},\"33319e44-1eab-4d39-9fe2-4020f00bb4e9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RCNTR\",\"label\":\"Cost Center\",\"newName\":\"RCNTR\",\"indexOrder\":6,\"expression\":\"RCNTR\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_BI\",\"isNotNull\":true,\"successorElement\":\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\"},\"6bc46039-9239-4db6-82fa-cfc9d1fb28ca\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PRCTR\",\"label\":\"Profit Center\",\"newName\":\"PRCTR\",\"indexOrder\":7,\"expression\":\"PRCTR\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CE\",\"isNotNull\":true,\"successorElement\":\"15fa236d-9ad9-4b38-9223-b8b3cd053fad\"},\"53f95af7-e376-4f2d-862b-ff2facef0eb0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RFAREA\",\"label\":\"Functional Area\",\"newName\":\"RFAREA\",\"indexOrder\":8,\"expression\":\"RFAREA\",\"isCalculated\":true,\"length\":16,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"015eb413-9e8f-4f46-a4fa-905b1d4a6c5c\"},\"e8e2c8f4-ce63-4bcd-a31d-dcc7f6d9a03a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KOKRS\",\"label\":\"Controlling Area\",\"newName\":\"KOKRS\",\"indexOrder\":9,\"expression\":\"KOKRS\",\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2c4ae192-1a8d-418d-8786-271baac2132c\"},\"0671bd0e-897f-4c12-80dd-dafcdff79f3a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SEGMENT\",\"label\":\"Segment\",\"newName\":\"SEGMENT\",\"indexOrder\":10,\"expression\":\"SEGMENT\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"e8da9d3e-2921-4ea7-937a-367156fa8673\"},\"9477d5a5-4a85-4fee-85d0-3abb32b456d9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RASSC\",\"label\":\"Trading Partner No.\",\"newName\":\"RASSC\",\"indexOrder\":11,\"expression\":\"RASSC\",\"isCalculated\":true,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2767488a-bd18-416d-b6d8-e20afed40a19\"},\"b57d708e-1739-4ed6-8152-e45aa6b086cf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANUNIT\",\"label\":\"Unit of Measure\",\"newName\":\"QUANUNIT\",\"indexOrder\":12,\"expression\":\"QUANUNIT\",\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"245f9e82-f815-47d9-9196-3c0f6fc76199\"},\"4da35b38-c554-47b5-af20-bffb446fb76d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUETYPE\",\"label\":\"Reporting Value Type\",\"newName\":\"VALUETYPE\",\"indexOrder\":13,\"expression\":\"VALUETYPE\",\"isCalculated\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"fdac1db2-d983-4bc1-8d79-24100a910646\"},\"ac8a1550-ded1-41dc-9e13-54dffe0b6754\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURTYPE\",\"label\":\"Currency type\",\"newName\":\"CURTYPE\",\"indexOrder\":14,\"expression\":\"CURTYPE\",\"isCalculated\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\"},\"9ef5e198-c729-4f15-8eb1-149830e6a765\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCPER\",\"label\":\"Fiscal year/period\",\"newName\":\"FISCPER\",\"indexOrder\":15,\"expression\":\"FISCPER\",\"isCalculated\":true,\"length\":7,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8275308b-358f-4761-889d-29abfba7ca29\"},\"fdbb1f9d-acb0-4146-94c5-bd10a99bfdbd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCVAR\",\"label\":\"Fiscal year variant\",\"newName\":\"FISCVAR\",\"indexOrder\":16,\"expression\":\"FISCVAR\",\"isCalculated\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"1fcc330f-7a50-457a-9151-29c887fe468f\"},\"9b7198a5-df97-4ab7-ad20-7a9347980dda\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARTACCTS\",\"label\":\"Chart of Accounts\",\"newName\":\"CHARTACCTS\",\"indexOrder\":17,\"expression\":\"CHARTACCTS\",\"isCalculated\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\"},\"55f6f2bb-2d4e-44b3-8243-a90171d7551d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALUTYP\",\"label\":\"Valuation View\",\"newName\":\"VALUTYP\",\"indexOrder\":18,\"expression\":\"VALUTYP\",\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"f5c887be-e718-4a99-85fa-cebece58e8ff\"},\"c22f90fc-3b41-466f-849b-4d3cd5150d86\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRUNIT\",\"label\":\"Currency\",\"newName\":\"CURRUNIT\",\"indexOrder\":19,\"expression\":\"CURRUNIT\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"956402cb-9b90-4094-bfec-5cf594eb83fa\"},\"0c4b06da-20d7-4e7b-8ad6-84c3ec5a8a87\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BALANCE\",\"label\":\"Accumulated Balance\",\"newName\":\"BALANCE\",\"indexOrder\":20,\"expression\":\"BALANCE\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"b230ee89-9014-4db0-95c8-ea1ea9b42987\"},\"1085814c-7178-4cba-8881-725c25904a56\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DEBIT\",\"label\":\"Total Debit Postings\",\"newName\":\"DEBIT\",\"indexOrder\":21,\"expression\":\"DEBIT\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"0f720ccd-025c-4e95-b71f-ca5ceabf5e14\"},\"ea3cb21e-b97c-46c7-9bbe-a31a361f126a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZLOGSYS\",\"label\":\"Source System\",\"newName\":\"ZLOGSYS\",\"indexOrder\":22,\"expression\":\"ZLOGSYS\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"969a562b-96ce-4621-b7da-a21f29400425\"},\"c2588184-b3cc-4cbf-9db8-309dd0cef317\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREDIT\",\"label\":\"Total Credit Postings\",\"newName\":\"CREDIT\",\"indexOrder\":23,\"expression\":\"CREDIT\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"8c99b2ed-3676-4cb0-9789-cb5ebe18a3df\"},\"102c8111-144a-480d-9b18-b938035f1183\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TURNOVER\",\"label\":\"Sales of the Period\",\"newName\":\"TURNOVER\",\"indexOrder\":24,\"expression\":\"TURNOVER\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"93c46dff-685e-40b8-9cac-c09c5d4b8d06\"},\"d1417c03-13bf-44f7-a245-09ffccac8443\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"QUANTITY\",\"label\":\"Consumption Quantity\",\"newName\":\"QUANTITY\",\"indexOrder\":25,\"expression\":\"QUANTITY\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":3,\"nativeDataType\":\"DECIMAL\",\"isNotNull\":true,\"successorElement\":\"0039f7bd-cbeb-4fcd-b4ad-8b1f33836dc6\"},\"444b447b-77ee-4d61-a1a2-1c2b22b2371a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LOGSYS\",\"label\":\"Logical system\",\"newName\":\"LOGSYS\",\"indexOrder\":26,\"expression\":\"LOGSYS\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"f3507b61-23df-4fa5-ba5f-6f8e86c54ae0\"},\"e198742f-ac56-44b6-bee7-2e519f69cee4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Cumulative Balance\",\"newName\":\"CUMULATIVE_BAL\",\"indexOrder\":27,\"expression\":\"DEBIT - CREDIT\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":23,\"scale\":2,\"successorElement\":\"c095d38c-809d-4660-8c2a-c988ee5f058e\"},\"9d60f4a4-1738-4701-bd24-279271f29890\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CHARTOFACCOUNTS\",\"label\":\"Chart of Accounts\",\"newName\":\"CHARTOFACCOUNTS\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_S1\",\"isNotNull\":true},\"92d35887-76b7-45a0-a35e-0369b5da4e74\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"GLACCOUNT\",\"label\":\"G/L Account Number\",\"newName\":\"GLACCOUNT\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_S1\",\"isNotNull\":true},\"e87e0bc5-26f6-4f8d-96e9-de8911e0e099\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISBALANCESHEETACCOUNT\",\"label\":\"Indicator: Account is a balance sheet account?\",\"newName\":\"ISBALANCESHEETACCOUNT\",\"indexOrder\":2,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"77e30221-9639-40fa-a2b4-930aa06047fa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"GLACCOUNTGROUP\",\"label\":\"G/L Account Group\",\"newName\":\"GLACCOUNTGROUP\",\"indexOrder\":3,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T0\"},\"c3d45e03-875c-4abe-83e1-f34da97eb622\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CORPORATEGROUPACCOUNT\",\"label\":\"Group Account Number\",\"newName\":\"CORPORATEGROUPACCOUNT\",\"indexOrder\":4,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"19b42daa-c67a-467f-b4a0-e3c90c795710\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PROFITLOSSACCOUNTTYPE\",\"label\":\"P&L statement account type\",\"newName\":\"PROFITLOSSACCOUNTTYPE\",\"indexOrder\":5,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"cb272289-d187-4fff-85ff-e9b029c32c98\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SAMPLEGLACCOUNT\",\"label\":\"Number of the Sample Account\",\"newName\":\"SAMPLEGLACCOUNT\",\"indexOrder\":6,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"03c05b91-7990-4e5a-8f87-06c52c49f765\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISMARKEDFORDELETION\",\"label\":\"Indicator: Account Marked for Deletion?\",\"newName\":\"ACCOUNTISMARKEDFORDELETION\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS\"},\"e819ad4f-4614-49f9-8bae-e571b8f4a401\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORCREATION\",\"label\":\"Indicator: Account Is Blocked for Creation ?\",\"newName\":\"ACCOUNTISBLOCKEDFORCREATION\",\"indexOrder\":8,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS1\"},\"83fdea77-8c8f-438a-843c-9cf5c9f77bd6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"label\":\"Indicator: Is Account Blocked for Posting?\",\"newName\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"indexOrder\":9,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS2\"},\"47e526c0-0db7-4516-9993-d31e063d301d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORPLANNING\",\"label\":\"Indicator: Account Blocked for Planning ?\",\"newName\":\"ACCOUNTISBLOCKEDFORPLANNING\",\"indexOrder\":10,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS3\"},\"020e9eb5-3158-423b-a2ad-5d73e4cdc2e0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PARTNERCOMPANY\",\"label\":\"Company ID of Trading Partner\",\"newName\":\"PARTNERCOMPANY\",\"indexOrder\":11,\"length\":6,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b6a05da4-0314-4260-a0b6-472e7f5f09cf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FUNCTIONALAREA\",\"label\":\"Functional Area\",\"newName\":\"FUNCTIONALAREA\",\"indexOrder\":12,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TF\"},\"5106efb3-e545-4df4-b3d6-a602495d5feb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATIONDATE\",\"label\":\"Date on which the Record Was Created\",\"newName\":\"CREATIONDATE\",\"indexOrder\":13,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\"},\"b4c8a88d-7772-441f-ad6f-c4736f2c33d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATEDBYUSER\",\"label\":\"Name of Person who Created the Object\",\"newName\":\"CREATEDBYUSER\",\"indexOrder\":14,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5e21cb45-cce8-49a2-bff7-b3427f88f534\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LASTCHANGEDATETIME\",\"label\":\"UTC Time Stamp in Short Form (YYYYMMDDhhmmss)\",\"newName\":\"LASTCHANGEDATETIME\",\"indexOrder\":15,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\"},\"510d3075-18e5-42a6-b3d7-f1dd586cb65f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"GLACCOUNTTYPE\",\"label\":\"Type of a General Ledger Account\",\"newName\":\"GLACCOUNTTYPE\",\"indexOrder\":16,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"dcb391d8-8e4c-4e6f-b694-12a8b4d3408c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"GLACCOUNTSUBTYPE\",\"label\":\"Subtype of a GL Account\",\"newName\":\"GLACCOUNTSUBTYPE\",\"indexOrder\":17,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_FI\"},\"73ad76d6-222a-4d79-a8dd-4c4ca841c267\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"GLACCOUNTEXTERNAL\",\"label\":\"G/L Account Number - Significant Length\",\"newName\":\"GLACCOUNTEXTERNAL\",\"indexOrder\":18,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"NVARCHAR\"},\"ccd817f9-ed77-44c9-b42d-702418f61d5c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BANKRECONCILIATIONACCOUNT\",\"label\":\"Bank Reconciliation Account\",\"newName\":\"BANKRECONCILIATIONACCOUNT\",\"indexOrder\":19,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"53ded892-020f-4845-a565-4ea016556116\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISPROFITLOSSACCOUNT\",\"label\":\"Indicator: Account is a balance sheet account?\",\"newName\":\"ISPROFITLOSSACCOUNT\",\"indexOrder\":20,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS4\"},\"5f8c911c-3f3b-467c-8e82-eee60185217f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_CREATIONDATE\",\"label\":\"Created on Date\",\"newName\":\"CA_CREATIONDATE\",\"indexOrder\":21,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"629215d5-cf93-470a-bef9-0d56045ad40f\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\",\"target\":\"440aef55-a753-46dd-b44d-25f7a98d4bb7\"},\"69d68ddc-f389-4484-a2ed-dd9e7cf927dc\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"2c4ae192-1a8d-418d-8786-271baac2132c\",\"target\":\"01c6bcfe-fa47-4e34-838b-b22f466c8417\"},\"2cd5510f-20c9-4ff9-be68-68d339d18b3f\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"15fa236d-9ad9-4b38-9223-b8b3cd053fad\",\"target\":\"26287b88-34f9-4811-be80-ed4edaa733ab\"},\"99f8ef58-a5b7-4148-a4b5-d6edd5028a52\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"cd4873e9-ae5e-4825-800a-125f31fe8da4\"},\"e188ce27-8def-4639-b31f-2fab79b990a4\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"f5c887be-e718-4a99-85fa-cebece58e8ff\",\"target\":\"595bf616-b82c-4f76-afb2-303f6555e033\"},\"22be5931-59a6-4022-ad94-de0dbeeba0e1\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\",\"target\":\"c910bfe4-76aa-486f-82fa-e1d7033f013e\"},\"e0167f2a-bcae-428a-8716-4f2d74ad96d6\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\",\"target\":\"46e50b3a-14f1-4895-b875-9bd2964f010b\"},\"537b29db-23db-4911-80ce-2416ed981449\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"d9010c70-6801-4c8d-b6a3-11e5ded9adff\",\"target\":\"069a342e-f740-464e-80fb-766638a26ceb\"},\"8709a9ad-816b-44f5-a165-3861f7487c8e\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\",\"target\":\"92d35887-76b7-45a0-a35e-0369b5da4e74\"},\"9c662e2e-3f89-452b-addf-e727f52652c9\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\",\"target\":\"9d60f4a4-1738-4701-bd24-279271f29890\"},\"59e3a3c7-fcd9-4841-85b4-fc355addf722\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"3ea64efe-e508-410a-aa41-31de8d6854ff\"},\"ea6466ef-59f5-4d71-aa3b-352a3d606104\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"84fadf77-f0b9-4491-a9b4-e971028b8d5e\"},\"047d9810-b5c8-4a5b-830c-4575607fb197\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"14a3f81f-6370-4c56-ba9d-bcc9a0d16719\"},\"48966776-1c92-4f72-9e61-07e3401b519f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"ea6466ef-59f5-4d71-aa3b-352a3d606104\",\"targetSymbol\":\"047d9810-b5c8-4a5b-830c-4575607fb197\"},\"a7fe4b62-d431-499e-aac2-18686312c3b9\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"4ed2dfb7-8fa8-47d4-bf82-59cf26e0c6b9\"},\"5e059b1b-537c-464c-8210-f54fd3190dd0\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"047d9810-b5c8-4a5b-830c-4575607fb197\",\"targetSymbol\":\"a7fe4b62-d431-499e-aac2-18686312c3b9\"},\"852ab320-b50a-4287-8fd1-1fda838f6c2e\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"a7fe4b62-d431-499e-aac2-18686312c3b9\",\"targetSymbol\":\"59e3a3c7-fcd9-4841-85b4-fc355addf722\"},\"27d990c1-f5df-4d33-b2cf-f4054b063cc5\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"c4d15e13-f6a6-400e-bef1-68f60fb6cf6c\"},\"39cf036d-9b65-48b7-b08d-457294840749\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"5f55fba0-ccf2-433b-b1a6-fc31d7d60350\"},\"8e1d6873-d70d-42d6-b288-151b6bcd0ee2\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"f5c887be-e718-4a99-85fa-cebece58e8ff\",\"target\":\"e12107ca-a7a3-477a-b05a-1185c502560f\"},\"e6a600ba-77bd-45bd-9262-09a76776ae8d\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"cd4873e9-ae5e-4825-800a-125f31fe8da4\"},\"777d92bc-1b42-4d82-8f5e-0c6eb358874e\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"f5c887be-e718-4a99-85fa-cebece58e8ff\",\"target\":\"595bf616-b82c-4f76-afb2-303f6555e033\"},\"8f3ae0a6-1d6b-4e2f-8da1-0f1058df3ce7\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"9babe458-3d53-42d8-9851-7c7acabd1a65\"},\"569e6e73-3c2d-427e-aefb-3f413bc5545d\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"f5c887be-e718-4a99-85fa-cebece58e8ff\",\"target\":\"b355a8b8-8eee-475d-9980-449e64e9f2a1\"},\"1b3fa347-bc44-409f-b987-7ed05287a97e\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\"},\"41e6a9ff-985a-49e6-a512-3a8b20be09d5\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\"},\"8f09604d-2571-433b-a50f-420485a263fd\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\"},\"4901d734-dc82-4817-8899-0e773b305bc2\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"02f3cf9d-3f1b-4eb1-a041-7d32a190547a\",\"target\":\"01c6bcfe-fa47-4e34-838b-b22f466c8417\"},\"323b606a-0c1d-4581-a054-dd14c62b7333\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"9babe458-3d53-42d8-9851-7c7acabd1a65\"},\"6863ff4d-77f2-470d-8ac4-70fbceb4a538\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ffeba930-a131-4c30-86ab-1f028bce3b1c\",\"target\":\"5f55fba0-ccf2-433b-b1a6-fc31d7d60350\"},\"9ecb8773-6d0a-4fb1-97d8-cd308a1a737b\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"31a2af7a-643b-47f6-b2ae-c03a6ab185d1\",\"target\":\"c910bfe4-76aa-486f-82fa-e1d7033f013e\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "TD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Transaction Data Staging",
+      "@DataWarehouse.space.schema": "TD_STG",
+      "@DataWarehouse.space.name": "TD_STG"
+    },
+    "MD_STG.ZV_DWC_CEPCT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "PRCTR": {
+          "@EndUserText.label": "Profit Center",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LTEXT"
+            }
+          ]
+        },
+        "DATBI": {
+          "@EndUserText.label": "Valid To Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KOKRS": {
+          "@EndUserText.label": "Controlling Area",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KTEXT": {
+          "@EndUserText.label": "General Name",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LTEXT": {
+          "@EndUserText.label": "Long Text",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "MCTXT": {
+          "@EndUserText.label": "Search term for matchcode search",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Texts for Profit Center Master Data - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_CEPCT$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_SKAT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "KTOPL": {
+          "@EndUserText.label": "Chart of Accounts",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "SAKNR": {
+          "@EndUserText.label": "G/L Account Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "TXT50"
+            }
+          ]
+        },
+        "TXT20": {
+          "@EndUserText.label": "G/L account short text",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TXT50": {
+          "@EndUserText.label": "G/L Account Long Text",
+          "type": "cds.String",
+          "length": 50,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "MCOD1": {
+          "@EndUserText.label": "Search Term for Matchcode Search",
+          "type": "cds.String",
+          "length": 25,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LAST_CHANGED_TS": {
+          "@EndUserText.label": "UTC Time Stamp in Short Form (YYYYMMDDhhmmss)",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "G/L Account Text",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_SKAT$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_BIW_CSKT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "KOKRS": {
+          "@EndUserText.label": "Controlling Area",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LTEXT"
+            }
+          ]
+        },
+        "KOSTL": {
+          "@EndUserText.label": "Cost Center",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LTEXT"
+            }
+          ]
+        },
+        "DATBI": {
+          "@EndUserText.label": "Valid To Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KTEXT": {
+          "@EndUserText.label": "General Name",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LTEXT": {
+          "@EndUserText.label": "Description",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "MCTXT": {
+          "@EndUserText.label": "Search Term for Matchcode Use",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Data Collection of Cost Center Texts for BW - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_BIW_CSKT$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_TFKBT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "FKBER": {
+          "@EndUserText.label": "Functional Area",
+          "type": "cds.String",
+          "length": 16,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "FKBTX"
+            }
+          ]
+        },
+        "FKBTX": {
+          "@EndUserText.label": "Name of the functional area",
+          "type": "cds.String",
+          "length": 25,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Name of the functional areas - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TFKBT$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T077Z": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "KTOPL": {
+          "@EndUserText.label": "Chart of Accounts",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KTOKS": {
+          "@EndUserText.label": "G/L Account Group",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "TXT30"
+            }
+          ]
+        },
+        "TXT30": {
+          "@EndUserText.label": "Account Group Name",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Account Group Names - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T077Z$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_XS": {
+      "kind": "entity",
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "elements": {
+        "FLAG": {
+          "@EndUserText.label": "Text Name",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "TEXT"
+            }
+          ]
+        },
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 2,
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "TEXT": {
+          "@EndUserText.label": "Text",
+          "type": "cds.String",
+          "length": 10,
+          "@Semantics.text": true
+        }
+      },
+      "@EndUserText.label": "Texts for X/Space",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_GLACCOUNT": {
+      "kind": "entity",
+      "elements": {
+        "CHARTOFACCOUNTS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Chart of Accounts",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T0"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "GLACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "G/L Account Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_S1"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ISBALANCESHEETACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Account is a balance sheet account?",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "GLACCOUNTGROUP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "G/L Account Group",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T0"
+          },
+          "@Analytics.dimension": true
+        },
+        "CORPORATEGROUPACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Group Account Number",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "PROFITLOSSACCOUNTTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "P&L statement account type",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true
+        },
+        "SAMPLEGLACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Number of the Sample Account",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "ACCOUNTISMARKEDFORDELETION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Account Marked for Deletion?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS"
+          },
+          "@Analytics.dimension": true
+        },
+        "ACCOUNTISBLOCKEDFORCREATION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Account Is Blocked for Creation ?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS1"
+          },
+          "@Analytics.dimension": true
+        },
+        "ACCOUNTISBLOCKEDFORPOSTING": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Is Account Blocked for Posting?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS2"
+          },
+          "@Analytics.dimension": true
+        },
+        "ACCOUNTISBLOCKEDFORPLANNING": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Account Blocked for Planning ?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS3"
+          },
+          "@Analytics.dimension": true
+        },
+        "PARTNERCOMPANY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company ID of Trading Partner",
+          "type": "cds.String",
+          "length": 6,
+          "@Analytics.dimension": true
+        },
+        "FUNCTIONALAREA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Functional Area",
+          "type": "cds.String",
+          "length": 16,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_TF"
+          },
+          "@Analytics.dimension": true
+        },
+        "CREATIONDATE": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date on which the Record Was Created",
+          "type": "cds.String",
+          "length": 8,
+          "@Analytics.dimension": true,
+          "@Analytics.hidden": true
+        },
+        "CREATEDBYUSER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Person who Created the Object",
+          "type": "cds.String",
+          "length": 12,
+          "@Analytics.dimension": true
+        },
+        "LASTCHANGEDATETIME": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "UTC Time Stamp in Short Form (YYYYMMDDhhmmss)",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "GLACCOUNTTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Type of a General Ledger Account",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "GLACCOUNTSUBTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Subtype of a GL Account",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "GLACCOUNTEXTERNAL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "G/L Account Number - Significant Length",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true,
+          "@Analytics.hidden": true
+        },
+        "BANKRECONCILIATIONACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Bank Reconciliation Account",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "ISPROFITLOSSACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Account is a balance sheet account?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS4"
+          },
+          "@Analytics.dimension": true
+        },
+        "CA_CREATIONDATE": {
+          "@EndUserText.label": "Created on Date",
+          "type": "cds.Date"
+        },
+        "_ZV_DWC_TF": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "FUNCTIONALAREA"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_TF",
+                "FKBER"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TFKBT",
+          "@EndUserText.label": "GL Account Master Data to Name of the functional areas - Transaction Data"
+        },
+        "_ZV_DWC_S1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "GLACCOUNT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_S1",
+                "SAKNR"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "CHARTOFACCOUNTS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_S1",
+                "KTOPL"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_SKAT",
+          "@EndUserText.label": "GL Account Master Data to G/L Account Text"
+        },
+        "_HL_MD_XS": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ACCOUNTISMARKEDFORDELETION"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "GL Account Master Data to Texts for X/Space"
+        },
+        "_HL_MD_XS1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ACCOUNTISBLOCKEDFORCREATION"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS1",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "GL Account Master Data to Texts for X/Space1"
+        },
+        "_HL_MD_XS2": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ACCOUNTISBLOCKEDFORPOSTING"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS2",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "GL Account Master Data to Texts for X/Space2"
+        },
+        "_HL_MD_XS3": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ACCOUNTISBLOCKEDFORPLANNING"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS3",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "GL Account Master Data to Texts for X/Space3"
+        },
+        "_HL_MD_XS4": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ISPROFITLOSSACCOUNT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS4",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "GL Account Master Data to Texts for X/Space4"
+        },
+        "_ZV_DWC_T0": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "GLACCOUNTGROUP"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T0",
+                "KTOKS"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "CHARTOFACCOUNTS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T0",
+                "KTOPL"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T077Z",
+          "@EndUserText.label": "GL Account Master Data to Account Group Names - Transaction Data"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "GL Account Master Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_VALUTYP_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "DOMNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Domain name",
+          "type": "cds.String",
+          "length": 30,
+          "key": true,
+          "notNull": true
+        },
+        "DDLANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "VALUTYP": {
+          "@EndUserText.label": "Valuation View",
+          "type": "cds.String",
+          "length": 4
+        },
+        "AS4VERS": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Version of the entry (not used)",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "VALUTYP_DDTEXT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Valuation View Text",
+          "type": "cds.String",
+          "length": 60,
+          "@Semantics.text": true
+        },
+        "AS4LOCAL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Activation State of Repository Object",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "notNull": true
+        },
+        "DOMVALUE_L": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Values for Domains: Single Value/Lower Limit",
+          "type": "cds.String",
+          "length": 10
+        },
+        "DOMVAL_LD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language-specific values for domains, lower limit",
+          "type": "cds.String",
+          "length": 10
+        },
+        "DOMVAL_HD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language-specific values for domains, upper limit",
+          "type": "cds.String",
+          "length": 10
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Valuation View Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_CURTYPE_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "DOMNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Domain name",
+          "type": "cds.String",
+          "length": 30,
+          "key": true,
+          "notNull": true
+        },
+        "DDLANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "RSCURTYPE": {
+          "@EndUserText.label": "Currency Type",
+          "type": "cds.String",
+          "length": 4
+        },
+        "AS4LOCAL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Activation State of Repository Object",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "notNull": true
+        },
+        "AS4VERS": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Version of the entry (not used)",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "RSCURTYPE_DDTEXT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Currency Type Text",
+          "type": "cds.String",
+          "length": 60,
+          "@Semantics.text": true
+        },
+        "DOMVAL_LD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language-specific values for domains, lower limit",
+          "type": "cds.String",
+          "length": 10
+        },
+        "DOMVAL_HD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language-specific values for domains, upper limit",
+          "type": "cds.String",
+          "length": 10
+        },
+        "DOMVALUE_L": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Values for Domains: Single Value/Lower Limit",
+          "type": "cds.String",
+          "length": 10
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Currency Type Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "TD_STG.HL_FIN_FIGL_AC_BAL": {
+      "kind": "entity",
+      "elements": {
+        "RYEAR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year",
+          "type": "cds.String",
+          "length": 4,
+          "notNull": true
+        },
+        "RTCUR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Transaction Currency",
+          "type": "cds.String",
+          "length": 5,
+          "notNull": true
+        },
+        "RUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Base Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "notNull": true
+        },
+        "RVERS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Version",
+          "type": "cds.String",
+          "length": 3,
+          "notNull": true
+        },
+        "RACCT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Account Number",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_SK"
+          },
+          "notNull": true
+        },
+        "RBUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "notNull": true
+        },
+        "RCNTR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Cost Center",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_BI"
+          },
+          "notNull": true
+        },
+        "PRCTR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Profit Center",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_CE"
+          },
+          "notNull": true
+        },
+        "RFAREA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Functional Area",
+          "type": "cds.String",
+          "length": 16,
+          "notNull": true
+        },
+        "KOKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Controlling Area",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_BI"
+          },
+          "notNull": true
+        },
+        "SEGMENT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Segment",
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true
+        },
+        "RASSC": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Trading Partner No.",
+          "type": "cds.String",
+          "length": 6,
+          "notNull": true
+        },
+        "QUANUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Unit of Measure",
+          "type": "cds.String",
+          "length": 3,
+          "notNull": true
+        },
+        "VALUETYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Reporting Value Type",
+          "type": "cds.String",
+          "length": 3,
+          "notNull": true
+        },
+        "CURTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Currency type",
+          "type": "cds.String",
+          "length": 2,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_CUR"
+          },
+          "notNull": true
+        },
+        "FISCPER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year/period",
+          "type": "cds.String",
+          "length": 7,
+          "notNull": true
+        },
+        "FISCVAR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Fiscal year variant",
+          "type": "cds.String",
+          "length": 2,
+          "notNull": true
+        },
+        "CHARTACCTS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Chart of Accounts",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_SK"
+          },
+          "notNull": true
+        },
+        "VALUTYP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Valuation View",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_VAL"
+          },
+          "notNull": true
+        },
+        "CURRUNIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Currency",
+          "type": "cds.String",
+          "length": 5
+        },
+        "BALANCE": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Accumulated Balance",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "DEBIT": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Total Debit Postings",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "ZLOGSYS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Source System",
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true
+        },
+        "CREDIT": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Total Credit Postings",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "TURNOVER": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Sales of the Period",
+          "precision": 23,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "QUANTITY": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Consumption Quantity",
+          "precision": 17,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "notNull": true
+        },
+        "LOGSYS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Logical system",
+          "type": "cds.String",
+          "length": 10,
+          "notNull": true
+        },
+        "_ZV_DWC_CE": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "PRCTR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_CE",
+                "PRCTR"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_CEPCT",
+          "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL to Texts for Profit Center Master Data - Transaction Data"
+        },
+        "_ZV_DWC_SK": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "RACCT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_SK",
+                "SAKNR"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "CHARTACCTS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_SK",
+                "KTOPL"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_SKAT",
+          "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL to Chart of Accounts: Description - Transaction Data"
+        },
+        "_ZV_DWC_BI": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "RCNTR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_BI",
+                "KOSTL"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "KOKRS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_BI",
+                "KOKRS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_BIW_CSKT",
+          "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL to Data Collection of Cost Center Texts for BW - Transaction Data"
+        },
+        "_HL_MD_VAL": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VALUTYP"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_VAL",
+                "VALUTYP"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_VALUTYP_TEXT",
+          "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL to Valuation View Texts"
+        },
+        "_HL_MD_CUR": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "CURTYPE"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_CUR",
+                "RSCURTYPE"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_CURTYPE_TEXT",
+          "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL to Currency Type Texts"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "General Ledger: Leading Ledger Balances - HL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_COMP_CODE_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "BUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@Analytics.dimension": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BUTXT"
+            }
+          ],
+          "notNull": true
+        },
+        "SPRAS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Analytics.dimension": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "BUTXT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company Code Description",
+          "type": "cds.String",
+          "length": 25,
+          "@Analytics.dimension": true,
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Company Codes Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

@@ -13,6 +13,7 @@ from modules.entity import *
 
 import json
 import os
+from pathlib import Path
 from pyapacheatlas.auth import ServicePrincipalAuthentication
 from pyapacheatlas.core import PurviewClient
 from pyapacheatlas.core.glossary import PurviewGlossaryTerm

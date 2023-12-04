@@ -1,0 +1,160 @@
+{
+  "definitions": {
+    "RL_OTC_PKMS_DELIVERIES": {
+      "kind": "entity",
+      "elements": {
+        "C0": {
+          "@EndUserText.label": "Legacy Plant",
+          "type": "cds.String",
+          "length": 3
+        },
+        "C1": {
+          "@EndUserText.label": "Delivery Number",
+          "type": "cds.Integer64"
+        },
+        "C2": {
+          "@EndUserText.label": "PO Number",
+          "type": "cds.String",
+          "length": 26
+        },
+        "C3": {
+          "@EndUserText.label": "Delivery Created On",
+          "type": "cds.Date"
+        },
+        "C4": {
+          "@EndUserText.label": "WM PickTicket status",
+          "type": "cds.Integer"
+        },
+        "ZCOUNT": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "TD_STG.HL_OTC_PKMS_DELIVERIES"
+            ],
+            "as": "HL_OTC_PKMS_DELIVERIES"
+          },
+          "columns": [
+            {
+              "ref": [
+                "C0"
+              ]
+            },
+            {
+              "ref": [
+                "C1"
+              ]
+            },
+            {
+              "ref": [
+                "C2"
+              ]
+            },
+            {
+              "ref": [
+                "C3"
+              ]
+            },
+            {
+              "ref": [
+                "C4"
+              ]
+            },
+            {
+              "ref": [
+                "ZCOUNT"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "PKMS Delivery Master Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true
+    },
+    "TD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "QA-SIT TransactionDataStaging",
+      "@DataWarehouse.space.schema": "TD_STG",
+      "@DataWarehouse.space.name": "TD_STG"
+    },
+    "TD_STG.HL_OTC_PKMS_DELIVERIES": {
+      "kind": "entity",
+      "elements": {
+        "C0": {
+          "@EndUserText.label": "Legacy Plant",
+          "type": "cds.String",
+          "length": 3
+        },
+        "C1": {
+          "@EndUserText.label": "Delivery Number",
+          "type": "cds.Integer64"
+        },
+        "C2": {
+          "@EndUserText.label": "PO Number",
+          "type": "cds.String",
+          "length": 26
+        },
+        "C3": {
+          "@EndUserText.label": "Delivery Created On",
+          "type": "cds.Date"
+        },
+        "C4": {
+          "@EndUserText.label": "WM PickTicket status",
+          "type": "cds.Integer"
+        },
+        "ZCOUNT": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "PKMS Deliveries HL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0",
+  "editorSettings": {
+    "RL_OTC_PKMS_DELIVERIES": {
+      "editor": {
+        "lastModifier": "GRAPHICALVIEWBUILDER",
+        "default": "GRAPHICALVIEWBUILDER"
+      },
+      "uiModel": "{\"contents\":{\"0e6bfd8a-d2b0-4ae8-ace5-37ee43c927c2\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_OTC_PKMS_DELIVERIES\",\"label\":\"PKMS Delivery Master Report\",\"modificationDate\":1695831246124,\"deploymentDate\":1695831270887,\"#objectStatus\":\"1\",\"output\":\"ace0fbf6-db85-4ded-81cc-85a3ad98d4d7\",\"nodes\":{\"ace0fbf6-db85-4ded-81cc-85a3ad98d4d7\":{\"name\":\"RL_OTC_PKMS_DELIVERIES\"},\"b516724e-5d51-4577-bc51-4fce477547fb\":{\"name\":\"TD_STG.HL_OTC_PKMS_DELIVERIES\"},\"7b1abb2d-7560-400b-860e-2df8e407f5cc\":{\"name\":\"Projection 1\"}},\"contexts\":{\"c42ecd6a-ec2a-44e7-9c16-2320196d5d8b\":{\"name\":\"TD_STG\"}},\"diagrams\":{\"3da8bfec-1766-4f18-9897-9812c2812ff7\":{}}},\"ace0fbf6-db85-4ded-81cc-85a3ad98d4d7\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_OTC_PKMS_DELIVERIES\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1695831246124,\"deploymentDate\":1695831270887,\"#objectStatus\":\"1\",\"elements\":{\"c48543a7-99fc-47ce-abfd-32bdb236abdf\":{\"name\":\"C0\"},\"c33b27db-17c5-45c1-b676-4cc5e7563657\":{\"name\":\"C1\"},\"fd86298a-0471-452d-a224-12653ddb2a0f\":{\"name\":\"C2\"},\"33a2efbb-956d-40cb-931f-1a0cde6044e5\":{\"name\":\"C3\"},\"a7b66e17-6c3a-4f5f-ab65-8bce3123cf73\":{\"name\":\"C4\"},\"4fbb2914-a9c2-42d6-9a81-60a0d3ec2f7c\":{\"name\":\"ZCOUNT\"}}},\"b516724e-5d51-4577-bc51-4fce477547fb\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"TD_STG.HL_OTC_PKMS_DELIVERIES\",\"label\":\"PKMS Deliveries HL\",\"type\":3,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1695831107440,\"deploymentDate\":1695904714707,\"#objectStatus\":\"1\",\"alias\":\"HL_OTC_PKMS_DELIVERIES\",\"context\":\"c42ecd6a-ec2a-44e7-9c16-2320196d5d8b\",\"elements\":{\"f312bee2-f723-4e62-b322-ec724e5e9ca5\":{\"name\":\"C0\"},\"6b206d82-510d-4f8a-bda5-51cfcc4eb230\":{\"name\":\"C1\"},\"b8185157-b8ca-42ed-8d3a-0edd592e87c0\":{\"name\":\"C2\"},\"d59cd589-359d-4a77-b84e-d22943117697\":{\"name\":\"C3\"},\"4773bf6a-f768-4364-a0c9-419ed3e44855\":{\"name\":\"C4\"},\"9fd12a5a-9a5d-41e0-8f54-55f7803cc8b7\":{\"name\":\"ZCOUNT\"}},\"successorNode\":\"7b1abb2d-7560-400b-860e-2df8e407f5cc\"},\"7b1abb2d-7560-400b-860e-2df8e407f5cc\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"2a52f679-edec-4288-aea6-eb844b255ec8\":{\"name\":\"C0\"},\"379e1833-6348-489a-ab9b-b8fc37307c26\":{\"name\":\"C1\"},\"9e464f97-0443-4ceb-83cd-2e6e11cb2a43\":{\"name\":\"C2\"},\"06236266-d011-4ded-9f08-19a74f0a5935\":{\"name\":\"C3\"},\"8bec56ab-cc48-41bf-8eb6-b35d3652ce86\":{\"name\":\"C4\"},\"f91699fa-e724-4175-94fe-6b23bae06024\":{\"name\":\"ZCOUNT\"}},\"successorNode\":\"ace0fbf6-db85-4ded-81cc-85a3ad98d4d7\"},\"c42ecd6a-ec2a-44e7-9c16-2320196d5d8b\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"TD_STG\",\"label\":\"QA-SIT TransactionDataStaging\",\"crossSpace\":{\"schema\":\"TD_STG\",\"space\":\"TD_STG\"}},\"3da8bfec-1766-4f18-9897-9812c2812ff7\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"dce29ea0-ff9a-4d68-8d34-93b54a32f6e5\":{},\"c85c00e2-636a-4140-9ccf-291fd00db90d\":{\"name\":\"Entity Symbol 1\"},\"6b9b728a-0fb5-40a8-94b2-84e024e7745f\":{},\"19508c28-dfec-4bcd-8725-db9020b797cf\":{},\"a4d7d9a5-5a32-439d-b173-f5e1848c0e0b\":{}}},\"c48543a7-99fc-47ce-abfd-32bdb236abdf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C0\",\"label\":\"Legacy Plant\",\"newName\":\"C0\",\"indexOrder\":0,\"length\":3,\"precision\":0,\"scale\":0},\"c33b27db-17c5-45c1-b676-4cc5e7563657\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C1\",\"label\":\"Delivery Number\",\"newName\":\"C1\",\"indexOrder\":1,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0},\"fd86298a-0471-452d-a224-12653ddb2a0f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C2\",\"label\":\"PO Number\",\"newName\":\"C2\",\"indexOrder\":2,\"length\":26,\"precision\":0,\"scale\":0},\"33a2efbb-956d-40cb-931f-1a0cde6044e5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C3\",\"label\":\"Delivery Created On\",\"newName\":\"C3\",\"indexOrder\":3,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"a7b66e17-6c3a-4f5f-ab65-8bce3123cf73\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C4\",\"label\":\"WM PickTicket status\",\"newName\":\"C4\",\"indexOrder\":4,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0},\"4fbb2914-a9c2-42d6-9a81-60a0d3ec2f7c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCOUNT\",\"label\":\"Count\",\"newName\":\"ZCOUNT\",\"indexOrder\":5,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true},\"dce29ea0-ff9a-4d68-8d34-93b54a32f6e5\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"ace0fbf6-db85-4ded-81cc-85a3ad98d4d7\"},\"c85c00e2-636a-4140-9ccf-291fd00db90d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"b516724e-5d51-4577-bc51-4fce477547fb\"},\"6b9b728a-0fb5-40a8-94b2-84e024e7745f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-2,\"y\":-16,\"object\":\"7b1abb2d-7560-400b-860e-2df8e407f5cc\"},\"19508c28-dfec-4bcd-8725-db9020b797cf\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"c85c00e2-636a-4140-9ccf-291fd00db90d\",\"targetSymbol\":\"6b9b728a-0fb5-40a8-94b2-84e024e7745f\"},\"a4d7d9a5-5a32-439d-b173-f5e1848c0e0b\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"6b9b728a-0fb5-40a8-94b2-84e024e7745f\",\"targetSymbol\":\"dce29ea0-ff9a-4d68-8d34-93b54a32f6e5\"},\"f312bee2-f723-4e62-b322-ec724e5e9ca5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C0\",\"label\":\"Legacy Plant\",\"newName\":\"C0\",\"indexOrder\":0,\"length\":3,\"precision\":0,\"scale\":0,\"successorElement\":\"2a52f679-edec-4288-aea6-eb844b255ec8\"},\"6b206d82-510d-4f8a-bda5-51cfcc4eb230\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C1\",\"label\":\"Delivery Number\",\"newName\":\"C1\",\"indexOrder\":1,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"379e1833-6348-489a-ab9b-b8fc37307c26\"},\"b8185157-b8ca-42ed-8d3a-0edd592e87c0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C2\",\"label\":\"PO Number\",\"newName\":\"C2\",\"indexOrder\":2,\"length\":26,\"precision\":0,\"scale\":0,\"successorElement\":\"9e464f97-0443-4ceb-83cd-2e6e11cb2a43\"},\"d59cd589-359d-4a77-b84e-d22943117697\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C3\",\"label\":\"Delivery Created On\",\"newName\":\"C3\",\"indexOrder\":3,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"06236266-d011-4ded-9f08-19a74f0a5935\"},\"4773bf6a-f768-4364-a0c9-419ed3e44855\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C4\",\"label\":\"WM PickTicket status\",\"newName\":\"C4\",\"indexOrder\":4,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"8bec56ab-cc48-41bf-8eb6-b35d3652ce86\"},\"9fd12a5a-9a5d-41e0-8f54-55f7803cc8b7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCOUNT\",\"label\":\"Count\",\"newName\":\"ZCOUNT\",\"indexOrder\":5,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"f91699fa-e724-4175-94fe-6b23bae06024\"},\"2a52f679-edec-4288-aea6-eb844b255ec8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C0\",\"label\":\"Legacy Plant\",\"newName\":\"C0\",\"indexOrder\":0,\"length\":3,\"precision\":0,\"scale\":0,\"successorElement\":\"c48543a7-99fc-47ce-abfd-32bdb236abdf\"},\"379e1833-6348-489a-ab9b-b8fc37307c26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C1\",\"label\":\"Delivery Number\",\"newName\":\"C1\",\"indexOrder\":1,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"c33b27db-17c5-45c1-b676-4cc5e7563657\"},\"9e464f97-0443-4ceb-83cd-2e6e11cb2a43\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C2\",\"label\":\"PO Number\",\"newName\":\"C2\",\"indexOrder\":2,\"length\":26,\"precision\":0,\"scale\":0,\"successorElement\":\"fd86298a-0471-452d-a224-12653ddb2a0f\"},\"06236266-d011-4ded-9f08-19a74f0a5935\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C3\",\"label\":\"Delivery Created On\",\"newName\":\"C3\",\"indexOrder\":3,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"33a2efbb-956d-40cb-931f-1a0cde6044e5\"},\"8bec56ab-cc48-41bf-8eb6-b35d3652ce86\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"C4\",\"label\":\"WM PickTicket status\",\"newName\":\"C4\",\"indexOrder\":4,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"a7b66e17-6c3a-4f5f-ab65-8bce3123cf73\"},\"f91699fa-e724-4175-94fe-6b23bae06024\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZCOUNT\",\"label\":\"Count\",\"newName\":\"ZCOUNT\",\"indexOrder\":5,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"4fbb2914-a9c2-42d6-9a81-60a0d3ec2f7c\"}}}"
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "definitions": {
+    "RL_OTC_BBC_RETURNS_REPORT": {
+      "kind": "entity",
+      "elements": {
+        "ORDERS": {
+          "@EndUserText.label": "ORDERS",
+          "type": "cds.String",
+          "length": 12
+        },
+        "BELNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "SAP Invoice#",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "FISCAL_YR": {
+          "@EndUserText.label": "Fiscal year",
+          "type": "cds.String",
+          "length": 4
+        },
+        "FISCAL_PRD": {
+          "@EndUserText.label": "Fiscal Period",
+          "type": "cds.String",
+          "length": 2
+        },
+        "BUDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Invoice Date",
+          "type": "cds.Date"
+        },
+        "EAN11": {
+          "@EndUserText.label": "UPC",
+          "type": "cds.String",
+          "length": 18
+        },
+        "SKU": {
+          "@EndUserText.label": "SKU",
+          "type": "cds.String",
+          "length": 30
+        },
+        "MSL": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Units",
+          "precision": 38,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "HSL": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Net Price",
+          "precision": 38,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": true,
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "55_PERCENT": {
+          "@EndUserText.label": "55% of Return PriceCustom",
+          "type": "cds.Double",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Semantics.amount.currencyCode": true,
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "TD_STG.PL_OTC_BBC_RETURNS_REPORT"
+            ],
+            "as": "PL_OTC_BBC_RETURNS_REPORT"
+          },
+          "columns": [
+            {
+              "ref": [
+                "ORDERS"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "BELNR"
+              ]
+            },
+            {
+              "ref": [
+                "FISCAL_YR"
+              ]
+            },
+            {
+              "ref": [
+                "FISCAL_PRD"
+              ]
+            },
+            {
+              "ref": [
+                "BUDAT"
+              ]
+            },
+            {
+              "ref": [
+                "EAN11"
+              ]
+            },
+            {
+              "ref": [
+                "SKU"
+              ]
+            },
+            {
+              "ref": [
+                "MSL"
+              ]
+            },
+            {
+              "ref": [
+                "HSL"
+              ]
+            },
+            {
+              "ref": [
+                "55_PERCENT"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "BBC Returns Master Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true
+    },
+    "TD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Transaction Data Staging",
+      "@DataWarehouse.space.schema": "TD_STG",
+      "@DataWarehouse.space.name": "TD_STG"
+    },
+    "TD_STG.PL_OTC_BBC_RETURNS_REPORT": {
+      "kind": "entity",
+      "elements": {
+        "ORDERS": {
+          "@EndUserText.label": "ORDERS",
+          "type": "cds.String",
+          "length": 12
+        },
+        "BELNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "SAP Invoice#",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "FISCAL_YR": {
+          "@EndUserText.label": "Fiscal year",
+          "type": "cds.String",
+          "length": 4
+        },
+        "FISCAL_PRD": {
+          "@EndUserText.label": "Fiscal Period",
+          "type": "cds.String",
+          "length": 2
+        },
+        "BUDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Invoice Date",
+          "type": "cds.Date"
+        },
+        "EAN11": {
+          "@EndUserText.label": "UPC",
+          "type": "cds.String",
+          "length": 18
+        },
+        "SKU": {
+          "@EndUserText.label": "SKU",
+          "type": "cds.String",
+          "length": 30
+        },
+        "MSL": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Units",
+          "precision": 38,
+          "scale": 3,
+          "type": "cds.Decimal",
+          "@Analytics.dimension": true
+        },
+        "HSL": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Net Price",
+          "precision": 38,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@Analytics.dimension": true
+        },
+        "55_PERCENT": {
+          "@EndUserText.label": "55% of Return PriceCustom",
+          "type": "cds.Double"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "BBC Returns Report - PL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0",
+  "editorSettings": {
+    "RL_OTC_BBC_RETURNS_REPORT": {
+      "editor": {
+        "lastModifier": "GRAPHICALVIEWBUILDER",
+        "default": "GRAPHICALVIEWBUILDER"
+      },
+      "uiModel": "{\"contents\":{\"ae139acc-88ee-4d5d-a19f-bddf4bcaec1a\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_OTC_BBC_RETURNS_REPORT\",\"label\":\"BBC Returns Master Report\",\"modificationDate\":1691592468641,\"deploymentDate\":1693235282783,\"#objectStatus\":\"1\",\"output\":\"43523820-2221-4955-9342-1f34f9d3ccfe\",\"nodes\":{\"43523820-2221-4955-9342-1f34f9d3ccfe\":{\"name\":\"RL_OTC_BBC_RETURNS_REPORT\"},\"0b6ba0ea-478c-4374-979c-16f9c6060883\":{\"name\":\"TD_STG.PL_OTC_BBC_RETURNS_REPORT\"},\"b0671230-a3a1-41e5-bfb2-f6c177efa9b4\":{\"name\":\"Projection 1\"}},\"contexts\":{\"aa8bd22a-ba71-4be4-b0e4-280ed770e422\":{\"name\":\"TD_STG\"}},\"diagrams\":{\"c9eb6a64-d5c8-4aa6-a7e6-096fc39907da\":{}}},\"43523820-2221-4955-9342-1f34f9d3ccfe\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_OTC_BBC_RETURNS_REPORT\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1691592468641,\"deploymentDate\":1693235282783,\"#objectStatus\":\"1\",\"elements\":{\"78916490-3e28-4c3e-8ec7-58992eb2c0dd\":{\"name\":\"ORDERS\"},\"a49e937a-1d91-4cae-aa92-29c44ad77b6a\":{\"name\":\"BELNR\"},\"274552d1-9bf6-44b4-8653-123dd4c77da4\":{\"name\":\"FISCAL_YR\"},\"19b58c1c-eabc-4065-8827-ef48b4cd6669\":{\"name\":\"FISCAL_PRD\"},\"719e9ffd-4345-43e4-8a6f-8725f7b3cac7\":{\"name\":\"BUDAT\"},\"277f3198-eb33-433e-8a6f-56e809358520\":{\"name\":\"EAN11\"},\"03f5b82d-ec97-4fe4-80cf-40749720f4af\":{\"name\":\"SKU\"},\"923f4e31-c784-4642-bfe5-2f9d7eb4853f\":{\"name\":\"MSL\"},\"51f6d5b1-d8dc-4378-99dc-617e41f7643a\":{\"name\":\"HSL\"},\"d93564df-c164-4d76-b3b6-33f4d04d4ffb\":{\"name\":\"55_PERCENT\"}}},\"0b6ba0ea-478c-4374-979c-16f9c6060883\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"TD_STG.PL_OTC_BBC_RETURNS_REPORT\",\"label\":\"BBC Returns Report - PL\",\"type\":3,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isHiddenInUi\":false,\"modificationDate\":1693235262083,\"deploymentDate\":1693235323820,\"#objectStatus\":\"1\",\"alias\":\"PL_OTC_BBC_RETURNS_REPORT\",\"context\":\"aa8bd22a-ba71-4be4-b0e4-280ed770e422\",\"elements\":{\"f2b571f1-b003-4c40-8e66-424df98afd41\":{\"name\":\"ORDERS\"},\"6a6166ef-1806-4923-8c48-b7186f172b69\":{\"name\":\"BELNR\"},\"32455367-76db-4d1d-b87d-b05d4b35ab1c\":{\"name\":\"FISCAL_YR\"},\"2c571075-1192-4756-9db0-474cf797e905\":{\"name\":\"FISCAL_PRD\"},\"022c7f4a-77ff-447f-aa2d-d4276e3adc25\":{\"name\":\"BUDAT\"},\"6255459b-a4ad-4a3f-8eb8-8cb8c5176c8f\":{\"name\":\"EAN11\"},\"176ffccb-5c0c-4258-b700-ed34a5c0c520\":{\"name\":\"SKU\"},\"ddc05b0f-314c-4645-b4bc-279184842d68\":{\"name\":\"MSL\"},\"879bc231-c5ee-4f00-ab11-54240c4a9359\":{\"name\":\"HSL\"},\"0b9a5ea2-0f95-441e-9c3f-fe747efd7198\":{\"name\":\"55_PERCENT\"}},\"successorNode\":\"b0671230-a3a1-41e5-bfb2-f6c177efa9b4\"},\"b0671230-a3a1-41e5-bfb2-f6c177efa9b4\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"d2cfd958-847c-4fdf-8304-344c6a8a4b96\":{\"name\":\"ORDERS\"},\"db5b972b-2c7d-4b1f-85d2-a4c8f0eccaf2\":{\"name\":\"BELNR\"},\"efd44494-2c54-47d1-a15d-ebcaad53b905\":{\"name\":\"FISCAL_YR\"},\"250eb355-8e54-467d-bd81-3ea1555841b0\":{\"name\":\"FISCAL_PRD\"},\"0400e452-c0d9-47ea-ae67-83d7651a3587\":{\"name\":\"BUDAT\"},\"15d75796-fb48-4f38-864d-77ea8fba1163\":{\"name\":\"EAN11\"},\"17395531-e025-43bf-bdd4-7ec4014d408f\":{\"name\":\"SKU\"},\"09259e81-e2f1-4c8d-b38c-d57ce820ddc7\":{\"name\":\"MSL\"},\"4066ca67-4f8a-4a92-9712-a9eb67dbe553\":{\"name\":\"HSL\"},\"c7ecee94-4e33-45f3-a690-67f31478cafc\":{\"name\":\"55_PERCENT\"}},\"successorNode\":\"43523820-2221-4955-9342-1f34f9d3ccfe\"},\"aa8bd22a-ba71-4be4-b0e4-280ed770e422\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"TD_STG\",\"label\":\"Dev-Transaction Data Staging\",\"crossSpace\":{\"schema\":\"TD_STG\",\"space\":\"TD_STG\"}},\"c9eb6a64-d5c8-4aa6-a7e6-096fc39907da\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"1ddfe945-ce10-4073-afe9-90f08fd6c453\":{},\"2266c8d7-9ade-4d91-ad67-c4c03c05ad49\":{\"name\":\"Entity Symbol 1\"},\"d61e5ba6-0975-4fb1-8b39-0ec378607efc\":{},\"1bc9512f-241b-491d-842d-8b68ce9e049d\":{},\"386f57f2-f6ef-4e7f-8508-cca3d8dfba63\":{}}},\"78916490-3e28-4c3e-8ec7-58992eb2c0dd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORDERS\",\"label\":\"ORDERS\",\"newName\":\"ORDERS\",\"indexOrder\":0,\"length\":12,\"precision\":0,\"scale\":0},\"a49e937a-1d91-4cae-aa92-29c44ad77b6a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BELNR\",\"label\":\"SAP Invoice#\",\"newName\":\"BELNR\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"274552d1-9bf6-44b4-8653-123dd4c77da4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_YR\",\"label\":\"Fiscal year\",\"newName\":\"FISCAL_YR\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0},\"19b58c1c-eabc-4065-8827-ef48b4cd6669\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_PRD\",\"label\":\"Fiscal Period\",\"newName\":\"FISCAL_PRD\",\"indexOrder\":3,\"length\":2,\"precision\":0,\"scale\":0},\"719e9ffd-4345-43e4-8a6f-8725f7b3cac7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUDAT\",\"label\":\"Invoice Date\",\"newName\":\"BUDAT\",\"indexOrder\":4,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"277f3198-eb33-433e-8a6f-56e809358520\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"EAN11\",\"label\":\"UPC\",\"newName\":\"EAN11\",\"indexOrder\":5,\"length\":18,\"precision\":0,\"scale\":0},\"03f5b82d-ec97-4fe4-80cf-40749720f4af\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SKU\",\"label\":\"SKU\",\"newName\":\"SKU\",\"indexOrder\":6,\"length\":30,\"precision\":0,\"scale\":0},\"923f4e31-c784-4642-bfe5-2f9d7eb4853f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MSL\",\"label\":\"Units\",\"newName\":\"MSL\",\"indexOrder\":7,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":3,\"isMeasure\":true,\"semanticType\":\"@Semantics.quantity.unitOfMeasure\",\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"51f6d5b1-d8dc-4378-99dc-617e41f7643a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"HSL\",\"label\":\"Net Price\",\"newName\":\"HSL\",\"indexOrder\":8,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":2,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\",\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"d93564df-c164-4d76-b3b6-33f4d04d4ffb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"55_PERCENT\",\"label\":\"55% of Return PriceCustom\",\"newName\":\"55_PERCENT\",\"indexOrder\":9,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Double\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true,\"semanticType\":\"@Semantics.amount.currencyCode\"},\"f2b571f1-b003-4c40-8e66-424df98afd41\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORDERS\",\"label\":\"ORDERS\",\"newName\":\"ORDERS\",\"indexOrder\":0,\"length\":12,\"precision\":0,\"scale\":0,\"successorElement\":\"d2cfd958-847c-4fdf-8304-344c6a8a4b96\"},\"6a6166ef-1806-4923-8c48-b7186f172b69\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BELNR\",\"label\":\"SAP Invoice#\",\"newName\":\"BELNR\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"db5b972b-2c7d-4b1f-85d2-a4c8f0eccaf2\"},\"32455367-76db-4d1d-b87d-b05d4b35ab1c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_YR\",\"label\":\"Fiscal year\",\"newName\":\"FISCAL_YR\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"successorElement\":\"efd44494-2c54-47d1-a15d-ebcaad53b905\"},\"2c571075-1192-4756-9db0-474cf797e905\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_PRD\",\"label\":\"Fiscal Period\",\"newName\":\"FISCAL_PRD\",\"indexOrder\":3,\"length\":2,\"precision\":0,\"scale\":0,\"successorElement\":\"250eb355-8e54-467d-bd81-3ea1555841b0\"},\"022c7f4a-77ff-447f-aa2d-d4276e3adc25\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUDAT\",\"label\":\"Invoice Date\",\"newName\":\"BUDAT\",\"indexOrder\":4,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"0400e452-c0d9-47ea-ae67-83d7651a3587\"},\"6255459b-a4ad-4a3f-8eb8-8cb8c5176c8f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"EAN11\",\"label\":\"UPC\",\"newName\":\"EAN11\",\"indexOrder\":5,\"length\":18,\"precision\":0,\"scale\":0,\"successorElement\":\"15d75796-fb48-4f38-864d-77ea8fba1163\"},\"176ffccb-5c0c-4258-b700-ed34a5c0c520\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SKU\",\"label\":\"SKU\",\"newName\":\"SKU\",\"indexOrder\":6,\"length\":30,\"precision\":0,\"scale\":0,\"successorElement\":\"17395531-e025-43bf-bdd4-7ec4014d408f\"},\"ddc05b0f-314c-4645-b4bc-279184842d68\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MSL\",\"label\":\"Units\",\"newName\":\"MSL\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":3,\"isDimension\":true,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"09259e81-e2f1-4c8d-b38c-d57ce820ddc7\"},\"879bc231-c5ee-4f00-ab11-54240c4a9359\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"HSL\",\"label\":\"Net Price\",\"newName\":\"HSL\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":2,\"isDimension\":true,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"4066ca67-4f8a-4a92-9712-a9eb67dbe553\"},\"0b9a5ea2-0f95-441e-9c3f-fe747efd7198\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"55_PERCENT\",\"label\":\"55% of Return PriceCustom\",\"newName\":\"55_PERCENT\",\"indexOrder\":9,\"dataType\":\"cds.Double\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"c7ecee94-4e33-45f3-a690-67f31478cafc\"},\"d2cfd958-847c-4fdf-8304-344c6a8a4b96\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORDERS\",\"label\":\"ORDERS\",\"newName\":\"ORDERS\",\"indexOrder\":0,\"length\":12,\"precision\":0,\"scale\":0,\"successorElement\":\"78916490-3e28-4c3e-8ec7-58992eb2c0dd\"},\"db5b972b-2c7d-4b1f-85d2-a4c8f0eccaf2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BELNR\",\"label\":\"SAP Invoice#\",\"newName\":\"BELNR\",\"indexOrder\":1,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a49e937a-1d91-4cae-aa92-29c44ad77b6a\"},\"efd44494-2c54-47d1-a15d-ebcaad53b905\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_YR\",\"label\":\"Fiscal year\",\"newName\":\"FISCAL_YR\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"successorElement\":\"274552d1-9bf6-44b4-8653-123dd4c77da4\"},\"250eb355-8e54-467d-bd81-3ea1555841b0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCAL_PRD\",\"label\":\"Fiscal Period\",\"newName\":\"FISCAL_PRD\",\"indexOrder\":3,\"length\":2,\"precision\":0,\"scale\":0,\"successorElement\":\"19b58c1c-eabc-4065-8827-ef48b4cd6669\"},\"0400e452-c0d9-47ea-ae67-83d7651a3587\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUDAT\",\"label\":\"Invoice Date\",\"newName\":\"BUDAT\",\"indexOrder\":4,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"719e9ffd-4345-43e4-8a6f-8725f7b3cac7\"},\"15d75796-fb48-4f38-864d-77ea8fba1163\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"EAN11\",\"label\":\"UPC\",\"newName\":\"EAN11\",\"indexOrder\":5,\"length\":18,\"precision\":0,\"scale\":0,\"successorElement\":\"277f3198-eb33-433e-8a6f-56e809358520\"},\"17395531-e025-43bf-bdd4-7ec4014d408f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SKU\",\"label\":\"SKU\",\"newName\":\"SKU\",\"indexOrder\":6,\"length\":30,\"precision\":0,\"scale\":0,\"successorElement\":\"03f5b82d-ec97-4fe4-80cf-40749720f4af\"},\"09259e81-e2f1-4c8d-b38c-d57ce820ddc7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MSL\",\"label\":\"Units\",\"newName\":\"MSL\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":3,\"isDimension\":true,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"923f4e31-c784-4642-bfe5-2f9d7eb4853f\"},\"4066ca67-4f8a-4a92-9712-a9eb67dbe553\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"HSL\",\"label\":\"Net Price\",\"newName\":\"HSL\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":38,\"scale\":2,\"isDimension\":true,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"51f6d5b1-d8dc-4378-99dc-617e41f7643a\"},\"c7ecee94-4e33-45f3-a690-67f31478cafc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"55_PERCENT\",\"label\":\"55% of Return PriceCustom\",\"newName\":\"55_PERCENT\",\"indexOrder\":9,\"dataType\":\"cds.Double\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"d93564df-c164-4d76-b3b6-33f4d04d4ffb\"},\"1ddfe945-ce10-4073-afe9-90f08fd6c453\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"43523820-2221-4955-9342-1f34f9d3ccfe\"},\"2266c8d7-9ade-4d91-ad67-c4c03c05ad49\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"0b6ba0ea-478c-4374-979c-16f9c6060883\"},\"d61e5ba6-0975-4fb1-8b39-0ec378607efc\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-2,\"y\":-16,\"object\":\"b0671230-a3a1-41e5-bfb2-f6c177efa9b4\"},\"1bc9512f-241b-491d-842d-8b68ce9e049d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"2266c8d7-9ade-4d91-ad67-c4c03c05ad49\",\"targetSymbol\":\"d61e5ba6-0975-4fb1-8b39-0ec378607efc\"},\"386f57f2-f6ef-4e7f-8508-cca3d8dfba63\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"d61e5ba6-0975-4fb1-8b39-0ec378607efc\",\"targetSymbol\":\"1ddfe945-ce10-4073-afe9-90f08fd6c453\"}}}"
+    }
+  }
+}

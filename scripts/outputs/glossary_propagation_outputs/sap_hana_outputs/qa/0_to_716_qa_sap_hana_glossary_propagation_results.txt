@@ -1,0 +1,1437 @@
+Glossary Terms Propagated Across SAP HANA Assets
+Ran for Glossary Terms 0 to 716
+Ran on SAP HANA Views and Tables
+_____________________________________________________________
+
+Glossary Term Number: 1
+No matches for glossary term, ACH Prenotification flag
+Glossary Term Number: 2
+No matches for glossary term, Address Group
+Glossary Term Number: 3
+No matches for glossary term, Address Key
+Glossary Term Number: 4
+No matches for glossary term, Address Number Key
+Glossary Term Number: 5
+No matches for glossary term, Address UUID
+Glossary Term Number: 6
+No matches for glossary term, Approved Payment Term
+Glossary Term Number: 7
+No matches for glossary term, Authorization Group
+Glossary Term Number: 8
+No matches for glossary term, Automatic evaluated receipt settlement for return items
+Glossary Term Number: 9
+No matches for glossary term, BP Grouping
+Glossary Term Number: 10
+No matches for glossary term, BP Relationship Number
+Glossary Term Number: 11
+No matches for glossary term, BP Role
+Glossary Term Number: 12
+No matches for glossary term, Bank Account Name
+Glossary Term Number: 13
+No matches for glossary term, Bank Account Number
+Glossary Term Number: 14
+No matches for glossary term, Bank Country Key
+Glossary Term Number: 15
+No matches for glossary term, Bank ID
+Glossary Term Number: 16
+No matches for glossary term, Bank details ID
+Glossary Term Number: 17
+No matches for glossary term, Block Key for Payment
+Glossary Term Number: 18
+No matches for glossary term, Business Partner GUID
+Glossary Term Number: 19
+No matches for glossary term, Business Partner Number
+Glossary Term Number: 20
+No matches for glossary term, Caller Number
+Glossary Term Number: 21
+No matches for glossary term, Central Archiving Flag
+Glossary Term Number: 22
+No matches for glossary term, Central Block for BP
+Glossary Term Number: 23
+No matches for glossary term, Central Deletion Block
+Glossary Term Number: 24
+No matches for glossary term, Central Deletion Flag
+Glossary Term Number: 25
+No matches for glossary term, Central posting block
+Glossary Term Number: 26
+No matches for glossary term, Centrally imposed purchasing block
+Glossary Term Number: 27
+No matches for glossary term, Changed at
+Glossary Term Number: 28
+No matches for glossary term, Changed on
+Glossary Term Number: 29
+No matches for glossary term, Check Flag for Double Invoices or Credit Memos
+Glossary Term Number: 30
+No matches for glossary term, Check digit for the international location number
+Glossary Term Number: 31
+No matches for glossary term, City file test status
+Glossary Term Number: 32
+No matches for glossary term, City postal code
+Glossary Term Number: 33
+No matches for glossary term, Company Name
+Glossary Term Number: 34
+No matches for glossary term, Created at
+Glossary Term Number: 35
+No matches for glossary term, Currency Key
+Glossary Term Number: 36
+No matches for glossary term, Date of Change
+Glossary Term Number: 37
+No matches for glossary term, Default Partner
+Glossary Term Number: 38
+No matches for glossary term, Deletion Flag for Master Record (Company Code Level)
+Glossary Term Number: 39
+No matches for glossary term, Deletion Indicator for Supplier at Purchasing Level
+Glossary Term Number: 40
+No matches for glossary term, Describe RNC
+Glossary Term Number: 41
+No matches for glossary term, Describe Remittance is sent
+Glossary Term Number: 42
+No matches for glossary term, Describe Status of FCPA
+Glossary Term Number: 43
+No matches for glossary term, Describe Tax Number(CALA/Vietnam)
+Glossary Term Number: 44
+No matches for glossary term, District
+Glossary Term Number: 45
+No matches for glossary term, EDI Number
+Glossary Term Number: 46
+No matches for glossary term, Email Address
+Glossary Term Number: 47
+No matches for glossary term, Email Address Search Field
+Glossary Term Number: 48
+No matches for glossary term, Evaluated Receipt Settlement (ERS)
+Glossary Term Number: 49
+No matches for glossary term, Fax Number
+Glossary Term Number: 50
+No matches for glossary term, First Name of Business Partner
+Glossary Term Number: 51
+No matches for glossary term, From
+Glossary Term Number: 52
+No matches for glossary term, Group for Calculation Schema
+Glossary Term Number: 53
+No matches for glossary term, IBAN
+Glossary Term Number: 54
+No matches for glossary term, Incoterm Location 1
+Glossary Term Number: 55
+No matches for glossary term, Industry Key
+Glossary Term Number: 56
+No matches for glossary term, Industry System
+Glossary Term Number: 57
+No matches for glossary term, Industry is Standard for BP in Industry System
+Glossary Term Number: 58
+No matches for glossary term, Last Name of Business Partner
+Glossary Term Number: 59
+No matches for glossary term, Lawson field for Bank Account Type
+Glossary Term Number: 60
+No matches for glossary term, Name 4
+Glossary Term Number: 61
+No matches for glossary term, Name of Bank Account
+Glossary Term Number: 62
+No matches for glossary term, Order Acknowledgment Requirement
+Glossary Term Number: 63
+No matches for glossary term, PO Box Postal Code
+Glossary Term Number: 64
+No matches for glossary term, PO Issue Method
+Glossary Term Number: 65
+No matches for glossary term, Partner Category
+Glossary Term Number: 66
+No matches for glossary term, Partner Converted
+Glossary Term Number: 67
+No matches for glossary term, Partner counter
+Glossary Term Number: 68
+No matches for glossary term, Payment Block
+Glossary Term Number: 69
+No matches for glossary term, Payment Method
+Glossary Term Number: 70
+No matches for glossary term, Payment currency
+Glossary Term Number: 71
+No matches for glossary term, Plant Level Relevant
+Glossary Term Number: 72
+No matches for glossary term, Posting block for company code
+Glossary Term Number: 73
+No matches for glossary term, Preferred Vendor
+Glossary Term Number: 74
+No matches for glossary term, Purchase Order Currency
+Glossary Term Number: 75
+No matches for glossary term, Purchasing block at purchasing organization level
+Glossary Term Number: 76
+No matches for glossary term, Reference Details
+Glossary Term Number: 77
+No matches for glossary term, Reference to other vendor
+Glossary Term Number: 78
+No matches for glossary term, Relationship Category
+Glossary Term Number: 79
+No matches for glossary term, Remittance e-mail address
+Glossary Term Number: 80
+No matches for glossary term, Scheduling Procedure
+Glossary Term Number: 81
+No matches for glossary term, Search term for matchcode search 1 (Name 1)
+Glossary Term Number: 82
+No matches for glossary term, Search term for matchcode search 2 (Name 2)
+Glossary Term Number: 83
+No matches for glossary term, Search term for matchcode search 3 (City)
+Glossary Term Number: 84
+No matches for glossary term, Sender Number
+Glossary Term Number: 85
+No matches for glossary term, Sequence Number
+Glossary Term Number: 86
+No matches for glossary term, Sort field
+Glossary Term Number: 87
+No matches for glossary term, Standard carrier access code
+Glossary Term Number: 88
+No matches for glossary term, Street 1
+Glossary Term Number: 89
+No matches for glossary term, Street 3
+Glossary Term Number: 90
+No matches for glossary term, Street 4
+Glossary Term Number: 91
+No matches for glossary term, Street 5
+Glossary Term Number: 92
+No matches for glossary term, Time Zone
+Glossary Term Number: 93
+No matches for glossary term, Trading Partner
+Glossary Term Number: 94
+No matches for glossary term, Transportation Zone
+Glossary Term Number: 95
+No matches for glossary term, Valid From
+Glossary Term Number: 96
+No matches for glossary term, Valid To
+Glossary Term Number: 97
+No matches for glossary term, Vendor Contact Name
+Glossary Term Number: 98
+No matches for glossary term, Vendor account group
+Glossary Term Number: 99
+No matches for glossary term, Changed by
+Glossary Term Number: 100
+No matches for glossary term, Created By
+Glossary Term Number: 101
+No matches for glossary term, Created On
+Glossary Term Number: 102
+No matches for glossary term, Department
+Glossary Term Number: 103
+No matches for glossary term, Payment Terms
+Glossary Term Number: 104
+No matches for glossary term, Activate Variant Grouping
+Glossary Term Number: 105
+No matches for glossary term, Activating Requirements Planning
+Glossary Term Number: 106
+No matches for glossary term, Address
+Glossary Term Number: 107
+No matches for glossary term, Area schema
+Glossary Term Number: 108
+No matches for glossary term, Assign Batches in ARun
+Glossary Term Number: 109
+No matches for glossary term, Assortment list profile
+Glossary Term Number: 110
+No matches for glossary term, Basic listing rule for assortments
+Glossary Term Number: 111
+No matches for glossary term, Batch Management Not Active by Default
+Glossary Term Number: 112
+No matches for glossary term, Batch Record: Type of DMS Used
+Glossary Term Number: 113
+No matches for glossary term, Batch Status Management Active
+Glossary Term Number: 114
+No matches for glossary term, Block from
+Glossary Term Number: 115
+No matches for glossary term, Block to
+Glossary Term Number: 116
+No matches for glossary term, Blocking reason
+Glossary Term Number: 117
+No matches for glossary term, Business Place
+Glossary Term Number: 118
+No matches for glossary term, Carry out subsequent listing
+Glossary Term Number: 119
+No matches for glossary term, Central Archiving Marker for Master Record
+Glossary Term Number: 120
+No matches for glossary term, City Code
+Glossary Term Number: 121
+No matches for glossary term, Closing date
+Glossary Term Number: 122
+No matches for glossary term, Conditions at Plant Level
+Glossary Term Number: 123
+No matches for glossary term, Control Data for BOM
+Glossary Term Number: 124
+No matches for glossary term, Control of Credit of Cost Centers
+Glossary Term Number: 125
+No matches for glossary term, Cost Object Controlling Linking Active
+Glossary Term Number: 126
+No matches for glossary term, Cost allocation distribution channel
+Glossary Term Number: 127
+No matches for glossary term, Cost allocation sales organization
+Glossary Term Number: 128
+No matches for glossary term, County Code
+Glossary Term Number: 129
+No matches for glossary term, Currency of POS systems
+Glossary Term Number: 130
+No matches for glossary term, Customer Number of Plant
+Glossary Term Number: 131
+No matches for glossary term, Distribution Channel for Intercompany Billing
+Glossary Term Number: 132
+No matches for glossary term, Distribution Profile at Plant Level
+Glossary Term Number: 133
+No matches for glossary term, Distribution channel for retail price determination
+Glossary Term Number: 134
+No matches for glossary term, Division for Intercompany Billing
+Glossary Term Number: 135
+No matches for glossary term, Exchange Valuation Indicator
+Glossary Term Number: 136
+No matches for glossary term, Factory Calendar Key
+Glossary Term Number: 137
+No matches for glossary term, Goods receiving hours ID
+Glossary Term Number: 138
+No matches for glossary term, Goods receiving hours-From
+Glossary Term Number: 139
+No matches for glossary term, Goods receiving hours-Until
+Glossary Term Number: 140
+No matches for glossary term, IPI Credit Allowed
+Glossary Term Number: 141
+No matches for glossary term, Invoke Added-Function Source Determination via ATP
+Glossary Term Number: 142
+No matches for glossary term, Layout
+Glossary Term Number: 143
+No matches for glossary term, Listing conditions should be created per assortment
+Glossary Term Number: 144
+No matches for glossary term, Maintenance Planning Plant
+Glossary Term Number: 145
+No matches for glossary term, Name of Person who Created the Object
+Glossary Term Number: 146
+No matches for glossary term, Node type: Supply Chain Network
+Glossary Term Number: 147
+No matches for glossary term, Number of Days for PO Tolerance
+Glossary Term Number: 148
+No matches for glossary term, Opening date
+Glossary Term Number: 149
+No matches for glossary term, Original Price for Segment Definition E2WRF1M
+Glossary Term Number: 150
+No matches for glossary term, POS inbound profile
+Glossary Term Number: 151
+No matches for glossary term, POS outbound profile
+Glossary Term Number: 152
+No matches for glossary term, POS outbound: condition type group
+Glossary Term Number: 153
+No matches for glossary term, Plant Category
+Glossary Term Number: 154
+No matches for glossary term, Plant for retail price determination
+Glossary Term Number: 155
+No matches for glossary term, Plant profile
+Glossary Term Number: 156
+No matches for glossary term, Profile for value-based inventory management
+Glossary Term Number: 157
+No matches for glossary term, ROI required
+Glossary Term Number: 158
+No matches for glossary term, Rule for Determining the Sales Area for Stock Transfers
+Glossary Term Number: 159
+No matches for glossary term, SOP Plant
+Glossary Term Number: 160
+No matches for glossary term, Sales Organization for Intercompany Billing
+Glossary Term Number: 161
+No matches for glossary term, Sales area (floor space)
+Glossary Term Number: 162
+No matches for glossary term, Sales area (floor space) unit
+Glossary Term Number: 163
+No matches for glossary term, Sales office
+Glossary Term Number: 164
+No matches for glossary term, Sales organization for retail price determination
+Glossary Term Number: 165
+No matches for glossary term, Season Active in Inventory Management
+Glossary Term Number: 166
+No matches for glossary term, Shipping Point-Receiving Point
+Glossary Term Number: 167
+No matches for glossary term, Source List Requirement
+Glossary Term Number: 168
+No matches for glossary term, Space management profile
+Glossary Term Number: 169
+No matches for glossary term, Store Category
+Glossary Term Number: 170
+No matches for glossary term, Structure for Name Formation
+Glossary Term Number: 171
+No matches for glossary term, Superior Department Store
+Glossary Term Number: 172
+No matches for glossary term, Supply Assignment (ARun)
+Glossary Term Number: 173
+No matches for glossary term, Supply Region
+Glossary Term Number: 174
+No matches for glossary term, Take Regular Vendor into Account
+Glossary Term Number: 175
+No matches for glossary term, Tax Indicator: Plant-Purchasing
+Glossary Term Number: 176
+No matches for glossary term, Text Name of 1st Dunning of Vendor Declarations
+Glossary Term Number: 177
+No matches for glossary term, Text Name of 3rd Dunning of Vendor Declarations
+Glossary Term Number: 178
+No matches for glossary term, Text Name of the 2nd Dunning of Vendor Declarations
+Glossary Term Number: 179
+No matches for glossary term, Time increment for investement buying algorithm
+Glossary Term Number: 180
+No matches for glossary term, Update of Activity Consumption in the Quantity Structure
+Glossary Term Number: 181
+No matches for glossary term, Updating is Active for Mixed Costing
+Glossary Term Number: 182
+No matches for glossary term, Updating is Active in Actual Costing
+Glossary Term Number: 183
+No matches for glossary term, Variance Key
+Glossary Term Number: 184
+No matches for glossary term, Vendor Number of Plant
+Glossary Term Number: 185
+No matches for glossary term, Vendor type (refinery/mill/other) (Brazil)
+Glossary Term Number: 186
+No matches for glossary term, ABC Indicator
+Glossary Term Number: 187
+No matches for glossary term, Account Assignment Group for this Material
+Glossary Term Number: 188
+No matches for glossary term, Age
+Glossary Term Number: 189
+No matches for glossary term, Alternative BOM
+Glossary Term Number: 190
+No matches for glossary term, Alternative BOM Text
+Glossary Term Number: 191
+No matches for glossary term, Alternative Unit of Measure for Stockkeeping Unit
+Glossary Term Number: 192
+No matches for glossary term, Assortment List Type
+Glossary Term Number: 193
+No matches for glossary term, Assortment grade
+Glossary Term Number: 194
+No matches for glossary term, Attribute Code
+Glossary Term Number: 195
+No matches for glossary term, Attribution Method
+Glossary Term Number: 196
+No matches for glossary term, BOM Item Number
+Glossary Term Number: 197
+No matches for glossary term, BOM Item Text (Line 1)
+Glossary Term Number: 198
+No matches for glossary term, BOM Item Text (Line 2)
+Glossary Term Number: 199
+No matches for glossary term, BOM Usage
+Glossary Term Number: 200
+No matches for glossary term, BOM Version
+Glossary Term Number: 201
+No matches for glossary term, BOM Version Status
+Glossary Term Number: 202
+No matches for glossary term, BOM category
+Glossary Term Number: 203
+No matches for glossary term, BOM component
+Glossary Term Number: 204
+No matches for glossary term, BOM item node number
+Glossary Term Number: 205
+No matches for glossary term, BUSINESS SEGMENT DESCRIPTION
+Glossary Term Number: 206
+No matches for glossary term, Base UOM Description
+Glossary Term Number: 207
+No matches for glossary term, Base Unit of Measure for BOM
+Glossary Term Number: 208
+No matches for glossary term, Base quantity
+Glossary Term Number: 209
+No matches for glossary term, Batch management requirement indicator
+Glossary Term Number: 210
+No matches for glossary term, Bill of Material
+Glossary Term Number: 211
+No matches for glossary term, Bill of Material Status
+Glossary Term Number: 212
+No matches for glossary term, Brand
+Glossary Term Number: 213
+No matches for glossary term, Brand Group
+Glossary Term Number: 214
+No matches for glossary term, Capacity Group
+Glossary Term Number: 215
+No matches for glossary term, Catalog Group
+Glossary Term Number: 216
+No matches for glossary term, Catalog Item Indicator
+Glossary Term Number: 217
+No matches for glossary term, Category
+Glossary Term Number: 218
+No matches for glossary term, Category of International Article Number (EAN)
+Glossary Term Number: 219
+No matches for glossary term, Change Number
+Glossary Term Number: 220
+No matches for glossary term, Change Number To
+Glossary Term Number: 221
+No matches for glossary term, Checking Group for Availability Check
+Glossary Term Number: 222
+No matches for glossary term, Color
+Glossary Term Number: 223
+No matches for glossary term, Color Short Desc
+Glossary Term Number: 224
+No matches for glossary term, Commission group
+Glossary Term Number: 225
+No matches for glossary term, Commodity Code/Import Code Number for Foreign Trade
+Glossary Term Number: 226
+No matches for glossary term, Component Quantity
+Glossary Term Number: 227
+No matches for glossary term, Component Unit of Measure
+Glossary Term Number: 228
+No matches for glossary term, Component Variant
+Glossary Term Number: 229
+No matches for glossary term, Country (Origin)
+Glossary Term Number: 230
+No matches for glossary term, Country of Origin
+Glossary Term Number: 231
+No matches for glossary term, Cross-Plant Configurable Material
+Glossary Term Number: 232
+No matches for glossary term, Current period (posting period)
+Glossary Term Number: 233
+No matches for glossary term, Date from w listed in the distribution center
+Glossary Term Number: 234
+No matches for glossary term, Date from which distr-chain-spec material status is valid
+Glossary Term Number: 235
+No matches for glossary term, Date from which listed in the store
+Glossary Term Number: 236
+No matches for glossary term, Date from which sold in the distribution center
+Glossary Term Number: 237
+No matches for glossary term, Date from which sold in the store
+Glossary Term Number: 238
+No matches for glossary term, Date from which the plant-specific material status is valid
+Glossary Term Number: 239
+No matches for glossary term, Date of Last Change
+Glossary Term Number: 240
+No matches for glossary term, Date of last date shift
+Glossary Term Number: 241
+No matches for glossary term, Date to which listed in the central warehouse/distr Center
+Glossary Term Number: 242
+No matches for glossary term, Date to which listed in the store
+Glossary Term Number: 243
+No matches for glossary term, Date to which sold in the distribution center
+Glossary Term Number: 244
+No matches for glossary term, Date to which sold in the store
+Glossary Term Number: 245
+No matches for glossary term, Default storage location for external procurement
+Glossary Term Number: 246
+No matches for glossary term, Deletion Indicator
+Glossary Term Number: 247
+No matches for glossary term, Discontinuation Date
+Glossary Term Number: 248
+No matches for glossary term, Distribution-chain-specific material status
+Glossary Term Number: 249
+No matches for glossary term, Division Description
+Glossary Term Number: 250
+No matches for glossary term, Do Not Cost
+Glossary Term Number: 251
+No matches for glossary term, ERP closure
+Glossary Term Number: 252
+No matches for glossary term, ERP control support
+Glossary Term Number: 253
+No matches for glossary term, ERP omni merch
+Glossary Term Number: 254
+No matches for glossary term, ERP prod feature closure
+Glossary Term Number: 255
+No matches for glossary term, ERP segdivision
+Glossary Term Number: 256
+No matches for glossary term, ERP weight
+Glossary Term Number: 257
+No matches for glossary term, External Material Group
+Glossary Term Number: 258
+No matches for glossary term, External assortment priority
+Glossary Term Number: 259
+No matches for glossary term, Fabrication
+Glossary Term Number: 260
+No matches for glossary term, Fashion Grade
+Glossary Term Number: 261
+No matches for glossary term, Features Single Selection
+Glossary Term Number: 262
+No matches for glossary term, Fiber Finish
+Glossary Term Number: 263
+No matches for glossary term, Fiber Type
+Glossary Term Number: 264
+No matches for glossary term, Fiscal Year of Current Period
+Glossary Term Number: 265
+No matches for glossary term, Fixed Quantity
+Glossary Term Number: 266
+No matches for glossary term, GPC Brick
+Glossary Term Number: 267
+No matches for glossary term, GPC Class
+Glossary Term Number: 268
+No matches for glossary term, GPC Family
+Glossary Term Number: 269
+No matches for glossary term, GPC Segment
+Glossary Term Number: 270
+No matches for glossary term, Gender
+Glossary Term Number: 271
+No matches for glossary term, Gender Department
+Glossary Term Number: 272
+No matches for glossary term, Gender Group
+Glossary Term Number: 273
+No matches for glossary term, General Item category group
+Glossary Term Number: 274
+No matches for glossary term, Global identification of a BOM header change status
+Glossary Term Number: 275
+No matches for glossary term, Global identification of an item's change status
+Glossary Term Number: 276
+No matches for glossary term, Goods Receipt Processing Time in Days
+Glossary Term Number: 277
+No matches for glossary term, Gross weight
+Glossary Term Number: 278
+No matches for glossary term, Growth Team
+Glossary Term Number: 279
+No matches for glossary term, Height
+Glossary Term Number: 280
+No matches for glossary term, Imperfect Selling SKU
+Glossary Term Number: 281
+No matches for glossary term, Ind: Flag material for deletion at distribution chain level
+Glossary Term Number: 282
+No matches for glossary term, Indicator for relevancy to costing
+Glossary Term Number: 283
+No matches for glossary term, Indicator: "automatic purchase order allowed"
+Glossary Term Number: 284
+No matches for glossary term, Indicator: Critical part
+Glossary Term Number: 285
+No matches for glossary term, Indicator: Latest Released BOM Version
+Glossary Term Number: 286
+No matches for glossary term, Indicator: Use of Season
+Glossary Term Number: 287
+No matches for glossary term, Indicator: item relevant to engineering
+Glossary Term Number: 288
+No matches for glossary term, Indicator: item relevant to sales
+Glossary Term Number: 289
+No matches for glossary term, Indicator: recursiveness allowed
+Glossary Term Number: 290
+No matches for glossary term, Industry sector
+Glossary Term Number: 291
+No matches for glossary term, Inherited node number of BOM item
+Glossary Term Number: 292
+No matches for glossary term, Inhouse production
+Glossary Term Number: 293
+No matches for glossary term, Internal counter
+Glossary Term Number: 294
+No matches for glossary term, International Article Number (GTIN/EAN/UPC)
+Glossary Term Number: 295
+No matches for glossary term, Inventory Capacity Group
+Glossary Term Number: 296
+No matches for glossary term, Inventory Group
+Glossary Term Number: 297
+No matches for glossary term, Irregular Selling SKU
+Glossary Term Number: 298
+No matches for glossary term, Issue Storage Location
+Glossary Term Number: 299
+No matches for glossary term, Issuing Plant
+Glossary Term Number: 300
+No matches for glossary term, Item category (bill of material)
+Glossary Term Number: 301
+No matches for glossary term, Item category group from material master
+Glossary Term Number: 302
+No matches for glossary term, Item group
+Glossary Term Number: 303
+No matches for glossary term, LCA Classification
+Glossary Term Number: 304
+No matches for glossary term, LRP Style
+Glossary Term Number: 305
+No matches for glossary term, Length
+Glossary Term Number: 306
+No matches for glossary term, Listing functions (assortments) are active
+Glossary Term Number: 307
+No matches for glossary term, Listing procedure for distr center assortment categories
+Glossary Term Number: 308
+No matches for glossary term, Loading Group
+Glossary Term Number: 309
+No matches for glossary term, Lot Size for Product Costing
+Glossary Term Number: 310
+No matches for glossary term, MERCHANDISING RESPONSIBLE
+Glossary Term Number: 311
+No matches for glossary term, MRP Controller (Materials Planner)
+Glossary Term Number: 312
+No matches for glossary term, MRP Type
+Glossary Term Number: 313
+No matches for glossary term, Manufactured / Sourced
+Glossary Term Number: 314
+No matches for glossary term, Marketing Responsibility
+Glossary Term Number: 315
+No matches for glossary term, Master Garment Style
+Glossary Term Number: 316
+No matches for glossary term, Material Category
+Glossary Term Number: 317
+No matches for glossary term, Material Description (Short Text)
+Glossary Term Number: 318
+No matches for glossary term, Material Group 1
+Glossary Term Number: 319
+No matches for glossary term, Material Group 2
+Glossary Term Number: 320
+No matches for glossary term, Material Group 3
+Glossary Term Number: 321
+No matches for glossary term, Material Group 4
+Glossary Term Number: 322
+No matches for glossary term, Material Group 5
+Glossary Term Number: 323
+No matches for glossary term, Material Group Reference Materials
+Glossary Term Number: 324
+No matches for glossary term, Material Group: Packaging Materials
+Glossary Term Number: 325
+No matches for glossary term, Material Pricing Group
+Glossary Term Number: 326
+No matches for glossary term, Merchandise Category: Packaging Articles (Material Group: Packaging Materials)
+Glossary Term Number: 327
+No matches for glossary term, Merchandising Putup
+Glossary Term Number: 328
+No matches for glossary term, NRF Color Code
+Glossary Term Number: 329
+No matches for glossary term, Name of person who changed object
+Glossary Term Number: 330
+No matches for glossary term, Negative stocks allowed in site
+Glossary Term Number: 331
+No matches for glossary term, Net Weight
+Glossary Term Number: 332
+No matches for glossary term, Object type (BOM item)
+Glossary Term Number: 333
+No matches for glossary term, Order Allocation Run
+Glossary Term Number: 334
+No matches for glossary term, PLM item number
+Glossary Term Number: 335
+No matches for glossary term, PM assembly indicator
+Glossary Term Number: 336
+No matches for glossary term, Pack Code
+Glossary Term Number: 337
+No matches for glossary term, Pack Size
+Glossary Term Number: 338
+No matches for glossary term, Packaging mat type
+Glossary Term Number: 339
+No matches for glossary term, Placeholder ID
+Glossary Term Number: 340
+No matches for glossary term, Plant where BOM or alternative/variant created
+Glossary Term Number: 341
+No matches for glossary term, Plant-Specific Material Status
+Glossary Term Number: 342
+No matches for glossary term, Platform
+Glossary Term Number: 343
+No matches for glossary term, Post to Inspection Stock
+Glossary Term Number: 344
+No matches for glossary term, Predecessor Node
+Glossary Term Number: 345
+No matches for glossary term, Predecessor Version of BOM
+Glossary Term Number: 346
+No matches for glossary term, Previous header counter
+Glossary Term Number: 347
+No matches for glossary term, Previous item counter
+Glossary Term Number: 348
+No matches for glossary term, Price Control Indicator
+Glossary Term Number: 349
+No matches for glossary term, Pricing Reference Material
+Glossary Term Number: 350
+No matches for glossary term, Pricing profile for variants
+Glossary Term Number: 351
+No matches for glossary term, Primary Growth Team
+Glossary Term Number: 352
+No matches for glossary term, Procurement Type
+Glossary Term Number: 353
+No matches for glossary term, Prod feature control
+Glossary Term Number: 354
+No matches for glossary term, Prod feature cushioning
+Glossary Term Number: 355
+No matches for glossary term, Prod feature heel
+Glossary Term Number: 356
+No matches for glossary term, Prod feature laceembell
+Glossary Term Number: 357
+No matches for glossary term, Prod feature leg length
+Glossary Term Number: 358
+No matches for glossary term, Prod feature legbinding
+Glossary Term Number: 359
+No matches for glossary term, Prod feature legtype
+Glossary Term Number: 360
+No matches for glossary term, Prod feature lining
+Glossary Term Number: 361
+No matches for glossary term, Prod feature needlecount
+Glossary Term Number: 362
+No matches for glossary term, Prod feature shorts inseam
+Glossary Term Number: 363
+No matches for glossary term, Prod feature sleevelength
+Glossary Term Number: 364
+No matches for glossary term, Prod feature toeseam
+Glossary Term Number: 365
+No matches for glossary term, Prod feature toetype
+Glossary Term Number: 366
+No matches for glossary term, Prod feature waistband
+Glossary Term Number: 367
+No matches for glossary term, Prod feature welt
+Glossary Term Number: 368
+No matches for glossary term, Prod featurepant length
+Glossary Term Number: 369
+No matches for glossary term, Prod features pantytype
+Glossary Term Number: 370
+No matches for glossary term, Product Family
+Glossary Term Number: 371
+No matches for glossary term, Product Group
+Glossary Term Number: 372
+No matches for glossary term, Product Line
+Glossary Term Number: 373
+No matches for glossary term, Product Sub Category
+Glossary Term Number: 374
+No matches for glossary term, Product Type
+Glossary Term Number: 375
+No matches for glossary term, Production/inspection memo
+Glossary Term Number: 376
+No matches for glossary term, Proto
+Glossary Term Number: 377
+No matches for glossary term, Relevant for BOM to AIN Handover
+Glossary Term Number: 378
+No matches for glossary term, Replenishment Lead Time
+Glossary Term Number: 379
+No matches for glossary term, Rounding value for purchase order quantity
+Glossary Term Number: 380
+No matches for glossary term, SELLING STYLE
+Glossary Term Number: 381
+No matches for glossary term, STRATEGIC BUSINESS UNIT
+Glossary Term Number: 382
+No matches for glossary term, STYLE GROUP
+Glossary Term Number: 383
+No matches for glossary term, Sales unit
+Glossary Term Number: 384
+No matches for glossary term, Season
+Glossary Term Number: 385
+No matches for glossary term, Season Category
+Glossary Term Number: 386
+No matches for glossary term, Season Indicator
+Glossary Term Number: 387
+No matches for glossary term, Season Type 1
+Glossary Term Number: 388
+No matches for glossary term, Season Type 2
+Glossary Term Number: 389
+No matches for glossary term, Season Type 3
+Glossary Term Number: 390
+No matches for glossary term, Season Year
+Glossary Term Number: 391
+No matches for glossary term, Seasonality
+Glossary Term Number: 392
+No matches for glossary term, Segment Relevant
+Glossary Term Number: 393
+No matches for glossary term, Segmentation Strategy
+Glossary Term Number: 394
+No matches for glossary term, Segmentation Structure
+Glossary Term Number: 395
+No matches for glossary term, Selling Type
+Glossary Term Number: 396
+No matches for glossary term, Silhouette
+Glossary Term Number: 397
+No matches for glossary term, Size Short Desc
+Glossary Term Number: 398
+No matches for glossary term, Size code
+Glossary Term Number: 399
+No matches for glossary term, Sort String
+Glossary Term Number: 400
+No matches for glossary term, Sort key within a logical item
+Glossary Term Number: 401
+No matches for glossary term, Source of Material
+Glossary Term Number: 402
+No matches for glossary term, Source of Supply
+Glossary Term Number: 403
+No matches for glossary term, Special Procurement Type for Costing
+Glossary Term Number: 404
+No matches for glossary term, Special procurement type
+Glossary Term Number: 405
+No matches for glossary term, Standard Price
+Glossary Term Number: 406
+No matches for glossary term, Stocking Category
+Glossary Term Number: 407
+No matches for glossary term, Style Classification
+Glossary Term Number: 408
+No matches for glossary term, Style Code
+Glossary Term Number: 409
+No matches for glossary term, Subbrand
+Glossary Term Number: 410
+No matches for glossary term, Supply Chain Product ID
+Glossary Term Number: 411
+No matches for glossary term, Supply Chain Segment
+Glossary Term Number: 412
+No matches for glossary term, Tax Classification
+Glossary Term Number: 413
+No matches for glossary term, Tax classification of the material
+Glossary Term Number: 414
+No matches for glossary term, Technical status from
+Glossary Term Number: 415
+No matches for glossary term, Total Stock
+Glossary Term Number: 416
+No matches for glossary term, Transportation Group
+Glossary Term Number: 417
+No matches for glossary term, UDEX Category
+Glossary Term Number: 418
+No matches for glossary term, UDEX Department
+Glossary Term Number: 419
+No matches for glossary term, UDEX Sub Category
+Glossary Term Number: 420
+No matches for glossary term, UPC requirement
+Glossary Term Number: 421
+No matches for glossary term, UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)
+Glossary Term Number: 422
+No matches for glossary term, Unit of Dimension for Length/Width/Height
+Glossary Term Number: 423
+No matches for glossary term, User who created record
+Glossary Term Number: 424
+No matches for glossary term, Valuation Category
+Glossary Term Number: 425
+No matches for glossary term, Valuation Class for Project Stock
+Glossary Term Number: 426
+No matches for glossary term, Valuation Class for Sales Order Stock
+Glossary Term Number: 427
+No matches for glossary term, Valuation type
+Glossary Term Number: 428
+No matches for glossary term, Value of Total Valuated Stock
+Glossary Term Number: 429
+No matches for glossary term, Volume (Actual Volume)
+Glossary Term Number: 430
+No matches for glossary term, Volume Rebate Group
+Glossary Term Number: 431
+No matches for glossary term, Volume unit
+Glossary Term Number: 432
+No matches for glossary term, Weight Unit
+Glossary Term Number: 433
+No matches for glossary term, Width
+Glossary Term Number: 434
+No matches for glossary term, item relevant to sales Indicator
+Glossary Term Number: 435
+No matches for glossary term, Material Group
+Glossary Term Number: 436
+No matches for glossary term, Material Type
+Glossary Term Number: 437
+No matches for glossary term, Old Material Number
+Glossary Term Number: 438
+No matches for glossary term, Put Up Code
+Glossary Term Number: 439
+No matches for glossary term, Storage Location
+Glossary Term Number: 440
+No matches for glossary term, Valuation Class
+Glossary Term Number: 441
+No matches for glossary term, Volume
+Glossary Term Number: 442
+No matches for glossary term, BIC Number
+Glossary Term Number: 443
+No matches for glossary term, Bank Branch
+Glossary Term Number: 444
+No matches for glossary term, Bank Country
+Glossary Term Number: 445
+No matches for glossary term, Bank Number
+Glossary Term Number: 446
+No matches for glossary term, Format of File with Bank Data
+Glossary Term Number: 447
+No matches for glossary term, Growth Team Identification
+Glossary Term Number: 448
+No matches for glossary term, Name of Bank
+Glossary Term Number: 449
+No matches for glossary term, SWIFT/BIC
+Glossary Term Number: 450
+No matches for glossary term, Cost Center
+Glossary Term Number: 451
+No matches for glossary term, General Ledger Account
+Glossary Term Number: 452
+No matches for glossary term, Transportation Chain
+Glossary Term Number: 453
+No matches for glossary term, Article Number Used by Vendor
+Glossary Term Number: 454
+No matches for glossary term, Available (Deliverable) From
+Glossary Term Number: 455
+No matches for glossary term, Available (Deliverable) Until
+Glossary Term Number: 456
+No matches for glossary term, Certificate Category
+Glossary Term Number: 457
+No matches for glossary term, Certificate Number
+Glossary Term Number: 458
+No matches for glossary term, Certificate of Origin Number
+Glossary Term Number: 459
+No matches for glossary term, Certificate of Origin Valid Until
+Glossary Term Number: 460
+No matches for glossary term, Condition Group
+Glossary Term Number: 461
+No matches for glossary term, Denominator for Conv of Order Price Unit into Order Unit
+Glossary Term Number: 462
+No matches for glossary term, Effective price
+Glossary Term Number: 463
+No matches for glossary term, General data flagged for deletion
+Glossary Term Number: 464
+No matches for glossary term, Manufacturer
+Glossary Term Number: 465
+No matches for glossary term, Max Order Quantity
+Glossary Term Number: 466
+No matches for glossary term, No Evaluated Receipt Settlement (ERS)
+Glossary Term Number: 467
+No matches for glossary term, Number of Days for Reminder/Expediter
+Glossary Term Number: 468
+No matches for glossary term, Number of purchasing info record
+Glossary Term Number: 469
+No matches for glossary term, Numerator for Conversion of Order Price Unit into Order Unit
+Glossary Term Number: 470
+No matches for glossary term, Numerator for Conversion of Order Unit to Base Unit
+Glossary Term Number: 471
+No matches for glossary term, Order Price Unit (Purchasing)
+Glossary Term Number: 472
+No matches for glossary term, Overdelivery Tolerance Limit
+Glossary Term Number: 473
+No matches for glossary term, Purch Org data flagged for deletion
+Glossary Term Number: 474
+No matches for glossary term, Salesperson Responsible in the Event of Queries
+Glossary Term Number: 475
+No matches for glossary term, Shipping Instructions
+Glossary Term Number: 476
+No matches for glossary term, Sort Sequence Number
+Glossary Term Number: 477
+No matches for glossary term, Standard Purchase Order Quantity
+Glossary Term Number: 478
+No matches for glossary term, Underdelivery Tolerance Limit
+Glossary Term Number: 479
+No matches for glossary term, Unlimited Overdelivery Allowed
+Glossary Term Number: 480
+No matches for glossary term, Variable Purchase Order Unit Active
+Glossary Term Number: 481
+No matches for glossary term, Vendor Merchandise Category
+Glossary Term Number: 482
+No matches for glossary term, Vendor Subrange
+Glossary Term Number: 483
+No matches for glossary term, Blocked Source of Supply
+Glossary Term Number: 484
+No matches for glossary term, Fixed Supplier
+Glossary Term Number: 485
+No matches for glossary term, Number of Source List Record
+Glossary Term Number: 486
+No matches for glossary term, Plant from Which Material is Procured
+Glossary Term Number: 487
+No matches for glossary term, Purchasing Document Category
+Glossary Term Number: 488
+No matches for glossary term, Source List Record Valid From
+Glossary Term Number: 489
+No matches for glossary term, Source List Record Valid To
+Glossary Term Number: 490
+No matches for glossary term, Source List Usage in Materials Planning
+Glossary Term Number: 491
+No matches for glossary term, AFS Group Strategy
+Glossary Term Number: 492
+No matches for glossary term, AFS Account
+Glossary Term Number: 493
+No matches for glossary term, AFS Account Assignment Group for this Customer
+Glossary Term Number: 494
+No matches for glossary term, Account Assignment Group for this Customer
+Glossary Term Number: 495
+No matches for glossary term, AFS Account Statement
+Glossary Term Number: 496
+No matches for glossary term, Account Statement
+Glossary Term Number: 497
+No matches for glossary term, AFS Account Type
+Glossary Term Number: 498
+No matches for glossary term, Allow Dup PO
+Glossary Term Number: 499
+No matches for glossary term, AFS Business Unit
+Glossary Term Number: 500
+No matches for glossary term, CPG
+Glossary Term Number: 501
+No matches for glossary term, Case Pack
+Glossary Term Number: 502
+No matches for glossary term, Contact person Function
+Glossary Term Number: 503
+No matches for glossary term, Customer Classification
+Glossary Term Number: 504
+No matches for glossary term, COT
+Glossary Term Number: 505
+No matches for glossary term, AFS Customer Group
+Glossary Term Number: 506
+No matches for glossary term, Customer Group
+Glossary Term Number: 507
+No matches for glossary term, AFS Customer Number of Business Partner
+Glossary Term Number: 508
+No matches for glossary term, Customer Number of Business Partner
+Glossary Term Number: 509
+No matches for glossary term, Customer Retail on Ticket
+Glossary Term Number: 510
+No matches for glossary term, AFS Express Train Station Express Station
+Glossary Term Number: 511
+No matches for glossary term, Express Train Station Express Station
+Glossary Term Number: 512
+No matches for glossary term, First name
+Glossary Term Number: 513
+No matches for glossary term, AFS First name
+Glossary Term Number: 514
+No matches for glossary term, Folded w Size strip
+Glossary Term Number: 515
+No matches for glossary term, AFS Freight Terms
+Glossary Term Number: 516
+No matches for glossary term, Hanger
+Glossary Term Number: 517
+No matches for glossary term, AFS Indicator: Record Payment History ?
+Glossary Term Number: 518
+No matches for glossary term, Indicator: Record Payment History ?
+Glossary Term Number: 519
+No matches for glossary term, Inv Output Type
+Glossary Term Number: 520
+No matches for glossary term, AFS Inv Output Type
+Glossary Term Number: 521
+No matches for glossary term, AFS Invoice at DC
+Glossary Term Number: 522
+No matches for glossary term, Is Bankrupt?
+Glossary Term Number: 523
+No matches for glossary term, Is EDI Required?
+Glossary Term Number: 524
+No matches for glossary term, Is yearly Gross estimated value exceeds $600K?
+Glossary Term Number: 525
+No matches for glossary term, AFS Key of the Lockbox to Which the Customer Is to Pay
+Glossary Term Number: 526
+No matches for glossary term, Key of the Lockbox to Which the Customer Is to Pay
+Glossary Term Number: 527
+No matches for glossary term, AFS Leg Div
+Glossary Term Number: 528
+No matches for glossary term, MSRP on Tickets
+Glossary Term Number: 529
+No matches for glossary term, Master Invoice
+Glossary Term Number: 530
+No matches for glossary term, AFS Master Invoice
+Glossary Term Number: 531
+No matches for glossary term, Maximum Number of Partial Deliveries Allowed Per Item
+Glossary Term Number: 532
+No matches for glossary term, AFS National Account Flag
+Glossary Term Number: 533
+No matches for glossary term, AFS Order Combination Indicator
+Glossary Term Number: 534
+No matches for glossary term, Order Combination Indicator
+Glossary Term Number: 535
+No matches for glossary term, PSST Grouping Rule
+Glossary Term Number: 536
+No matches for glossary term, Packing Slip
+Glossary Term Number: 537
+No matches for glossary term, Parent Account
+Glossary Term Number: 538
+No matches for glossary term, Partial Delivery at Item Level
+Glossary Term Number: 539
+No matches for glossary term, AFS Previous Master Record Number (AFS Number)
+Glossary Term Number: 540
+No matches for glossary term, Previous Master Record Number (AFS Number)
+Glossary Term Number: 541
+No matches for glossary term, AFS Price Group (Customer)
+Glossary Term Number: 542
+No matches for glossary term, Price Group (Customer)
+Glossary Term Number: 543
+No matches for glossary term, AFS Price List Type
+Glossary Term Number: 544
+No matches for glossary term, Price List Type
+Glossary Term Number: 545
+No matches for glossary term, AFS Pricing Procedure Assigned to this Customer
+Glossary Term Number: 546
+No matches for glossary term, Pricing Procedure Assigned to this Customer
+Glossary Term Number: 547
+No matches for glossary term, AFS Selection Rule for Payment Advices
+Glossary Term Number: 548
+No matches for glossary term, Selection Rule for Payment Advices
+Glossary Term Number: 549
+No matches for glossary term, Setting for Packing Materials in Documents
+Glossary Term Number: 550
+No matches for glossary term, AFS Shipping Conditions
+Glossary Term Number: 551
+No matches for glossary term, Shipping Conditions
+Glossary Term Number: 552
+No matches for glossary term, AFS Sort Key
+Glossary Term Number: 553
+No matches for glossary term, Sort Key
+Glossary Term Number: 554
+No matches for glossary term, AFS Store
+Glossary Term Number: 555
+No matches for glossary term, AFS Tax Classification for Customer
+Glossary Term Number: 556
+No matches for glossary term, Tax Classification for Customer
+Glossary Term Number: 557
+No matches for glossary term, AFS tolerance group for the Business Partner/G/L account
+Glossary Term Number: 558
+No matches for glossary term, tolerance group for the Business Partner/G/L account
+Glossary Term Number: 559
+No matches for glossary term, AFS Train Station
+Glossary Term Number: 560
+No matches for glossary term, Train Station
+Glossary Term Number: 561
+No matches for glossary term, UPC
+Glossary Term Number: 562
+No matches for glossary term, AFS Unloading Point
+Glossary Term Number: 563
+No matches for glossary term, Unloading Point
+Glossary Term Number: 564
+No matches for glossary term, VAS Required
+Glossary Term Number: 565
+No matches for glossary term, VAT Registration Number
+Glossary Term Number: 566
+No matches for glossary term, AFS VAT Registration Number
+Glossary Term Number: 567
+No matches for glossary term, Distribution Center
+Glossary Term Number: 568
+No matches for glossary term, AFS Distribution Center
+Glossary Term Number: 569
+No matches for glossary term, AFS Identification Number
+Glossary Term Number: 570
+No matches for glossary term, AFS Reconciliation Account in General Ledger
+Glossary Term Number: 571
+No matches for glossary term, Search Term 1
+Glossary Term Number: 572
+No matches for glossary term, Search Term 2
+Glossary Term Number: 573
+No matches for glossary term, AFS Search Term 1
+Glossary Term Number: 574
+No matches for glossary term, AFS Search Term 2
+Glossary Term Number: 575
+No matches for glossary term, Incoterm 1
+Glossary Term Number: 576
+No matches for glossary term, AFS Incoterm 1
+Glossary Term Number: 577
+No matches for glossary term, Incoterm 2
+Glossary Term Number: 578
+No matches for glossary term, AFS Incoterm 2
+Glossary Term Number: 579
+No matches for glossary term, Telephone number
+Glossary Term Number: 580
+No matches for glossary term, Customer Identification Number
+Glossary Term Number: 581
+No matches for glossary term, Customer Identification Type
+Glossary Term Number: 582
+No matches for glossary term, Customer Partner Function
+Glossary Term Number: 583
+No matches for glossary term, Customer Reconciliation Account in General Ledger
+Glossary Term Number: 584
+No matches for glossary term, Customer Incoterm 1
+Glossary Term Number: 585
+No matches for glossary term, Customer Incoterm 2
+Glossary Term Number: 586
+No matches for glossary term, Customer Telephone number
+Glossary Term Number: 587
+No matches for glossary term, Customer Delivering Plant (Own or External)
+Glossary Term Number: 588
+No matches for glossary term, Customer Distribution Channel
+Glossary Term Number: 589
+No matches for glossary term, Customer Division
+Glossary Term Number: 590
+No matches for glossary term, Customer Sales Organization
+Glossary Term Number: 591
+No matches for glossary term, Customer Language Key
+Glossary Term Number: 592
+No matches for glossary term, Customer Name 1
+Glossary Term Number: 593
+No matches for glossary term, Customer Tax Jurisdiction
+Glossary Term Number: 594
+No matches for glossary term, Supplier Company Code
+Glossary Term Number: 595
+No matches for glossary term, Supplier Identification Number
+Glossary Term Number: 596
+No matches for glossary term, Supplier Identification Type
+Glossary Term Number: 597
+No matches for glossary term, Supplier Name 3
+Glossary Term Number: 598
+No matches for glossary term, Supplier Partner Function
+Glossary Term Number: 599
+No matches for glossary term, Supplier Reconciliation Account in General Ledger
+Glossary Term Number: 600
+No matches for glossary term, Supplier Search Term 1
+Glossary Term Number: 601
+No matches for glossary term, Supplier Search Term 2
+Glossary Term Number: 602
+No matches for glossary term, Supplier Street
+Glossary Term Number: 603
+No matches for glossary term, Supplier Street 2
+Glossary Term Number: 604
+No matches for glossary term, Supplier Incoterm 1
+Glossary Term Number: 605
+No matches for glossary term, Supplier Incoterm 2
+Glossary Term Number: 606
+No matches for glossary term, Supplier Telephone number
+Glossary Term Number: 607
+No matches for glossary term, Supplier Country
+Glossary Term Number: 608
+No matches for glossary term, Supplier Valid-from date
+Glossary Term Number: 609
+No matches for glossary term, Supplier Valid-to date
+Glossary Term Number: 610
+No matches for glossary term, Supplier City
+Glossary Term Number: 611
+No matches for glossary term, Supplier Country Key
+Glossary Term Number: 612
+No matches for glossary term, Supplier Language Key
+Glossary Term Number: 613
+No matches for glossary term, Supplier Name 1
+Glossary Term Number: 614
+No matches for glossary term, Supplier Name 2
+Glossary Term Number: 615
+No matches for glossary term, Supplier PO Box
+Glossary Term Number: 616
+No matches for glossary term, Supplier Postal Code
+Glossary Term Number: 617
+No matches for glossary term, Supplier Tax Jurisdiction
+Glossary Term Number: 618
+No matches for glossary term, Supplier Region
+Glossary Term Number: 619
+No matches for glossary term, Supplier Street and House Number
+Glossary Term Number: 620
+No matches for glossary term, Supplier Purchasing Organization
+Glossary Term Number: 621
+No matches for glossary term, Supplier Confirmation Control Key
+Glossary Term Number: 622
+No matches for glossary term, Supplier GR-Based Invoice Verification
+Glossary Term Number: 623
+No matches for glossary term, Supplier Vendor number
+Glossary Term Number: 624
+No matches for glossary term, Supplier Automatic PO
+Glossary Term Number: 625
+No matches for glossary term, Supplier Customer Number
+Glossary Term Number: 626
+No matches for glossary term, Site Profit Center
+Glossary Term Number: 627
+No matches for glossary term, Site Date Record Created On
+Glossary Term Number: 628
+No matches for glossary term, Site Listing procedure for store or other assortment categories
+Glossary Term Number: 629
+No matches for glossary term, Site Valuation Area
+Glossary Term Number: 630
+No matches for glossary term, Site Plant
+Glossary Term Number: 631
+No matches for glossary term, Site Sales District
+Glossary Term Number: 632
+No matches for glossary term, Site Country Key
+Glossary Term Number: 633
+No matches for glossary term, Site Name 1
+Glossary Term Number: 634
+No matches for glossary term, Site Name 2
+Glossary Term Number: 635
+No matches for glossary term, Site Postal Code
+Glossary Term Number: 636
+No matches for glossary term, Site Number of Days for First Reminder-Expediter
+Glossary Term Number: 637
+No matches for glossary term, Site Number of Days for Second Reminder-Expediter
+Glossary Term Number: 638
+No matches for glossary term, Site Number of Days for Third Reminder-Expediter
+Glossary Term Number: 639
+No matches for glossary term, Site Street and House Number
+Glossary Term Number: 640
+No matches for glossary term, Site Automatic PO
+Glossary Term Number: 641
+No matches for glossary term, Site Customer Number
+Glossary Term Number: 642
+No matches for glossary term, Material-Product Delivering Plant (Own or External)
+Glossary Term Number: 643
+No matches for glossary term, Material-Product Distribution Channel
+Glossary Term Number: 644
+No matches for glossary term, Material-Product Division
+Glossary Term Number: 645
+No matches for glossary term, Material-Product Sales Organization
+Glossary Term Number: 646
+No matches for glossary term, Material-Product Profit Center
+Glossary Term Number: 647
+No matches for glossary term, Material-Product Purchasing Group
+Glossary Term Number: 648
+No matches for glossary term, Material-Product Base Unit of Measure
+Glossary Term Number: 649
+No matches for glossary term, Material-Product Denominator for Conversion to  Base Units of Measure
+Glossary Term Number: 650
+No matches for glossary term, Material-Product Numerator for Conversion to Base Units of Measure
+Glossary Term Number: 651
+No matches for glossary term, Material-Product Planned Delivery Time in Days
+Glossary Term Number: 652
+No matches for glossary term, Material-Product Price unit
+Glossary Term Number: 653
+No matches for glossary term, Material-Product Material Number
+Glossary Term Number: 654
+No matches for glossary term, Material-Product Date Record Created On
+Glossary Term Number: 655
+No matches for glossary term, Material-Product Listing procedure for store or other assortment categories
+Glossary Term Number: 656
+No matches for glossary term, Material-Product Valuation Area
+Glossary Term Number: 657
+No matches for glossary term, Material-Product Plant
+Glossary Term Number: 658
+No matches for glossary term, Material-Product Valid-to date
+Glossary Term Number: 659
+No matches for glossary term, Purchasing Info Record Incoterm 1
+Glossary Term Number: 660
+No matches for glossary term, Purchasing Info Record Incoterm 2
+Glossary Term Number: 661
+No matches for glossary term, Purchasing Info Record Telephone number
+Glossary Term Number: 662
+No matches for glossary term, Purchasing Info Record Purchasing Group
+Glossary Term Number: 663
+No matches for glossary term, Purchasing Info Record Base Unit of Measure
+Glossary Term Number: 664
+No matches for glossary term, Purchasing Info Record Denominator for Conversion to  Base Units of Measure
+Glossary Term Number: 665
+No matches for glossary term, Purchasing Info Record Numerator for Conversion to Base Units of Measure
+Glossary Term Number: 666
+No matches for glossary term, Purchasing Info Record Planned Delivery Time in Days
+Glossary Term Number: 667
+No matches for glossary term, Purchasing Info Record Price unit
+Glossary Term Number: 668
+No matches for glossary term, Purchasing Info Record Material Number
+Glossary Term Number: 669
+No matches for glossary term, Purchasing Info Record Plant
+Glossary Term Number: 670
+No matches for glossary term, Purchasing Info Record Number of Days for First Reminder-Expediter
+Glossary Term Number: 671
+No matches for glossary term, Purchasing Info Record Number of Days for Second Reminder-Expediter
+Glossary Term Number: 672
+No matches for glossary term, Purchasing Info Record Number of Days for Third Reminder-Expediter
+Glossary Term Number: 673
+No matches for glossary term, Purchasing Info Record Purchase Order Unit of Measure
+Glossary Term Number: 674
+No matches for glossary term, Purchasing Info Record Confirmation Control Key
+Glossary Term Number: 675
+No matches for glossary term, Purchasing Info Record GR-Based Invoice Verification
+Glossary Term Number: 676
+No matches for glossary term, Purchasing Info Record Vendor number
+Glossary Term Number: 677
+No matches for glossary term, Finance Profit Center
+Glossary Term Number: 678
+No matches for glossary term, Finance Bank Key
+Glossary Term Number: 679
+No matches for glossary term, Source List Material Number
+Glossary Term Number: 680
+No matches for glossary term, Source List Plant
+Glossary Term Number: 681
+No matches for glossary term, Source List Purchasing Organization
+Glossary Term Number: 682
+No matches for glossary term, Source List Purchase Order Unit of Measure
+Glossary Term Number: 683
+No matches for glossary term, Source List Vendor number
+Glossary Term Number: 684
+No matches for glossary term, Store Number
+Glossary Term Number: 685
+No matches for glossary term, AFS Store Number
+Glossary Term Number: 686
+No matches for glossary term, AFS CPG
+Glossary Term Number: 687
+No matches for glossary term, Client
+Glossary Term Number: 688
+No matches for glossary term, AFS Client
+Glossary Term Number: 689
+No matches for glossary term, State
+Glossary Term Number: 690
+No matches for glossary term, AFS State
+Glossary Term Number: 691
+No matches for glossary term, Alternative Player
+Glossary Term Number: 692
+No matches for glossary term, AFS Alternative Player
+Glossary Term Number: 693
+No matches for glossary term, PO Box
+Glossary Term Number: 694
+No matches for glossary term, AFS PO Box
+Glossary Term Number: 695
+No matches for glossary term, Tax Number 1
+Glossary Term Number: 696
+No matches for glossary term, Tax Number 2
+Glossary Term Number: 697
+No matches for glossary term, AFS Allow Dup PO
+Glossary Term Number: 698
+No matches for glossary term, AFS Accounting Clerk
+Glossary Term Number: 699
+No matches for glossary term, Accounting Clerk
+Glossary Term Number: 700
+No matches for glossary term, AFS Payment Terms
+Glossary Term Number: 701
+No matches for glossary term, AFS House Bank
+Glossary Term Number: 702
+No matches for glossary term, House Bank
+Glossary Term Number: 703
+No matches for glossary term, AFS Language Key
+Glossary Term Number: 704
+No matches for glossary term, Language Key
+Glossary Term Number: 705
+No matches for glossary term, AFS Company Code
+Glossary Term Number: 706
+No matches for glossary term, Company Code
+Glossary Term Number: 707
+No matches for glossary term, Sales district
+Glossary Term Number: 708
+No matches for glossary term, AFS Delivery Plant
+Glossary Term Number: 709
+No matches for glossary term, Delivery Plant
+Glossary Term Number: 710
+No matches for glossary term, AFS Sales District
+Glossary Term Number: 711
+No matches for glossary term, AFS Zip Code
+Glossary Term Number: 712
+No matches for glossary term, Zip Code
+Glossary Term Number: 713
+No matches for glossary term, AFS City
+Glossary Term Number: 714
+No matches for glossary term, City
+Glossary Term Number: 715
+No matches for glossary term, AFS Packing material
+Glossary Term Number: 716
+No matches for glossary term, VAS Determination Mode

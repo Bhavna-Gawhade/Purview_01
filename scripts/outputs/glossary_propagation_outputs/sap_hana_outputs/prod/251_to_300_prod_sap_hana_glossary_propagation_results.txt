@@ -1,0 +1,223 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 251 to 300
+Ran on SAP HANA Views and Tables
+_____________________________________________________________
+
+Glossary Term Number: 251
+No matches for glossary term, Proto
+Glossary Term Number: 252
+Assigned glossary term, Relevant for BOM to AIN Handover, to 5 entities
+Unique column names that the glossary term was applied to:
+   BOM_AIN_IND
+
+Glossary Term Number: 253
+No matches for glossary term, Replenishment Lead Time
+Glossary Term Number: 254
+Assigned glossary term, Rounding value for purchase order quantity, to 2 entities
+Unique column names that the glossary term was applied to:
+   BSTRF
+
+Glossary Term Number: 255
+Assigned glossary term, SELLING STYLE, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZSELLSTYLE
+
+Glossary Term Number: 256
+Assigned glossary term, STRATEGIC BUSINESS UNIT, to 10 entities
+Unique column names that the glossary term was applied to:
+   ZZSTRATBUSSUNIT
+
+Glossary Term Number: 257
+Assigned glossary term, STYLE GROUP, to 12 entities
+Unique column names that the glossary term was applied to:
+   ZZSTYLEGROUP
+
+Glossary Term Number: 258
+Assigned glossary term, Sales unit, to 151 entities
+Unique column names that the glossary term was applied to:
+   VRKME
+
+Glossary Term Number: 259
+No matches for glossary term, Season
+Glossary Term Number: 260
+Assigned glossary term, Season Category, to 6 entities
+Unique column names that the glossary term was applied to:
+   SAISO
+
+Glossary Term Number: 261
+No matches for glossary term, Season Indicator
+Glossary Term Number: 262
+No matches for glossary term, Season Type 1
+Glossary Term Number: 263
+No matches for glossary term, Season Type 2
+Glossary Term Number: 264
+No matches for glossary term, Season Type 3
+Glossary Term Number: 265
+Assigned glossary term, Season Year, to 49 entities
+Unique column names that the glossary term was applied to:
+   SAISJ
+   FSH_SEASON_YEAR
+
+Glossary Term Number: 266
+Assigned glossary term, Seasonality, to 43 entities
+Unique column names that the glossary term was applied to:
+   FSH_SEASON
+
+Glossary Term Number: 267
+Assigned glossary term, Segment Relevant, to 6 entities
+Unique column names that the glossary term was applied to:
+   SGT_REL
+
+Glossary Term Number: 268
+Assigned glossary term, Segmentation Strategy, to 6 entities
+Unique column names that the glossary term was applied to:
+   SGT_COVSA
+
+Glossary Term Number: 269
+Assigned glossary term, Segmentation Structure, to 6 entities
+Unique column names that the glossary term was applied to:
+   SGT_CSGR
+
+Glossary Term Number: 270
+Assigned glossary term, Selling Type, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZSELLINGTYPE
+
+Glossary Term Number: 271
+Assigned glossary term, Silhouette, to 10 entities
+Unique column names that the glossary term was applied to:
+   ZZSILHOUETTE
+
+Glossary Term Number: 272
+Assigned glossary term, Size Short Desc, to 14 entities
+Unique column names that the glossary term was applied to:
+   ZZSIZEDESCR
+
+Glossary Term Number: 273
+Assigned glossary term, Size code, to 18 entities
+Unique column names that the glossary term was applied to:
+   ZZPRDSIZE
+
+Glossary Term Number: 274
+Assigned glossary term, Sort String, to 5 entities
+Unique column names that the glossary term was applied to:
+   SORTF
+
+Glossary Term Number: 275
+Assigned glossary term, Sort key within a logical item, to 5 entities
+Unique column names that the glossary term was applied to:
+   LPSRT
+
+Glossary Term Number: 276
+Assigned glossary term, Source of Material, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZSOURCE
+
+Glossary Term Number: 277
+Assigned glossary term, Source of Supply, to 4 entities
+Unique column names that the glossary term was applied to:
+   BWSCL
+
+Glossary Term Number: 278
+Assigned glossary term, Special Procurement Type for Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   SOBSK
+
+Glossary Term Number: 279
+Assigned glossary term, Special procurement type, to 4 entities
+Unique column names that the glossary term was applied to:
+   SOBSL
+
+Glossary Term Number: 280
+Assigned glossary term, Standard Price, to 85 entities
+Unique column names that the glossary term was applied to:
+   STPRS
+
+Glossary Term Number: 281
+Assigned glossary term, Stocking Category, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZSTOCKINGCATEGORY
+
+Glossary Term Number: 282
+Assigned glossary term, Style Classification, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZSTYLECLASS
+
+Glossary Term Number: 283
+Assigned glossary term, Style Code, to 26 entities
+Unique column names that the glossary term was applied to:
+   FSH_MG_AT1
+
+Glossary Term Number: 284
+Assigned glossary term, Supply Chain Product ID, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZSCPRDID
+
+Glossary Term Number: 285
+Assigned glossary term, Supply Chain Segment, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZSCSEGMENT
+
+Glossary Term Number: 286
+No matches for glossary term, Tax Classification
+Glossary Term Number: 287
+Assigned glossary term, Tax classification of the material, to 6 entities
+Unique column names that the glossary term was applied to:
+   TAKLV
+
+Glossary Term Number: 288
+Assigned glossary term, Technical status from, to 5 entities
+Unique column names that the glossary term was applied to:
+   TECHV
+
+Glossary Term Number: 289
+Assigned glossary term, Total Stock, to 15 entities
+Unique column names that the glossary term was applied to:
+   LBKUM
+
+Glossary Term Number: 290
+Assigned glossary term, Transportation Group, to 6 entities
+Unique column names that the glossary term was applied to:
+   TRAGR
+
+Glossary Term Number: 291
+Assigned glossary term, UDEX Category, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZUDEXCAT
+
+Glossary Term Number: 292
+Assigned glossary term, UDEX Department, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZUDEXDEP
+
+Glossary Term Number: 293
+Assigned glossary term, UDEX Sub Category, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZUDEXSUBCAT
+
+Glossary Term Number: 294
+Assigned glossary term, UPC requirement, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZUPCCONTROL
+
+Glossary Term Number: 295
+Assigned glossary term, UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun), to 8 entities
+Unique column names that the glossary term was applied to:
+   LASTCHANGEDATETIME
+
+Glossary Term Number: 296
+Assigned glossary term, Unit of Dimension for Length/Width/Height, to 13 entities
+Unique column names that the glossary term was applied to:
+   MEABM
+
+Glossary Term Number: 297
+Assigned glossary term, User who created record, to 8 entities
+Unique column names that the glossary term was applied to:
+   ANNAM
+
+Glossary Term Number: 298
+No matches for glossary term, Valuation Category
+Glossary Term Number: 299
+No matches for glossary term, Valuation Class for Project Stock
+Glossary Term Number: 300
+No matches for glossary term, Valuation Class for Sales Order Stock

@@ -1,0 +1,235 @@
+Glossary Terms Propagated Across SAP HANA Assets in QA
+Ran for Glossary Terms 201 to 250
+Ran on SAP HANA Views and Tables
+_____________________________________________________________
+
+Glossary Term Number: 201
+Assigned glossary term, Material Group 4, to 88 entities
+Unique column names that the glossary term was applied to:
+   MVGR4
+
+Glossary Term Number: 202
+Assigned glossary term, Material Group 5, to 88 entities
+Unique column names that the glossary term was applied to:
+   MVGR5
+
+Glossary Term Number: 203
+No matches for glossary term, Material Group Reference Materials
+Glossary Term Number: 204
+Assigned glossary term, Material Pricing Group, to 13 entities
+Unique column names that the glossary term was applied to:
+   KONDM
+
+Glossary Term Number: 205
+Assigned glossary term, Merchandising Putup, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZMERCHPUTUP
+
+Glossary Term Number: 206
+Assigned glossary term, NRF Color Code, to 12 entities
+Unique column names that the glossary term was applied to:
+   ZZNRFCOLOR
+
+Glossary Term Number: 207
+Assigned glossary term, Name of person who changed object, to 37 entities
+Unique column names that the glossary term was applied to:
+   AENAM
+
+Glossary Term Number: 208
+Assigned glossary term, Negative stocks allowed in site, to 4 entities
+Unique column names that the glossary term was applied to:
+   XMCNG
+
+Glossary Term Number: 209
+Assigned glossary term, Net Weight, to 93 entities
+Unique column names that the glossary term was applied to:
+   NTGEW
+
+Glossary Term Number: 210
+Assigned glossary term, Object type (BOM item), to 5 entities
+Unique column names that the glossary term was applied to:
+   OBJTY
+
+Glossary Term Number: 211
+Assigned glossary term, PLM item number, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPLMNO
+
+Glossary Term Number: 212
+Assigned glossary term, PM assembly indicator, to 5 entities
+Unique column names that the glossary term was applied to:
+   STKKZ
+
+Glossary Term Number: 213
+Assigned glossary term, Pack Code, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZPACKCODE
+
+Glossary Term Number: 214
+No matches for glossary term, Pack Size
+Glossary Term Number: 215
+Assigned glossary term, Packaging mat type, to 6 entities
+Unique column names that the glossary term was applied to:
+   VHART
+
+Glossary Term Number: 216
+Assigned glossary term, Placeholder ID, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPLHID
+
+Glossary Term Number: 217
+Assigned glossary term, Plant where BOM or alternative/variant created, to 5 entities
+Unique column names that the glossary term was applied to:
+   WRKAN
+
+Glossary Term Number: 218
+Assigned glossary term, Plant-Specific Material Status, to 8 entities
+Unique column names that the glossary term was applied to:
+   MMSTA
+
+Glossary Term Number: 219
+Assigned glossary term, Platform, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPLATFORM
+
+Glossary Term Number: 220
+Assigned glossary term, Post to Inspection Stock, to 4 entities
+Unique column names that the glossary term was applied to:
+   INSMK
+
+Glossary Term Number: 221
+Assigned glossary term, Predecessor Node, to 5 entities
+Unique column names that the glossary term was applied to:
+   VGKNT
+
+Glossary Term Number: 222
+Assigned glossary term, Predecessor Version of BOM, to 5 entities
+Unique column names that the glossary term was applied to:
+   BOM_PREV_VERSN
+
+Glossary Term Number: 223
+Assigned glossary term, Previous header counter, to 5 entities
+Unique column names that the glossary term was applied to:
+   VGKZL
+
+Glossary Term Number: 224
+Assigned glossary term, Previous item counter, to 5 entities
+Unique column names that the glossary term was applied to:
+   VGPZL
+
+Glossary Term Number: 225
+Assigned glossary term, Price Control Indicator, to 26 entities
+Unique column names that the glossary term was applied to:
+   VPRSV
+
+Glossary Term Number: 226
+Assigned glossary term, Pricing Reference Material, to 15 entities
+Unique column names that the glossary term was applied to:
+   PMATA
+   PMATN
+
+Glossary Term Number: 227
+Assigned glossary term, Pricing profile for variants, to 6 entities
+Unique column names that the glossary term was applied to:
+   SPROF
+
+Glossary Term Number: 228
+Assigned glossary term, Primary Growth Team, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRIMEGRWTHTM
+
+Glossary Term Number: 229
+Assigned glossary term, Procurement Type, to 4 entities
+Unique column names that the glossary term was applied to:
+   BESKZ
+
+Glossary Term Number: 230
+Assigned glossary term, Prod feature control, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_CONTROL
+
+Glossary Term Number: 231
+No matches for glossary term, Prod feature cushioning
+Glossary Term Number: 232
+Assigned glossary term, Prod feature heel, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_HEEL
+
+Glossary Term Number: 233
+Assigned glossary term, Prod feature laceembell, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_LACEEMBELL
+
+Glossary Term Number: 234
+Assigned glossary term, Prod feature leg length, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_LEGLENGTH
+
+Glossary Term Number: 235
+Assigned glossary term, Prod feature legbinding, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_LEGBINDING
+
+Glossary Term Number: 236
+Assigned glossary term, Prod feature legtype, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_LEGTYPE
+
+Glossary Term Number: 237
+Assigned glossary term, Prod feature lining, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_LINING
+
+Glossary Term Number: 238
+No matches for glossary term, Prod feature needlecount
+Glossary Term Number: 239
+No matches for glossary term, Prod feature shorts inseam
+Glossary Term Number: 240
+No matches for glossary term, Prod feature sleevelength
+Glossary Term Number: 241
+Assigned glossary term, Prod feature toeseam, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_TOESEAM
+
+Glossary Term Number: 242
+Assigned glossary term, Prod feature toetype, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_TOETYPE
+
+Glossary Term Number: 243
+Assigned glossary term, Prod feature waistband, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_WAISTBAND
+
+Glossary Term Number: 244
+Assigned glossary term, Prod feature welt, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURE_WELT
+
+Glossary Term Number: 245
+No matches for glossary term, Prod featurepant length
+Glossary Term Number: 246
+Assigned glossary term, Prod features pantytype, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFEATURES_PANTYTYPE
+
+Glossary Term Number: 247
+Assigned glossary term, Product Family, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODFAMILY
+
+Glossary Term Number: 248
+Assigned glossary term, Product Group, to 15 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODUCTGROUP
+
+Glossary Term Number: 249
+Assigned glossary term, Product Line, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZPRODUCTLINE
+
+Glossary Term Number: 250
+Assigned glossary term, Production/inspection memo, to 6 entities
+Unique column names that the glossary term was applied to:
+   FERTH
+

@@ -1,0 +1,163 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 451 to 500
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 451
+No matches for glossary term, General Ledger Account
+
+Glossary Term Number: 452
+No matches for glossary term, Transportation Chain
+
+Glossary Term Number: 453
+No matches for glossary term, Article Number Used by Vendor
+
+Glossary Term Number: 454
+No matches for glossary term, Available (Deliverable) From
+
+Glossary Term Number: 455
+No matches for glossary term, Available (Deliverable) Until
+
+Glossary Term Number: 456
+No matches for glossary term, Certificate Category
+
+Glossary Term Number: 457
+No matches for glossary term, Certificate Number
+
+Glossary Term Number: 458
+No matches for glossary term, Certificate of Origin Number
+
+Glossary Term Number: 459
+No matches for glossary term, Certificate of Origin Valid Until
+
+Glossary Term Number: 460
+No matches for glossary term, Condition Group
+
+Glossary Term Number: 461
+No matches for glossary term, Denominator for Conv of Order Price Unit into Order Unit
+
+Glossary Term Number: 462
+No matches for glossary term, Effective price
+
+Glossary Term Number: 463
+No matches for glossary term, General data flagged for deletion
+
+Glossary Term Number: 464
+No matches for glossary term, Manufacturer
+
+Glossary Term Number: 465
+No matches for glossary term, Max Order Quantity
+
+Glossary Term Number: 466
+No matches for glossary term, No Evaluated Receipt Settlement (ERS)
+
+Glossary Term Number: 467
+No matches for glossary term, Number of Days for Reminder/Expediter
+
+Glossary Term Number: 468
+No matches for glossary term, Number of purchasing info record
+
+Glossary Term Number: 469
+No matches for glossary term, Numerator for Conversion of Order Price Unit into Order Unit
+
+Glossary Term Number: 470
+No matches for glossary term, Numerator for Conversion of Order Unit to Base Unit
+
+Glossary Term Number: 471
+No matches for glossary term, Order Price Unit (Purchasing)
+
+Glossary Term Number: 472
+No matches for glossary term, Overdelivery Tolerance Limit
+
+Glossary Term Number: 473
+No matches for glossary term, Purch Org data flagged for deletion
+
+Glossary Term Number: 474
+No matches for glossary term, Salesperson Responsible in the Event of Queries
+
+Glossary Term Number: 475
+No matches for glossary term, Shipping Instructions
+
+Glossary Term Number: 476
+No matches for glossary term, Sort Sequence Number
+
+Glossary Term Number: 477
+No matches for glossary term, Standard Purchase Order Quantity
+
+Glossary Term Number: 478
+No matches for glossary term, Underdelivery Tolerance Limit
+
+Glossary Term Number: 479
+No matches for glossary term, Unlimited Overdelivery Allowed
+
+Glossary Term Number: 480
+No matches for glossary term, Variable Purchase Order Unit Active
+
+Glossary Term Number: 481
+No matches for glossary term, Vendor Merchandise Category
+
+Glossary Term Number: 482
+No matches for glossary term, Vendor Subrange
+
+Glossary Term Number: 483
+No matches for glossary term, Blocked Source of Supply
+
+Glossary Term Number: 484
+No matches for glossary term, Fixed Supplier
+
+Glossary Term Number: 485
+No matches for glossary term, Number of Source List Record
+
+Glossary Term Number: 486
+No matches for glossary term, Plant from Which Material is Procured
+
+Glossary Term Number: 487
+No matches for glossary term, Purchasing Document Category
+
+Glossary Term Number: 488
+No matches for glossary term, Source List Record Valid From
+
+Glossary Term Number: 489
+No matches for glossary term, Source List Record Valid To
+
+Glossary Term Number: 490
+No matches for glossary term, Source List Usage in Materials Planning
+
+Glossary Term Number: 491
+No matches for glossary term, AFS Group Strategy
+
+Glossary Term Number: 492
+No matches for glossary term, AFS Account
+
+Glossary Term Number: 493
+No matches for glossary term, AFS Account Assignment Group for this Customer
+
+Glossary Term Number: 494
+Assigned glossary term, Account Assignment Group for this Customer, to 4 entities
+Unique column names that the glossary term was applied to:
+   KTGRD
+
+Glossary Term Number: 495
+No matches for glossary term, AFS Account Statement
+
+Glossary Term Number: 496
+Assigned glossary term, Account Statement, to 4 entities
+Unique column names that the glossary term was applied to:
+   XAUSZ
+
+Glossary Term Number: 497
+No matches for glossary term, AFS Account Type
+
+Glossary Term Number: 498
+Assigned glossary term, Allow Dup PO, to 4 entities
+Unique column names that the glossary term was applied to:
+   KATR2
+
+Glossary Term Number: 499
+No matches for glossary term, AFS Business Unit
+
+Glossary Term Number: 500
+Assigned glossary term, CPG, to 4 entities
+Unique column names that the glossary term was applied to:
+   KVGR2
+

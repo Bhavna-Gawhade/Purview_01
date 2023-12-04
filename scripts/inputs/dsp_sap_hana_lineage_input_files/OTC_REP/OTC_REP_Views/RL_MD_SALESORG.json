@@ -1,0 +1,392 @@
+{
+  "definitions": {
+    "RL_MD_SALESORG": {
+      "kind": "entity",
+      "elements": {
+        "VKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_SAL"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "Count": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "_HL_MD_SAL": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VKORG"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_SAL",
+                "VKORG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_SALESORG",
+          "@EndUserText.label": "Sales Organization Master Report to Sales Organization Master Data"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "MD_STG.HL_MD_SALESORG"
+            ],
+            "as": "HL_MD_SALESORG"
+          },
+          "columns": [
+            {
+              "as": "VKORG",
+              "key": true,
+              "ref": [
+                "HL_MD_SALESORG",
+                "VKORG"
+              ]
+            },
+            {
+              "as": "Count",
+              "func": "COUNT",
+              "args": [
+                {
+                  "ref": [
+                    "HL_MD_SALESORG",
+                    "VKORG"
+                  ]
+                }
+              ]
+            },
+            {
+              "ref": [
+                "_HL_MD_SAL"
+              ]
+            }
+          ],
+          "mixin": {
+            "_HL_MD_SAL": {
+              "type": "cds.Association",
+              "@EndUserText.label": "Sales Organization Master Report to Sales Organization Master Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "VKORG"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_SAL",
+                    "VKORG"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_SALESORG"
+            }
+          },
+          "groupBy": [
+            {
+              "ref": [
+                "HL_MD_SALESORG",
+                "VKORG"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "Sales Organization Master Data Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"973e891d-6dae-44f9-8560-4544ef49eb4d\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_MD_SALESORG\",\"label\":\"Sales Organization Master Data Report\",\"modificationDate\":1665765063805,\"deploymentDate\":1663863044270,\"#objectStatus\":\"2\",\"output\":\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\",\"nodes\":{\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\":{\"name\":\"RL_MD_SALESORG\"},\"c61b055f-d334-4e90-8c1d-454563959a05\":{\"name\":\"MD_STG.HL_MD_SALESORG\"},\"c98ea219-4861-4bf7-a336-09d34a3f838e\":{\"name\":\"Calculated Columns 1\"},\"d28a61e6-3a09-4ce8-8b0d-78715d1b64a4\":{\"name\":\"Projection 1\"},\"3a740292-3626-4aa3-af71-b5ecbdd59aa8\":{\"name\":\"MD_STG.HL_MD_SALESORG\"}},\"associations\":{\"9650b52c-da88-404a-9298-74257fdf946e\":{\"name\":\"_HL_MD_SAL\"}},\"contexts\":{\"08fda895-5ea5-44c8-b349-83dccd28627c\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"4fb16e8e-040b-407b-8e12-0204e5349644\":{}}},\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_MD_SALESORG\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1665765063805,\"deploymentDate\":1663863044270,\"#objectStatus\":\"2\",\"elements\":{\"2f7c69f3-86c6-4df3-81b6-84bd295221a5\":{\"name\":\"Calculated_1\"},\"9f781e65-67c9-495a-a282-4a2166abeb6b\":{\"name\":\"VKORG\"}},\"associations\":{\"9650b52c-da88-404a-9298-74257fdf946e\":{\"name\":\"_HL_MD_SAL\"}}},\"c61b055f-d334-4e90-8c1d-454563959a05\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.HL_MD_SALESORG\",\"label\":\"Sales Organization Master Data\",\"type\":4,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"isHiddenInUi\":false,\"modificationDate\":1665763311475,\"deploymentDate\":1665763478156,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_SALESORG\",\"context\":\"08fda895-5ea5-44c8-b349-83dccd28627c\",\"elements\":{\"5ea59f5f-aade-4f83-84ac-2e0cf306f2c9\":{\"name\":\"VKORG\"},\"e22958e4-6d8c-44d9-a68b-c3f2003fef48\":{\"name\":\"STAT_CURRENCY\"},\"f4eff7f3-b022-4dbd-9fca-f5c90204cca6\":{\"name\":\"BUKRS\"},\"55f3e22a-3447-432b-bed1-1d5de0cea377\":{\"name\":\"KUNNR\"},\"7ca71d16-fb22-4d7e-9110-df70db72e16c\":{\"name\":\"LAND1\"},\"8818fa02-944a-4491-bf34-920731690259\":{\"name\":\"CURRENCY_KEY\"},\"3c5a4cdc-f1a6-4739-91c3-387ba5387024\":{\"name\":\"PERIV\"},\"2c98f695-83f0-475d-a024-ea51decace71\":{\"name\":\"BUTXT\"},\"a7e4a412-8f5e-40de-b253-ccd97c1d6cb0\":{\"name\":\"ORT01\"},\"6044e6cb-dc5e-4f98-a4fc-ed54ee1b606e\":{\"name\":\"SPRAS\"}},\"successorNode\":\"d28a61e6-3a09-4ce8-8b0d-78715d1b64a4\"},\"c98ea219-4861-4bf7-a336-09d34a3f838e\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"9a1af569-1bcf-42ae-92fa-5622b45fd809\":{\"name\":\"Calculated_1\"},\"081247b8-f9c3-4318-81ca-93f0f9635d81\":{\"name\":\"VKORG\"}},\"successorNode\":\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\"},\"d28a61e6-3a09-4ce8-8b0d-78715d1b64a4\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"6c519097-80d1-415e-974a-4a61b479ec36\":{\"name\":\"VKORG\"},\"14871e59-55b9-4ddf-83af-961fea54df6d\":{\"name\":\"STAT_CURRENCY\"},\"4de47c00-7dca-4f9b-855e-04a37b13ee42\":{\"name\":\"BUKRS\"},\"611d4808-e369-40b9-88a6-19122db9781b\":{\"name\":\"KUNNR\"},\"372609cb-5143-44ee-b10b-e2ca2c7e4709\":{\"name\":\"LAND1\"},\"b2740a8e-1bd1-45ca-a269-0999cbc9fbe5\":{\"name\":\"CURRENCY_KEY\"},\"b2101d43-0064-46ed-bf90-54dc2187d419\":{\"name\":\"PERIV\"},\"a7ee0bb9-18d6-44d8-bc0f-5ef497831936\":{\"name\":\"BUTXT\"},\"124bf6c6-ae28-4260-b9fe-3b669e9ccb88\":{\"name\":\"ORT01\"},\"2cd02335-4391-4a5c-8240-ab27facf5468\":{\"name\":\"SPRAS\"}},\"successorNode\":\"c98ea219-4861-4bf7-a336-09d34a3f838e\"},\"3a740292-3626-4aa3-af71-b5ecbdd59aa8\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_SALESORG\",\"label\":\"Sales Organization Master Data\",\"type\":\"View (Dimension)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"modificationDate\":1665763311475,\"deploymentDate\":1665763478156,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_SALESORG2\",\"elements\":{\"8118e0c8-03dc-4467-b26a-83dbc9199b19\":{\"name\":\"VKORG\"},\"32a4587e-e812-4b96-8733-129f96d76842\":{\"name\":\"STAT_CURRENCY\"},\"b20b4e5e-1471-4912-8ea7-e6a1e52f9234\":{\"name\":\"BUKRS\"},\"ea2361c9-bb10-438a-b348-a0efa120718f\":{\"name\":\"KUNNR\"},\"c0c86601-0389-4ec9-bfb9-b6677c295863\":{\"name\":\"LAND1\"},\"f2767124-4203-4a91-a9a2-3a6128e0d450\":{\"name\":\"CURRENCY_KEY\"},\"46b1a004-7356-4bc8-8f04-702b8d3e3dac\":{\"name\":\"PERIV\"},\"542389b7-d9eb-4e83-a96b-11bdc713289d\":{\"name\":\"BUTXT\"},\"78dcc43e-37e3-43e5-b75d-31f842d59ab4\":{\"name\":\"ORT01\"},\"5fc09ff5-2b70-4edc-8140-4b88852e3b63\":{\"name\":\"SPRAS\"}},\"context\":\"08fda895-5ea5-44c8-b349-83dccd28627c\"},\"9650b52c-da88-404a-9298-74257fdf946e\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_SAL\",\"label\":\"Sales Organization Master Report to Sales Organization Master Data\",\"source\":\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\",\"target\":\"3a740292-3626-4aa3-af71-b5ecbdd59aa8\",\"mappings\":{\"130480e8-d8e7-4336-bfe1-20e98060df4b\":{}}},\"08fda895-5ea5-44c8-b349-83dccd28627c\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"4fb16e8e-040b-407b-8e12-0204e5349644\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"20dd41e7-d293-4396-9a0c-b1f97b23e057\":{},\"b6bf8102-d755-469e-877a-70a9b758882f\":{\"name\":\"Entity Symbol 1\"},\"d0491a85-00f5-49c5-bf71-2d3a5636f695\":{},\"ae2d75a4-dfb8-48b7-8ed2-c0b524b93c00\":{},\"ce172eb1-3b5b-41eb-9247-b26996c0951f\":{},\"70e74623-2ac5-4a90-88df-77725281ae20\":{},\"28359d13-bce1-4554-91b5-2a78c3a9231a\":{}}},\"2f7c69f3-86c6-4df3-81b6-84bd295221a5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":7,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true},\"9f781e65-67c9-495a-a282-4a2166abeb6b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":1,\"expression\":\"VKORG\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_SAL\",\"isNotNull\":true},\"5ea59f5f-aade-4f83-84ac-2e0cf306f2c9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TV\",\"isNotNull\":true,\"successorElement\":\"6c519097-80d1-415e-974a-4a61b479ec36\"},\"e22958e4-6d8c-44d9-a68b-c3f2003fef48\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STAT_CURRENCY\",\"label\":\"Statistics currency\",\"newName\":\"STAT_CURRENCY\",\"indexOrder\":1,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"14871e59-55b9-4ddf-83af-961fea54df6d\"},\"f4eff7f3-b022-4dbd-9fca-f5c90204cca6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company code of the sales organization\",\"newName\":\"BUKRS\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"4de47c00-7dca-4f9b-855e-04a37b13ee42\",\"labelElement\":\"2c98f695-83f0-475d-a024-ea51decace71\"},\"55f3e22a-3447-432b-bed1-1d5de0cea377\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KUNNR\",\"label\":\"Customer number for intercompany billing\",\"newName\":\"KUNNR\",\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CU\",\"successorElement\":\"611d4808-e369-40b9-88a6-19122db9781b\"},\"7ca71d16-fb22-4d7e-9110-df70db72e16c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T0\",\"successorElement\":\"372609cb-5143-44ee-b10b-e2ca2c7e4709\"},\"8818fa02-944a-4491-bf34-920731690259\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRENCY_KEY\",\"label\":\"Currency Key\",\"newName\":\"CURRENCY_KEY\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TC\",\"successorElement\":\"b2740a8e-1bd1-45ca-a269-0999cbc9fbe5\"},\"3c5a4cdc-f1a6-4739-91c3-387ba5387024\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PERIV\",\"label\":\"Fiscal Year Variant\",\"newName\":\"PERIV\",\"indexOrder\":6,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"b2101d43-0064-46ed-bf90-54dc2187d419\"},\"2c98f695-83f0-475d-a024-ea51decace71\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"indexOrder\":7,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"a7ee0bb9-18d6-44d8-bc0f-5ef497831936\"},\"a7e4a412-8f5e-40de-b253-ccd97c1d6cb0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"indexOrder\":8,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"124bf6c6-ae28-4260-b9fe-3b669e9ccb88\"},\"6044e6cb-dc5e-4f98-a4fc-ed54ee1b606e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":9,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\",\"successorElement\":\"2cd02335-4391-4a5c-8240-ab27facf5468\"},\"9a1af569-1bcf-42ae-92fa-5622b45fd809\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":7,\"expression\":\"COUNT(VKORG)\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"2f7c69f3-86c6-4df3-81b6-84bd295221a5\"},\"081247b8-f9c3-4318-81ca-93f0f9635d81\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"expression\":\"VKORG\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9f781e65-67c9-495a-a282-4a2166abeb6b\"},\"6c519097-80d1-415e-974a-4a61b479ec36\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"081247b8-f9c3-4318-81ca-93f0f9635d81\"},\"14871e59-55b9-4ddf-83af-961fea54df6d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STAT_CURRENCY\",\"label\":\"Statistics currency\",\"newName\":\"STAT_CURRENCY\",\"isRemoved\":true,\"indexOrder\":1,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"4de47c00-7dca-4f9b-855e-04a37b13ee42\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company code of the sales organization\",\"newName\":\"BUKRS\",\"isRemoved\":true,\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"611d4808-e369-40b9-88a6-19122db9781b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KUNNR\",\"label\":\"Customer number for intercompany billing\",\"newName\":\"KUNNR\",\"isRemoved\":true,\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"372609cb-5143-44ee-b10b-e2ca2c7e4709\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"isRemoved\":true,\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b2740a8e-1bd1-45ca-a269-0999cbc9fbe5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRENCY_KEY\",\"label\":\"Currency Key\",\"newName\":\"CURRENCY_KEY\",\"isRemoved\":true,\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b2101d43-0064-46ed-bf90-54dc2187d419\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PERIV\",\"label\":\"Fiscal Year Variant\",\"newName\":\"PERIV\",\"isRemoved\":true,\"indexOrder\":6,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"a7ee0bb9-18d6-44d8-bc0f-5ef497831936\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"isRemoved\":true,\"indexOrder\":7,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"124bf6c6-ae28-4260-b9fe-3b669e9ccb88\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"isRemoved\":true,\"indexOrder\":8,\"length\":25,\"precision\":0,\"scale\":0},\"2cd02335-4391-4a5c-8240-ab27facf5468\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"isRemoved\":true,\"indexOrder\":9,\"length\":1,\"precision\":0,\"scale\":0},\"8118e0c8-03dc-4467-b26a-83dbc9199b19\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TV\",\"isNotNull\":true},\"32a4587e-e812-4b96-8733-129f96d76842\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STAT_CURRENCY\",\"label\":\"Statistics currency\",\"newName\":\"STAT_CURRENCY\",\"indexOrder\":1,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b20b4e5e-1471-4912-8ea7-e6a1e52f9234\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUKRS\",\"label\":\"Company code of the sales organization\",\"newName\":\"BUKRS\",\"indexOrder\":2,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"labelElement\":\"542389b7-d9eb-4e83-a96b-11bdc713289d\"},\"ea2361c9-bb10-438a-b348-a0efa120718f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KUNNR\",\"label\":\"Customer number for intercompany billing\",\"newName\":\"KUNNR\",\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CU\"},\"c0c86601-0389-4ec9-bfb9-b6677c295863\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAND1\",\"label\":\"Country/Region Key\",\"newName\":\"LAND1\",\"indexOrder\":4,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T0\"},\"f2767124-4203-4a91-a9a2-3a6128e0d450\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CURRENCY_KEY\",\"label\":\"Currency Key\",\"newName\":\"CURRENCY_KEY\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_TC\"},\"46b1a004-7356-4bc8-8f04-702b8d3e3dac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PERIV\",\"label\":\"Fiscal Year Variant\",\"newName\":\"PERIV\",\"indexOrder\":6,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"542389b7-d9eb-4e83-a96b-11bdc713289d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUTXT\",\"label\":\"Name of Company Code or Company\",\"newName\":\"BUTXT\",\"indexOrder\":7,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"78dcc43e-37e3-43e5-b75d-31f842d59ab4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORT01\",\"label\":\"City\",\"newName\":\"ORT01\",\"indexOrder\":8,\"length\":25,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5fc09ff5-2b70-4edc-8140-4b88852e3b63\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPRAS\",\"label\":\"Language Key\",\"newName\":\"SPRAS\",\"indexOrder\":9,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\"},\"130480e8-d8e7-4336-bfe1-20e98060df4b\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"9f781e65-67c9-495a-a282-4a2166abeb6b\",\"target\":\"8118e0c8-03dc-4467-b26a-83dbc9199b19\"},\"20dd41e7-d293-4396-9a0c-b1f97b23e057\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"55c6d55d-1d85-4009-a7d5-2542b00bdbb3\"},\"b6bf8102-d755-469e-877a-70a9b758882f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"c61b055f-d334-4e90-8c1d-454563959a05\"},\"d0491a85-00f5-49c5-bf71-2d3a5636f695\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"c98ea219-4861-4bf7-a336-09d34a3f838e\"},\"ae2d75a4-dfb8-48b7-8ed2-c0b524b93c00\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"d0491a85-00f5-49c5-bf71-2d3a5636f695\",\"targetSymbol\":\"20dd41e7-d293-4396-9a0c-b1f97b23e057\"},\"ce172eb1-3b5b-41eb-9247-b26996c0951f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"d28a61e6-3a09-4ce8-8b0d-78715d1b64a4\"},\"70e74623-2ac5-4a90-88df-77725281ae20\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"ce172eb1-3b5b-41eb-9247-b26996c0951f\",\"targetSymbol\":\"d0491a85-00f5-49c5-bf71-2d3a5636f695\"},\"28359d13-bce1-4554-91b5-2a78c3a9231a\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"b6bf8102-d755-469e-877a-70a9b758882f\",\"targetSymbol\":\"ce172eb1-3b5b-41eb-9247-b26996c0951f\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "MD_STG.ZV_DWC_TVKOT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "VKORG": {
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "VTEXT"
+            }
+          ]
+        },
+        "VTEXT": {
+          "@EndUserText.label": "Name",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Sales Organizations: Texts - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TVKOT$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_SALESORG": {
+      "kind": "entity",
+      "elements": {
+        "VKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_TV"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "STAT_CURRENCY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Statistics currency",
+          "type": "cds.String",
+          "length": 5,
+          "@Analytics.dimension": true
+        },
+        "BUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company code of the sales organization",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true
+        },
+        "KUNNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Customer number for intercompany billing",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "LAND1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Country/Region Key",
+          "type": "cds.String",
+          "length": 3,
+          "@Analytics.dimension": true
+        },
+        "CURRENCY_KEY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Currency Key",
+          "type": "cds.String",
+          "length": 5,
+          "@Analytics.dimension": true
+        },
+        "PERIV": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Fiscal Year Variant",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true
+        },
+        "_ZV_DWC_TV": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VKORG"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_TV",
+                "VKORG"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TVKOT",
+          "@EndUserText.label": "Sales Organization Master Data to Sales Organizations: Texts - Master Data Attributes"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "Sales Organization Master Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

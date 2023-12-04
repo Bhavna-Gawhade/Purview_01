@@ -1,0 +1,104 @@
+{
+  "definitions": {
+    "ZV_DWC_KOSTL": {
+      "kind": "entity",
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_KOSTL$F",
+      "elements": {
+        "BUKRS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Company Code",
+          "notNull": true,
+          "key": true,
+          "length": 4,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "RESPONSIBLE": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Person Responsible",
+          "notNull": true,
+          "key": true,
+          "length": 12,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "CUSTOM_KEY": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Customer-Defined Additional Criterion",
+          "notNull": true,
+          "key": true,
+          "length": 20,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KOSTL": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Cost Center",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        },
+        {
+          "#": "SQL_DATA_SOURCE"
+        }
+      ],
+      "@EndUserText.label": "Cost Center Default Values for Writing Off Dispute Cases - Transaction Data"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

@@ -1,0 +1,262 @@
+{
+  "definitions": {
+    "ZV_DWC_SHORTSHIP": {
+      "kind": "entity",
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_SHORTSHIP$F",
+      "elements": {
+        "VBELN": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sales and Distribution Document Number",
+          "notNull": true,
+          "key": true,
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "POSNR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Item number of the SD document",
+          "notNull": true,
+          "key": true,
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "E_DATE1": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Entry Creation date",
+          "length": 8,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VGBEL": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Document number of the reference document",
+          "length": 10,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VGPOS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Item number of the reference item",
+          "length": 6,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WMENG": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Order Quantity in Sales Units",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ETENR": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@EndUserText.label": "Schedule Line Number",
+          "length": 4,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LFIMG": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Actual quantity delivered (in sales units)",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DLVQTY_BU": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Delivered Quantity",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "E_LGMNG1": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "IDOC Delivery Qty",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "E_LSS_QTY1": {
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Short ship qty",
+          "precision": 17,
+          "scale": 3,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "E_DEL_BLOCK1": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Del Block",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "E_OL_REJ1": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Order Line Rejection",
+          "length": 1,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PKMS_STATUS": {
+          "type": "cds.String",
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "PKMS Status",
+          "length": 20,
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        },
+        {
+          "#": "SQL_DATA_SOURCE"
+        }
+      ],
+      "@EndUserText.label": "Short Shipment - Transaction Data"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

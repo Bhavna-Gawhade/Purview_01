@@ -1,0 +1,445 @@
+{
+  "definitions": {
+    "IL_OTC_INCOMP_ORDER_LOG": {
+      "kind": "entity",
+      "elements": {
+        "VBELN": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales and Distribution Document Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "POSNR": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Item number of the SD document",
+          "type": "cds.String",
+          "length": 6,
+          "key": true,
+          "notNull": true
+        },
+        "ETENR": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Schedule Line Number",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "PARVW": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Partner Function",
+          "type": "cds.String",
+          "length": 2,
+          "key": true,
+          "notNull": true
+        },
+        "TDID": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Text ID",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "TBNAM": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Table for documents in Sales",
+          "type": "cds.String",
+          "length": 30,
+          "key": true,
+          "notNull": true
+        },
+        "FDNAM": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Document field name",
+          "type": "cds.String",
+          "length": 30,
+          "key": true,
+          "notNull": true
+        },
+        "CEPOK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Status expected price",
+          "type": "cds.String",
+          "length": 1
+        },
+        "TIME_STAMP": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "ZC_DWC_V_VBUV"
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "VBELN"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "POSNR"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "ETENR"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "PARVW"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "TDID"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "TBNAM"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "FDNAM"
+              ]
+            },
+            {
+              "ref": [
+                "CEPOK"
+              ]
+            },
+            {
+              "ref": [
+                "TIME_STAMP"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Incomplete Sales Order Log - IL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"95ecf240-9207-4cfb-928a-b6eb1dab502f\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"IL_OTC_INCOMP_ORDER_LOG\",\"label\":\"Incomplete Sales Order Log - IL\",\"modificationDate\":1669116348492,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"31a98c9e-9c21-47ac-836e-dd08ff6edd36\",\"nodes\":{\"31a98c9e-9c21-47ac-836e-dd08ff6edd36\":{\"name\":\"IL_OTC_INCOMP_ORDER_LOG\"},\"c82d685b-1f9c-4807-99da-4102f1e0f194\":{\"name\":\"ZC_DWC_V_VBUV\"},\"fe7cf965-f453-4e4e-8be2-52826b937df9\":{\"name\":\"Projection 1\"}},\"diagrams\":{\"40c7fe9a-def2-42ef-a7f3-d2b4c3f2953e\":{}}},\"31a98c9e-9c21-47ac-836e-dd08ff6edd36\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"IL_OTC_INCOMP_ORDER_LOG\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1669116348492,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"f1699b89-09f1-4cb3-9cab-93d24c25148c\":{\"name\":\"VBELN\"},\"3f247079-4db2-417a-aa1a-600b5e2433da\":{\"name\":\"POSNR\"},\"c391d2b7-cc7f-47d3-8b53-29b1fa563be4\":{\"name\":\"ETENR\"},\"fa4d53ed-d9ff-4b85-93a2-2e423bb8cb21\":{\"name\":\"PARVW\"},\"585718fc-f28c-4154-8dea-bca0c0394808\":{\"name\":\"TDID\"},\"3aacbb67-cce7-4419-957e-d2ff3251151f\":{\"name\":\"TBNAM\"},\"199751cf-03e8-48da-bfcf-1af46e03f582\":{\"name\":\"FDNAM\"},\"efc6a3fb-d9ef-405b-80b2-23dbed8ba9d2\":{\"name\":\"CEPOK\"},\"841a378c-8f58-4d2f-83a9-6e70a91c6587\":{\"name\":\"TIME_STAMP\"}}},\"c82d685b-1f9c-4807-99da-4102f1e0f194\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"ZC_DWC_V_VBUV\",\"label\":\"VBUV CDS View - Transaction Data\",\"type\":8,\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZC_DWC_V_VBUV$F\"},\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1669116224579,\"deploymentDate\":1669116260849,\"#objectStatus\":\"1\",\"elements\":{\"655a6788-3100-4918-8a52-d0469aa67fa1\":{\"name\":\"VBELN\"},\"cf86a021-3106-43cb-b6e8-e709f634ee8c\":{\"name\":\"POSNR\"},\"c764bd32-8142-414a-888d-0f65cd509165\":{\"name\":\"ETENR\"},\"1213dab4-c156-4134-aa14-c009c36d0dbd\":{\"name\":\"PARVW\"},\"6572aa9b-e1a7-47ce-a3ba-1b1a56a25635\":{\"name\":\"TDID\"},\"2a557717-d304-48c3-8dba-800c8597ef70\":{\"name\":\"TBNAM\"},\"f68ba515-b4cd-4d15-95f1-55183cf4c361\":{\"name\":\"FDNAM\"},\"e0768146-1f87-41de-8a11-4e5e60cfebe5\":{\"name\":\"CEPOK\"},\"b53b2569-40f6-44e1-8089-68a8db4eb596\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"fe7cf965-f453-4e4e-8be2-52826b937df9\"},\"fe7cf965-f453-4e4e-8be2-52826b937df9\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"3df47d82-d0fc-4f49-bf49-b0b02fe52589\":{\"name\":\"VBELN\"},\"ff44c45f-b03b-4f3d-a237-d0b2c2f94dae\":{\"name\":\"POSNR\"},\"1f55715b-8c79-454d-b322-62911e9f2e9d\":{\"name\":\"ETENR\"},\"d8fd78e2-fcea-4cd1-b6cd-47b8a254259e\":{\"name\":\"PARVW\"},\"b9a092c0-d05b-43e5-a456-672f858a159f\":{\"name\":\"TDID\"},\"0a23852e-0f68-4a90-bee8-e4e1f61cda43\":{\"name\":\"TBNAM\"},\"9b590235-d77e-4510-acb8-15d2bc8b6130\":{\"name\":\"FDNAM\"},\"b335521a-cd01-4c0a-ab75-5e4c0b11df76\":{\"name\":\"CEPOK\"},\"292d57aa-e282-48cd-a48c-5b1d1a9b2497\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"31a98c9e-9c21-47ac-836e-dd08ff6edd36\"},\"40c7fe9a-def2-42ef-a7f3-d2b4c3f2953e\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"eb8f8a01-cc4f-4241-a162-abca037fcbd7\":{},\"24247b62-b22a-4f75-8599-93cf62abd288\":{\"name\":\"Entity Symbol 1\"},\"1a6de871-6349-4106-bc71-6df5833f0117\":{},\"3a738930-1a4e-4897-a794-afbfcdc01ca2\":{},\"fdf457c6-4891-4bdd-b949-6e0b6a9d75fe\":{}}},\"f1699b89-09f1-4cb3-9cab-93d24c25148c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBELN\",\"label\":\"Sales and Distribution Document Number\",\"newName\":\"VBELN\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"3f247079-4db2-417a-aa1a-600b5e2433da\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSNR\",\"label\":\"Item number of the SD document\",\"newName\":\"POSNR\",\"indexOrder\":1,\"isKey\":true,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"c391d2b7-cc7f-47d3-8b53-29b1fa563be4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ETENR\",\"label\":\"Schedule Line Number\",\"newName\":\"ETENR\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"fa4d53ed-d9ff-4b85-93a2-2e423bb8cb21\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PARVW\",\"label\":\"Partner Function\",\"newName\":\"PARVW\",\"indexOrder\":3,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"585718fc-f28c-4154-8dea-bca0c0394808\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TDID\",\"label\":\"Text ID\",\"newName\":\"TDID\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"3aacbb67-cce7-4419-957e-d2ff3251151f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TBNAM\",\"label\":\"Table for documents in Sales\",\"newName\":\"TBNAM\",\"indexOrder\":5,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"199751cf-03e8-48da-bfcf-1af46e03f582\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FDNAM\",\"label\":\"Document field name\",\"newName\":\"FDNAM\",\"indexOrder\":6,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"efc6a3fb-d9ef-405b-80b2-23dbed8ba9d2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CEPOK\",\"label\":\"Status expected price\",\"newName\":\"CEPOK\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"841a378c-8f58-4d2f-83a9-6e70a91c6587\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"655a6788-3100-4918-8a52-d0469aa67fa1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBELN\",\"label\":\"Sales and Distribution Document Number\",\"newName\":\"VBELN\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"3df47d82-d0fc-4f49-bf49-b0b02fe52589\"},\"cf86a021-3106-43cb-b6e8-e709f634ee8c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSNR\",\"label\":\"Item number of the SD document\",\"newName\":\"POSNR\",\"indexOrder\":1,\"isKey\":true,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"ff44c45f-b03b-4f3d-a237-d0b2c2f94dae\"},\"c764bd32-8142-414a-888d-0f65cd509165\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ETENR\",\"label\":\"Schedule Line Number\",\"newName\":\"ETENR\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"1f55715b-8c79-454d-b322-62911e9f2e9d\"},\"1213dab4-c156-4134-aa14-c009c36d0dbd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PARVW\",\"label\":\"Partner Function\",\"newName\":\"PARVW\",\"indexOrder\":3,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"d8fd78e2-fcea-4cd1-b6cd-47b8a254259e\"},\"6572aa9b-e1a7-47ce-a3ba-1b1a56a25635\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TDID\",\"label\":\"Text ID\",\"newName\":\"TDID\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"b9a092c0-d05b-43e5-a456-672f858a159f\"},\"2a557717-d304-48c3-8dba-800c8597ef70\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TBNAM\",\"label\":\"Table for documents in Sales\",\"newName\":\"TBNAM\",\"indexOrder\":5,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0a23852e-0f68-4a90-bee8-e4e1f61cda43\"},\"f68ba515-b4cd-4d15-95f1-55183cf4c361\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FDNAM\",\"label\":\"Document field name\",\"newName\":\"FDNAM\",\"indexOrder\":6,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9b590235-d77e-4510-acb8-15d2bc8b6130\"},\"e0768146-1f87-41de-8a11-4e5e60cfebe5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CEPOK\",\"label\":\"Status expected price\",\"newName\":\"CEPOK\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"b335521a-cd01-4c0a-ab75-5e4c0b11df76\"},\"b53b2569-40f6-44e1-8089-68a8db4eb596\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"292d57aa-e282-48cd-a48c-5b1d1a9b2497\"},\"eb8f8a01-cc4f-4241-a162-abca037fcbd7\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"31a98c9e-9c21-47ac-836e-dd08ff6edd36\"},\"24247b62-b22a-4f75-8599-93cf62abd288\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"c82d685b-1f9c-4807-99da-4102f1e0f194\"},\"1a6de871-6349-4106-bc71-6df5833f0117\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-2,\"y\":-16,\"object\":\"fe7cf965-f453-4e4e-8be2-52826b937df9\"},\"3a738930-1a4e-4897-a794-afbfcdc01ca2\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"24247b62-b22a-4f75-8599-93cf62abd288\",\"targetSymbol\":\"1a6de871-6349-4106-bc71-6df5833f0117\"},\"fdf457c6-4891-4bdd-b949-6e0b6a9d75fe\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"1a6de871-6349-4106-bc71-6df5833f0117\",\"targetSymbol\":\"eb8f8a01-cc4f-4241-a162-abca037fcbd7\"},\"3df47d82-d0fc-4f49-bf49-b0b02fe52589\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBELN\",\"label\":\"Sales and Distribution Document Number\",\"newName\":\"VBELN\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"f1699b89-09f1-4cb3-9cab-93d24c25148c\"},\"ff44c45f-b03b-4f3d-a237-d0b2c2f94dae\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSNR\",\"label\":\"Item number of the SD document\",\"newName\":\"POSNR\",\"indexOrder\":1,\"isKey\":true,\"length\":6,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"3f247079-4db2-417a-aa1a-600b5e2433da\"},\"1f55715b-8c79-454d-b322-62911e9f2e9d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ETENR\",\"label\":\"Schedule Line Number\",\"newName\":\"ETENR\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"c391d2b7-cc7f-47d3-8b53-29b1fa563be4\"},\"d8fd78e2-fcea-4cd1-b6cd-47b8a254259e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PARVW\",\"label\":\"Partner Function\",\"newName\":\"PARVW\",\"indexOrder\":3,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"fa4d53ed-d9ff-4b85-93a2-2e423bb8cb21\"},\"b9a092c0-d05b-43e5-a456-672f858a159f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TDID\",\"label\":\"Text ID\",\"newName\":\"TDID\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"585718fc-f28c-4154-8dea-bca0c0394808\"},\"0a23852e-0f68-4a90-bee8-e4e1f61cda43\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TBNAM\",\"label\":\"Table for documents in Sales\",\"newName\":\"TBNAM\",\"indexOrder\":5,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"3aacbb67-cce7-4419-957e-d2ff3251151f\"},\"9b590235-d77e-4510-acb8-15d2bc8b6130\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FDNAM\",\"label\":\"Document field name\",\"newName\":\"FDNAM\",\"indexOrder\":6,\"isKey\":true,\"length\":30,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"199751cf-03e8-48da-bfcf-1af46e03f582\"},\"b335521a-cd01-4c0a-ab75-5e4c0b11df76\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CEPOK\",\"label\":\"Status expected price\",\"newName\":\"CEPOK\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"efc6a3fb-d9ef-405b-80b2-23dbed8ba9d2\"},\"292d57aa-e282-48cd-a48c-5b1d1a9b2497\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"841a378c-8f58-4d2f-83a9-6e70a91c6587\"}}}"
+    },
+    "ZC_DWC_V_VBUV": {
+      "kind": "entity",
+      "elements": {
+        "VBELN": {
+          "@EndUserText.label": "Sales and Distribution Document Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "POSNR": {
+          "@EndUserText.label": "Item number of the SD document",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "ETENR": {
+          "@EndUserText.label": "Schedule Line Number",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "PARVW": {
+          "@EndUserText.label": "Partner Function",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "TDID": {
+          "@EndUserText.label": "Text ID",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "TBNAM": {
+          "@EndUserText.label": "Table for documents in Sales",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "FDNAM": {
+          "@EndUserText.label": "Document field name",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "CEPOK": {
+          "@EndUserText.label": "Status expected price",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "VBUV CDS View - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZC_DWC_V_VBUV$F"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

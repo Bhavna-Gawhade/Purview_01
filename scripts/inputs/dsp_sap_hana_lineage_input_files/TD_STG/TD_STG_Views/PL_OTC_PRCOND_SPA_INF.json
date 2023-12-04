@@ -1,0 +1,1103 @@
+{
+  "definitions": {
+    "PL_OTC_PRCOND_SPA_INF": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "notNull": true
+        },
+        "KBETR": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition amount or percentage where no scale exists",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "KONWA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition Unit (Currency or Percentage)",
+          "type": "cds.String",
+          "length": 5
+        },
+        "TIME_STAMP": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "VALID_END": {
+          "@EndUserText.label": "Validity End Date",
+          "type": "cds.Date",
+          "key": true,
+          "notNull": true
+        },
+        "VALID_START": {
+          "@EndUserText.label": "Validity Start Date",
+          "type": "cds.Date"
+        },
+        "BWKEY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Valuation area",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@Analytics.dimension": true,
+          "notNull": true
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "HL_PRCOND_SPA"
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "MATNR"
+              ]
+            },
+            {
+              "ref": [
+                "KBETR"
+              ]
+            },
+            {
+              "ref": [
+                "KONWA"
+              ]
+            },
+            {
+              "ref": [
+                "TIME_STAMP"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "VALID_END"
+              ]
+            },
+            {
+              "ref": [
+                "VALID_START"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "BWKEY"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Price file for SPA Interface",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"4babe547-1a23-4f75-9132-4e2237f3eb63\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"PL_OTC_PRCOND_SPA_INF\",\"label\":\"Price file for SPA Interface\",\"modificationDate\":1666123443758,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"0fff82aa-42c5-4dca-b243-e992fd38e5e4\",\"nodes\":{\"0fff82aa-42c5-4dca-b243-e992fd38e5e4\":{\"name\":\"PL_OTC_PRCOND_SPA_INF\"},\"c36ee8d6-1d4e-44fb-8eed-78aae7a81c51\":{\"name\":\"HL_PRCOND_SPA\"},\"7567dd27-3f60-455f-95b3-517da18b1a6c\":{\"name\":\"Projection 1\"}},\"diagrams\":{\"2f66eb90-afd6-4ac2-a761-a61d60f604b3\":{}}},\"0fff82aa-42c5-4dca-b243-e992fd38e5e4\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"PL_OTC_PRCOND_SPA_INF\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1666123443758,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"64645ea8-041c-48ea-8b95-262254bb11aa\":{\"name\":\"MATNR\"},\"a768e361-ad02-4143-951f-2d28c92ed5f5\":{\"name\":\"KBETR\"},\"1580392a-d4f5-4678-842b-7380b2e5b0a7\":{\"name\":\"KONWA\"},\"dd3ee461-a7d9-425a-9343-7557d843b902\":{\"name\":\"TIME_STAMP\"},\"12caf393-df5d-48db-8d58-eced699cecbe\":{\"name\":\"VALID_END\"},\"98958124-8c44-48fb-a5fd-9ec522ea46d2\":{\"name\":\"VALID_START\"},\"0abe2c76-3ddf-4207-afd6-1bc24683911d\":{\"name\":\"BWKEY\"}}},\"c36ee8d6-1d4e-44fb-8eed-78aae7a81c51\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"HL_PRCOND_SPA\",\"label\":\"Price Data for SPA - HL\",\"type\":3,\"isPinToMemoryEnabled\":false,\"isHiddenInUi\":false,\"modificationDate\":1666123363164,\"deploymentDate\":1666123385654,\"#objectStatus\":\"1\",\"elements\":{\"caf9685b-10c4-4835-9b3f-71994152b956\":{\"name\":\"MATNR\"},\"7c5befaa-e1ff-43f6-8098-61554ff898cd\":{\"name\":\"KBETR\"},\"6537e494-0ad7-41c8-ae9f-3fc2209158df\":{\"name\":\"KONWA\"},\"99d5661d-f2b8-4e45-b27b-ac37c9097a93\":{\"name\":\"TIME_STAMP\"},\"b99fef8e-7f00-4d15-b691-b6f43a7fabf0\":{\"name\":\"VALID_END\"},\"820d33d1-4a31-4097-88d5-9760360820f0\":{\"name\":\"VALID_START\"},\"0b5d6336-56f8-461f-a996-7fa1d614f384\":{\"name\":\"BWKEY\"}},\"successorNode\":\"7567dd27-3f60-455f-95b3-517da18b1a6c\"},\"7567dd27-3f60-455f-95b3-517da18b1a6c\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"73216fef-d8fa-4abf-8834-d2a28f4645eb\":{\"name\":\"MATNR\"},\"6923ec66-cb08-4329-97b1-db95aee5e1c0\":{\"name\":\"KBETR\"},\"4042cbb2-81cb-4b87-950a-9f6824568918\":{\"name\":\"KONWA\"},\"43a04db1-9954-473c-a9aa-7c49a6e9c543\":{\"name\":\"TIME_STAMP\"},\"b88a2bd7-d976-4111-8d22-02d48a7d69c2\":{\"name\":\"VALID_END\"},\"6a9a824d-1ee4-4f46-975b-9da21b5e2fcb\":{\"name\":\"VALID_START\"},\"397226df-5c48-4876-abe2-b2dca96f1007\":{\"name\":\"BWKEY\"}},\"successorNode\":\"0fff82aa-42c5-4dca-b243-e992fd38e5e4\"},\"2f66eb90-afd6-4ac2-a761-a61d60f604b3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"f14e2e79-9dad-4471-81f6-754251008df7\":{},\"b0c53943-73b3-4903-a22f-446186a89de6\":{\"name\":\"Entity Symbol 1\"},\"b3ae4562-03e6-42a7-8de8-84c25a996024\":{},\"a6cd6c30-c7eb-4c4e-a1e7-e27117d45414\":{},\"7abb8e0e-c8c4-4792-8cea-ef99c10c2942\":{}}},\"64645ea8-041c-48ea-8b95-262254bb11aa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"a768e361-ad02-4143-951f-2d28c92ed5f5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":1,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"1580392a-d4f5-4678-842b-7380b2e5b0a7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":2,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"dd3ee461-a7d9-425a-9343-7557d843b902\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":3,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"12caf393-df5d-48db-8d58-eced699cecbe\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":4,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true},\"98958124-8c44-48fb-a5fd-9ec522ea46d2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":5,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"0abe2c76-3ddf-4207-afd6-1bc24683911d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":6,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"caf9685b-10c4-4835-9b3f-71994152b956\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"73216fef-d8fa-4abf-8834-d2a28f4645eb\"},\"7c5befaa-e1ff-43f6-8098-61554ff898cd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":1,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"6923ec66-cb08-4329-97b1-db95aee5e1c0\"},\"6537e494-0ad7-41c8-ae9f-3fc2209158df\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":2,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"4042cbb2-81cb-4b87-950a-9f6824568918\"},\"99d5661d-f2b8-4e45-b27b-ac37c9097a93\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":3,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"43a04db1-9954-473c-a9aa-7c49a6e9c543\"},\"b99fef8e-7f00-4d15-b691-b6f43a7fabf0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":4,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"b88a2bd7-d976-4111-8d22-02d48a7d69c2\"},\"820d33d1-4a31-4097-88d5-9760360820f0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":5,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"6a9a824d-1ee4-4f46-975b-9da21b5e2fcb\"},\"0b5d6336-56f8-461f-a996-7fa1d614f384\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":6,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"397226df-5c48-4876-abe2-b2dca96f1007\"},\"73216fef-d8fa-4abf-8834-d2a28f4645eb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"64645ea8-041c-48ea-8b95-262254bb11aa\"},\"6923ec66-cb08-4329-97b1-db95aee5e1c0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"a768e361-ad02-4143-951f-2d28c92ed5f5\"},\"4042cbb2-81cb-4b87-950a-9f6824568918\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"1580392a-d4f5-4678-842b-7380b2e5b0a7\"},\"43a04db1-9954-473c-a9aa-7c49a6e9c543\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"dd3ee461-a7d9-425a-9343-7557d843b902\"},\"b88a2bd7-d976-4111-8d22-02d48a7d69c2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":2,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"12caf393-df5d-48db-8d58-eced699cecbe\"},\"6a9a824d-1ee4-4f46-975b-9da21b5e2fcb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":3,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"98958124-8c44-48fb-a5fd-9ec522ea46d2\"},\"397226df-5c48-4876-abe2-b2dca96f1007\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0abe2c76-3ddf-4207-afd6-1bc24683911d\"},\"f14e2e79-9dad-4471-81f6-754251008df7\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"0fff82aa-42c5-4dca-b243-e992fd38e5e4\"},\"b0c53943-73b3-4903-a22f-446186a89de6\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"c36ee8d6-1d4e-44fb-8eed-78aae7a81c51\"},\"b3ae4562-03e6-42a7-8de8-84c25a996024\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-2,\"y\":-16,\"object\":\"7567dd27-3f60-455f-95b3-517da18b1a6c\"},\"a6cd6c30-c7eb-4c4e-a1e7-e27117d45414\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"b0c53943-73b3-4903-a22f-446186a89de6\",\"targetSymbol\":\"b3ae4562-03e6-42a7-8de8-84c25a996024\"},\"7abb8e0e-c8c4-4792-8cea-ef99c10c2942\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"b3ae4562-03e6-42a7-8de8-84c25a996024\",\"targetSymbol\":\"f14e2e79-9dad-4471-81f6-754251008df7\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "MD_STG.IL_S4_MD_MATVALTN": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Analytics.dimension": true
+        },
+        "BWKEY": {
+          "@EndUserText.label": "Valuation area",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Analytics.dimension": true
+        },
+        "BWTAR": {
+          "@EndUserText.label": "Valuation Type",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Analytics.dimension": true
+        },
+        "STPRS": {
+          "@EndUserText.label": "Standard price",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LFGJA": {
+          "@EndUserText.label": "Fiscal Year of Current Period",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Analytics.dimension": true
+        },
+        "STPRV": {
+          "@EndUserText.label": "Previous price",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LAEPR": {
+          "@EndUserText.label": "Date of the last price change",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Analytics.dimension": true
+        },
+        "ZPLPR": {
+          "@EndUserText.label": "Future planned price",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LPLPR": {
+          "@EndUserText.label": "Current Planned Price",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PEINH": {
+          "@EndUserText.label": "Price unit",
+          "precision": 5,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@EndUserText.label": "Material Valuation",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_PRCOND_RM": {
+      "kind": "entity",
+      "elements": {
+        "KAPPL": {
+          "@EndUserText.label": "Application",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KSCHL": {
+          "@EndUserText.label": "Condition type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VKORG": {
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VTWEG": {
+          "@EndUserText.label": "Distribution Channel",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VRKME": {
+          "@EndUserText.label": "Sales unit",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "DATBI": {
+          "@EndUserText.label": "Validity end date of the condition record",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "DATAB": {
+          "@EndUserText.label": "Validity start date of the condition record",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KNUMH": {
+          "@EndUserText.label": "Number of the Condition Record",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KBETR": {
+          "@EndUserText.label": "Condition amount or percentage where no scale exists",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KONWA": {
+          "@EndUserText.label": "Condition Unit (Currency or Percentage)",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "KPEIN": {
+          "@EndUserText.label": "Condition Pricing Unit",
+          "precision": 5,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "TIME_STAMP": {
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Pricing Conditions Retail Mainline",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_PRCOND_RM$F",
+      "@cds.persistence.exists": true
+    },
+    "IL_PRCOND_SPA": {
+      "kind": "entity",
+      "elements": {
+        "VKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "notNull": true
+        },
+        "VRKME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales unit",
+          "type": "cds.String",
+          "length": 3,
+          "key": true,
+          "notNull": true
+        },
+        "KNUMH": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Number of the Condition Record",
+          "type": "cds.String",
+          "length": 10
+        },
+        "KBETR": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition amount or percentage where no scale exists",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "KONWA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition Unit (Currency or Percentage)",
+          "type": "cds.String",
+          "length": 5
+        },
+        "KPEIN": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition Pricing Unit",
+          "precision": 5,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "TIME_STAMP": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "VALID_END": {
+          "@EndUserText.label": "Validity End Date",
+          "type": "cds.Date",
+          "key": true,
+          "notNull": true
+        },
+        "VALID_START": {
+          "@EndUserText.label": "Validity Start Date",
+          "type": "cds.Date"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "MD_STG.ZV_DWC_PRCOND_RM"
+            ],
+            "as": "ZV_DWC_PRCOND_RM"
+          },
+          "columns": [
+            {
+              "as": "VKORG",
+              "key": true,
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "VKORG"
+              ]
+            },
+            {
+              "as": "MATNR",
+              "key": true,
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "MATNR"
+              ]
+            },
+            {
+              "as": "VRKME",
+              "key": true,
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "VRKME"
+              ]
+            },
+            {
+              "as": "KNUMH",
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "KNUMH"
+              ]
+            },
+            {
+              "as": "KBETR",
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "KBETR"
+              ]
+            },
+            {
+              "as": "KONWA",
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "KONWA"
+              ]
+            },
+            {
+              "as": "KPEIN",
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "KPEIN"
+              ]
+            },
+            {
+              "as": "TIME_STAMP",
+              "ref": [
+                "ZV_DWC_PRCOND_RM",
+                "TIME_STAMP"
+              ]
+            },
+            {
+              "as": "VALID_END",
+              "key": true,
+              "func": "TO_DATE",
+              "args": [
+                {
+                  "ref": [
+                    "ZV_DWC_PRCOND_RM",
+                    "DATBI"
+                  ]
+                }
+              ]
+            },
+            {
+              "as": "VALID_START",
+              "func": "TO_DATE",
+              "args": [
+                {
+                  "ref": [
+                    "ZV_DWC_PRCOND_RM",
+                    "DATAB"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Price Data for SPA",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"63b3ce32-beb9-4475-867c-fe1453fa96d6\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"IL_PRCOND_SPA\",\"label\":\"Price Data for SPA\",\"modificationDate\":1666123260301,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"db1032bf-004b-4c88-95f7-d87296aafe16\",\"nodes\":{\"db1032bf-004b-4c88-95f7-d87296aafe16\":{\"name\":\"IL_PRCOND_SPA\"},\"5d1205c4-471f-4795-930a-4219d461d481\":{\"name\":\"MD_STG.ZV_DWC_PRCOND_RM\"},\"5a79c266-ad6c-411e-8019-12381e64e8be\":{\"name\":\"Calculated Columns 1\"},\"850c707b-62c8-4701-b1c5-5d437155ab59\":{\"name\":\"Projection 1\"}},\"contexts\":{\"eb43ae55-3b9a-4c0e-96cd-5fbcb73f610d\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"b52ba711-bb49-4eae-b7dc-0a6b5206dab8\":{}}},\"db1032bf-004b-4c88-95f7-d87296aafe16\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"IL_PRCOND_SPA\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1666123260301,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"7705506f-a448-44c6-ab45-0bf960124b37\":{\"name\":\"VKORG\"},\"8277245a-e165-4fa1-affe-34708ef8da62\":{\"name\":\"MATNR\"},\"77000483-5bee-4b81-9c44-3757233703ba\":{\"name\":\"VRKME\"},\"cfad3a8e-6c3d-4e03-95ec-503c5ea8dac3\":{\"name\":\"KNUMH\"},\"c48e1ffd-471b-40e5-b89f-607930185c54\":{\"name\":\"KBETR\"},\"7b22af42-b3dc-4b08-aafc-00791440099d\":{\"name\":\"KONWA\"},\"358fa882-8f4a-4315-875d-295aa1871f5d\":{\"name\":\"KPEIN\"},\"fabc3c04-d930-48f2-a49c-591be5fcd93c\":{\"name\":\"TIME_STAMP\"},\"59f62453-f28f-48a3-b0ea-5bb935494498\":{\"name\":\"Calculated_1\"},\"493a9deb-f3bd-4648-9e3b-cc99c7b35a9e\":{\"name\":\"Calculated_1\"}}},\"5d1205c4-471f-4795-930a-4219d461d481\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.ZV_DWC_PRCOND_RM\",\"label\":\"Pricing Conditions Retail Mainline\",\"type\":8,\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZV_DWC_PRCOND_RM$F\"},\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1666122996475,\"deploymentDate\":1666123049375,\"#objectStatus\":\"1\",\"alias\":\"ZV_DWC_PRCOND_RM\",\"context\":\"eb43ae55-3b9a-4c0e-96cd-5fbcb73f610d\",\"elements\":{\"306e3985-43dd-4184-8811-280a6f7893f8\":{\"name\":\"KAPPL\"},\"cd23279d-9e8d-4b2d-b8e9-5bc8ffe9d697\":{\"name\":\"KSCHL\"},\"64a3e24e-9394-4f4d-9524-e9bd31712eb5\":{\"name\":\"VKORG\"},\"4beb28d7-bc21-4496-8f38-316f7551884f\":{\"name\":\"VTWEG\"},\"9e79cdfe-550b-4b21-b782-3ed6d3c38345\":{\"name\":\"MATNR\"},\"26194c15-46e3-4b34-ba79-3bf552852424\":{\"name\":\"VRKME\"},\"f0ee69f5-a658-4b3b-b2ca-25e0c4522fe3\":{\"name\":\"DATBI\"},\"4dba2d91-bc6e-4d70-b9d2-79f70f7fb77a\":{\"name\":\"DATAB\"},\"db1bb905-0bc0-4fe2-8fed-ac49ba06ffe7\":{\"name\":\"KNUMH\"},\"7bce9b4a-5c93-43e4-88b5-f3bdb56f4f8f\":{\"name\":\"KBETR\"},\"b66e263a-39ea-465e-9f5e-e600b37ef689\":{\"name\":\"KONWA\"},\"3ffcb189-446d-4db1-a2ea-23b8ae7e4ea2\":{\"name\":\"KPEIN\"},\"2bf58fba-5e90-43b1-8b8d-65cddb705aae\":{\"name\":\"TIME_STAMP\"}},\"successorNode\":\"5a79c266-ad6c-411e-8019-12381e64e8be\"},\"5a79c266-ad6c-411e-8019-12381e64e8be\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"1ccaf32e-a825-47e6-a8f6-d051a2362ab5\":{\"name\":\"KAPPL\"},\"67f975f8-8d63-4b65-bb7d-3661fbe81796\":{\"name\":\"KSCHL\"},\"fca6329e-3ef3-4e46-8df9-09139586e53e\":{\"name\":\"VKORG\"},\"5df64b60-e6aa-4298-825e-c230440f2eb7\":{\"name\":\"VTWEG\"},\"5b838864-aa43-430b-b82d-a32cde7a6871\":{\"name\":\"MATNR\"},\"2684d1fa-97ae-4578-b786-6fd48886b7ac\":{\"name\":\"VRKME\"},\"905c2ea5-5aa7-4f4a-8462-ea7c8af17503\":{\"name\":\"DATBI\"},\"f78544f7-5d21-45ce-a599-50ac19317230\":{\"name\":\"DATAB\"},\"c28e5cb8-f5cd-4738-9ce6-eaf49aede2d1\":{\"name\":\"KNUMH\"},\"172c611c-6560-4619-87fb-35225ce8e7c3\":{\"name\":\"KBETR\"},\"e06fb1f5-3778-44d9-a525-88a5c1cee1b0\":{\"name\":\"KONWA\"},\"837ce35b-6cfc-4e4c-9920-235720ba28d4\":{\"name\":\"KPEIN\"},\"30c8db08-674d-48b5-9727-f8bb4296aa7e\":{\"name\":\"TIME_STAMP\"},\"8ff688eb-d298-4e56-8303-f24cc132e5ad\":{\"name\":\"Calculated_1\"},\"10cc6377-b4ca-4876-a38c-0cb6696c1156\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"850c707b-62c8-4701-b1c5-5d437155ab59\"},\"850c707b-62c8-4701-b1c5-5d437155ab59\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"8b1ac154-47f4-4237-b2a3-1f96dcbe9f55\":{\"name\":\"KAPPL\"},\"b848849a-8907-4c6c-bb61-3b757b5a0c66\":{\"name\":\"KSCHL\"},\"c4fe8e7b-8933-4a50-91e8-3f57b032dd37\":{\"name\":\"VKORG\"},\"7a47ebed-dc59-400f-a411-fce5fa80c8f6\":{\"name\":\"VTWEG\"},\"4aa04fef-8b94-4756-8f8d-997ce579912d\":{\"name\":\"MATNR\"},\"0b0267e3-1618-475f-96e9-edfa650cf416\":{\"name\":\"VRKME\"},\"b956cc86-5a84-42e9-b0de-ab291d2d0cc1\":{\"name\":\"DATBI\"},\"e4767a2a-fd20-4db6-ba9f-2e6cfd46d67d\":{\"name\":\"DATAB\"},\"2e163cca-9006-477b-a590-95521eb98396\":{\"name\":\"KNUMH\"},\"2393b24a-c5d1-4ab3-8ec5-47794ee9c356\":{\"name\":\"KBETR\"},\"80a24165-bd80-4bd0-acfc-2f2c9d29eb63\":{\"name\":\"KONWA\"},\"6aaa4798-9f72-4b42-b3db-36e47cd19d05\":{\"name\":\"KPEIN\"},\"d428f3b6-ee80-4f87-a211-f790c827ab82\":{\"name\":\"TIME_STAMP\"},\"ec847a5a-f8f0-4be0-bc87-252a8eb283b0\":{\"name\":\"Calculated_1\"},\"7d8b8556-4b49-4ca0-9bff-6a91936bcbab\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"db1032bf-004b-4c88-95f7-d87296aafe16\"},\"eb43ae55-3b9a-4c0e-96cd-5fbcb73f610d\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"b52ba711-bb49-4eae-b7dc-0a6b5206dab8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"a15ea317-38c7-44b3-b2dc-5d0162ae1924\":{},\"bbddc844-27c3-4b37-90c0-34e2484d284e\":{\"name\":\"Entity Symbol 1\"},\"8b570903-5bb4-422c-be04-78cbac94cad5\":{},\"f5ad6828-079d-436e-81a9-d28f1cb9dcd2\":{},\"c2902faa-4231-4e7e-bae1-7897c1328623\":{},\"b4d1aff1-51a1-4134-920d-49642b707090\":{},\"a03bacc1-01b5-4917-ae05-5e25d01d557c\":{}}},\"7705506f-a448-44c6-ab45-0bf960124b37\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":2,\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"8277245a-e165-4fa1-affe-34708ef8da62\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":4,\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"77000483-5bee-4b81-9c44-3757233703ba\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"indexOrder\":5,\"isCalculated\":true,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"cfad3a8e-6c3d-4e03-95ec-503c5ea8dac3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":8,\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"c48e1ffd-471b-40e5-b89f-607930185c54\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":9,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"7b22af42-b3dc-4b08-aafc-00791440099d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":10,\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"358fa882-8f4a-4315-875d-295aa1871f5d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"indexOrder\":11,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"fabc3c04-d930-48f2-a49c-591be5fcd93c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":12,\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"59f62453-f28f-48a3-b0ea-5bb935494498\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":13,\"expression\":\"\",\"isCalculated\":true,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true},\"493a9deb-f3bd-4648-9e3b-cc99c7b35a9e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":14,\"expression\":\"\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"306e3985-43dd-4184-8811-280a6f7893f8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KAPPL\",\"label\":\"Application\",\"newName\":\"KAPPL\",\"indexOrder\":0,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"1ccaf32e-a825-47e6-a8f6-d051a2362ab5\"},\"cd23279d-9e8d-4b2d-b8e9-5bc8ffe9d697\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KSCHL\",\"label\":\"Condition type\",\"newName\":\"KSCHL\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"67f975f8-8d63-4b65-bb7d-3661fbe81796\"},\"64a3e24e-9394-4f4d-9524-e9bd31712eb5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"fca6329e-3ef3-4e46-8df9-09139586e53e\"},\"4beb28d7-bc21-4496-8f38-316f7551884f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VTWEG\",\"label\":\"Distribution Channel\",\"newName\":\"VTWEG\",\"indexOrder\":3,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"5df64b60-e6aa-4298-825e-c230440f2eb7\"},\"9e79cdfe-550b-4b21-b782-3ed6d3c38345\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":4,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"5b838864-aa43-430b-b82d-a32cde7a6871\"},\"26194c15-46e3-4b34-ba79-3bf552852424\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"indexOrder\":5,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"2684d1fa-97ae-4578-b786-6fd48886b7ac\"},\"f0ee69f5-a658-4b3b-b2ca-25e0c4522fe3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATBI\",\"label\":\"Validity end date of the condition record\",\"newName\":\"DATBI\",\"indexOrder\":6,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"905c2ea5-5aa7-4f4a-8462-ea7c8af17503\"},\"4dba2d91-bc6e-4d70-b9d2-79f70f7fb77a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATAB\",\"label\":\"Validity start date of the condition record\",\"newName\":\"DATAB\",\"indexOrder\":7,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"f78544f7-5d21-45ce-a599-50ac19317230\"},\"db1bb905-0bc0-4fe2-8fed-ac49ba06ffe7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":8,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c28e5cb8-f5cd-4738-9ce6-eaf49aede2d1\"},\"7bce9b4a-5c93-43e4-88b5-f3bdb56f4f8f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":9,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"172c611c-6560-4619-87fb-35225ce8e7c3\"},\"b66e263a-39ea-465e-9f5e-e600b37ef689\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":10,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"e06fb1f5-3778-44d9-a525-88a5c1cee1b0\"},\"3ffcb189-446d-4db1-a2ea-23b8ae7e4ea2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"indexOrder\":11,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"837ce35b-6cfc-4e4c-9920-235720ba28d4\"},\"2bf58fba-5e90-43b1-8b8d-65cddb705aae\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":12,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"30c8db08-674d-48b5-9727-f8bb4296aa7e\"},\"1ccaf32e-a825-47e6-a8f6-d051a2362ab5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KAPPL\",\"label\":\"Application\",\"newName\":\"KAPPL\",\"indexOrder\":0,\"expression\":\"KAPPL\",\"isCalculated\":true,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8b1ac154-47f4-4237-b2a3-1f96dcbe9f55\"},\"67f975f8-8d63-4b65-bb7d-3661fbe81796\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KSCHL\",\"label\":\"Condition type\",\"newName\":\"KSCHL\",\"indexOrder\":1,\"expression\":\"KSCHL\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"b848849a-8907-4c6c-bb61-3b757b5a0c66\"},\"fca6329e-3ef3-4e46-8df9-09139586e53e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":2,\"expression\":\"VKORG\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"c4fe8e7b-8933-4a50-91e8-3f57b032dd37\"},\"5df64b60-e6aa-4298-825e-c230440f2eb7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VTWEG\",\"label\":\"Distribution Channel\",\"newName\":\"VTWEG\",\"indexOrder\":3,\"expression\":\"VTWEG\",\"isCalculated\":true,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"7a47ebed-dc59-400f-a411-fce5fa80c8f6\"},\"5b838864-aa43-430b-b82d-a32cde7a6871\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":4,\"expression\":\"MATNR\",\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"4aa04fef-8b94-4756-8f8d-997ce579912d\"},\"2684d1fa-97ae-4578-b786-6fd48886b7ac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"indexOrder\":5,\"expression\":\"VRKME\",\"isCalculated\":true,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0b0267e3-1618-475f-96e9-edfa650cf416\"},\"905c2ea5-5aa7-4f4a-8462-ea7c8af17503\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATBI\",\"label\":\"Validity end date of the condition record\",\"newName\":\"DATBI\",\"indexOrder\":6,\"expression\":\"DATBI\",\"isCalculated\":true,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"successorElement\":\"b956cc86-5a84-42e9-b0de-ab291d2d0cc1\"},\"f78544f7-5d21-45ce-a599-50ac19317230\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATAB\",\"label\":\"Validity start date of the condition record\",\"newName\":\"DATAB\",\"indexOrder\":7,\"expression\":\"DATAB\",\"isCalculated\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"e4767a2a-fd20-4db6-ba9f-2e6cfd46d67d\"},\"c28e5cb8-f5cd-4738-9ce6-eaf49aede2d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":8,\"expression\":\"KNUMH\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"2e163cca-9006-477b-a590-95521eb98396\"},\"172c611c-6560-4619-87fb-35225ce8e7c3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":9,\"expression\":\"KBETR\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"2393b24a-c5d1-4ab3-8ec5-47794ee9c356\"},\"e06fb1f5-3778-44d9-a525-88a5c1cee1b0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":10,\"expression\":\"KONWA\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"80a24165-bd80-4bd0-acfc-2f2c9d29eb63\"},\"837ce35b-6cfc-4e4c-9920-235720ba28d4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"indexOrder\":11,\"expression\":\"KPEIN\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"6aaa4798-9f72-4b42-b3db-36e47cd19d05\"},\"30c8db08-674d-48b5-9727-f8bb4296aa7e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":12,\"expression\":\"TIME_STAMP\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"d428f3b6-ee80-4f87-a211-f790c827ab82\"},\"8ff688eb-d298-4e56-8303-f24cc132e5ad\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":14,\"expression\":\"TO_DATE(DATBI)\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"ec847a5a-f8f0-4be0-bc87-252a8eb283b0\"},\"10cc6377-b4ca-4876-a38c-0cb6696c1156\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":13,\"expression\":\"TO_DATE(DATAB)\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"7d8b8556-4b49-4ca0-9bff-6a91936bcbab\"},\"8b1ac154-47f4-4237-b2a3-1f96dcbe9f55\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KAPPL\",\"label\":\"Application\",\"newName\":\"KAPPL\",\"isRemoved\":true,\"indexOrder\":0,\"expression\":\"KAPPL\",\"isCalculated\":true,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"b848849a-8907-4c6c-bb61-3b757b5a0c66\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KSCHL\",\"label\":\"Condition type\",\"newName\":\"KSCHL\",\"isRemoved\":true,\"indexOrder\":1,\"expression\":\"KSCHL\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"c4fe8e7b-8933-4a50-91e8-3f57b032dd37\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":2,\"expression\":\"VKORG\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"7705506f-a448-44c6-ab45-0bf960124b37\"},\"7a47ebed-dc59-400f-a411-fce5fa80c8f6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VTWEG\",\"label\":\"Distribution Channel\",\"newName\":\"VTWEG\",\"isRemoved\":true,\"indexOrder\":3,\"expression\":\"VTWEG\",\"isCalculated\":true,\"isKey\":true,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"4aa04fef-8b94-4756-8f8d-997ce579912d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":4,\"expression\":\"MATNR\",\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8277245a-e165-4fa1-affe-34708ef8da62\"},\"0b0267e3-1618-475f-96e9-edfa650cf416\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"indexOrder\":5,\"expression\":\"VRKME\",\"isCalculated\":true,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"77000483-5bee-4b81-9c44-3757233703ba\"},\"b956cc86-5a84-42e9-b0de-ab291d2d0cc1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATBI\",\"label\":\"Validity end date of the condition record\",\"newName\":\"DATBI\",\"isRemoved\":true,\"indexOrder\":6,\"expression\":\"DATBI\",\"isCalculated\":true,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true},\"e4767a2a-fd20-4db6-ba9f-2e6cfd46d67d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DATAB\",\"label\":\"Validity start date of the condition record\",\"newName\":\"DATAB\",\"isRemoved\":true,\"indexOrder\":7,\"expression\":\"DATAB\",\"isCalculated\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\"},\"2e163cca-9006-477b-a590-95521eb98396\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":8,\"expression\":\"KNUMH\",\"isCalculated\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"cfad3a8e-6c3d-4e03-95ec-503c5ea8dac3\"},\"2393b24a-c5d1-4ab3-8ec5-47794ee9c356\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":9,\"expression\":\"KBETR\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"c48e1ffd-471b-40e5-b89f-607930185c54\"},\"80a24165-bd80-4bd0-acfc-2f2c9d29eb63\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":10,\"expression\":\"KONWA\",\"isCalculated\":true,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"7b22af42-b3dc-4b08-aafc-00791440099d\"},\"6aaa4798-9f72-4b42-b3db-36e47cd19d05\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"indexOrder\":11,\"expression\":\"KPEIN\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"358fa882-8f4a-4315-875d-295aa1871f5d\"},\"d428f3b6-ee80-4f87-a211-f790c827ab82\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":12,\"expression\":\"TIME_STAMP\",\"isCalculated\":true,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"fabc3c04-d930-48f2-a49c-591be5fcd93c\"},\"ec847a5a-f8f0-4be0-bc87-252a8eb283b0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":13,\"expression\":\"\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"59f62453-f28f-48a3-b0ea-5bb935494498\"},\"7d8b8556-4b49-4ca0-9bff-6a91936bcbab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":14,\"expression\":\"\",\"isCalculated\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"493a9deb-f3bd-4648-9e3b-cc99c7b35a9e\"},\"a15ea317-38c7-44b3-b2dc-5d0162ae1924\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"db1032bf-004b-4c88-95f7-d87296aafe16\"},\"bbddc844-27c3-4b37-90c0-34e2484d284e\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"5d1205c4-471f-4795-930a-4219d461d481\"},\"8b570903-5bb4-422c-be04-78cbac94cad5\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"5a79c266-ad6c-411e-8019-12381e64e8be\"},\"f5ad6828-079d-436e-81a9-d28f1cb9dcd2\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"bbddc844-27c3-4b37-90c0-34e2484d284e\",\"targetSymbol\":\"8b570903-5bb4-422c-be04-78cbac94cad5\"},\"c2902faa-4231-4e7e-bae1-7897c1328623\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"850c707b-62c8-4701-b1c5-5d437155ab59\"},\"b4d1aff1-51a1-4134-920d-49642b707090\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"8b570903-5bb4-422c-be04-78cbac94cad5\",\"targetSymbol\":\"c2902faa-4231-4e7e-bae1-7897c1328623\"},\"a03bacc1-01b5-4917-ae05-5e25d01d557c\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"c2902faa-4231-4e7e-bae1-7897c1328623\",\"targetSymbol\":\"a15ea317-38c7-44b3-b2dc-5d0162ae1924\"}}}"
+    },
+    "HL_PRCOND_SPA": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "notNull": true
+        },
+        "KBETR": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition amount or percentage where no scale exists",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "KONWA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Condition Unit (Currency or Percentage)",
+          "type": "cds.String",
+          "length": 5
+        },
+        "TIME_STAMP": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "TIME_STAMP",
+          "precision": 15,
+          "scale": 0,
+          "type": "cds.Decimal"
+        },
+        "VALID_END": {
+          "@EndUserText.label": "Validity End Date",
+          "type": "cds.Date",
+          "key": true,
+          "notNull": true
+        },
+        "VALID_START": {
+          "@EndUserText.label": "Validity Start Date",
+          "type": "cds.Date"
+        },
+        "BWKEY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Valuation area",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@Analytics.dimension": true,
+          "notNull": true
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "join": "inner",
+            "args": [
+              {
+                "ref": [
+                  "IL_PRCOND_SPA"
+                ]
+              },
+              {
+                "ref": [
+                  "MD_STG.IL_S4_MD_MATVALTN"
+                ],
+                "as": "IL_S4_MD_MATVALTN"
+              }
+            ],
+            "on": [
+              {
+                "ref": [
+                  "IL_PRCOND_SPA",
+                  "MATNR"
+                ]
+              },
+              "=",
+              {
+                "ref": [
+                  "IL_S4_MD_MATVALTN",
+                  "MATNR"
+                ]
+              }
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "IL_PRCOND_SPA",
+                "MATNR"
+              ]
+            },
+            {
+              "ref": [
+                "IL_PRCOND_SPA",
+                "KBETR"
+              ]
+            },
+            {
+              "ref": [
+                "IL_PRCOND_SPA",
+                "KONWA"
+              ]
+            },
+            {
+              "ref": [
+                "IL_PRCOND_SPA",
+                "TIME_STAMP"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "IL_PRCOND_SPA",
+                "VALID_END"
+              ]
+            },
+            {
+              "ref": [
+                "IL_PRCOND_SPA",
+                "VALID_START"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "IL_S4_MD_MATVALTN",
+                "BWKEY"
+              ]
+            }
+          ],
+          "where": [
+            {
+              "ref": [
+                "IL_S4_MD_MATVALTN",
+                "BWKEY"
+              ]
+            },
+            "between",
+            {
+              "val": "8000"
+            },
+            "and",
+            {
+              "val": "8999"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "Price Data for SPA - HL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"f718c807-8908-422d-b446-4d353699c8b7\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"HL_PRCOND_SPA\",\"label\":\"Price Data for SPA - HL\",\"modificationDate\":1666123339826,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"73edb8d0-b1fd-4919-80f2-e48fa32926d6\",\"nodes\":{\"73edb8d0-b1fd-4919-80f2-e48fa32926d6\":{\"name\":\"HL_PRCOND_SPA\"},\"71fcbd9e-e4ec-441f-bcfd-e4760b91f3f2\":{\"name\":\"IL_PRCOND_SPA\"},\"37a150f3-96a5-461f-a986-279bd4356c84\":{\"name\":\"Projection 1\"},\"92f91ea5-cf38-4b4c-8f65-df018a39ff71\":{\"name\":\"MD_STG.IL_S4_MD_MATVALTN\"},\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\":{\"name\":\"Join 1\"},\"12ae3ea3-e91d-49d6-8275-2d60a934a462\":{\"name\":\"Projection 2\"},\"360f2c4d-7f31-4482-afc1-f86aa59bcd00\":{\"name\":\"Projection 3\"},\"d8b5b3bc-805a-4f87-81e2-d871883aabd8\":{\"name\":\"Filter 1\"}},\"contexts\":{\"f5a90410-d789-437e-9f13-ce0256a93b20\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"e9a5d983-6fed-4248-8999-177469df0098\":{}}},\"73edb8d0-b1fd-4919-80f2-e48fa32926d6\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"HL_PRCOND_SPA\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1666123339826,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"a8c5670a-c3e3-455f-9f05-a65cbfa53669\":{\"name\":\"MATNR\"},\"d199c3f1-843a-41ab-b672-0e637b8d53d1\":{\"name\":\"KBETR\"},\"f4df2530-8068-47fe-a774-da81e874ee6c\":{\"name\":\"KONWA\"},\"84e91462-623a-40eb-bd5d-461a0b1ad0cf\":{\"name\":\"TIME_STAMP\"},\"b5166d90-f418-4999-bc5d-e20bf5f22e49\":{\"name\":\"VALID_END\"},\"72484e5e-9a0a-4f95-9cb9-47a55b1fc649\":{\"name\":\"VALID_START\"},\"ad69bd09-15ed-4e2a-a017-7750c302e32f\":{\"name\":\"BWKEY\"}}},\"71fcbd9e-e4ec-441f-bcfd-e4760b91f3f2\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"IL_PRCOND_SPA\",\"label\":\"Price Data for SPA\",\"type\":3,\"isPinToMemoryEnabled\":false,\"isHiddenInUi\":false,\"modificationDate\":1666123283937,\"deploymentDate\":1666123306958,\"#objectStatus\":\"1\",\"elements\":{\"e674582d-68b0-410d-8c1d-026276095754\":{\"name\":\"VKORG\"},\"65c7ac4b-3e53-4a42-ab97-c50c48edefb9\":{\"name\":\"MATNR\"},\"80389943-b601-4bd7-a1ae-97ada972d2f9\":{\"name\":\"VRKME\"},\"ba50d7e0-4e46-4c87-9a37-765f855cd3fd\":{\"name\":\"KNUMH\"},\"93881d74-e510-4d5f-bda2-80a44b882a0c\":{\"name\":\"KBETR\"},\"51c40a8c-f83e-4d4e-8f39-c118d676ece8\":{\"name\":\"KONWA\"},\"8161dda5-efb9-4e2a-8792-d8fa92a1564b\":{\"name\":\"KPEIN\"},\"3b74aa96-26b5-4d29-a66f-3571954af9d2\":{\"name\":\"TIME_STAMP\"},\"2ea1fef6-c036-4b8e-902f-cc195deae35c\":{\"name\":\"VALID_END\"},\"3440f55b-db6a-4be6-823a-7c9b73dc115b\":{\"name\":\"VALID_START\"}},\"successorNode\":\"37a150f3-96a5-461f-a986-279bd4356c84\"},\"37a150f3-96a5-461f-a986-279bd4356c84\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"69d6686e-c015-4f38-9f17-72ba321ea855\":{\"name\":\"VKORG\"},\"a1f3811b-199e-4834-8b47-d39a2b791dc9\":{\"name\":\"MATNR\"},\"d996804a-fecc-47ca-b8f9-289e29a748e1\":{\"name\":\"VRKME\"},\"50a13198-2f6e-4499-9430-1fb347ed33dc\":{\"name\":\"KNUMH\"},\"5e857851-f111-4669-a58d-e23eb6139628\":{\"name\":\"KBETR\"},\"8988cdcd-4b79-4f74-8687-edb6fe493dbf\":{\"name\":\"KONWA\"},\"88faf48b-938a-4969-b268-c3178abdc734\":{\"name\":\"KPEIN\"},\"faac10c9-e85d-45e8-944a-9b97d1b0a745\":{\"name\":\"TIME_STAMP\"},\"f6928bb2-c83f-4ad2-9142-465ca091c725\":{\"name\":\"VALID_END\"},\"a4d468af-0a79-4910-ba89-49133b2950be\":{\"name\":\"VALID_START\"}},\"successorNode\":\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\"},\"92f91ea5-cf38-4b4c-8f65-df018a39ff71\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.IL_S4_MD_MATVALTN\",\"label\":\"Material Valuation\",\"type\":4,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"isHiddenInUi\":false,\"modificationDate\":1656307655521,\"deploymentDate\":1664545490031,\"#objectStatus\":\"1\",\"alias\":\"IL_S4_MD_MATVALTN\",\"context\":\"f5a90410-d789-437e-9f13-ce0256a93b20\",\"elements\":{\"0b1eb413-1a74-4c31-99a7-179404af02b3\":{\"name\":\"MATNR\"},\"252bc68a-118d-4a39-b082-37a58aedb929\":{\"name\":\"BWKEY\"},\"cd48f9fa-5490-4e03-b459-16cf52f0ef94\":{\"name\":\"BWTAR\"},\"a29ede11-54b5-4b8c-a786-a98c872a4597\":{\"name\":\"STPRS\"},\"5aed4116-a938-4eb5-bd58-16fc03117003\":{\"name\":\"LFGJA\"},\"8eed625c-8e53-4965-ae4a-549214eb6c8d\":{\"name\":\"STPRV\"},\"177739fb-e752-4978-adef-75df73e28193\":{\"name\":\"LAEPR\"},\"d2390f2c-337e-4d5c-8a0b-343d7c6c55e4\":{\"name\":\"ZPLPR\"},\"3fa53ea3-8898-4b50-8a8c-e56b9345d358\":{\"name\":\"LPLPR\"},\"7a7e014e-5026-4942-8a9c-5c55f02aa13f\":{\"name\":\"PEINH\"}},\"successorNode\":\"360f2c4d-7f31-4482-afc1-f86aa59bcd00\"},\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\":{\"classDefinition\":\"sap.cdw.querybuilder.Join\",\"name\":\"Join 1\",\"mappings\":{\"7e850226-d381-4df1-bd70-2ec318ff765a\":{}},\"leftInput\":\"37a150f3-96a5-461f-a986-279bd4356c84\",\"rightInput\":\"360f2c4d-7f31-4482-afc1-f86aa59bcd00\",\"elements\":{\"f915167c-fd8f-496f-9a1a-5cd23cd4ce69\":{\"name\":\"VKORG\"},\"132625cb-41d8-4199-9846-6bfdecb6e1ee\":{\"name\":\"MATNR\"},\"22c59af7-1d74-4377-8877-217d828b9782\":{\"name\":\"KNUMH\"},\"e16724bd-ac4f-4c36-b4a4-9247878b0d8b\":{\"name\":\"KBETR\"},\"d58feec0-6529-48c5-8f82-e2a5c241f128\":{\"name\":\"KONWA\"},\"206699f6-aaad-4392-abc3-760f01a8ebdf\":{\"name\":\"TIME_STAMP\"},\"c988aa24-2439-4dbd-8be7-de3ce1c6b31b\":{\"name\":\"VALID_END\"},\"dc033e94-0b58-47d5-a5ad-542f2b0063ff\":{\"name\":\"VALID_START\"},\"9d26558e-da78-42be-97de-700354d03acb\":{\"name\":\"MATNR\"},\"25e12dd5-7b9e-49a5-97ed-b09d165cfe26\":{\"name\":\"BWKEY\"}},\"successorNode\":\"12ae3ea3-e91d-49d6-8275-2d60a934a462\"},\"12ae3ea3-e91d-49d6-8275-2d60a934a462\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 2\",\"elements\":{\"72262748-6208-4eb7-9644-8c1cb3d989b8\":{\"name\":\"VKORG\"},\"998c1555-7c61-4169-9161-dc47de420215\":{\"name\":\"MATNR\"},\"d3adda7d-c472-4200-9c4d-716d3baba64b\":{\"name\":\"KNUMH\"},\"4e024dde-b880-460b-8ac3-d211a58b065d\":{\"name\":\"KBETR\"},\"f67c6366-58dc-4d27-b2e2-63a114698c9d\":{\"name\":\"KONWA\"},\"64c0ad53-edb6-4ab3-9f02-2bbb8394cc2d\":{\"name\":\"TIME_STAMP\"},\"624c1c88-83ed-427a-9fe5-8cbe7a5f70fa\":{\"name\":\"VALID_END\"},\"25a137a5-b669-4228-8082-399bdbd7b99e\":{\"name\":\"VALID_START\"},\"71bc2a5b-05f2-48f4-8249-3d2743f56b57\":{\"name\":\"MATNR\"},\"259e47b3-fbfa-466f-98f5-83412f13a0ab\":{\"name\":\"BWKEY\"}},\"successorNode\":\"d8b5b3bc-805a-4f87-81e2-d871883aabd8\"},\"360f2c4d-7f31-4482-afc1-f86aa59bcd00\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 3\",\"elements\":{\"3f305659-64f4-4aac-805e-2b3e66ea35eb\":{\"name\":\"MATNR\"},\"313c18df-84eb-4450-a770-49b82514614d\":{\"name\":\"BWKEY\"},\"baa35012-db67-4319-9375-f813f9a5bff8\":{\"name\":\"BWTAR\"},\"c519b625-f3db-4298-98df-08dec190e094\":{\"name\":\"STPRS\"},\"975892da-f41b-42b9-8bb0-05f38fffe86e\":{\"name\":\"LFGJA\"},\"b7405e7e-4741-4f8f-b91b-e61f7307d191\":{\"name\":\"STPRV\"},\"8da4225d-e657-451b-b318-5cb3f3379ced\":{\"name\":\"LAEPR\"},\"19643cbb-da77-4361-88b4-40a58366b3db\":{\"name\":\"ZPLPR\"},\"64288064-b66c-40e7-9489-72354f62333c\":{\"name\":\"LPLPR\"},\"976a0600-79e0-415d-a564-e54de77d3a43\":{\"name\":\"PEINH\"}},\"successorNode\":\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\"},\"d8b5b3bc-805a-4f87-81e2-d871883aabd8\":{\"classDefinition\":\"sap.cdw.querybuilder.Filter\",\"condition\":\"BWKEY BETWEEN '8000' AND '8999'\",\"name\":\"Filter 1\",\"elements\":{\"11c820fb-ae1d-4bff-b40d-1bbc76c6ea27\":{\"name\":\"MATNR\"},\"12e0af98-d57c-4223-98e4-0d23ab7bb781\":{\"name\":\"KBETR\"},\"6983f5a7-7f21-42a7-894c-09e12ad37dc1\":{\"name\":\"KONWA\"},\"fc5f515c-d824-41d0-af33-4a5bc332d836\":{\"name\":\"TIME_STAMP\"},\"ff0abfc2-a0fb-4d65-aa3f-2ba53c1009a1\":{\"name\":\"VALID_END\"},\"ad4270c0-3819-4ee2-bb67-1f4f48f59a6a\":{\"name\":\"VALID_START\"},\"4ec50e64-e105-4ee7-a29b-3cc25cff01a0\":{\"name\":\"BWKEY\"}},\"successorNode\":\"73edb8d0-b1fd-4919-80f2-e48fa32926d6\"},\"f5a90410-d789-437e-9f13-ce0256a93b20\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"e9a5d983-6fed-4248-8999-177469df0098\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"b9a09c4a-cf6c-4807-88a1-a35813698d48\":{},\"4c6f1c9b-3c12-4df5-a868-35d4e452046f\":{\"name\":\"Entity Symbol 1\"},\"b44ecb7c-e03e-4e11-a9a4-d978d53b7ff6\":{},\"fb2b31cd-a32f-4d83-9467-9dc6f114cec8\":{},\"aee58e03-49ce-4775-833f-41d57b05ba04\":{},\"0e7da9f1-ffb5-496d-9125-3a8af079519e\":{},\"04b00a92-0e13-42f2-87b8-964cfed3a0f3\":{},\"cadf5d46-3a96-4c66-9630-610a58dc36bf\":{},\"9bd50c1f-f695-4e18-abf7-55f10dbf8fc8\":{},\"0a9d2819-3531-490f-9811-018bbe676f94\":{},\"3ed2f3af-6b4e-4e2f-a071-37c5b407ce91\":{},\"ea9f8e88-7207-4d36-b44d-2a5f9b50cbe0\":{},\"7a4a244c-b4eb-4e3b-b35d-1160234aa374\":{},\"0877ff8d-3d10-40b5-ac80-504d6c27ebe1\":{},\"66f233c2-bdfd-40cb-b195-949dcf6f2be8\":{}}},\"a8c5670a-c3e3-455f-9f05-a65cbfa53669\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"d199c3f1-843a-41ab-b672-0e637b8d53d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"f4df2530-8068-47fe-a774-da81e874ee6c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"84e91462-623a-40eb-bd5d-461a0b1ad0cf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"b5166d90-f418-4999-bc5d-e20bf5f22e49\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":8,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true},\"72484e5e-9a0a-4f95-9cb9-47a55b1fc649\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":9,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"ad69bd09-15ed-4e2a-a017-7750c302e32f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":9,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"e674582d-68b0-410d-8c1d-026276095754\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"69d6686e-c015-4f38-9f17-72ba321ea855\"},\"65c7ac4b-3e53-4a42-ab97-c50c48edefb9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a1f3811b-199e-4834-8b47-d39a2b791dc9\"},\"80389943-b601-4bd7-a1ae-97ada972d2f9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"indexOrder\":2,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"d996804a-fecc-47ca-b8f9-289e29a748e1\"},\"ba50d7e0-4e46-4c87-9a37-765f855cd3fd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"50a13198-2f6e-4499-9430-1fb347ed33dc\"},\"93881d74-e510-4d5f-bda2-80a44b882a0c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"5e857851-f111-4669-a58d-e23eb6139628\"},\"51c40a8c-f83e-4d4e-8f39-c118d676ece8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"8988cdcd-4b79-4f74-8687-edb6fe493dbf\"},\"8161dda5-efb9-4e2a-8792-d8fa92a1564b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"88faf48b-938a-4969-b268-c3178abdc734\"},\"3b74aa96-26b5-4d29-a66f-3571954af9d2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"faac10c9-e85d-45e8-944a-9b97d1b0a745\"},\"2ea1fef6-c036-4b8e-902f-cc195deae35c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":8,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"f6928bb2-c83f-4ad2-9142-465ca091c725\"},\"3440f55b-db6a-4be6-823a-7c9b73dc115b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":9,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"a4d468af-0a79-4910-ba89-49133b2950be\"},\"69d6686e-c015-4f38-9f17-72ba321ea855\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"f915167c-fd8f-496f-9a1a-5cd23cd4ce69\"},\"a1f3811b-199e-4834-8b47-d39a2b791dc9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"132625cb-41d8-4199-9846-6bfdecb6e1ee\"},\"d996804a-fecc-47ca-b8f9-289e29a748e1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VRKME\",\"label\":\"Sales unit\",\"newName\":\"VRKME\",\"isRemoved\":true,\"indexOrder\":2,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"50a13198-2f6e-4499-9430-1fb347ed33dc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"22c59af7-1d74-4377-8877-217d828b9782\"},\"5e857851-f111-4669-a58d-e23eb6139628\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"e16724bd-ac4f-4c36-b4a4-9247878b0d8b\"},\"8988cdcd-4b79-4f74-8687-edb6fe493dbf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"d58feec0-6529-48c5-8f82-e2a5c241f128\"},\"88faf48b-938a-4969-b268-c3178abdc734\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KPEIN\",\"label\":\"Condition Pricing Unit\",\"newName\":\"KPEIN\",\"isRemoved\":true,\"indexOrder\":6,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\"},\"faac10c9-e85d-45e8-944a-9b97d1b0a745\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"206699f6-aaad-4392-abc3-760f01a8ebdf\"},\"f6928bb2-c83f-4ad2-9142-465ca091c725\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":8,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"c988aa24-2439-4dbd-8be7-de3ce1c6b31b\"},\"a4d468af-0a79-4910-ba89-49133b2950be\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":9,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"dc033e94-0b58-47d5-a5ad-542f2b0063ff\"},\"0b1eb413-1a74-4c31-99a7-179404af02b3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"3f305659-64f4-4aac-805e-2b3e66ea35eb\"},\"252bc68a-118d-4a39-b082-37a58aedb929\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"313c18df-84eb-4450-a770-49b82514614d\"},\"cd48f9fa-5490-4e03-b459-16cf52f0ef94\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWTAR\",\"label\":\"Valuation Type\",\"newName\":\"BWTAR\",\"indexOrder\":2,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"baa35012-db67-4319-9375-f813f9a5bff8\"},\"a29ede11-54b5-4b8c-a786-a98c872a4597\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STPRS\",\"label\":\"Standard price\",\"newName\":\"STPRS\",\"indexOrder\":3,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"c519b625-f3db-4298-98df-08dec190e094\"},\"5aed4116-a938-4eb5-bd58-16fc03117003\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LFGJA\",\"label\":\"Fiscal Year of Current Period\",\"newName\":\"LFGJA\",\"indexOrder\":4,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"975892da-f41b-42b9-8bb0-05f38fffe86e\"},\"8eed625c-8e53-4965-ae4a-549214eb6c8d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STPRV\",\"label\":\"Previous price\",\"newName\":\"STPRV\",\"indexOrder\":5,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"b7405e7e-4741-4f8f-b91b-e61f7307d191\"},\"177739fb-e752-4978-adef-75df73e28193\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAEPR\",\"label\":\"Date of the last price change\",\"newName\":\"LAEPR\",\"indexOrder\":6,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"8da4225d-e657-451b-b318-5cb3f3379ced\"},\"d2390f2c-337e-4d5c-8a0b-343d7c6c55e4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZPLPR\",\"label\":\"Future planned price\",\"newName\":\"ZPLPR\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"19643cbb-da77-4361-88b4-40a58366b3db\"},\"3fa53ea3-8898-4b50-8a8c-e56b9345d358\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LPLPR\",\"label\":\"Current Planned Price\",\"newName\":\"LPLPR\",\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"64288064-b66c-40e7-9489-72354f62333c\"},\"7a7e014e-5026-4942-8a9c-5c55f02aa13f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PEINH\",\"label\":\"Price unit\",\"newName\":\"PEINH\",\"indexOrder\":9,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"976a0600-79e0-415d-a564-e54de77d3a43\"},\"7e850226-d381-4df1-bd70-2ec318ff765a\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"a1f3811b-199e-4834-8b47-d39a2b791dc9\",\"target\":\"3f305659-64f4-4aac-805e-2b3e66ea35eb\"},\"f915167c-fd8f-496f-9a1a-5cd23cd4ce69\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"72262748-6208-4eb7-9644-8c1cb3d989b8\"},\"132625cb-41d8-4199-9846-6bfdecb6e1ee\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":2,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"998c1555-7c61-4169-9161-dc47de420215\"},\"22c59af7-1d74-4377-8877-217d828b9782\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"indexOrder\":5,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"d3adda7d-c472-4200-9c4d-716d3baba64b\"},\"e16724bd-ac4f-4c36-b4a4-9247878b0d8b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"4e024dde-b880-460b-8ac3-d211a58b065d\"},\"d58feec0-6529-48c5-8f82-e2a5c241f128\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":9,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"f67c6366-58dc-4d27-b2e2-63a114698c9d\"},\"206699f6-aaad-4392-abc3-760f01a8ebdf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":12,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"64c0ad53-edb6-4ab3-9f02-2bbb8394cc2d\"},\"c988aa24-2439-4dbd-8be7-de3ce1c6b31b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":14,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"624c1c88-83ed-427a-9fe5-8cbe7a5f70fa\"},\"dc033e94-0b58-47d5-a5ad-542f2b0063ff\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":16,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"25a137a5-b669-4228-8082-399bdbd7b99e\"},\"9d26558e-da78-42be-97de-700354d03acb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR_VAL\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"71bc2a5b-05f2-48f4-8249-3d2743f56b57\"},\"25e12dd5-7b9e-49a5-97ed-b09d165cfe26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":3,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"259e47b3-fbfa-466f-98f5-83412f13a0ab\"},\"72262748-6208-4eb7-9644-8c1cb3d989b8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"isRemoved\":true,\"indexOrder\":0,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"998c1555-7c61-4169-9161-dc47de420215\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"11c820fb-ae1d-4bff-b40d-1bbc76c6ea27\"},\"d3adda7d-c472-4200-9c4d-716d3baba64b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KNUMH\",\"label\":\"Number of the Condition Record\",\"newName\":\"KNUMH\",\"isRemoved\":true,\"indexOrder\":3,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\"},\"4e024dde-b880-460b-8ac3-d211a58b065d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"12e0af98-d57c-4223-98e4-0d23ab7bb781\"},\"f67c6366-58dc-4d27-b2e2-63a114698c9d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"6983f5a7-7f21-42a7-894c-09e12ad37dc1\"},\"64c0ad53-edb6-4ab3-9f02-2bbb8394cc2d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"fc5f515c-d824-41d0-af33-4a5bc332d836\"},\"624c1c88-83ed-427a-9fe5-8cbe7a5f70fa\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":8,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"ff0abfc2-a0fb-4d65-aa3f-2ba53c1009a1\"},\"25a137a5-b669-4228-8082-399bdbd7b99e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":9,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"ad4270c0-3819-4ee2-bb67-1f4f48f59a6a\"},\"71bc2a5b-05f2-48f4-8249-3d2743f56b57\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR_VAL\",\"isRemoved\":true,\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"259e47b3-fbfa-466f-98f5-83412f13a0ab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"4ec50e64-e105-4ee7-a29b-3cc25cff01a0\"},\"3f305659-64f4-4aac-805e-2b3e66ea35eb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR_VAL\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"9d26558e-da78-42be-97de-700354d03acb\"},\"313c18df-84eb-4450-a770-49b82514614d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"25e12dd5-7b9e-49a5-97ed-b09d165cfe26\"},\"baa35012-db67-4319-9375-f813f9a5bff8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWTAR\",\"label\":\"Valuation Type\",\"newName\":\"BWTAR\",\"isRemoved\":true,\"indexOrder\":2,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true},\"c519b625-f3db-4298-98df-08dec190e094\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STPRS\",\"label\":\"Standard price\",\"newName\":\"STPRS\",\"isRemoved\":true,\"indexOrder\":3,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\"},\"975892da-f41b-42b9-8bb0-05f38fffe86e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LFGJA\",\"label\":\"Fiscal Year of Current Period\",\"newName\":\"LFGJA\",\"isRemoved\":true,\"indexOrder\":4,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"b7405e7e-4741-4f8f-b91b-e61f7307d191\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STPRV\",\"label\":\"Previous price\",\"newName\":\"STPRV\",\"isRemoved\":true,\"indexOrder\":5,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\"},\"8da4225d-e657-451b-b318-5cb3f3379ced\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LAEPR\",\"label\":\"Date of the last price change\",\"newName\":\"LAEPR\",\"isRemoved\":true,\"indexOrder\":6,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"19643cbb-da77-4361-88b4-40a58366b3db\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ZPLPR\",\"label\":\"Future planned price\",\"newName\":\"ZPLPR\",\"isRemoved\":true,\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\"},\"64288064-b66c-40e7-9489-72354f62333c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LPLPR\",\"label\":\"Current Planned Price\",\"newName\":\"LPLPR\",\"isRemoved\":true,\"indexOrder\":8,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\"},\"976a0600-79e0-415d-a564-e54de77d3a43\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PEINH\",\"label\":\"Price unit\",\"newName\":\"PEINH\",\"isRemoved\":true,\"indexOrder\":9,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":5,\"scale\":0,\"nativeDataType\":\"DECIMAL\"},\"b9a09c4a-cf6c-4807-88a1-a35813698d48\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":266.9999988079071,\"y\":-52.16381461342157,\"width\":140,\"height\":40,\"object\":\"73edb8d0-b1fd-4919-80f2-e48fa32926d6\"},\"4c6f1c9b-3c12-4df5-a868-35d4e452046f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-374.9999988079071,\"y\":26.48748814614558,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"71fcbd9e-e4ec-441f-bcfd-e4760b91f3f2\"},\"b44ecb7c-e03e-4e11-a9a4-d978d53b7ff6\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-164.9999988079071,\"y\":30.48748814614558,\"object\":\"37a150f3-96a5-461f-a986-279bd4356c84\"},\"fb2b31cd-a32f-4d83-9467-9dc6f114cec8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-214.9999988079071,46.48748814614558 -164.9999988079071,46.48748814614558\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"4c6f1c9b-3c12-4df5-a868-35d4e452046f\",\"targetSymbol\":\"b44ecb7c-e03e-4e11-a9a4-d978d53b7ff6\"},\"aee58e03-49ce-4775-833f-41d57b05ba04\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.JoinSymbol\",\"x\":-47,\"y\":-40.331300469209715,\"object\":\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\"},\"0e7da9f1-ffb5-496d-9125-3a8af079519e\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-116.9999988079071,46.48748814614558 -81.99999940395355,46.48748814614558 -81.99999940395355,-18.99796713587638 -47,-18.99796713587638\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"b44ecb7c-e03e-4e11-a9a4-d978d53b7ff6\",\"targetSymbol\":\"aee58e03-49ce-4775-833f-41d57b05ba04\",\"object\":\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\"},\"04b00a92-0e13-42f2-87b8-964cfed3a0f3\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"x\":-382.9999988079071,\"y\":-66.48748814614558,\"width\":168,\"height\":40,\"object\":\"92f91ea5-cf38-4b4c-8f65-df018a39ff71\"},\"cadf5d46-3a96-4c66-9630-610a58dc36bf\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":51,\"y\":-40.331300469209715,\"object\":\"12ae3ea3-e91d-49d6-8275-2d60a934a462\"},\"9bd50c1f-f695-4e18-abf7-55f10dbf8fc8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"1,-24.331300469209715 51,-24.331300469209715\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"aee58e03-49ce-4775-833f-41d57b05ba04\",\"targetSymbol\":\"cadf5d46-3a96-4c66-9630-610a58dc36bf\"},\"0a9d2819-3531-490f-9811-018bbe676f94\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-164.9999988079071,\"y\":-62.48748814614558,\"object\":\"360f2c4d-7f31-4482-afc1-f86aa59bcd00\"},\"3ed2f3af-6b4e-4e2f-a071-37c5b407ce91\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-214.9999988079071,-46.48748814614558 -164.9999988079071,-46.48748814614558\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"04b00a92-0e13-42f2-87b8-964cfed3a0f3\",\"targetSymbol\":\"0a9d2819-3531-490f-9811-018bbe676f94\"},\"ea9f8e88-7207-4d36-b44d-2a5f9b50cbe0\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"isLeftInput\":false,\"points\":\"-116.9999988079071,-46.48748814614558 -81.99999940395355,-46.48748814614558 -81.99999940395355,-29.664633802543044 -47,-29.664633802543044\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"0a9d2819-3531-490f-9811-018bbe676f94\",\"targetSymbol\":\"aee58e03-49ce-4775-833f-41d57b05ba04\",\"object\":\"c1f60505-8ebf-45aa-8d30-5ad1ca2e6704\"},\"7a4a244c-b4eb-4e3b-b35d-1160234aa374\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.FilterSymbol\",\"x\":168.9999988079071,\"y\":-48.163814613421565,\"object\":\"d8b5b3bc-805a-4f87-81e2-d871883aabd8\"},\"0877ff8d-3d10-40b5-ac80-504d6c27ebe1\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"99,-24.331300469209715 133.99999940395355,-24.331300469209715 133.99999940395355,-32.16381461342157 168.9999988079071,-32.16381461342157\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"cadf5d46-3a96-4c66-9630-610a58dc36bf\",\"targetSymbol\":\"7a4a244c-b4eb-4e3b-b35d-1160234aa374\"},\"66f233c2-bdfd-40cb-b195-949dcf6f2be8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"216.9999988079071,-32.16381461342157 266.9999988079071,-32.16381461342157\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"7a4a244c-b4eb-4e3b-b35d-1160234aa374\",\"targetSymbol\":\"b9a09c4a-cf6c-4807-88a1-a35813698d48\"},\"11c820fb-ae1d-4bff-b40d-1bbc76c6ea27\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":1,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"a8c5670a-c3e3-455f-9f05-a65cbfa53669\"},\"12e0af98-d57c-4223-98e4-0d23ab7bb781\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KBETR\",\"label\":\"Condition amount or percentage where no scale exists\",\"newName\":\"KBETR\",\"indexOrder\":4,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"d199c3f1-843a-41ab-b672-0e637b8d53d1\"},\"6983f5a7-7f21-42a7-894c-09e12ad37dc1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KONWA\",\"label\":\"Condition Unit (Currency or Percentage)\",\"newName\":\"KONWA\",\"indexOrder\":5,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"f4df2530-8068-47fe-a774-da81e874ee6c\"},\"fc5f515c-d824-41d0-af33-4a5bc332d836\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TIME_STAMP\",\"label\":\"TIME_STAMP\",\"newName\":\"TIME_STAMP\",\"indexOrder\":7,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":15,\"scale\":0,\"nativeDataType\":\"DECIMAL\",\"successorElement\":\"84e91462-623a-40eb-bd5d-461a0b1ad0cf\"},\"ff0abfc2-a0fb-4d65-aa3f-2ba53c1009a1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_END\",\"label\":\"Validity End Date\",\"newName\":\"VALID_END\",\"indexOrder\":8,\"isKey\":true,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"isNotNull\":true,\"successorElement\":\"b5166d90-f418-4999-bc5d-e20bf5f22e49\"},\"ad4270c0-3819-4ee2-bb67-1f4f48f59a6a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VALID_START\",\"label\":\"Validity Start Date\",\"newName\":\"VALID_START\",\"indexOrder\":9,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"72484e5e-9a0a-4f95-9cb9-47a55b1fc649\"},\"4ec50e64-e105-4ee7-a29b-3cc25cff01a0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BWKEY\",\"label\":\"Valuation area\",\"newName\":\"BWKEY\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"ad69bd09-15ed-4e2a-a017-7750c302e32f\"}}}"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

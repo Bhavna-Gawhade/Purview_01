@@ -1,0 +1,2365 @@
+{
+  "definitions": {
+    "RL_MD_MASTSLOC": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_MAS"
+          },
+          "@Analytics.dimension": true,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "WERKS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_MAS"
+          },
+          "@Analytics.dimension": true,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "LGORT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Storage location",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_MAS"
+          },
+          "@Analytics.dimension": true,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "SPERR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Physical Inventory Blocking Indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "ZCOUNT": {
+          "@EndUserText.label": "COUNT",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "_HL_MD_MAS": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "MATNR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_MAS",
+                "MATNR"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "WERKS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_MAS",
+                "WERKS"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "LGORT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_MAS",
+                "LGORT"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_MASTSLOC",
+          "@EndUserText.label": "Storage Location (Reporting) to Storage Location Master Data"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "MD_STG.HL_MD_MASTSLOC"
+            ],
+            "as": "HL_MD_MASTSLOC"
+          },
+          "columns": [
+            {
+              "as": "MATNR",
+              "key": true,
+              "ref": [
+                "HL_MD_MASTSLOC",
+                "MATNR"
+              ]
+            },
+            {
+              "as": "WERKS",
+              "key": true,
+              "ref": [
+                "HL_MD_MASTSLOC",
+                "WERKS"
+              ]
+            },
+            {
+              "as": "LGORT",
+              "key": true,
+              "ref": [
+                "HL_MD_MASTSLOC",
+                "LGORT"
+              ]
+            },
+            {
+              "as": "SPERR",
+              "ref": [
+                "HL_MD_MASTSLOC",
+                "SPERR"
+              ]
+            },
+            {
+              "as": "ZCOUNT",
+              "val": 1
+            },
+            {
+              "ref": [
+                "_HL_MD_MAS"
+              ]
+            }
+          ],
+          "mixin": {
+            "_HL_MD_MAS": {
+              "type": "cds.Association",
+              "@EndUserText.label": "Storage Location (Reporting) to Storage Location Master Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "MATNR"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_MAS",
+                    "MATNR"
+                  ]
+                },
+                "and",
+                {
+                  "ref": [
+                    "$projection",
+                    "WERKS"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_MAS",
+                    "WERKS"
+                  ]
+                },
+                "and",
+                {
+                  "ref": [
+                    "$projection",
+                    "LGORT"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_MAS",
+                    "LGORT"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_MASTSLOC"
+            }
+          }
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "Storage Locations Master Data Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"24c9ac68-9eb5-4212-ab3b-4f686601d956\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_MD_MASTSLOC\",\"label\":\"Storage Locations Master Data Report\",\"modificationDate\":1663864918013,\"deploymentDate\":1659085928240,\"#objectStatus\":\"2\",\"output\":\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\",\"nodes\":{\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\":{\"name\":\"RL_MD_MASTSLOC\"},\"c897a987-9ad0-4ff0-b176-66062a7e2723\":{\"name\":\"MD_STG.HL_MD_MASTSLOC\"},\"bb416ea8-183d-490b-92ad-7e8dfe04ddb1\":{\"name\":\"Calculated Columns 1\"},\"c475cc22-7617-4333-9a50-17ec48b981a3\":{\"name\":\"MD_STG.HL_MD_MASTSLOC\"}},\"associations\":{\"4f0766a9-7615-4e5e-a2b2-1782dd0618cf\":{\"name\":\"_HL_MD_MAS\"}},\"contexts\":{\"2e85cbb5-c379-467a-b0ba-8b0ea0cff63f\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"e2f2e8df-fc46-4be2-ac8e-8b52fa81b858\":{}}},\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_MD_MASTSLOC\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1663864918013,\"deploymentDate\":1659085928240,\"#objectStatus\":\"2\",\"elements\":{\"ff9d715b-1863-4237-a415-66a89bcdda7d\":{\"name\":\"MATNR\"},\"90c128c8-75fb-44e1-b8e8-5762c69ef0cf\":{\"name\":\"WERKS\"},\"360b86ee-dde9-416e-a661-2973c3baff1a\":{\"name\":\"LGORT\"},\"2f686a25-353c-4109-a758-46efbb483ea4\":{\"name\":\"SPERR\"},\"4bd24dc1-f53f-4203-b39d-97c94a8ce5f7\":{\"name\":\"Calculated_1\"}}},\"c897a987-9ad0-4ff0-b176-66062a7e2723\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.HL_MD_MASTSLOC\",\"label\":\"Storage Location Master Data\",\"type\":4,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"isHiddenInUi\":false,\"modificationDate\":1659085757026,\"deploymentDate\":1659085777042,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_MASTSLOC\",\"context\":\"2e85cbb5-c379-467a-b0ba-8b0ea0cff63f\",\"elements\":{\"62a8c072-b5ef-43d2-966f-411ff097899b\":{\"name\":\"MATNR\"},\"9bef168c-0e60-4532-81fa-65509c893a20\":{\"name\":\"WERKS\"},\"de2bfbc0-5da6-458e-a889-341b32b73460\":{\"name\":\"LGORT\"},\"8c07083b-ea39-4b1e-bf4e-6eb758dbd499\":{\"name\":\"SPERR\"}},\"successorNode\":\"bb416ea8-183d-490b-92ad-7e8dfe04ddb1\"},\"bb416ea8-183d-490b-92ad-7e8dfe04ddb1\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"0b79fa94-90af-4a0a-b6a9-5d7d70e2e8ea\":{\"name\":\"MATNR\"},\"78a871e0-21ed-4f1a-b5a6-37e721acb6ac\":{\"name\":\"WERKS\"},\"b3f90e78-531b-40cf-84f0-8169e7159221\":{\"name\":\"LGORT\"},\"b2b626ad-9d9b-4365-b7fe-b451feab094e\":{\"name\":\"SPERR\"},\"a3c4aaa0-88a8-44d3-9ff6-733288dfed04\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\"},\"c475cc22-7617-4333-9a50-17ec48b981a3\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_MASTSLOC\",\"label\":\"Storage Location Master Data\",\"type\":\"View (Dimension)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"modificationDate\":1659085757026,\"deploymentDate\":1659085777042,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_MASTSLOC2\",\"elements\":{\"1cc070c7-347f-4fb6-9dc9-45b176cf0542\":{\"name\":\"MATNR\"},\"6f45b96a-85ba-4320-9ffa-a8c9985f58c6\":{\"name\":\"WERKS\"},\"aa43afcf-7413-4ffe-b508-e2b1145feefb\":{\"name\":\"LGORT\"},\"ba8e065b-8b5b-406d-9d4f-f0e1ee97b777\":{\"name\":\"SPERR\"}},\"context\":\"2e85cbb5-c379-467a-b0ba-8b0ea0cff63f\"},\"4f0766a9-7615-4e5e-a2b2-1782dd0618cf\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_MAS\",\"label\":\"Storage Location (Reporting) to Storage Location Master Data\",\"source\":\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\",\"target\":\"c475cc22-7617-4333-9a50-17ec48b981a3\",\"mappings\":{\"c60a67f6-2f0c-499c-98f1-64801620951b\":{},\"fb31ce71-bda1-4dd4-830d-400ac8dba174\":{},\"e8c6e952-9fe5-433e-97d0-8c0a8a94467b\":{}}},\"2e85cbb5-c379-467a-b0ba-8b0ea0cff63f\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"e2f2e8df-fc46-4be2-ac8e-8b52fa81b858\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"5a38e8bb-33f4-48af-9411-863a5e8d025d\":{},\"9fc48dbc-6fe8-4820-9c06-acb865050e40\":{\"name\":\"Entity Symbol 1\"},\"6c8cfd96-f994-4a1b-ad60-efbe9b2e1c2e\":{},\"a944d93e-bebd-417d-bc78-08659a01f019\":{},\"97de33e2-ff6f-4d4e-b2b9-7dcdf885fcd8\":{}}},\"ff9d715b-1863-4237-a415-66a89bcdda7d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_MAS\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"filterSelectionType\":\"RANGE\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":true},\"90c128c8-75fb-44e1-b8e8-5762c69ef0cf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_MAS\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"filterSelectionType\":\"RANGE\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":true},\"360b86ee-dde9-416e-a661-2973c3baff1a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_MAS\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"filterSelectionType\":\"RANGE\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":true},\"2f686a25-353c-4109-a758-46efbb483ea4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPERR\",\"label\":\"Physical Inventory Blocking Indicator\",\"newName\":\"SPERR\",\"indexOrder\":3,\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"4bd24dc1-f53f-4203-b39d-97c94a8ce5f7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"COUNT\",\"newName\":\"ZCOUNT\",\"indexOrder\":4,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"62a8c072-b5ef-43d2-966f-411ff097899b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_MA\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"0b79fa94-90af-4a0a-b6a9-5d7d70e2e8ea\"},\"9bef168c-0e60-4532-81fa-65509c893a20\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_PLA\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"78a871e0-21ed-4f1a-b5a6-37e721acb6ac\"},\"de2bfbc0-5da6-458e-a889-341b32b73460\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"b3f90e78-531b-40cf-84f0-8169e7159221\"},\"8c07083b-ea39-4b1e-bf4e-6eb758dbd499\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPERR\",\"label\":\"Physical Inventory Blocking Indicator\",\"newName\":\"SPERR\",\"indexOrder\":3,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"b2b626ad-9d9b-4365-b7fe-b451feab094e\"},\"0b79fa94-90af-4a0a-b6a9-5d7d70e2e8ea\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"expression\":\"MATNR\",\"isCalculated\":true,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"ff9d715b-1863-4237-a415-66a89bcdda7d\"},\"78a871e0-21ed-4f1a-b5a6-37e721acb6ac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"expression\":\"WERKS\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"90c128c8-75fb-44e1-b8e8-5762c69ef0cf\"},\"b3f90e78-531b-40cf-84f0-8169e7159221\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"expression\":\"LGORT\",\"isCalculated\":true,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"360b86ee-dde9-416e-a661-2973c3baff1a\"},\"b2b626ad-9d9b-4365-b7fe-b451feab094e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPERR\",\"label\":\"Physical Inventory Blocking Indicator\",\"newName\":\"SPERR\",\"indexOrder\":3,\"expression\":\"SPERR\",\"isCalculated\":true,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"2f686a25-353c-4109-a758-46efbb483ea4\"},\"a3c4aaa0-88a8-44d3-9ff6-733288dfed04\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"COUNT\",\"newName\":\"ZCOUNT\",\"indexOrder\":4,\"expression\":\"1\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"filterMandatory\":false,\"filterHidden\":false,\"filterMultipleSelections\":false,\"successorElement\":\"4bd24dc1-f53f-4203-b39d-97c94a8ce5f7\"},\"1cc070c7-347f-4fb6-9dc9-45b176cf0542\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"MATNR\",\"label\":\"Material Number\",\"newName\":\"MATNR\",\"indexOrder\":0,\"isKey\":true,\"length\":40,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_MA\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"6f45b96a-85ba-4320-9ffa-a8c9985f58c6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WERKS\",\"label\":\"Plant\",\"newName\":\"WERKS\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_PLA\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"aa43afcf-7413-4ffe-b508-e2b1145feefb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LGORT\",\"label\":\"Storage location\",\"newName\":\"LGORT\",\"indexOrder\":2,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"ba8e065b-8b5b-406d-9d4f-f0e1ee97b777\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPERR\",\"label\":\"Physical Inventory Blocking Indicator\",\"newName\":\"SPERR\",\"indexOrder\":3,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isRestrictedMeasure\":false,\"isExceptionAggregation\":false,\"nativeDataType\":\"NVARCHAR\",\"filterMandatory\":false,\"filterDefaultValue\":\"\",\"filterDefaultValueHigh\":\"\",\"filterHidden\":false,\"filterMultipleSelections\":false},\"c60a67f6-2f0c-499c-98f1-64801620951b\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"ff9d715b-1863-4237-a415-66a89bcdda7d\",\"target\":\"1cc070c7-347f-4fb6-9dc9-45b176cf0542\"},\"fb31ce71-bda1-4dd4-830d-400ac8dba174\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"90c128c8-75fb-44e1-b8e8-5762c69ef0cf\",\"target\":\"6f45b96a-85ba-4320-9ffa-a8c9985f58c6\"},\"e8c6e952-9fe5-433e-97d0-8c0a8a94467b\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"360b86ee-dde9-416e-a661-2973c3baff1a\",\"target\":\"aa43afcf-7413-4ffe-b508-e2b1145feefb\"},\"5a38e8bb-33f4-48af-9411-863a5e8d025d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"e7e74785-ffdd-47ec-8f18-fb622c57e5a6\"},\"9fc48dbc-6fe8-4820-9c06-acb865050e40\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"c897a987-9ad0-4ff0-b176-66062a7e2723\"},\"6c8cfd96-f994-4a1b-ad60-efbe9b2e1c2e\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":-2,\"y\":-16,\"object\":\"bb416ea8-183d-490b-92ad-7e8dfe04ddb1\"},\"a944d93e-bebd-417d-bc78-08659a01f019\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"6c8cfd96-f994-4a1b-ad60-efbe9b2e1c2e\",\"targetSymbol\":\"5a38e8bb-33f4-48af-9411-863a5e8d025d\"},\"97de33e2-ff6f-4d4e-b2b9-7dcdf885fcd8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"9fc48dbc-6fe8-4820-9c06-acb865050e40\",\"targetSymbol\":\"6c8cfd96-f994-4a1b-ad60-efbe9b2e1c2e\"},\"4fc41dae-9b03-4a44-8e01-cf7ba4d73fdb\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_OUTPUT_NOELEMENT\"}},\"61e5a1b3-b7ce-448c-932a-5a25d796fdd0\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_OUTPUT_NOELEMENT\"}},\"848d41fc-1373-4a52-9e60-761098532fdb\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"1aa887b9-ad4f-423f-bce4-b7ad9324cffc\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_UNFOUND\",\"params\":[\"MATNR\"],\"titleActiveData\":{\"objectToValidate\":{\"objectId\":\"0b79fa94-90af-4a0a-b6a9-5d7d70e2e8ea\"},\"reference\":{\"ref\":[\"MATNR\"]}},\"subtitleId\":\"VAL_REFERENCE_FOR_SUBTITLE\",\"subtitleParams\":[\"MATNR\"]}},\"0daa5c11-80cf-4b71-a09e-0d4fad9949f5\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_LOOP\",\"params\":[\"MATNR\"]}},\"2a725fc9-c5ed-4e3c-a586-dd41c72620e6\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"c9c037ba-1c64-4962-95ec-0efcde6fcfd7\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_UNFOUND\",\"params\":[\"WERKS\"],\"titleActiveData\":{\"objectToValidate\":{\"objectId\":\"78a871e0-21ed-4f1a-b5a6-37e721acb6ac\"},\"reference\":{\"ref\":[\"WERKS\"]}},\"subtitleId\":\"VAL_REFERENCE_FOR_SUBTITLE\",\"subtitleParams\":[\"WERKS\"]}},\"052310c9-b702-4a64-baee-fd7284a2963f\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_LOOP\",\"params\":[\"WERKS\"]}},\"5c7a7af5-3d04-4ad3-8241-b621d915e8b8\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"9f68b42d-1867-48bd-a5a2-8a7215550768\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_UNFOUND\",\"params\":[\"LGORT\"],\"titleActiveData\":{\"objectToValidate\":{\"objectId\":\"b3f90e78-531b-40cf-84f0-8169e7159221\"},\"reference\":{\"ref\":[\"LGORT\"]}},\"subtitleId\":\"VAL_REFERENCE_FOR_SUBTITLE\",\"subtitleParams\":[\"LGORT\"]}},\"b3e63e50-8226-4e6b-a5e5-4c62024a0590\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_LOOP\",\"params\":[\"LGORT\"]}},\"205f04b4-0c11-4951-be24-e6404201a0f9\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"8e351a13-a548-4272-ac74-93d250077e1c\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_UNFOUND\",\"params\":[\"SPERR\"],\"titleActiveData\":{\"objectToValidate\":{\"objectId\":\"b2b626ad-9d9b-4365-b7fe-b451feab094e\"},\"reference\":{\"ref\":[\"SPERR\"]}},\"subtitleId\":\"VAL_REFERENCE_FOR_SUBTITLE\",\"subtitleParams\":[\"SPERR\"]}},\"29d6f831-e059-42de-b280-959f3b0f5271\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_REF_FIELD_LOOP\",\"params\":[\"SPERR\"]}},\"590443ba-d381-40eb-bc1b-5eb9bf1ef424\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_CALC_EMPTY_EX\",\"params\":[\"Calculated_1\"]}},\"ac55e2c7-14d9-45ad-9795-6747dd1f8af4\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_CALC_EMPTY_EX\",\"params\":[\"COUNT\"]}},\"b008c5f5-3626-4ba8-b8f9-fed9e1579bd8\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_CALC_EMPTY_EX\",\"params\":[\"ZCOUNT\"]}},\"749c70b9-06a5-4a68-a3e7-bf0fb594f154\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_vb\",\"id\":\"VAL_CALC_EMPTY_EX\",\"params\":[\"ZCOUNT\"]}},\"d9a23cab-7bc8-4049-93c6-d546dc622e4c\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"d779e269-c89c-4b48-a76d-ecd8bf9f91fc\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"a4fdf9fa-2a3e-47b3-9dc3-b5781460823d\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"error\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_BASENTITY_FACT_HAS_NO_MEASURES\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"dd941a28-facb-4b14-895f-ff6995f44a8e\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"166dbaba-320e-47ee-9f18-1cdd54b9645c\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"a309eec2-6362-459e-b446-44088266ef51\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"5bde43ba-c38a-4ab0-be0c-f7c96aaf3da2\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"aa6b5dd9-bece-49bf-988a-85fae185770e\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"794acb6e-ea6c-42e8-8b6d-906005e5705b\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"24826378-89ca-4f31-92b0-613c75dfd18f\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"ec66881c-727e-4fce-8653-ca8dded8f9c7\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"c693ee91-1540-4913-bcc4-a04b1a3d7071\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"664fc3a8-8d2f-45ed-a185-ec7ddd0b0799\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"0f927ab3-ed0d-43cc-96dd-e1ea2ad2bdc7\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_TEXT_NONE_DIMENSION_SHOULD_NOT_LINK_TEXT\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"d771d89a-51b3-4126-8380-6f09720bd43a\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"e1067347-0f1f-4cc4-b1d9-cb4a00ebf081\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"6dbd588e-ea38-481d-b5d0-20b82e9c1451\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"a435f8a2-8589-416c-90de-fab243a3603c\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"107b64db-44a9-434b-b0ee-60bb7048a263\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"89a447b3-4e9b-4e59-a4d4-1f97ee87674e\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_TEXT_NONE_DIMENSION_SHOULD_NOT_LINK_TEXT\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"b89d9c4c-4268-4476-9f4f-43580c003af9\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"72b6796a-ffd9-449a-a8a7-a3a000491a1d\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"f1a8ede8-5b13-48f7-ac9a-61a2bc01511b\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"547939ad-1511-4161-ad92-630cac42c263\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"17cb34b4-2f03-42ab-acf8-ea74a14d5df6\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"e6673afe-6ad9-42eb-af76-1b79a973bcac\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_TEXT_NONE_DIMENSION_SHOULD_NOT_LINK_TEXT\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"a90318ed-7d67-4b5b-892b-c59daf1d7ad9\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_TEXT_NONE_DIMENSION_SHOULD_NOT_LINK_TEXT\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"afbc3a15-4ad6-497d-b6f1-39fdf7c79e10\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_TEXT_NONE_DIMENSION_SHOULD_NOT_LINK_TEXT\",\"params\":[\"RL_MD_MASTSLOC\"]}},\"b3b8384f-d8e1-4fc0-959d-2693ae8bc86b\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_ASSOCIATION_TARGET_KEYS_UNMAPPED\",\"params\":[\"_HL_MD_MAS\"]}},\"6cfa45ba-c4f7-4d04-8333-0759e6e5d3a8\":{\"classDefinition\":\"sap.cdw.commonmodel.ValidationStatus\",\"status\":\"warn\",\"tokenPosition\":-1,\"message\":{\"groupId\":\"i18n_commonmodel\",\"id\":\"VAL_ASSOCIATION_TARGET_KEYS_UNMAPPED\",\"params\":[\"_HL_MD_MAS\"]}},\"7debf741-bbe9-4eb7-b550-3a179dc9c23a\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"f30b3945-b260-4310-948e-de2729fd21e0\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"73c3bced-d42b-4cc4-8c27-4ec6d6b9dabe\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"198d419e-63d6-4025-ae44-169489f7144c\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"38e4fcc6-4174-4d08-a8f9-ad4e936ef99b\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"122e3fc0-490d-4be5-a8a4-2de6d06923a7\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"88758f59-58ad-45bf-a07e-968a4f8d13d1\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"9da03ed6-0d24-4081-bfa9-9318c2d4f2c8\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"44a59a39-090e-496a-bd80-36c67089f938\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"},\"c4cc9640-2634-42a7-8676-378450c4fff8\":{\"classDefinition\":\"sap.cdw.querybuilder.ParsedExpression\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "MD_STG.ZV_DWC_T171T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "BZIRK": {
+          "@EndUserText.label": "Sales District",
+          "type": "cds.String",
+          "length": 6,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BZTXT"
+            }
+          ]
+        },
+        "BZTXT": {
+          "@EndUserText.label": "Name of the district",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Customers: Sales districts: Texts - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T171T$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T005H": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "LAND1": {
+          "@EndUserText.label": "Country Key",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BEZEI"
+            }
+          ]
+        },
+        "REGIO": {
+          "@EndUserText.label": "Region (State, Province, County)",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BEZEI"
+            }
+          ]
+        },
+        "CITYC": {
+          "@EndUserText.label": "City Code",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BEZEI"
+            }
+          ]
+        },
+        "BEZEI": {
+          "@EndUserText.label": "Description",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "City: Texts - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_MDG_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T005H$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T002T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "SPTXT"
+            }
+          ]
+        },
+        "SPRSL": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "SPTXT": {
+          "@EndUserText.label": "Name of Language",
+          "type": "cds.String",
+          "length": 16,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Language Key Texts - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T002T$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T005T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "LAND1": {
+          "@EndUserText.label": "Country/Region Key",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "LANDX50"
+            }
+          ]
+        },
+        "LANDX": {
+          "@EndUserText.label": "Name of Country (Short Name)",
+          "type": "cds.String",
+          "length": 15,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NATIO": {
+          "@EndUserText.label": "Nationality",
+          "type": "cds.String",
+          "length": 15,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "LANDX50": {
+          "@EndUserText.label": "Country Name",
+          "type": "cds.String",
+          "length": 50,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "NATIO50": {
+          "@EndUserText.label": "Nationality (Max. 50 Characters)",
+          "type": "cds.String",
+          "length": 50,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PRQ_SPREGT": {
+          "@EndUserText.label": "Super region per country text",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Country Names - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T005T$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_TSPAT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "SPART": {
+          "@EndUserText.label": "Division",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "VTEXT"
+            }
+          ]
+        },
+        "VTEXT": {
+          "@EndUserText.label": "Name",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Sales Divisions: Texts - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TSPAT$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_CUST_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "CUSTOMER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Customer Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "CUSTOMERNAME"
+            }
+          ],
+          "notNull": true
+        },
+        "LANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "CUSTOMERNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Customer",
+          "type": "cds.String",
+          "length": 80,
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Customer Master Data Text",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_TVSTT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "VSTEL": {
+          "@EndUserText.label": "Shipping Point / Receiving Point",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "VTEXT"
+            }
+          ]
+        },
+        "VTEXT": {
+          "@EndUserText.label": "Description",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Shipping Points: Texts - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TVSTT$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_VENDOR_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "SUPPLIER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account Number of Vendor or Creditor",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "SUPPLIERNAME"
+            }
+          ],
+          "notNull": true
+        },
+        "SUPPLIERLANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "SUPPLIERNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Supplier",
+          "type": "cds.String",
+          "length": 80,
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Vendor Master Data Text",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_TVTWT": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "VTWEG": {
+          "@EndUserText.label": "Distribution Channel",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "VTEXT"
+            }
+          ]
+        },
+        "VTEXT": {
+          "@EndUserText.label": "Name",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Distribution Channels: Texts - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_TVTWT$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_VLFKZ_TXT": {
+      "kind": "entity",
+      "elements": {
+        "DOMVALUE_L": {
+          "@EndUserText.label": "Plant Category",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "DDTEXT"
+            }
+          ],
+          "notNull": true
+        },
+        "DDLANGUAGE": {
+          "@EndUserText.label": "Language",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "DDTEXT": {
+          "@EndUserText.label": "Plant Category Description",
+          "type": "cds.String",
+          "length": 60,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@EndUserText.label": "Plant Category Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_PLANT": {
+      "kind": "entity",
+      "elements": {
+        "NAME1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant Name",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true,
+          "@Semantics.text": true,
+          "notNull": true
+        },
+        "KUNNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Customer Number of Plant",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_CU"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "LIFNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Supplier Number of Plant",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_VE"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "FABKL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Factory calendar key",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "NAME2": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant Name2",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "STRAS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant House Street Number",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "PFACH": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "PO Box",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "PSTLZ": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Postal Code",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ORT01": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant City Name",
+          "type": "cds.String",
+          "length": 25,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "EKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Purchasing organization",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "CHAZV": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator: batch status management active",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "KKOWK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator: Conditions at plant level",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "KORDB": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator: Source list requirement",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "BEDPL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Activating requirements planning",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "LAND1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant Country Code",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T0"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "REGIO": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Region (State, Province, County)",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T2"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "COUNC": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "County Code",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T2"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "CITYC": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "City Code",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T2"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ADRNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Address",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "IWERK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Maintenance Planning Plant",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "TXJCD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Tax Jurisdiction",
+          "type": "cds.String",
+          "length": 15,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "VTWEG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Distribution channel for intercompany billing",
+          "type": "cds.String",
+          "length": 2,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_TV"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "SPART": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Division for intercompany billing",
+          "type": "cds.String",
+          "length": 2,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_TS"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "SPRAS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T3"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "WKSOP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "SOP plant",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "AWSLS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Variance Key",
+          "type": "cds.String",
+          "length": 6,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "CHAZV_OLD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator: batch status management active",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "VLFKZ": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant category",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_VLF"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "BZIRK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Sales District",
+          "type": "cds.String",
+          "length": 6,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T4"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ZONE1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Supply region (region supplied)",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "TAXIW": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Tax Indicator: Plant (Purchasing)",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "BZQHL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Take Regular Supplier into Account",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "LET01": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Number of Days for First Reminder/Expediter",
+          "precision": 17,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "notNull": true
+        },
+        "LET02": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Number of Days for Second Reminder/Expediter",
+          "precision": 17,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "notNull": true
+        },
+        "LET03": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@EndUserText.label": "Number of Days for Third Reminder/Expediter",
+          "precision": 17,
+          "scale": 0,
+          "type": "cds.Decimal",
+          "notNull": true
+        },
+        "TXNAM_MA1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Text name of 1st dunning of vendor declarations",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "TXNAM_MA2": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Text name of the 2nd dunning of vendor declarations",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "WERKS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "NAME1"
+            }
+          ],
+          "notNull": true
+        },
+        "BWKEY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Valuation area",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.element": [
+            {
+              "=": "NAME1"
+            }
+          ],
+          "notNull": true
+        },
+        "TXNAM_MA3": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Text name of 3rd dunning of vendor declarations",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "BUKRS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company Code",
+          "type": "cds.String",
+          "length": 4
+        },
+        "BETOL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Number of days for PO tolerance - Compress info records - SU",
+          "type": "cds.String",
+          "length": 3,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "BWMOD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Valuation Grouping Code",
+          "type": "cds.String",
+          "length": 4
+        },
+        "VKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "J_1BBRANCH": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Business Place",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "IDNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Legacy Facility Code",
+          "type": "cds.String",
+          "length": 60,
+          "notNull": true
+        },
+        "VTBFI": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Rule for determining the sales area for stock transfers",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "FPRFW": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Distribution profile at plant level",
+          "type": "cds.String",
+          "length": 3,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ACHVM": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Central archiving marker for master record",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "DVSART": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Batch Record: Type of DMS Used",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "NODETYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Node type: supply chain network",
+          "type": "cds.String",
+          "length": 3,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "NSCHEMA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Structure for Name Formation",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "PKOSA": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Cost Object Controlling Linking Active",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "MISCH": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Updating Is Active for Mixed Costing",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "MGVUPD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Updating Is Active in Actual Costing",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "VSTEL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Shipping Point / Receiving Point",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T5"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "MGVLAUPD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Update of Activity Consumption in the Quantity Structure",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "MGVLAREVAL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Control of Credit of Cost Centers",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "SOURCING": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Invoke Added-Function Source Determination via ATP",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "FSH_SEAIM": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Indicator: Season Active in Inventory Management",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "FSH_BOM_MAINTENANCE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Control data for Fashion BOM Maintenance",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "FSH_GROUP_PR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Activate Variant Grouping",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "ARUN_FIX_BATCH": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Assign Batches in Supply Assignment (ARun)",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "OILIVAL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Exchange valuation indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "OIHVTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Vendor type (refinery/mill/other) (Brazil)",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "OIHCREDIPI": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "IPI credit allowed",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "STORETYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Store Category to Differentiate Store, Dep. Store, Shop",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "DEP_STORE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Superior Department Store",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "NO_DEFAULT_BATCH_MANAGEMENT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@EndUserText.label": "Batch Management Not Active by Default",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "_ZV_DWC_CU": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "KUNNR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_CU",
+                "CUSTOMER"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_CUST_TEXT",
+          "@EndUserText.label": "Plant Master Data to Customer Master Data Text"
+        },
+        "_ZV_DWC_VE": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "LIFNR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_VE",
+                "SUPPLIER"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_VENDOR_TEXT",
+          "@EndUserText.label": "Plant Master Data to Vendor Master Data Text"
+        },
+        "_ZV_DWC_T0": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "LAND1"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T0",
+                "LAND1"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T005T",
+          "@EndUserText.label": "Plant Master Data to Country Names - Transaction Data"
+        },
+        "_ZV_DWC_T1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "COUNC"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T1",
+                "LAND1"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T005T",
+          "@EndUserText.label": "Plant Master Data to Country Names - Transaction Data1"
+        },
+        "_ZV_DWC_T2": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "REGIO"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T2",
+                "REGIO"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "CITYC"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T2",
+                "CITYC"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "COUNC"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T2",
+                "LAND1"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T005H",
+          "@EndUserText.label": "Plant Master Data to City: Texts - Transaction Data"
+        },
+        "_ZV_DWC_TV": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VTWEG"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_TV",
+                "VTWEG"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TVTWT",
+          "@EndUserText.label": "Plant Master Data to Distribution Channels: Texts - Master Data Attributes"
+        },
+        "_ZV_DWC_TS": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SPART"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_TS",
+                "SPART"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TSPAT",
+          "@EndUserText.label": "Plant Master Data to Sales Divisions: Texts - Master Data Attributes"
+        },
+        "_ZV_DWC_T3": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SPRAS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T3",
+                "SPRAS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T002T",
+          "@EndUserText.label": "Plant Master Data to Language Key Texts - Transaction Data"
+        },
+        "_ZV_DWC_T4": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "BZIRK"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T4",
+                "BZIRK"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T171T",
+          "@EndUserText.label": "Plant Master Data to Customers: Sales districts: Texts - Master Data Attributes"
+        },
+        "_ZV_DWC_T5": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "VSTEL"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T5",
+                "VSTEL"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_TVSTT",
+          "@EndUserText.label": "Plant Master Data to Shipping Points: Texts - Master Data Attributes"
+        },
+        "_HL_MD_VLF": {
+          "type": "cds.Association",
+          "@EndUserText.label": "Plant Master Data to Plant Category Texts",
+          "on": [
+            {
+              "ref": [
+                "VLFKZ"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_VLF",
+                "DOMVALUE_L"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_VLFKZ_TXT"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "Plant Master Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_MAKT": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "MAKTX"
+            }
+          ]
+        },
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "MAKTX": {
+          "@EndUserText.label": "Material Description",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        },
+        "MAKTG": {
+          "@EndUserText.label": "Material Description in Uppercase for Matchcodes",
+          "type": "cds.String",
+          "length": 40,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Material Descriptions - Master Data Attributes",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_MDG_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_MAKT$P",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_MASTSLOC": {
+      "kind": "entity",
+      "elements": {
+        "MATNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Material Number",
+          "type": "cds.String",
+          "length": 40,
+          "key": true,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_MA"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "WERKS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Plant",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_PLA"
+          },
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "LGORT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Storage location",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "@Analytics.dimension": true,
+          "notNull": true
+        },
+        "SPERR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Physical Inventory Blocking Indicator",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "_ZV_DWC_MA": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "MATNR"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_MA",
+                "MATNR"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_MAKT",
+          "@EndUserText.label": "Storage Location Master Data to Material Descriptions - Master Data Attributes"
+        },
+        "_HL_MD_PLA": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "WERKS"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_PLA",
+                "WERKS"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_PLANT",
+          "@EndUserText.label": "Storage Location Master Data to Plant Master Data"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "Storage Location Master Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

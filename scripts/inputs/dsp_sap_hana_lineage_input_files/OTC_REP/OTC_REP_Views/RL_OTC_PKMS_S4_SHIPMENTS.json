@@ -1,0 +1,101 @@
+{
+  "definitions": {
+    "RL_OTC_PKMS_S4_SHIPMENTS": {
+      "kind": "entity",
+      "elements": {
+        "ORIG_SHIPMENT": {
+          "@EndUserText.label": "Shipment Number",
+          "type": "cds.Integer64"
+        },
+        "Count": {
+          "@EndUserText.label": "Count",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "TD_STG.HL_OTC_PKMS_S4_SHIPMENTS"
+            ],
+            "as": "HL_OTC_PKMS_S4_SHIPMENTS"
+          },
+          "columns": [
+            {
+              "as": "ORIG_SHIPMENT",
+              "ref": [
+                "HL_OTC_PKMS_S4_SHIPMENTS",
+                "ORIG_SHIPMENT"
+              ]
+            },
+            {
+              "as": "Count",
+              "val": 1
+            }
+          ]
+        }
+      },
+      "@EndUserText.label": "PKMS vs S4 Shipments Master Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_FACT"
+        },
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        }
+      ],
+      "@DataWarehouse.consumption.external": true
+    },
+    "TD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "QA-SIT TransactionDataStaging",
+      "@DataWarehouse.space.schema": "TD_STG",
+      "@DataWarehouse.space.name": "TD_STG"
+    },
+    "TD_STG.HL_OTC_PKMS_S4_SHIPMENTS": {
+      "kind": "entity",
+      "elements": {
+        "ORIG_SHIPMENT": {
+          "@EndUserText.label": "Shipment Number",
+          "type": "cds.Integer64"
+        }
+      },
+      "@EndUserText.label": "PKMS Vs S4 Shipments HL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0",
+  "editorSettings": {
+    "RL_OTC_PKMS_S4_SHIPMENTS": {
+      "editor": {
+        "lastModifier": "GRAPHICALVIEWBUILDER",
+        "default": "GRAPHICALVIEWBUILDER"
+      },
+      "uiModel": "{\"contents\":{\"9d9612c7-8f92-4737-8d72-739ae81e589e\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_OTC_PKMS_S4_SHIPMENTS\",\"label\":\"PKMS vs S4 Shipments Master Report\",\"modificationDate\":0,\"deploymentDate\":0,\"#objectStatus\":0,\"output\":\"1d553530-b395-44bd-ade5-fb42fee55ab2\",\"nodes\":{\"1d553530-b395-44bd-ade5-fb42fee55ab2\":{\"name\":\"RL_OTC_PKMS_S4_SHIPMENTS\"},\"f167e83a-3630-4aaf-9a16-b0922f685f70\":{\"name\":\"TD_STG.HL_OTC_PKMS_S4_SHIPMENTS\"},\"687f49ff-b491-4228-8fbc-67d358607c0d\":{\"name\":\"Calculated Columns 1\"}},\"contexts\":{\"06c649b4-e660-4e91-bc2b-eb7c6e81b90b\":{\"name\":\"TD_STG\"}},\"diagrams\":{\"f28b5f72-cea9-48f7-a57b-ef9979b5b852\":{}}},\"1d553530-b395-44bd-ade5-fb42fee55ab2\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_OTC_PKMS_S4_SHIPMENTS\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":0,\"deploymentDate\":0,\"#objectStatus\":0,\"elements\":{\"a1fa9556-01c5-454f-a289-02a6dc2269a4\":{\"name\":\"ORIG_SHIPMENT\"},\"d0817073-489b-487a-8e42-f61fe8741dcc\":{\"name\":\"Calculated_1\"}}},\"f28b5f72-cea9-48f7-a57b-ef9979b5b852\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"b929567c-1d88-4dcb-a831-3177c80decb8\":{},\"948ea3e8-3a48-4087-b35b-20e4a8f09a41\":{\"name\":\"Entity Symbol 1\"},\"c53156d8-307c-4134-bff8-e04af21e81ce\":{},\"b61aeb7c-2678-436d-8800-307fdea9c951\":{},\"80a2b6ee-af30-4553-b709-053e36949a3c\":{}}},\"b929567c-1d88-4dcb-a831-3177c80decb8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":96,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"1d553530-b395-44bd-ade5-fb42fee55ab2\"},\"f167e83a-3630-4aaf-9a16-b0922f685f70\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"TD_STG.HL_OTC_PKMS_S4_SHIPMENTS\",\"label\":\"PKMS Vs S4 Shipments HL\",\"type\":3,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":0,\"deploymentDate\":1692946420047,\"#objectStatus\":\"1\",\"alias\":\"HL_OTC_PKMS_S4_SHIPMENTS\",\"context\":\"06c649b4-e660-4e91-bc2b-eb7c6e81b90b\",\"elements\":{\"fe7207d6-bbbb-4c20-8ca2-072e99c11892\":{\"name\":\"ORIG_SHIPMENT\"}},\"successorNode\":\"687f49ff-b491-4228-8fbc-67d358607c0d\"},\"fe7207d6-bbbb-4c20-8ca2-072e99c11892\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORIG_SHIPMENT\",\"label\":\"Shipment Number\",\"newName\":\"ORIG_SHIPMENT\",\"indexOrder\":0,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"095ca333-19ca-4183-a213-96608a205f6a\"},\"06c649b4-e660-4e91-bc2b-eb7c6e81b90b\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"TD_STG\",\"label\":\"QA-SIT TransactionDataStaging\",\"crossSpace\":{\"schema\":\"TD_STG\",\"space\":\"TD_STG\"}},\"948ea3e8-3a48-4087-b35b-20e4a8f09a41\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-212,\"y\":-19.999999999999993,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"f167e83a-3630-4aaf-9a16-b0922f685f70\"},\"a1fa9556-01c5-454f-a289-02a6dc2269a4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORIG_SHIPMENT\",\"label\":\"Shipment Number\",\"newName\":\"ORIG_SHIPMENT\",\"indexOrder\":0,\"isCalculated\":true,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0},\"687f49ff-b491-4228-8fbc-67d358607c0d\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"095ca333-19ca-4183-a213-96608a205f6a\":{\"name\":\"ORIG_SHIPMENT\"},\"e2829ffe-0e8f-4635-b12f-d437b12dbd69\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"1d553530-b395-44bd-ade5-fb42fee55ab2\"},\"095ca333-19ca-4183-a213-96608a205f6a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORIG_SHIPMENT\",\"label\":\"Shipment Number\",\"newName\":\"ORIG_SHIPMENT\",\"indexOrder\":1,\"expression\":\"ORIG_SHIPMENT\",\"isCalculated\":true,\"dataType\":\"cds.Integer64\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"a1fa9556-01c5-454f-a289-02a6dc2269a4\"},\"c53156d8-307c-4134-bff8-e04af21e81ce\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":-2,\"y\":-16,\"object\":\"687f49ff-b491-4228-8fbc-67d358607c0d\"},\"b61aeb7c-2678-436d-8800-307fdea9c951\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-52,0 -2,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"948ea3e8-3a48-4087-b35b-20e4a8f09a41\",\"targetSymbol\":\"c53156d8-307c-4134-bff8-e04af21e81ce\"},\"80a2b6ee-af30-4553-b709-053e36949a3c\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"46,0 96,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"c53156d8-307c-4134-bff8-e04af21e81ce\",\"targetSymbol\":\"b929567c-1d88-4dcb-a831-3177c80decb8\"},\"e2829ffe-0e8f-4635-b12f-d437b12dbd69\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":0,\"expression\":\"1\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"d0817073-489b-487a-8e42-f61fe8741dcc\"},\"d0817073-489b-487a-8e42-f61fe8741dcc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"Count\",\"newName\":\"Count\",\"indexOrder\":1,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true}}}"
+    }
+  }
+}

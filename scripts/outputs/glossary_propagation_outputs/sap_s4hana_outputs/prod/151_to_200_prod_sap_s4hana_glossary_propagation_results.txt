@@ -1,0 +1,229 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 151 to 200
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 151
+No matches for glossary term, POS outbound profile
+
+Glossary Term Number: 152
+No matches for glossary term, POS outbound: condition type group
+
+Glossary Term Number: 153
+Assigned glossary term, Plant Category, to 4 entities
+Unique column names that the glossary term was applied to:
+   VLFKZ
+
+Glossary Term Number: 154
+No matches for glossary term, Plant for retail price determination
+
+Glossary Term Number: 155
+No matches for glossary term, Plant profile
+
+Glossary Term Number: 156
+No matches for glossary term, Profile for value-based inventory management
+
+Glossary Term Number: 157
+No matches for glossary term, ROI required
+
+Glossary Term Number: 158
+Assigned glossary term, Rule for Determining the Sales Area for Stock Transfers, to 4 entities
+Unique column names that the glossary term was applied to:
+   VTBFI
+
+Glossary Term Number: 159
+Assigned glossary term, SOP Plant, to 4 entities
+Unique column names that the glossary term was applied to:
+   WKSOP
+
+Glossary Term Number: 160
+Assigned glossary term, Sales Organization for Intercompany Billing, to 4 entities
+Unique column names that the glossary term was applied to:
+   VKORG
+
+Glossary Term Number: 161
+No matches for glossary term, Sales area (floor space)
+
+Glossary Term Number: 162
+No matches for glossary term, Sales area (floor space) unit
+
+Glossary Term Number: 163
+No matches for glossary term, Sales office
+
+Glossary Term Number: 164
+No matches for glossary term, Sales organization for retail price determination
+
+Glossary Term Number: 165
+Assigned glossary term, Season Active in Inventory Management, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_SEAIM
+
+Glossary Term Number: 166
+Assigned glossary term, Shipping Point-Receiving Point, to 4 entities
+Unique column names that the glossary term was applied to:
+   VSTEL
+
+Glossary Term Number: 167
+Assigned glossary term, Source List Requirement, to 4 entities
+Unique column names that the glossary term was applied to:
+   KORDB
+
+Glossary Term Number: 168
+No matches for glossary term, Space management profile
+
+Glossary Term Number: 169
+Assigned glossary term, Store Category, to 4 entities
+Unique column names that the glossary term was applied to:
+   STORETYPE
+
+Glossary Term Number: 170
+Assigned glossary term, Structure for Name Formation, to 4 entities
+Unique column names that the glossary term was applied to:
+   NSCHEMA
+
+Glossary Term Number: 171
+Assigned glossary term, Superior Department Store, to 4 entities
+Unique column names that the glossary term was applied to:
+   DEP_STORE
+
+Glossary Term Number: 172
+Assigned glossary term, Supply Assignment (ARun), to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_MG_ARUN_REQ
+
+Glossary Term Number: 173
+Assigned glossary term, Supply Region, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZONE1
+
+Glossary Term Number: 174
+Assigned glossary term, Take Regular Vendor into Account, to 4 entities
+Unique column names that the glossary term was applied to:
+   BZQHL
+
+Glossary Term Number: 175
+Assigned glossary term, Tax Indicator: Plant-Purchasing, to 4 entities
+Unique column names that the glossary term was applied to:
+   TAXIW
+
+Glossary Term Number: 176
+Assigned glossary term, Text Name of 1st Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA1
+
+Glossary Term Number: 177
+Assigned glossary term, Text Name of 3rd Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA3
+
+Glossary Term Number: 178
+Assigned glossary term, Text Name of the 2nd Dunning of Vendor Declarations, to 4 entities
+Unique column names that the glossary term was applied to:
+   TXNAM_MA2
+
+Glossary Term Number: 179
+No matches for glossary term, Time increment for investement buying algorithm
+
+Glossary Term Number: 180
+Assigned glossary term, Update of Activity Consumption in the Quantity Structure, to 4 entities
+Unique column names that the glossary term was applied to:
+   MGVLAUPD
+
+Glossary Term Number: 181
+Assigned glossary term, Updating is Active for Mixed Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   MISCH
+
+Glossary Term Number: 182
+Assigned glossary term, Updating is Active in Actual Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   MGVUPD
+
+Glossary Term Number: 183
+Assigned glossary term, Variance Key, to 4 entities
+Unique column names that the glossary term was applied to:
+   AWSLS
+
+Glossary Term Number: 184
+Assigned glossary term, Vendor Number of Plant, to 4 entities
+Unique column names that the glossary term was applied to:
+   LIFNR
+
+Glossary Term Number: 185
+Assigned glossary term, Vendor type (refinery/mill/other) (Brazil), to 4 entities
+Unique column names that the glossary term was applied to:
+   OIHVTYPE
+
+Glossary Term Number: 186
+Assigned glossary term, ABC Indicator, to 4 entities
+Unique column names that the glossary term was applied to:
+   WMAAB
+
+Glossary Term Number: 187
+Assigned glossary term, Account Assignment Group for this Material, to 4 entities
+Unique column names that the glossary term was applied to:
+   KTGRM
+
+Glossary Term Number: 188
+No matches for glossary term, Age
+
+Glossary Term Number: 189
+Assigned glossary term, Alternative BOM, to 12 entities
+Unique column names that the glossary term was applied to:
+   STLAL
+
+Glossary Term Number: 190
+Assigned glossary term, Alternative BOM Text, to 4 entities
+Unique column names that the glossary term was applied to:
+   STKTX
+
+Glossary Term Number: 191
+Assigned glossary term, Alternative Unit of Measure for Stockkeeping Unit, to 4 entities
+Unique column names that the glossary term was applied to:
+   MEINH
+
+Glossary Term Number: 192
+Assigned glossary term, Assortment List Type, to 4 entities
+Unique column names that the glossary term was applied to:
+   BBTYP
+
+Glossary Term Number: 193
+Assigned glossary term, Assortment grade, to 4 entities
+Unique column names that the glossary term was applied to:
+   SSTUF
+
+Glossary Term Number: 194
+Assigned glossary term, Attribute Code, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_MG_AT2
+
+Glossary Term Number: 195
+Assigned glossary term, Attribution Method, to 2 entities
+Unique column names that the glossary term was applied to:
+   ZZATTRIBMETH
+
+Glossary Term Number: 196
+Assigned glossary term, BOM Item Number, to 4 entities
+Unique column names that the glossary term was applied to:
+   POSNR
+
+Glossary Term Number: 197
+Assigned glossary term, BOM Item Text (Line 1), to 4 entities
+Unique column names that the glossary term was applied to:
+   POTX1
+
+Glossary Term Number: 198
+Assigned glossary term, BOM Item Text (Line 2), to 4 entities
+Unique column names that the glossary term was applied to:
+   POTX2
+
+Glossary Term Number: 199
+Assigned glossary term, BOM Usage, to 4 entities
+Unique column names that the glossary term was applied to:
+   STLAN
+
+Glossary Term Number: 200
+Assigned glossary term, BOM Version, to 8 entities
+Unique column names that the glossary term was applied to:
+   BOM_VERSN
+

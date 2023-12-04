@@ -1,0 +1,245 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 651 to 716
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 651
+Assigned glossary term, Material-Product Planned Delivery Time in Days, to 4 entities
+Unique column names that the glossary term was applied to:
+   PLIFZ
+
+Glossary Term Number: 652
+No matches for glossary term, Material-Product Price unit
+
+Glossary Term Number: 653
+Assigned glossary term, Material-Product Material Number, to 8 entities
+Unique column names that the glossary term was applied to:
+   MATNR
+
+Glossary Term Number: 654
+Assigned glossary term, Material-Product Date Record Created On, to 12 entities
+Unique column names that the glossary term was applied to:
+   ANDAT
+
+Glossary Term Number: 655
+Assigned glossary term, Material-Product Listing procedure for store or other assortment categories, to 8 entities
+Unique column names that the glossary term was applied to:
+   LSTFL
+
+Glossary Term Number: 656
+No matches for glossary term, Material-Product Valuation Area
+
+Glossary Term Number: 657
+Assigned glossary term, Material-Product Plant, to 8 entities
+Unique column names that the glossary term was applied to:
+   WERKS
+
+Glossary Term Number: 658
+Assigned glossary term, Material-Product Valid-to date, to 4 entities
+Unique column names that the glossary term was applied to:
+   VALID_TO
+
+Glossary Term Number: 659
+No matches for glossary term, Purchasing Info Record Incoterm 1
+
+Glossary Term Number: 660
+No matches for glossary term, Purchasing Info Record Incoterm 2
+
+Glossary Term Number: 661
+Assigned glossary term, Purchasing Info Record Telephone number, to 4 entities
+Unique column names that the glossary term was applied to:
+   TELF1
+
+Glossary Term Number: 662
+No matches for glossary term, Purchasing Info Record Purchasing Group
+
+Glossary Term Number: 663
+No matches for glossary term, Purchasing Info Record Base Unit of Measure
+
+Glossary Term Number: 664
+No matches for glossary term, Purchasing Info Record Denominator for Conversion to  Base Units of Measure
+
+Glossary Term Number: 665
+No matches for glossary term, Purchasing Info Record Numerator for Conversion to Base Units of Measure
+
+Glossary Term Number: 666
+No matches for glossary term, Purchasing Info Record Planned Delivery Time in Days
+
+Glossary Term Number: 667
+Assigned glossary term, Purchasing Info Record Price unit, to 4 entities
+Unique column names that the glossary term was applied to:
+   PEINH
+
+Glossary Term Number: 668
+No matches for glossary term, Purchasing Info Record Material Number
+
+Glossary Term Number: 669
+No matches for glossary term, Purchasing Info Record Plant
+
+Glossary Term Number: 670
+No matches for glossary term, Purchasing Info Record Number of Days for First Reminder-Expediter
+
+Glossary Term Number: 671
+No matches for glossary term, Purchasing Info Record Number of Days for Second Reminder-Expediter
+
+Glossary Term Number: 672
+No matches for glossary term, Purchasing Info Record Number of Days for Third Reminder-Expediter
+
+Glossary Term Number: 673
+No matches for glossary term, Purchasing Info Record Purchase Order Unit of Measure
+
+Glossary Term Number: 674
+No matches for glossary term, Purchasing Info Record Confirmation Control Key
+
+Glossary Term Number: 675
+No matches for glossary term, Purchasing Info Record GR-Based Invoice Verification
+
+Glossary Term Number: 676
+No matches for glossary term, Purchasing Info Record Vendor number
+
+Glossary Term Number: 677
+No matches for glossary term, Finance Profit Center
+
+Glossary Term Number: 678
+No matches for glossary term, Finance Bank Key
+
+Glossary Term Number: 679
+No matches for glossary term, Source List Material Number
+
+Glossary Term Number: 680
+Assigned glossary term, Source List Plant, to 4 entities
+Unique column names that the glossary term was applied to:
+   WERKS
+
+Glossary Term Number: 681
+No matches for glossary term, Source List Purchasing Organization
+
+Glossary Term Number: 682
+No matches for glossary term, Source List Purchase Order Unit of Measure
+
+Glossary Term Number: 683
+No matches for glossary term, Source List Vendor number
+
+Glossary Term Number: 684
+Assigned glossary term, Store Number, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_MSOPID
+
+Glossary Term Number: 685
+No matches for glossary term, AFS Store Number
+
+Glossary Term Number: 686
+No matches for glossary term, AFS CPG
+
+Glossary Term Number: 687
+No matches for glossary term, Client
+
+Glossary Term Number: 688
+No matches for glossary term, AFS Client
+
+Glossary Term Number: 689
+Assigned glossary term, State, to 4 entities
+Unique column names that the glossary term was applied to:
+   REGIO
+
+Glossary Term Number: 690
+No matches for glossary term, AFS State
+
+Glossary Term Number: 691
+No matches for glossary term, Alternative Player
+
+Glossary Term Number: 692
+No matches for glossary term, AFS Alternative Player
+
+Glossary Term Number: 693
+Assigned glossary term, PO Box, to 4 entities
+Unique column names that the glossary term was applied to:
+   PFACH
+
+Glossary Term Number: 694
+No matches for glossary term, AFS PO Box
+
+Glossary Term Number: 695
+No matches for glossary term, Tax Number 1
+
+Glossary Term Number: 696
+No matches for glossary term, Tax Number 2
+
+Glossary Term Number: 697
+No matches for glossary term, AFS Allow Dup PO
+
+Glossary Term Number: 698
+No matches for glossary term, AFS Accounting Clerk
+
+Glossary Term Number: 699
+Assigned glossary term, Accounting Clerk, to 4 entities
+Unique column names that the glossary term was applied to:
+   BUSAB
+
+Glossary Term Number: 700
+No matches for glossary term, AFS Payment Terms
+
+Glossary Term Number: 701
+No matches for glossary term, AFS House Bank
+
+Glossary Term Number: 702
+Assigned glossary term, House Bank, to 4 entities
+Unique column names that the glossary term was applied to:
+   HBKID
+
+Glossary Term Number: 703
+No matches for glossary term, AFS Language Key
+
+Glossary Term Number: 704
+Assigned glossary term, Language Key, to 4 entities
+Unique column names that the glossary term was applied to:
+   SPRAS
+
+Glossary Term Number: 705
+No matches for glossary term, AFS Company Code
+
+Glossary Term Number: 706
+Assigned glossary term, Company Code, to 4 entities
+Unique column names that the glossary term was applied to:
+   BUKRS
+
+Glossary Term Number: 707
+Assigned glossary term, Sales district, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_KVGR6
+
+Glossary Term Number: 708
+No matches for glossary term, AFS Delivery Plant
+
+Glossary Term Number: 709
+Assigned glossary term, Delivery Plant, to 4 entities
+Unique column names that the glossary term was applied to:
+   VWERK
+
+Glossary Term Number: 710
+No matches for glossary term, AFS Sales District
+
+Glossary Term Number: 711
+No matches for glossary term, AFS Zip Code
+
+Glossary Term Number: 712
+Assigned glossary term, Zip Code, to 4 entities
+Unique column names that the glossary term was applied to:
+   PSTLZ
+
+Glossary Term Number: 713
+No matches for glossary term, AFS City
+
+Glossary Term Number: 714
+Assigned glossary term, City, to 4 entities
+Unique column names that the glossary term was applied to:
+   ORT01
+
+Glossary Term Number: 715
+No matches for glossary term, AFS Packing material
+
+Glossary Term Number: 716
+Assigned glossary term, VAS Determination Mode, to 4 entities
+Unique column names that the glossary term was applied to:
+   FSH_VAS_DETC
+

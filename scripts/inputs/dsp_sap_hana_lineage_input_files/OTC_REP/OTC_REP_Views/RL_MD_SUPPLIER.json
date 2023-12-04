@@ -1,0 +1,2496 @@
+{
+  "definitions": {
+    "RL_MD_SUPPLIER": {
+      "kind": "entity",
+      "elements": {
+        "SUPPLIER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account Number of Vendor or Creditor",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@ObjectModel.foreignKey.association": {
+            "=": "_HL_MD_SUP"
+          },
+          "@Analytics.dimension": true,
+          "@Consumption.filter.selectionType": {
+            "#": "RANGE"
+          },
+          "@Consumption.filter.mandatory": false,
+          "@Consumption.filter.hidden": false,
+          "@Consumption.filter.multipleSelections": true,
+          "@Consumption.filter.defaultValue": "",
+          "@Consumption.filter.defaultValueHigh": "",
+          "notNull": true
+        },
+        "count": {
+          "@EndUserText.label": "count",
+          "type": "cds.Integer",
+          "@AnalyticsDetails.measureType": {
+            "#": "BASE"
+          },
+          "@Aggregation.default": {
+            "#": "SUM"
+          }
+        },
+        "_HL_MD_SUP": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SUPPLIER"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_SUP",
+                "SUPPLIER"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_SUPPLIER",
+          "@EndUserText.label": "Supplier Report to Supplier Master Data"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "MD_STG.HL_MD_SUPPLIER"
+            ],
+            "as": "HL_MD_SUPPLIER"
+          },
+          "columns": [
+            {
+              "as": "SUPPLIER",
+              "key": true,
+              "ref": [
+                "HL_MD_SUPPLIER",
+                "SUPPLIER"
+              ]
+            },
+            {
+              "as": "count",
+              "val": 1
+            },
+            {
+              "ref": [
+                "_HL_MD_SUP"
+              ]
+            }
+          ],
+          "mixin": {
+            "_HL_MD_SUP": {
+              "type": "cds.Association",
+              "@EndUserText.label": "Supplier Report to Supplier Master Data",
+              "on": [
+                {
+                  "ref": [
+                    "$projection",
+                    "SUPPLIER"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "_HL_MD_SUP",
+                    "SUPPLIER"
+                  ]
+                }
+              ],
+              "target": "MD_STG.HL_MD_SUPPLIER"
+            }
+          }
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_PROVIDER"
+        },
+        {
+          "#": "ANALYTICAL_FACT"
+        }
+      ],
+      "@EndUserText.label": "Supplier Master Data Report",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_FACT"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"15891ecb-2875-449e-a853-59a0667669fc\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"RL_MD_SUPPLIER\",\"label\":\"Supplier Master Data Report\",\"modificationDate\":1665765624177,\"deploymentDate\":1663865727938,\"#objectStatus\":\"2\",\"output\":\"92513119-a44e-47b1-8407-6aa15000465d\",\"nodes\":{\"92513119-a44e-47b1-8407-6aa15000465d\":{\"name\":\"RL_MD_SUPPLIER\"},\"79b7eecf-382a-46b9-ad98-48a3cd013d56\":{\"name\":\"MD_STG.HL_MD_SUPPLIER\"},\"6cfd108b-f1f4-4ebd-956c-cdd666fbb23e\":{\"name\":\"Calculated Columns 1\"},\"b4daaa04-95f5-4c1f-b1a9-e8fc41dbf647\":{\"name\":\"Projection 1\"},\"3a076734-fd92-47e7-ad7a-f3425c3aecd8\":{\"name\":\"MD_STG.HL_MD_SUPPLIER\"}},\"associations\":{\"168c6368-cb74-4db5-a7d5-4b27aacf042c\":{\"name\":\"_HL_MD_SUP\"}},\"contexts\":{\"def244dc-7cfa-41e5-bc60-eaba83c4c4db\":{\"name\":\"MD_STG\"}},\"diagrams\":{\"495c5f7b-8e07-42fc-9caf-080341c83ad8\":{}}},\"92513119-a44e-47b1-8407-6aa15000465d\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"RL_MD_SUPPLIER\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"dataCategory\":\"FACT\",\"modificationDate\":1665765624177,\"deploymentDate\":1663865727938,\"#objectStatus\":\"2\",\"elements\":{\"0e584d80-006c-4db0-9126-39b5144aa4ef\":{\"name\":\"SUPPLIER\"},\"dfed913d-6db5-4018-9c0f-655c7f1c25c3\":{\"name\":\"Calculated_1\"}}},\"79b7eecf-382a-46b9-ad98-48a3cd013d56\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"MD_STG.HL_MD_SUPPLIER\",\"label\":\"Supplier Master Data\",\"type\":4,\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"isHiddenInUi\":false,\"modificationDate\":1665763603254,\"deploymentDate\":1665763621521,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_SUPPLIER\",\"context\":\"def244dc-7cfa-41e5-bc60-eaba83c4c4db\",\"elements\":{\"9da680a6-56dc-4694-a9b8-ed679db88372\":{\"name\":\"SUPPLIER\"},\"e12b40cd-dd76-4e29-a5c4-0399c590670a\":{\"name\":\"SUPPLIERACCOUNTGROUP\"},\"bb979077-b78d-4acb-b7b3-72308a1235f3\":{\"name\":\"SUPPLIERNAME\"},\"0d80569b-bb5e-4ddd-a4b4-b48efcdb6ea9\":{\"name\":\"SUPPLIERFULLNAME\"},\"d97f2b02-6623-4308-811c-aeffe19db224\":{\"name\":\"ISBUSINESSPURPOSECOMPLETED\"},\"6d67da59-cd12-4f76-a416-c77185e8eec2\":{\"name\":\"CREATEDBYUSER\"},\"ef66d54c-8df5-4872-b074-d4e742fd314b\":{\"name\":\"CREATIONDATE\"},\"f9314bbf-3d89-4988-bc9c-5c827caac915\":{\"name\":\"ISONETIMEACCOUNT\"},\"6b4c8a30-0c90-4dd0-94f6-8b2ba279b0c5\":{\"name\":\"AUTHORIZATIONGROUP\"},\"4c076e78-b852-485f-b556-5a723cb9ce9d\":{\"name\":\"VATREGISTRATION\"},\"85599f40-2cd0-4623-9ddb-cd2fa8f762a6\":{\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\"},\"0ceca15c-65b8-4ec6-a366-15a6db9c924c\":{\"name\":\"TAXJURISDICTION\"},\"7f90b8ce-1fc2-4414-a816-9c764f65d428\":{\"name\":\"SUPPLIERCORPORATEGROUP\"},\"d1d6f84f-f483-485c-b47c-2db5d995fce1\":{\"name\":\"CUSTOMER\"},\"5befddf5-670c-4a0b-8bd4-d1edb5e54174\":{\"name\":\"INDUSTRY\"},\"a5a5c796-51b3-4027-8a22-9793950d765b\":{\"name\":\"TAXNUMBER1\"},\"1e34c328-6eaa-4c43-aae1-b7f33113702d\":{\"name\":\"TAXNUMBER2\"},\"e290c80c-f2b1-4483-a444-64b5de456096\":{\"name\":\"TAXNUMBER3\"},\"be463e52-6619-49a6-a2ea-01294164443b\":{\"name\":\"TAXNUMBER4\"},\"aa721abc-e446-44ef-b94f-dea14402e9a3\":{\"name\":\"TAXNUMBER5\"},\"eb8cdfd1-ac46-429b-885f-d98f462e4c34\":{\"name\":\"POSTINGISBLOCKED\"},\"0bcd638f-32e6-486f-a0f4-2701e9aecded\":{\"name\":\"PURCHASINGISBLOCKED\"},\"dfca42a9-3ff0-499e-9ad5-39e881a22961\":{\"name\":\"INTERNATIONALLOCATIONNUMBER1\"},\"9d745352-6b6f-4aff-8755-3112772209a0\":{\"name\":\"INTERNATIONALLOCATIONNUMBER2\"},\"1b7ea559-f3bd-40a7-b56f-5b364c45694a\":{\"name\":\"INTERNATIONALLOCATIONNUMBER3\"},\"32943134-ef50-45de-bfa2-74331ff8d6b3\":{\"name\":\"ADDRESSID\"},\"a7100f25-73d1-4313-a8ad-f581a3fc7b05\":{\"name\":\"REGION\"},\"f853653c-c261-4d8f-84e2-145596863199\":{\"name\":\"ORGANIZATIONBPNAME1\"},\"24fbe545-977d-4ce3-a920-319d6651abd5\":{\"name\":\"ORGANIZATIONBPNAME2\"},\"1b3b4745-1365-40b9-85e8-a5c058530347\":{\"name\":\"CITYNAME\"},\"246ee625-4272-4cc9-8b09-fa5540a1fb61\":{\"name\":\"POSTALCODE\"},\"9c1a909b-1f5f-4592-a80e-414784623c6b\":{\"name\":\"STREETNAME\"},\"2d7eb5d8-2e66-49b6-a6fe-f5c4d856d3d1\":{\"name\":\"COUNTRY\"},\"4998608e-83a8-4289-85f2-1ace0e2de61d\":{\"name\":\"CONCATENATEDINTERNATIONALLOCNO\"},\"33aea305-cd94-4b54-a6b2-d4f2dd3459f0\":{\"name\":\"SUPPLIERPROCUREMENTBLOCK\"},\"53c8d373-44c8-4b52-8f8e-4aa3babb68b4\":{\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\"},\"05c87f4f-434f-4fdd-887e-4dbb9846b7e8\":{\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\"},\"a72ed503-04e5-43bd-8b80-67bc51e355bd\":{\"name\":\"SUPPLIERLANGUAGE\"},\"7cdfdaeb-9850-409a-820d-0f4396703ac4\":{\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\"},\"a890b252-2ff3-4342-97c8-68984fbe8197\":{\"name\":\"PHONENUMBER1\"},\"86fc685b-d6c9-4649-a45a-b3ad52f28e33\":{\"name\":\"FAXNUMBER\"},\"d27dbe85-7a59-4264-ac20-ceec394a5434\":{\"name\":\"ISNATURALPERSON\"},\"6c5890cf-b5ee-4c4c-8412-18d9310b2b4a\":{\"name\":\"TAXNUMBERRESPONSIBLE\"},\"7aa2261f-ae64-42ed-8388-d40a48630231\":{\"name\":\"UK_CONTRACTORBUSINESSTYPE\"},\"b4428207-f69e-4d34-8bf9-833077765248\":{\"name\":\"UK_PARTNERTRADINGNAME\"},\"2654b2d3-1f4b-45ef-b3b7-075d0fbec940\":{\"name\":\"UK_PARTNERTAXREFERENCE\"},\"ca0d85a5-3b2d-4113-887f-cf6eb1319fb0\":{\"name\":\"UK_VERIFICATIONSTATUS\"},\"d6b059a5-e447-4d39-821b-667e378866f5\":{\"name\":\"UK_VERIFICATIONNUMBER\"},\"ba70305d-eb37-417b-a40e-7db7ebbfb582\":{\"name\":\"UK_COMPANYREGISTRATIONNUMBER\"},\"c43d839f-0181-460a-8e32-f2a3bb6e8214\":{\"name\":\"UK_VERIFIEDTAXSTATUS\"},\"0acb2b7a-b103-4831-a5d4-c911bc752678\":{\"name\":\"FORMOFADDRESS\"},\"a5228456-a475-4233-96f0-4f4c53ca3372\":{\"name\":\"REFERENCEACCOUNTGROUP\"},\"837a599e-c547-440e-a908-187a3a740689\":{\"name\":\"VATLIABILITY\"},\"d4638c09-0c04-4091-b04a-cd379292948e\":{\"name\":\"RESPONSIBLETYPE\"},\"bc37cd80-7b3f-469e-b1ee-97a2c242b836\":{\"name\":\"TAXNUMBERTYPE\"},\"7c7e8517-c869-40e0-a28c-5950dba2d80e\":{\"name\":\"FISCALADDRESS\"},\"789885f5-5192-44ad-9d9b-f4a6a34e36fe\":{\"name\":\"BUSINESSTYPE\"},\"55bd67ca-121c-47c0-9b36-c9d4064065ec\":{\"name\":\"BIRTHDATE\"},\"1362aefb-e2dd-468b-97ca-92b3ac17faab\":{\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\"},\"359c8e55-8ca3-4416-b4e0-2d175b7715fd\":{\"name\":\"SORTFIELD\"},\"a43a61b0-169c-40ee-b0e3-977a5b4d01c7\":{\"name\":\"PHONENUMBER2\"},\"aef69893-83b5-4dc3-8350-3f998bdeda93\":{\"name\":\"DELETIONINDICATOR\"},\"0e885be9-5ff1-4425-86d6-4be60124aee1\":{\"name\":\"TAXINVOICEREPRESENTATIVENAME\"},\"ee967eb7-8eac-4aac-8fa7-ec63658d4e88\":{\"name\":\"INDUSTRYTYPE\"},\"23fd3df8-0b0e-40a7-a78e-9f8c622dc7f1\":{\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\"},\"9ab7f210-16ec-41f8-9015-c1320c2e8fc0\":{\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\"},\"a225d650-b68b-45c4-b497-5cf76796971c\":{\"name\":\"TRADINGPARTNER\"},\"6fd34bbe-f60a-4789-bec9-dca12ea5e83e\":{\"name\":\"BR_TAXISSPLIT\"},\"496ebca4-4b2b-49f3-9b60-fbcb0ae4c0db\":{\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\"},\"e3326d2c-a57b-4a34-97c1-cbb42785f6b5\":{\"name\":\"AU_INDIVIDUALISUNDER18\"},\"2c9493f2-9c97-472d-86cb-8e5975a59db3\":{\"name\":\"AU_PAYMENTISEXCEEDING75\"},\"754eca7e-cf48-41d5-bf04-e6e036519d58\":{\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\"},\"cd23094d-5b4d-4b49-9feb-24794a2d2abe\":{\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\"},\"56af5bd9-d36c-42df-8af0-b13738106deb\":{\"name\":\"AU_SUPPLIERISENTITLEDTOABN\"},\"15937141-16ea-4777-ae7a-ab3514f6cb5a\":{\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\"},\"b12fe002-b15a-402e-a5ae-89c5ca1a1ae1\":{\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\"},\"e72a9d9b-c486-44dc-9b6a-0bd92bca257e\":{\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\"},\"7444363b-95da-4139-9c4e-5c1d09446237\":{\"name\":\"ISTOBEACCEPTEDATORIGIN\"},\"185438e7-3299-4fea-a604-9034a164f679\":{\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\"},\"35c540b0-6b20-47c7-88c0-d7a977ded815\":{\"name\":\"ALTERNATIVEPAYEEISALLOWED\"},\"1a38a41e-5484-47ee-82da-8ce12350d555\":{\"name\":\"CA_CREATIONDATE\"},\"9a854334-b0e1-491f-9274-221fe9baf2e1\":{\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\"},\"85147695-0040-4584-b931-6eae0327ae2c\":{\"name\":\"CA_BIRTHDATE\"},\"30dacae8-e929-48f6-ad52-a1578ddfa9eb\":{\"name\":\"DISTRICT\"},\"0c3a806e-3bb4-44cf-881f-fcd34ce3f781\":{\"name\":\"PO_BOX\"},\"4101306e-a225-448c-9755-6a491b8f613e\":{\"name\":\"PO_BOX_POSTALCODE\"},\"bc042eb7-73ce-40da-9e50-7eb27a9c0de4\":{\"name\":\"KTOKK\"},\"4ddddb3a-4401-4238-b010-e0935591cac9\":{\"name\":\"AGENCYLOCATIONCODE\"}},\"successorNode\":\"b4daaa04-95f5-4c1f-b1a9-e8fc41dbf647\"},\"6cfd108b-f1f4-4ebd-956c-cdd666fbb23e\":{\"classDefinition\":\"sap.cdw.querybuilder.CalculatedElements\",\"name\":\"Calculated Columns 1\",\"elements\":{\"8cb2e3ef-fcd0-4400-98dc-2add0967a3e6\":{\"name\":\"SUPPLIER\"},\"a479fc12-9b71-4e01-8777-097dbb076ca0\":{\"name\":\"Calculated_1\"}},\"successorNode\":\"92513119-a44e-47b1-8407-6aa15000465d\"},\"b4daaa04-95f5-4c1f-b1a9-e8fc41dbf647\":{\"classDefinition\":\"sap.cdw.querybuilder.RenameElements\",\"_isProjectionNode\":false,\"name\":\"Projection 1\",\"elements\":{\"5f9322ec-c988-409d-92b4-74ae77baa236\":{\"name\":\"SUPPLIER\"},\"cc9d5641-8109-41bf-b419-8db846c298e5\":{\"name\":\"SUPPLIERACCOUNTGROUP\"},\"9ffb3b13-67ce-4648-a888-7348e53845bb\":{\"name\":\"SUPPLIERNAME\"},\"2a047dad-3e66-42e8-97f9-098a142dd074\":{\"name\":\"SUPPLIERFULLNAME\"},\"d7a24562-76ce-451f-9860-2955e44a2ba2\":{\"name\":\"ISBUSINESSPURPOSECOMPLETED\"},\"e1f78c2a-3ef0-4095-9784-c1ce52a96b8e\":{\"name\":\"CREATEDBYUSER\"},\"1119f0e6-c666-477f-a2dc-b4a8e6227b74\":{\"name\":\"CREATIONDATE\"},\"c3cc1490-ec6a-4ef4-b0f6-67414835b6d5\":{\"name\":\"ISONETIMEACCOUNT\"},\"bda009f2-afe0-42f7-ae07-76aeca3fbcfd\":{\"name\":\"AUTHORIZATIONGROUP\"},\"491b944e-fa42-4cfb-bd46-4f8cad3b066e\":{\"name\":\"VATREGISTRATION\"},\"63e6078b-d74a-4ed9-a777-5961d6c2cd3a\":{\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\"},\"642536cf-102a-446e-ae43-a38136adccb7\":{\"name\":\"TAXJURISDICTION\"},\"494f6ec3-8f11-47b9-9ad2-d01f0e5c623d\":{\"name\":\"SUPPLIERCORPORATEGROUP\"},\"407a6ceb-152c-419a-aaef-2e33e983e5e8\":{\"name\":\"CUSTOMER\"},\"75be63d5-5e2c-4fc0-bc39-2887bbed25c1\":{\"name\":\"INDUSTRY\"},\"418ab9f9-1383-4007-9165-e41b907f3394\":{\"name\":\"TAXNUMBER1\"},\"db1160f3-8c67-4093-897f-cb0abb13d84d\":{\"name\":\"TAXNUMBER2\"},\"bf1198af-73a3-4d49-b076-2fcdc85b53e1\":{\"name\":\"TAXNUMBER3\"},\"e884e205-b077-4073-8d1a-f1e8b77ede99\":{\"name\":\"TAXNUMBER4\"},\"22efd9fc-80f6-47a6-9922-851bd2a02339\":{\"name\":\"TAXNUMBER5\"},\"61eb64aa-e3e4-41c3-9a30-6dac415ace4f\":{\"name\":\"POSTINGISBLOCKED\"},\"6ce22a33-cbc7-4e1b-8146-97defb040a96\":{\"name\":\"PURCHASINGISBLOCKED\"},\"1310b86a-6db8-433f-b87a-92de5bf8e3ed\":{\"name\":\"INTERNATIONALLOCATIONNUMBER1\"},\"d3dd84a0-15e6-4e99-83e5-82e109a20e6c\":{\"name\":\"INTERNATIONALLOCATIONNUMBER2\"},\"293ef8e7-9b53-410c-9a28-e8f153e32b88\":{\"name\":\"INTERNATIONALLOCATIONNUMBER3\"},\"63a5280d-d91d-405b-a352-32973a2ddf31\":{\"name\":\"ADDRESSID\"},\"5a839771-0dfe-4483-bc15-633232629d42\":{\"name\":\"REGION\"},\"7fa02d40-9983-4b81-81e3-aae0553048ac\":{\"name\":\"ORGANIZATIONBPNAME1\"},\"3116e314-ad9e-439f-b56c-102afad13421\":{\"name\":\"ORGANIZATIONBPNAME2\"},\"c30147d8-f298-4384-9425-4afa75992ea5\":{\"name\":\"CITYNAME\"},\"3dc42134-bdb2-4a96-b81c-eb699be67598\":{\"name\":\"POSTALCODE\"},\"43445bd6-9d71-4aac-88d4-a3dbeb261f11\":{\"name\":\"STREETNAME\"},\"b8e83ac8-d465-4531-9f57-46a5c9d8808b\":{\"name\":\"COUNTRY\"},\"56b053e7-28c5-42bd-b503-20727651345e\":{\"name\":\"CONCATENATEDINTERNATIONALLOCNO\"},\"1bec7672-7bf7-457b-9c22-cd053e1c8471\":{\"name\":\"SUPPLIERPROCUREMENTBLOCK\"},\"7561288e-00f1-401e-83f5-244b21a76487\":{\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\"},\"27a22f99-003b-428b-ac3f-19886a1d410e\":{\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\"},\"3b40708b-11ff-4449-9645-2968fe15f18f\":{\"name\":\"SUPPLIERLANGUAGE\"},\"e45fb775-281f-4170-9f49-47e89c5ae746\":{\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\"},\"acd2fcb6-3766-40e9-9763-17207d037e68\":{\"name\":\"PHONENUMBER1\"},\"ccb0d81d-5eec-49eb-ba97-db7cf2e11b5a\":{\"name\":\"FAXNUMBER\"},\"97c8f721-66cd-435f-b4a3-4b4efb1eb007\":{\"name\":\"ISNATURALPERSON\"},\"eec760b0-f2c7-4ad3-971b-20bc4d80c8ad\":{\"name\":\"TAXNUMBERRESPONSIBLE\"},\"07d6e09f-eb08-4209-b387-18ba07528b21\":{\"name\":\"UK_CONTRACTORBUSINESSTYPE\"},\"3dd1a411-b33c-4d0f-8e42-176a69f3ad9c\":{\"name\":\"UK_PARTNERTRADINGNAME\"},\"38c959f4-1f76-4f9d-8ed7-a99b3af0fb34\":{\"name\":\"UK_PARTNERTAXREFERENCE\"},\"60fc6780-0f76-41ad-b77f-7ec5b9b3ff73\":{\"name\":\"UK_VERIFICATIONSTATUS\"},\"626c434d-f9af-45c6-b517-cb8aa6587a1a\":{\"name\":\"UK_VERIFICATIONNUMBER\"},\"706dea03-2a7d-4c07-8dd8-dad66d878067\":{\"name\":\"UK_COMPANYREGISTRATIONNUMBER\"},\"41bc838b-c373-4836-a8a1-4f2ea1196e02\":{\"name\":\"UK_VERIFIEDTAXSTATUS\"},\"b2fc2612-9459-4dbd-aeaf-a1e7c87cc60e\":{\"name\":\"FORMOFADDRESS\"},\"77f1baa1-c066-433b-9c08-d3b997eeec93\":{\"name\":\"REFERENCEACCOUNTGROUP\"},\"9739b594-026b-4016-a0f0-bb5401abcc26\":{\"name\":\"VATLIABILITY\"},\"41304964-6274-495d-b5b8-8d7ef5c83846\":{\"name\":\"RESPONSIBLETYPE\"},\"ead00431-f9c3-4780-afef-4e9d6c99715a\":{\"name\":\"TAXNUMBERTYPE\"},\"c4310832-e602-446b-947d-7feb96bc3f1b\":{\"name\":\"FISCALADDRESS\"},\"d7d7b1a7-efbf-43c8-8f72-02356b5e3420\":{\"name\":\"BUSINESSTYPE\"},\"50790cbb-041a-46fe-80f6-bf8f472b59be\":{\"name\":\"BIRTHDATE\"},\"eaa33156-b10e-4461-af3a-eb266a33307d\":{\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\"},\"294f0228-bf38-4119-8f82-69344b0d172b\":{\"name\":\"SORTFIELD\"},\"bb34d032-19ee-4977-afa7-86082d849015\":{\"name\":\"PHONENUMBER2\"},\"b0f7d113-6ff8-41e6-a372-2804028d4e14\":{\"name\":\"DELETIONINDICATOR\"},\"c2ce18b2-95c6-4a08-bb6d-22c42820c4c5\":{\"name\":\"TAXINVOICEREPRESENTATIVENAME\"},\"74018382-9204-47a9-8a71-2408b3f59166\":{\"name\":\"INDUSTRYTYPE\"},\"02e60eb3-9747-438f-9bde-95687a90bbea\":{\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\"},\"57631c5e-2ac0-43de-821b-dbc5fa5ea4a3\":{\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\"},\"5b405134-e7db-48a2-b55e-2c921f47813b\":{\"name\":\"TRADINGPARTNER\"},\"a32eae03-0b0f-409b-a4a5-7f8f51d83c7f\":{\"name\":\"BR_TAXISSPLIT\"},\"a855c3a2-9b0c-4858-bade-ab0d584784f7\":{\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\"},\"3c42e514-59c9-435d-a5a2-4e3e0698b22e\":{\"name\":\"AU_INDIVIDUALISUNDER18\"},\"e17a9649-1802-4927-a8b5-8cb7ccd38672\":{\"name\":\"AU_PAYMENTISEXCEEDING75\"},\"4d86f605-c7d6-4857-ab4d-f6b21b04bd93\":{\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\"},\"4b697b9f-a66f-435e-913b-35c7e047fb65\":{\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\"},\"594e4313-6a8a-4168-b3e3-3b8d7742689b\":{\"name\":\"AU_SUPPLIERISENTITLEDTOABN\"},\"cdb48d63-6652-44b9-b19c-454474e5a65b\":{\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\"},\"cc4cc1e1-b229-4e16-878a-f1b1d4ecf656\":{\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\"},\"5f189cff-0f09-43eb-8160-09be94687137\":{\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\"},\"8669469e-485a-405d-8c78-67e87051fa06\":{\"name\":\"ISTOBEACCEPTEDATORIGIN\"},\"0d89352d-9549-4c7c-88ba-94c084683434\":{\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\"},\"5892ca7e-071a-49fb-b612-656281c7beeb\":{\"name\":\"ALTERNATIVEPAYEEISALLOWED\"},\"c95a8e3d-623c-415b-829c-bec65e1eafd7\":{\"name\":\"CA_CREATIONDATE\"},\"45b7a032-d64f-4744-bb56-b28eba4d0cd3\":{\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\"},\"f46777b1-6604-4902-bbad-87230e106c18\":{\"name\":\"CA_BIRTHDATE\"},\"909212ce-944a-4d7e-acc4-b071813eee64\":{\"name\":\"DISTRICT\"},\"6cd22587-a4cc-4599-a920-314dc7749c91\":{\"name\":\"PO_BOX\"},\"93128c3d-5dbb-43ba-9d04-81ff0f8af8a8\":{\"name\":\"PO_BOX_POSTALCODE\"},\"4bab9e54-dcaa-474e-9aa4-7a494e6cf89e\":{\"name\":\"KTOKK\"},\"a34ebc64-04e0-477a-bdb6-cded92b322db\":{\"name\":\"AGENCYLOCATIONCODE\"}},\"successorNode\":\"6cfd108b-f1f4-4ebd-956c-cdd666fbb23e\"},\"3a076734-fd92-47e7-ad7a-f3425c3aecd8\":{\"classDefinition\":\"sap.cdw.querybuilder.DimensionNode\",\"name\":\"MD_STG.HL_MD_SUPPLIER\",\"label\":\"Supplier Master Data\",\"type\":\"View (Dimension)\",\"isPersistenceExists\":true,\"isPinToMemoryEnabled\":false,\"dataCategory\":\"DIMENSION\",\"modificationDate\":1665763603254,\"deploymentDate\":1665763621521,\"#objectStatus\":\"1\",\"alias\":\"HL_MD_SUPPLIER2\",\"elements\":{\"b61572e1-cb9b-4ece-a0c1-713ca47fe2e1\":{\"name\":\"SUPPLIER\"},\"28375146-85f2-4214-a7fc-caa126e8fb1b\":{\"name\":\"SUPPLIERACCOUNTGROUP\"},\"d0ca3ef5-afae-4e78-a4cf-bf7a4406fa38\":{\"name\":\"SUPPLIERNAME\"},\"98d556cf-d8eb-40ac-8470-9d7cb60e9ecb\":{\"name\":\"SUPPLIERFULLNAME\"},\"52f45b54-6622-46c9-ae1e-f4b28d3e0206\":{\"name\":\"ISBUSINESSPURPOSECOMPLETED\"},\"5b583d5e-46b1-41ac-afc3-4d09c011f816\":{\"name\":\"CREATEDBYUSER\"},\"dbc56d2b-4be1-4fce-9220-00a138b82a3e\":{\"name\":\"CREATIONDATE\"},\"5b2a349b-34ad-4a99-b31a-7ce6743ad27e\":{\"name\":\"ISONETIMEACCOUNT\"},\"b192362c-363e-4502-9f66-94c930476e7d\":{\"name\":\"AUTHORIZATIONGROUP\"},\"188705f6-3aad-49ac-bec7-a882c5199896\":{\"name\":\"VATREGISTRATION\"},\"5ac9a731-fc0d-4e95-b9c7-da0a17b95dea\":{\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\"},\"f5c00d26-1129-4e25-aa02-9a7432e13c0a\":{\"name\":\"TAXJURISDICTION\"},\"aa8dc99c-0afc-4427-acb2-5c34f823320a\":{\"name\":\"SUPPLIERCORPORATEGROUP\"},\"0530ef1f-00e6-49a0-993d-936cead6f865\":{\"name\":\"CUSTOMER\"},\"a10b2231-db7c-4069-a35a-1b48efede6f5\":{\"name\":\"INDUSTRY\"},\"8328b8d5-3ac7-46b6-9c9f-054f18ffbb33\":{\"name\":\"TAXNUMBER1\"},\"f2fad2bf-d14e-4020-9b59-9ed34773706d\":{\"name\":\"TAXNUMBER2\"},\"007818c2-2e60-4fca-8849-038efaef4fe7\":{\"name\":\"TAXNUMBER3\"},\"ef7a5229-e8d8-4aa7-9bc7-fe99a85ac430\":{\"name\":\"TAXNUMBER4\"},\"0019e791-c488-4240-bd45-2016374a14bc\":{\"name\":\"TAXNUMBER5\"},\"b8167823-b50e-4ced-bbff-157a18944317\":{\"name\":\"POSTINGISBLOCKED\"},\"1323e660-5aa4-4b72-9e2f-56785721a0cc\":{\"name\":\"PURCHASINGISBLOCKED\"},\"5ad5155e-6c21-4a61-ae0b-5ea629dbc696\":{\"name\":\"INTERNATIONALLOCATIONNUMBER1\"},\"746ff9a9-b277-4abf-8e0e-0ffdb9a4d25b\":{\"name\":\"INTERNATIONALLOCATIONNUMBER2\"},\"0f78bbe5-3b8d-49c7-8184-b5b001ad504b\":{\"name\":\"INTERNATIONALLOCATIONNUMBER3\"},\"87ff7e13-19e6-4673-bc3c-1967c54cebde\":{\"name\":\"ADDRESSID\"},\"1cba8edf-c9f4-467f-8586-e8220abe8a63\":{\"name\":\"REGION\"},\"f4609656-562a-4944-a954-3cd6a647fa4a\":{\"name\":\"ORGANIZATIONBPNAME1\"},\"121d318a-569e-4750-94e7-b48ec4909f8a\":{\"name\":\"ORGANIZATIONBPNAME2\"},\"4d1423bd-829a-4156-b324-df0b2b79e316\":{\"name\":\"CITYNAME\"},\"b2af5574-d942-4192-85b6-6a44f796163c\":{\"name\":\"POSTALCODE\"},\"fcd4ebaa-a76e-44c2-9908-e349b5cbf507\":{\"name\":\"STREETNAME\"},\"2e7e30e9-f282-459d-91d2-c200977811ed\":{\"name\":\"COUNTRY\"},\"7ea9070b-a16b-468d-942f-c6dd0d87c64b\":{\"name\":\"CONCATENATEDINTERNATIONALLOCNO\"},\"e0f9d5a7-97a8-4ec4-bc42-214efacb79ac\":{\"name\":\"SUPPLIERPROCUREMENTBLOCK\"},\"49073a89-4649-4a44-8a1f-4c72d2a7eb65\":{\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\"},\"87c89fd6-29ca-45f6-b8c2-b630393eb78f\":{\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\"},\"879b0fe5-7731-4b2d-948b-6f053eaec5ba\":{\"name\":\"SUPPLIERLANGUAGE\"},\"1e3021f5-e988-4ddc-91a7-ee249fd90229\":{\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\"},\"5b784a34-0603-4875-bb3d-569bd737a2d7\":{\"name\":\"PHONENUMBER1\"},\"f0a2fab1-1059-49b0-804d-a38c9e6bc33f\":{\"name\":\"FAXNUMBER\"},\"99520897-5574-4ed2-b481-77cd7b74ae3f\":{\"name\":\"ISNATURALPERSON\"},\"9d1cbc02-ad78-45ed-86d5-6f6bede50aa8\":{\"name\":\"TAXNUMBERRESPONSIBLE\"},\"0a1fc488-a05b-4163-be9b-313da0fb8300\":{\"name\":\"UK_CONTRACTORBUSINESSTYPE\"},\"d658dcbf-944a-4260-87cb-a4116298501d\":{\"name\":\"UK_PARTNERTRADINGNAME\"},\"05885cc4-baa5-4487-92a6-3f592523895d\":{\"name\":\"UK_PARTNERTAXREFERENCE\"},\"1d4f7e64-df82-4bd4-a98c-a4c2f2a60e09\":{\"name\":\"UK_VERIFICATIONSTATUS\"},\"1de0f0fa-1143-4d05-a878-3064df2b025c\":{\"name\":\"UK_VERIFICATIONNUMBER\"},\"8d904107-14ba-4f26-b177-fae6e74ae9fc\":{\"name\":\"UK_COMPANYREGISTRATIONNUMBER\"},\"86c63699-7109-4ee7-ab28-d17b08fd60ce\":{\"name\":\"UK_VERIFIEDTAXSTATUS\"},\"99c682c2-3dad-424a-9f54-7d8683ba8e41\":{\"name\":\"FORMOFADDRESS\"},\"2128ea89-8a03-4d5f-9a93-31188d47c0ff\":{\"name\":\"REFERENCEACCOUNTGROUP\"},\"660bdc94-732a-4b22-b2bd-712c600f6324\":{\"name\":\"VATLIABILITY\"},\"e94fbfcc-4d54-42ce-807b-7d5e4a421cca\":{\"name\":\"RESPONSIBLETYPE\"},\"b27294db-979e-4677-92b9-285563397c7d\":{\"name\":\"TAXNUMBERTYPE\"},\"5f2ede31-156f-4d25-86ef-afdce025c2eb\":{\"name\":\"FISCALADDRESS\"},\"566ec402-d36e-45fb-8995-527515d27132\":{\"name\":\"BUSINESSTYPE\"},\"ec6a8403-1148-4793-a259-388d7c338d3b\":{\"name\":\"BIRTHDATE\"},\"d8d8111d-bac5-450b-832e-07b9cdc83b92\":{\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\"},\"9024486f-ff6e-4d4c-8ccb-d6acb2c1c003\":{\"name\":\"SORTFIELD\"},\"17b8f4a0-363f-4792-a93d-0e8e66cc509d\":{\"name\":\"PHONENUMBER2\"},\"224b663b-5014-4ec4-b86d-4abf90aa8d87\":{\"name\":\"DELETIONINDICATOR\"},\"72a4e1ea-eb27-49be-8b6a-7592f792a0a8\":{\"name\":\"TAXINVOICEREPRESENTATIVENAME\"},\"42429adb-6f83-486f-90d2-831a949327ae\":{\"name\":\"INDUSTRYTYPE\"},\"460b78ff-8b48-4d69-9258-1debb5e3d2d8\":{\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\"},\"9c709afe-d406-4266-8de2-5b79790f3fe8\":{\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\"},\"b721aa45-b482-4936-8917-f2a005d1e48b\":{\"name\":\"TRADINGPARTNER\"},\"4b0ae72f-30f6-4011-ae9f-ff46d8230d67\":{\"name\":\"BR_TAXISSPLIT\"},\"5ac0f2ba-6b7f-4b1f-a30f-1aa26b2cb754\":{\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\"},\"52d30737-c24e-4823-8d1c-9934943ba7f1\":{\"name\":\"AU_INDIVIDUALISUNDER18\"},\"475b7fbb-872e-41e0-bf93-ad87631065d9\":{\"name\":\"AU_PAYMENTISEXCEEDING75\"},\"a5465dfa-dcd8-4f19-b177-9843f602eb7d\":{\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\"},\"68e7bf2f-7010-4b8a-badb-7a9c5ac3cc26\":{\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\"},\"96b0da86-82c1-47fa-9c5d-eeb53f7b1cde\":{\"name\":\"AU_SUPPLIERISENTITLEDTOABN\"},\"45f63d93-515a-4e5d-a099-1d700f563d99\":{\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\"},\"399b7bd6-c014-4b4f-b841-7a982a1a4771\":{\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\"},\"8ef2657e-53aa-49c1-8308-49d14f4ccd96\":{\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\"},\"521b3bb8-eebf-424d-9369-090ae008b7e6\":{\"name\":\"ISTOBEACCEPTEDATORIGIN\"},\"b8cfa5a5-6c5d-412b-a954-d0f4c2f7fccc\":{\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\"},\"f99cb1f9-719c-4ac6-96bd-57fa7b01a1af\":{\"name\":\"ALTERNATIVEPAYEEISALLOWED\"},\"b441dcc8-cc0b-4904-9919-a8130c9a1145\":{\"name\":\"CA_CREATIONDATE\"},\"04138304-f792-42be-b798-81423117c64d\":{\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\"},\"24713839-e7a4-462a-b028-713c58cf8751\":{\"name\":\"CA_BIRTHDATE\"},\"e2a148ff-a900-4f88-b080-10170a957abc\":{\"name\":\"DISTRICT\"},\"8b44f06d-f4fb-4efb-b256-ff358dc1fc4e\":{\"name\":\"PO_BOX\"},\"be346ccc-653f-4dc0-992a-1f55615ff8ac\":{\"name\":\"PO_BOX_POSTALCODE\"},\"7f5d68e0-03ab-44aa-80c1-cebcb2c86919\":{\"name\":\"KTOKK\"},\"42837006-5348-4dba-8a63-638600bd4741\":{\"name\":\"AGENCYLOCATIONCODE\"}},\"context\":\"def244dc-7cfa-41e5-bc60-eaba83c4c4db\"},\"168c6368-cb74-4db5-a7d5-4b27aacf042c\":{\"classDefinition\":\"sap.cdw.querybuilder.Association\",\"name\":\"_HL_MD_SUP\",\"label\":\"Supplier Report to Supplier Master Data\",\"source\":\"92513119-a44e-47b1-8407-6aa15000465d\",\"target\":\"3a076734-fd92-47e7-ad7a-f3425c3aecd8\",\"mappings\":{\"79c4d155-09d0-41e1-b5ce-a5c32ef4ec5e\":{}}},\"def244dc-7cfa-41e5-bc60-eaba83c4c4db\":{\"classDefinition\":\"sap.cdw.commonmodel.Context\",\"name\":\"MD_STG\",\"label\":\"Dev-Master Data Staging\",\"crossSpace\":{\"schema\":\"MD_STG\",\"space\":\"MD_STG\"}},\"495c5f7b-8e07-42fc-9caf-080341c83ad8\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"ec5fa01a-c594-47be-86fc-cfd90d87644f\":{},\"f09d9e6f-373d-4d68-ab25-3498a580d578\":{\"name\":\"Entity Symbol 1\"},\"c0f5552f-cce5-4002-9643-29cc7e932b8f\":{},\"6be4e256-e014-4f8a-9c0c-6b161046a682\":{},\"159ce11e-80d3-4e69-85dd-2c18a3fbd318\":{},\"a7d4e618-efec-4f61-9266-13bb8a73ae1d\":{},\"31104d05-30dd-41ea-996c-64984f9485cd\":{}}},\"0e584d80-006c-4db0-9126-39b5144aa4ef\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIER\",\"label\":\"Account Number of Vendor or Creditor\",\"newName\":\"SUPPLIER\",\"indexOrder\":0,\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignKey\":\"_HL_MD_SUP\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"filterSelectionType\":\"RANGE\",\"filterMultipleSelections\":true},\"dfed913d-6db5-4018-9c0f-655c7f1c25c3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"count\",\"newName\":\"count\",\"indexOrder\":80,\"expression\":\"\",\"isCalculated\":true,\"defaultAggregation\":\"SUM\",\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"isMeasure\":true},\"9da680a6-56dc-4694-a9b8-ed679db88372\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIER\",\"label\":\"Account Number of Vendor or Creditor\",\"newName\":\"SUPPLIER\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"5f9322ec-c988-409d-92b4-74ae77baa236\",\"labelElement\":\"bb979077-b78d-4acb-b7b3-72308a1235f3\"},\"e12b40cd-dd76-4e29-a5c4-0399c590670a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERACCOUNTGROUP\",\"label\":\"Vendor account group\",\"newName\":\"SUPPLIERACCOUNTGROUP\",\"indexOrder\":1,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\",\"successorElement\":\"cc9d5641-8109-41bf-b419-8db846c298e5\"},\"bb979077-b78d-4acb-b7b3-72308a1235f3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERNAME\",\"label\":\"Name of Supplier\",\"newName\":\"SUPPLIERNAME\",\"indexOrder\":2,\"length\":80,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"9ffb3b13-67ce-4648-a888-7348e53845bb\"},\"0d80569b-bb5e-4ddd-a4b4-b48efcdb6ea9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERFULLNAME\",\"label\":\"Supplier Full Name\",\"newName\":\"SUPPLIERFULLNAME\",\"indexOrder\":3,\"length\":220,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"2a047dad-3e66-42e8-97f9-098a142dd074\"},\"d97f2b02-6623-4308-811c-aeffe19db224\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISBUSINESSPURPOSECOMPLETED\",\"label\":\"Business Purpose Completed Flag\",\"newName\":\"ISBUSINESSPURPOSECOMPLETED\",\"indexOrder\":4,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"d7a24562-76ce-451f-9860-2955e44a2ba2\"},\"6d67da59-cd12-4f76-a416-c77185e8eec2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATEDBYUSER\",\"label\":\"Name of Person who Created the Object\",\"newName\":\"CREATEDBYUSER\",\"indexOrder\":5,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"e1f78c2a-3ef0-4095-9784-c1ce52a96b8e\"},\"ef66d54c-8df5-4872-b074-d4e742fd314b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATIONDATE\",\"label\":\"Date on which the Record Was Created\",\"newName\":\"CREATIONDATE\",\"indexOrder\":6,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"1119f0e6-c666-477f-a2dc-b4a8e6227b74\"},\"f9314bbf-3d89-4988-bc9c-5c827caac915\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISONETIMEACCOUNT\",\"label\":\"Indicator: Is the account a one-time account?\",\"newName\":\"ISONETIMEACCOUNT\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS2\",\"successorElement\":\"c3cc1490-ec6a-4ef4-b0f6-67414835b6d5\"},\"6b4c8a30-0c90-4dd0-94f6-8b2ba279b0c5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AUTHORIZATIONGROUP\",\"label\":\"Authorization Group\",\"newName\":\"AUTHORIZATIONGROUP\",\"indexOrder\":8,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"bda009f2-afe0-42f7-ae07-76aeca3fbcfd\"},\"4c076e78-b852-485f-b556-5a723cb9ce9d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATREGISTRATION\",\"label\":\"VAT Registration Number\",\"newName\":\"VATREGISTRATION\",\"indexOrder\":9,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"491b944e-fa42-4cfb-bd46-4f8cad3b066e\"},\"85599f40-2cd0-4623-9ddb-cd2fa8f762a6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"label\":\"Central posting block\",\"newName\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"indexOrder\":10,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"63e6078b-d74a-4ed9-a777-5961d6c2cd3a\"},\"0ceca15c-65b8-4ec6-a366-15a6db9c924c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXJURISDICTION\",\"label\":\"Tax Jurisdiction\",\"newName\":\"TAXJURISDICTION\",\"indexOrder\":11,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"642536cf-102a-446e-ae43-a38136adccb7\"},\"7f90b8ce-1fc2-4414-a816-9c764f65d428\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERCORPORATEGROUP\",\"label\":\"Group key\",\"newName\":\"SUPPLIERCORPORATEGROUP\",\"indexOrder\":12,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"494f6ec3-8f11-47b9-9ad2-d01f0e5c623d\"},\"d1d6f84f-f483-485c-b47c-2db5d995fce1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CUSTOMER\",\"label\":\"Customer Number\",\"newName\":\"CUSTOMER\",\"indexOrder\":13,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CU\",\"successorElement\":\"407a6ceb-152c-419a-aaef-2e33e983e5e8\"},\"5befddf5-670c-4a0b-8bd4-d1edb5e54174\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRY\",\"label\":\"Industry key\",\"newName\":\"INDUSTRY\",\"indexOrder\":14,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"75be63d5-5e2c-4fc0-bc39-2887bbed25c1\"},\"a5a5c796-51b3-4027-8a22-9793950d765b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER1\",\"label\":\"Tax Number 1\",\"newName\":\"TAXNUMBER1\",\"indexOrder\":15,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"418ab9f9-1383-4007-9165-e41b907f3394\"},\"1e34c328-6eaa-4c43-aae1-b7f33113702d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER2\",\"label\":\"Tax Number 2\",\"newName\":\"TAXNUMBER2\",\"indexOrder\":16,\"length\":11,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"db1160f3-8c67-4093-897f-cb0abb13d84d\"},\"e290c80c-f2b1-4483-a444-64b5de456096\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER3\",\"label\":\"Tax Number 3\",\"newName\":\"TAXNUMBER3\",\"indexOrder\":17,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"bf1198af-73a3-4d49-b076-2fcdc85b53e1\"},\"be463e52-6619-49a6-a2ea-01294164443b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER4\",\"label\":\"Tax Number 4\",\"newName\":\"TAXNUMBER4\",\"indexOrder\":18,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"e884e205-b077-4073-8d1a-f1e8b77ede99\"},\"aa721abc-e446-44ef-b94f-dea14402e9a3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER5\",\"label\":\"Tax Number 5\",\"newName\":\"TAXNUMBER5\",\"indexOrder\":19,\"length\":60,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"22efd9fc-80f6-47a6-9922-851bd2a02339\"},\"eb8cdfd1-ac46-429b-885f-d98f462e4c34\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTINGISBLOCKED\",\"label\":\"Central posting block\",\"newName\":\"POSTINGISBLOCKED\",\"indexOrder\":20,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS\",\"successorElement\":\"61eb64aa-e3e4-41c3-9a30-6dac415ace4f\"},\"0bcd638f-32e6-486f-a0f4-2701e9aecded\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PURCHASINGISBLOCKED\",\"label\":\"Centrally imposed purchasing block\",\"newName\":\"PURCHASINGISBLOCKED\",\"indexOrder\":21,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS1\",\"successorElement\":\"6ce22a33-cbc7-4e1b-8146-97defb040a96\"},\"dfca42a9-3ff0-499e-9ad5-39e881a22961\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER1\",\"label\":\"International location number  (part 1)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER1\",\"indexOrder\":22,\"length\":7,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"1310b86a-6db8-433f-b87a-92de5bf8e3ed\"},\"9d745352-6b6f-4aff-8755-3112772209a0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER2\",\"label\":\"International location number (Part 2)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER2\",\"indexOrder\":23,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"d3dd84a0-15e6-4e99-83e5-82e109a20e6c\"},\"1b7ea559-f3bd-40a7-b56f-5b364c45694a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER3\",\"label\":\"Check digit for the international location number\",\"newName\":\"INTERNATIONALLOCATIONNUMBER3\",\"indexOrder\":24,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"293ef8e7-9b53-410c-9a28-e8f153e32b88\"},\"32943134-ef50-45de-bfa2-74331ff8d6b3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ADDRESSID\",\"label\":\"Address\",\"newName\":\"ADDRESSID\",\"indexOrder\":25,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"63a5280d-d91d-405b-a352-32973a2ddf31\"},\"a7100f25-73d1-4313-a8ad-f581a3fc7b05\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REGION\",\"label\":\"Region (State, Province, County)\",\"newName\":\"REGION\",\"indexOrder\":26,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T2\",\"successorElement\":\"5a839771-0dfe-4483-bc15-633232629d42\"},\"f853653c-c261-4d8f-84e2-145596863199\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME1\",\"label\":\"Name 1\",\"newName\":\"ORGANIZATIONBPNAME1\",\"indexOrder\":27,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"7fa02d40-9983-4b81-81e3-aae0553048ac\"},\"24fbe545-977d-4ce3-a920-319d6651abd5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME2\",\"label\":\"Name 2\",\"newName\":\"ORGANIZATIONBPNAME2\",\"indexOrder\":28,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"3116e314-ad9e-439f-b56c-102afad13421\"},\"1b3b4745-1365-40b9-85e8-a5c058530347\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CITYNAME\",\"label\":\"City\",\"newName\":\"CITYNAME\",\"indexOrder\":29,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c30147d8-f298-4384-9425-4afa75992ea5\"},\"246ee625-4272-4cc9-8b09-fa5540a1fb61\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTALCODE\",\"label\":\"Postal Code\",\"newName\":\"POSTALCODE\",\"indexOrder\":30,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"3dc42134-bdb2-4a96-b81c-eb699be67598\"},\"9c1a909b-1f5f-4592-a80e-414784623c6b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STREETNAME\",\"label\":\"Street and House Number\",\"newName\":\"STREETNAME\",\"indexOrder\":31,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"43445bd6-9d71-4aac-88d4-a3dbeb261f11\"},\"2d7eb5d8-2e66-49b6-a6fe-f5c4d856d3d1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"COUNTRY\",\"label\":\"Country Key\",\"newName\":\"COUNTRY\",\"indexOrder\":32,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T2\",\"successorElement\":\"b8e83ac8-d465-4531-9f57-46a5c9d8808b\"},\"4998608e-83a8-4289-85f2-1ace0e2de61d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CONCATENATEDINTERNATIONALLOCNO\",\"label\":\"Cocatenated International Location Number\",\"newName\":\"CONCATENATEDINTERNATIONALLOCNO\",\"indexOrder\":33,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"56b053e7-28c5-42bd-b503-20727651345e\"},\"33aea305-cd94-4b54-a6b2-d4f2dd3459f0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERPROCUREMENTBLOCK\",\"label\":\"Function That Will Be Blocked\",\"newName\":\"SUPPLIERPROCUREMENTBLOCK\",\"indexOrder\":34,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"1bec7672-7bf7-457b-9c22-cd053e1c8471\"},\"53c8d373-44c8-4b52-8f8e-4aa3babb68b4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"label\":\"Supplier's QM system\",\"newName\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"indexOrder\":35,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"7561288e-00f1-401e-83f5-244b21a76487\"},\"05c87f4f-434f-4fdd-887e-4dbb9846b7e8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"label\":\"Validity date of certification\",\"newName\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"indexOrder\":36,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"27a22f99-003b-428b-ac3f-19886a1d410e\"},\"a72ed503-04e5-43bd-8b80-67bc51e355bd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERLANGUAGE\",\"label\":\"Language Key\",\"newName\":\"SUPPLIERLANGUAGE\",\"indexOrder\":37,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T3\",\"successorElement\":\"3b40708b-11ff-4449-9645-2968fe15f18f\"},\"7cdfdaeb-9850-409a-820d-0f4396703ac4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"label\":\"Account Number of the Alternative Payee\",\"newName\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"indexOrder\":38,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"e45fb775-281f-4170-9f49-47e89c5ae746\"},\"a890b252-2ff3-4342-97c8-68984fbe8197\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER1\",\"label\":\"First telephone number\",\"newName\":\"PHONENUMBER1\",\"indexOrder\":39,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"acd2fcb6-3766-40e9-9763-17207d037e68\"},\"86fc685b-d6c9-4649-a45a-b3ad52f28e33\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FAXNUMBER\",\"label\":\"Fax Number\",\"newName\":\"FAXNUMBER\",\"indexOrder\":40,\"length\":31,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"ccb0d81d-5eec-49eb-ba97-db7cf2e11b5a\"},\"d27dbe85-7a59-4264-ac20-ceec394a5434\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISNATURALPERSON\",\"label\":\"Natural Person\",\"newName\":\"ISNATURALPERSON\",\"indexOrder\":41,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"97c8f721-66cd-435f-b4a3-4b4efb1eb007\"},\"6c5890cf-b5ee-4c4c-8412-18d9310b2b4a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERRESPONSIBLE\",\"label\":\"Tax Number at Responsible Tax Authority\",\"newName\":\"TAXNUMBERRESPONSIBLE\",\"indexOrder\":42,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"eec760b0-f2c7-4ad3-971b-20bc4d80c8ad\"},\"7aa2261f-ae64-42ed-8388-d40a48630231\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_CONTRACTORBUSINESSTYPE\",\"label\":\"Subcontractor's Business Type\",\"newName\":\"UK_CONTRACTORBUSINESSTYPE\",\"indexOrder\":43,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"07d6e09f-eb08-4209-b387-18ba07528b21\"},\"b4428207-f69e-4d34-8bf9-833077765248\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTRADINGNAME\",\"label\":\"Partner's Trading Name\",\"newName\":\"UK_PARTNERTRADINGNAME\",\"indexOrder\":44,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"3dd1a411-b33c-4d0f-8e42-176a69f3ad9c\"},\"2654b2d3-1f4b-45ef-b3b7-075d0fbec940\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTAXREFERENCE\",\"label\":\"Partner's Unique Tax Reference (UTR)\",\"newName\":\"UK_PARTNERTAXREFERENCE\",\"indexOrder\":45,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"38c959f4-1f76-4f9d-8ed7-a99b3af0fb34\"},\"ca0d85a5-3b2d-4113-887f-cf6eb1319fb0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONSTATUS\",\"label\":\"Verification Status\",\"newName\":\"UK_VERIFICATIONSTATUS\",\"indexOrder\":46,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"60fc6780-0f76-41ad-b77f-7ec5b9b3ff73\"},\"d6b059a5-e447-4d39-821b-667e378866f5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONNUMBER\",\"label\":\"Verification Number\",\"newName\":\"UK_VERIFICATIONNUMBER\",\"indexOrder\":47,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"626c434d-f9af-45c6-b517-cb8aa6587a1a\"},\"ba70305d-eb37-417b-a40e-7db7ebbfb582\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_COMPANYREGISTRATIONNUMBER\",\"label\":\"Companies House Registration Number\",\"newName\":\"UK_COMPANYREGISTRATIONNUMBER\",\"indexOrder\":48,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"706dea03-2a7d-4c07-8dd8-dad66d878067\"},\"c43d839f-0181-460a-8e32-f2a3bb6e8214\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFIEDTAXSTATUS\",\"label\":\"Tax Status of the Verified Subcontractor\",\"newName\":\"UK_VERIFIEDTAXSTATUS\",\"indexOrder\":49,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"41bc838b-c373-4836-a8a1-4f2ea1196e02\"},\"0acb2b7a-b103-4831-a5d4-c911bc752678\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FORMOFADDRESS\",\"label\":\"Title\",\"newName\":\"FORMOFADDRESS\",\"indexOrder\":50,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"b2fc2612-9459-4dbd-aeaf-a1e7c87cc60e\"},\"a5228456-a475-4233-96f0-4f4c53ca3372\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REFERENCEACCOUNTGROUP\",\"label\":\"Vendor Name\",\"newName\":\"REFERENCEACCOUNTGROUP\",\"indexOrder\":51,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"77f1baa1-c066-433b-9c08-d3b997eeec93\"},\"837a599e-c547-440e-a908-187a3a740689\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATLIABILITY\",\"label\":\"Liable for VAT\",\"newName\":\"VATLIABILITY\",\"indexOrder\":52,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"9739b594-026b-4016-a0f0-bb5401abcc26\"},\"d4638c09-0c04-4091-b04a-cd379292948e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RESPONSIBLETYPE\",\"label\":\"Tax type\",\"newName\":\"RESPONSIBLETYPE\",\"indexOrder\":53,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"41304964-6274-495d-b5b8-8d7ef5c83846\"},\"bc37cd80-7b3f-469e-b1ee-97a2c242b836\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERTYPE\",\"label\":\"Tax Number Type\",\"newName\":\"TAXNUMBERTYPE\",\"indexOrder\":54,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"ead00431-f9c3-4780-afef-4e9d6c99715a\"},\"7c7e8517-c869-40e0-a28c-5950dba2d80e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCALADDRESS\",\"label\":\"Account number of the master record with fiscal address\",\"newName\":\"FISCALADDRESS\",\"indexOrder\":55,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c4310832-e602-446b-947d-7feb96bc3f1b\"},\"789885f5-5192-44ad-9d9b-f4a6a34e36fe\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUSINESSTYPE\",\"label\":\"Type of Business\",\"newName\":\"BUSINESSTYPE\",\"indexOrder\":56,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"d7d7b1a7-efbf-43c8-8f72-02356b5e3420\"},\"55bd67ca-121c-47c0-9b36-c9d4064065ec\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BIRTHDATE\",\"label\":\"Date of Birth of the Person Subject to Withholding Tax\",\"newName\":\"BIRTHDATE\",\"indexOrder\":57,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\",\"successorElement\":\"50790cbb-041a-46fe-80f6-bf8f472b59be\"},\"1362aefb-e2dd-468b-97ca-92b3ac17faab\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"label\":\"Payment Block\",\"newName\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"indexOrder\":58,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS3\",\"successorElement\":\"eaa33156-b10e-4461-af3a-eb266a33307d\"},\"359c8e55-8ca3-4416-b4e0-2d175b7715fd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SORTFIELD\",\"label\":\"Sort field\",\"newName\":\"SORTFIELD\",\"indexOrder\":59,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"294f0228-bf38-4119-8f82-69344b0d172b\"},\"a43a61b0-169c-40ee-b0e3-977a5b4d01c7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER2\",\"label\":\"Second telephone number\",\"newName\":\"PHONENUMBER2\",\"indexOrder\":60,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"bb34d032-19ee-4977-afa7-86082d849015\"},\"aef69893-83b5-4dc3-8350-3f998bdeda93\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DELETIONINDICATOR\",\"label\":\"Central Deletion Flag for Master Record\",\"newName\":\"DELETIONINDICATOR\",\"indexOrder\":61,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"b0f7d113-6ff8-41e6-a372-2804028d4e14\"},\"0e885be9-5ff1-4425-86d6-4be60124aee1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXINVOICEREPRESENTATIVENAME\",\"label\":\"Name of Representative\",\"newName\":\"TAXINVOICEREPRESENTATIVENAME\",\"indexOrder\":62,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"c2ce18b2-95c6-4a08-bb6d-22c42820c4c5\"},\"ee967eb7-8eac-4aac-8fa7-ec63658d4e88\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRYTYPE\",\"label\":\"Type of Industry\",\"newName\":\"INDUSTRYTYPE\",\"indexOrder\":63,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"74018382-9204-47a9-8a71-2408b3f59166\"},\"23fd3df8-0b0e-40a7-a78e-9f8c622dc7f1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"label\":\"Vendor Classification for GST\",\"newName\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"indexOrder\":64,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"02e60eb3-9747-438f-9bde-95687a90bbea\"},\"9ab7f210-16ec-41f8-9015-c1320c2e8fc0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"label\":\"Supplier indicator relevant for proof of delivery\",\"newName\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"indexOrder\":65,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"57631c5e-2ac0-43de-821b-dbc5fa5ea4a3\"},\"a225d650-b68b-45c4-b497-5cf76796971c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TRADINGPARTNER\",\"label\":\"Company ID of Trading Partner\",\"newName\":\"TRADINGPARTNER\",\"indexOrder\":66,\"length\":6,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"5b405134-e7db-48a2-b55e-2c921f47813b\"},\"6fd34bbe-f60a-4789-bec9-dca12ea5e83e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BR_TAXISSPLIT\",\"label\":\"Tax Split\",\"newName\":\"BR_TAXISSPLIT\",\"indexOrder\":67,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"a32eae03-0b0f-409b-a4a5-7f8f51d83c7f\"},\"496ebca4-4b2b-49f3-9b60-fbcb0ae4c0db\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"label\":\"Is payer making payment in course of carrying on enterprise\",\"newName\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"indexOrder\":68,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS4\",\"successorElement\":\"a855c3a2-9b0c-4858-bade-ab0d584784f7\"},\"e3326d2c-a57b-4a34-97c1-cbb42785f6b5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_INDIVIDUALISUNDER18\",\"label\":\"Is an individual under 18 and payment does not exceed $350\",\"newName\":\"AU_INDIVIDUALISUNDER18\",\"indexOrder\":69,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS5\",\"successorElement\":\"3c42e514-59c9-435d-a5a2-4e3e0698b22e\"},\"2c9493f2-9c97-472d-86cb-8e5975a59db3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISEXCEEDING75\",\"label\":\"The payment does not exceed $75, excl. GST\",\"newName\":\"AU_PAYMENTISEXCEEDING75\",\"indexOrder\":70,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS6\",\"successorElement\":\"e17a9649-1802-4927-a8b5-8cb7ccd38672\"},\"754eca7e-cf48-41d5-bf04-e6e036519d58\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"label\":\"The supply that the payment relates to is wholly input taxed\",\"newName\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"indexOrder\":71,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS7\",\"successorElement\":\"4d86f605-c7d6-4857-ab4d-f6b21b04bd93\"},\"cd23094d-5b4d-4b49-9feb-24794a2d2abe\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"label\":\"The supply is made by an individual without gain\",\"newName\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"indexOrder\":72,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS8\",\"successorElement\":\"4b697b9f-a66f-435e-913b-35c7e047fb65\"},\"56af5bd9-d36c-42df-8af0-b13738106deb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLIERISENTITLEDTOABN\",\"label\":\"The supplier is not entitled to an ABN\",\"newName\":\"AU_SUPPLIERISENTITLEDTOABN\",\"indexOrder\":73,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS9\",\"successorElement\":\"594e4313-6a8a-4168-b3e3-3b8d7742689b\"},\"15937141-16ea-4777-ae7a-ab3514f6cb5a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"label\":\"The whole of the payment is exempt income.\",\"newName\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"indexOrder\":74,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS10\",\"successorElement\":\"cdb48d63-6652-44b9-b19c-454474e5a65b\"},\"b12fe002-b15a-402e-a5ae-89c5ca1a1ae1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"label\":\"An activity done as a private recreational pursuit\",\"newName\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"indexOrder\":75,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS11\",\"successorElement\":\"cc4cc1e1-b229-4e16-878a-f1b1d4ecf656\"},\"e72a9d9b-c486-44dc-9b6a-0bd92bca257e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"label\":\"wholly of a private or domestic nature\",\"newName\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"indexOrder\":76,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS12\",\"successorElement\":\"5f189cff-0f09-43eb-8160-09be94687137\"},\"7444363b-95da-4139-9c4e-5c1d09446237\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISTOBEACCEPTEDATORIGIN\",\"label\":\"Acceptance At Origin\",\"newName\":\"ISTOBEACCEPTEDATORIGIN\",\"indexOrder\":77,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS13\",\"successorElement\":\"8669469e-485a-405d-8c78-67e87051fa06\"},\"185438e7-3299-4fea-a604-9034a164f679\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"label\":\"Account Number of Master Record of Tax Office Responsible\",\"newName\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"indexOrder\":78,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"successorElement\":\"0d89352d-9549-4c7c-88ba-94c084683434\"},\"35c540b0-6b20-47c7-88c0-d7a977ded815\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEISALLOWED\",\"label\":\"Indicator: Alternative Payee in Document Allowed?\",\"newName\":\"ALTERNATIVEPAYEEISALLOWED\",\"indexOrder\":79,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS14\",\"successorElement\":\"5892ca7e-071a-49fb-b612-656281c7beeb\"},\"1a38a41e-5484-47ee-82da-8ce12350d555\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_CREATIONDATE\",\"label\":\"Created on Date\",\"newName\":\"CA_CREATIONDATE\",\"indexOrder\":80,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"c95a8e3d-623c-415b-829c-bec65e1eafd7\"},\"9a854334-b0e1-491f-9274-221fe9baf2e1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"label\":\"Certification Validity Date\",\"newName\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"indexOrder\":81,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"45b7a032-d64f-4744-bb56-b28eba4d0cd3\"},\"85147695-0040-4584-b931-6eae0327ae2c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_BIRTHDATE\",\"label\":\"Birth Date of the Person Subject to Withholding Tax\",\"newName\":\"CA_BIRTHDATE\",\"indexOrder\":82,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"f46777b1-6604-4902-bbad-87230e106c18\"},\"30dacae8-e929-48f6-ad52-a1578ddfa9eb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DISTRICT\",\"label\":\"District\",\"newName\":\"DISTRICT\",\"indexOrder\":83,\"length\":35,\"precision\":0,\"scale\":0,\"successorElement\":\"909212ce-944a-4d7e-acc4-b071813eee64\"},\"0c3a806e-3bb4-44cf-881f-fcd34ce3f781\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX\",\"label\":\"PO Box\",\"newName\":\"PO_BOX\",\"indexOrder\":84,\"length\":10,\"precision\":0,\"scale\":0,\"successorElement\":\"6cd22587-a4cc-4599-a920-314dc7749c91\"},\"4101306e-a225-448c-9755-6a491b8f613e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX_POSTALCODE\",\"label\":\"P.O. Box Postal Code\",\"newName\":\"PO_BOX_POSTALCODE\",\"indexOrder\":85,\"length\":10,\"precision\":0,\"scale\":0,\"successorElement\":\"93128c3d-5dbb-43ba-9d04-81ff0f8af8a8\"},\"bc042eb7-73ce-40da-9e50-7eb27a9c0de4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTOKK\",\"label\":\"Vendor account group\",\"newName\":\"KTOKK\",\"indexOrder\":86,\"length\":4,\"precision\":0,\"scale\":0,\"foreignText\":\"_ZV_DWC_T0\",\"successorElement\":\"4bab9e54-dcaa-474e-9aa4-7a494e6cf89e\"},\"4ddddb3a-4401-4238-b010-e0935591cac9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AGENCYLOCATIONCODE\",\"label\":\"Agency Location Code\",\"newName\":\"AGENCYLOCATIONCODE\",\"indexOrder\":87,\"length\":8,\"precision\":0,\"scale\":0,\"successorElement\":\"a34ebc64-04e0-477a-bdb6-cded92b322db\"},\"8cb2e3ef-fcd0-4400-98dc-2add0967a3e6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIER\",\"label\":\"Account Number of Vendor or Creditor\",\"newName\":\"SUPPLIER\",\"indexOrder\":0,\"expression\":\"SUPPLIER\",\"isCalculated\":true,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"0e584d80-006c-4db0-9126-39b5144aa4ef\"},\"a479fc12-9b71-4e01-8777-097dbb076ca0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"Calculated_1\",\"label\":\"count\",\"newName\":\"count\",\"indexOrder\":80,\"expression\":\"1\",\"isCalculated\":true,\"dataType\":\"cds.Integer\",\"length\":0,\"precision\":0,\"scale\":0,\"successorElement\":\"dfed913d-6db5-4018-9c0f-655c7f1c25c3\"},\"5f9322ec-c988-409d-92b4-74ae77baa236\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIER\",\"label\":\"Account Number of Vendor or Creditor\",\"newName\":\"SUPPLIER\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"successorElement\":\"8cb2e3ef-fcd0-4400-98dc-2add0967a3e6\"},\"cc9d5641-8109-41bf-b419-8db846c298e5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERACCOUNTGROUP\",\"label\":\"Vendor account group\",\"newName\":\"SUPPLIERACCOUNTGROUP\",\"isRemoved\":true,\"indexOrder\":1,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"9ffb3b13-67ce-4648-a888-7348e53845bb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERNAME\",\"label\":\"Name of Supplier\",\"newName\":\"SUPPLIERNAME\",\"isRemoved\":true,\"indexOrder\":2,\"length\":80,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"2a047dad-3e66-42e8-97f9-098a142dd074\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERFULLNAME\",\"label\":\"Supplier Full Name\",\"newName\":\"SUPPLIERFULLNAME\",\"isRemoved\":true,\"indexOrder\":3,\"length\":220,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"d7a24562-76ce-451f-9860-2955e44a2ba2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISBUSINESSPURPOSECOMPLETED\",\"label\":\"Business Purpose Completed Flag\",\"newName\":\"ISBUSINESSPURPOSECOMPLETED\",\"isRemoved\":true,\"indexOrder\":4,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e1f78c2a-3ef0-4095-9784-c1ce52a96b8e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATEDBYUSER\",\"label\":\"Name of Person who Created the Object\",\"newName\":\"CREATEDBYUSER\",\"isRemoved\":true,\"indexOrder\":5,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1119f0e6-c666-477f-a2dc-b4a8e6227b74\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATIONDATE\",\"label\":\"Date on which the Record Was Created\",\"newName\":\"CREATIONDATE\",\"isRemoved\":true,\"indexOrder\":6,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"c3cc1490-ec6a-4ef4-b0f6-67414835b6d5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISONETIMEACCOUNT\",\"label\":\"Indicator: Is the account a one-time account?\",\"newName\":\"ISONETIMEACCOUNT\",\"isRemoved\":true,\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"bda009f2-afe0-42f7-ae07-76aeca3fbcfd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AUTHORIZATIONGROUP\",\"label\":\"Authorization Group\",\"newName\":\"AUTHORIZATIONGROUP\",\"isRemoved\":true,\"indexOrder\":8,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"491b944e-fa42-4cfb-bd46-4f8cad3b066e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATREGISTRATION\",\"label\":\"VAT Registration Number\",\"newName\":\"VATREGISTRATION\",\"isRemoved\":true,\"indexOrder\":9,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"63e6078b-d74a-4ed9-a777-5961d6c2cd3a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"label\":\"Central posting block\",\"newName\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"isRemoved\":true,\"indexOrder\":10,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"642536cf-102a-446e-ae43-a38136adccb7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXJURISDICTION\",\"label\":\"Tax Jurisdiction\",\"newName\":\"TAXJURISDICTION\",\"isRemoved\":true,\"indexOrder\":11,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"494f6ec3-8f11-47b9-9ad2-d01f0e5c623d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERCORPORATEGROUP\",\"label\":\"Group key\",\"newName\":\"SUPPLIERCORPORATEGROUP\",\"isRemoved\":true,\"indexOrder\":12,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"407a6ceb-152c-419a-aaef-2e33e983e5e8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CUSTOMER\",\"label\":\"Customer Number\",\"newName\":\"CUSTOMER\",\"isRemoved\":true,\"indexOrder\":13,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"75be63d5-5e2c-4fc0-bc39-2887bbed25c1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRY\",\"label\":\"Industry key\",\"newName\":\"INDUSTRY\",\"isRemoved\":true,\"indexOrder\":14,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"418ab9f9-1383-4007-9165-e41b907f3394\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER1\",\"label\":\"Tax Number 1\",\"newName\":\"TAXNUMBER1\",\"isRemoved\":true,\"indexOrder\":15,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"db1160f3-8c67-4093-897f-cb0abb13d84d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER2\",\"label\":\"Tax Number 2\",\"newName\":\"TAXNUMBER2\",\"isRemoved\":true,\"indexOrder\":16,\"length\":11,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"bf1198af-73a3-4d49-b076-2fcdc85b53e1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER3\",\"label\":\"Tax Number 3\",\"newName\":\"TAXNUMBER3\",\"isRemoved\":true,\"indexOrder\":17,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e884e205-b077-4073-8d1a-f1e8b77ede99\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER4\",\"label\":\"Tax Number 4\",\"newName\":\"TAXNUMBER4\",\"isRemoved\":true,\"indexOrder\":18,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"22efd9fc-80f6-47a6-9922-851bd2a02339\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER5\",\"label\":\"Tax Number 5\",\"newName\":\"TAXNUMBER5\",\"isRemoved\":true,\"indexOrder\":19,\"length\":60,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"61eb64aa-e3e4-41c3-9a30-6dac415ace4f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTINGISBLOCKED\",\"label\":\"Central posting block\",\"newName\":\"POSTINGISBLOCKED\",\"isRemoved\":true,\"indexOrder\":20,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"6ce22a33-cbc7-4e1b-8146-97defb040a96\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PURCHASINGISBLOCKED\",\"label\":\"Centrally imposed purchasing block\",\"newName\":\"PURCHASINGISBLOCKED\",\"isRemoved\":true,\"indexOrder\":21,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1310b86a-6db8-433f-b87a-92de5bf8e3ed\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER1\",\"label\":\"International location number  (part 1)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER1\",\"isRemoved\":true,\"indexOrder\":22,\"length\":7,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"d3dd84a0-15e6-4e99-83e5-82e109a20e6c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER2\",\"label\":\"International location number (Part 2)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER2\",\"isRemoved\":true,\"indexOrder\":23,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"293ef8e7-9b53-410c-9a28-e8f153e32b88\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER3\",\"label\":\"Check digit for the international location number\",\"newName\":\"INTERNATIONALLOCATIONNUMBER3\",\"isRemoved\":true,\"indexOrder\":24,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"63a5280d-d91d-405b-a352-32973a2ddf31\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ADDRESSID\",\"label\":\"Address\",\"newName\":\"ADDRESSID\",\"isRemoved\":true,\"indexOrder\":25,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5a839771-0dfe-4483-bc15-633232629d42\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REGION\",\"label\":\"Region (State, Province, County)\",\"newName\":\"REGION\",\"isRemoved\":true,\"indexOrder\":26,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"7fa02d40-9983-4b81-81e3-aae0553048ac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME1\",\"label\":\"Name 1\",\"newName\":\"ORGANIZATIONBPNAME1\",\"isRemoved\":true,\"indexOrder\":27,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"3116e314-ad9e-439f-b56c-102afad13421\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME2\",\"label\":\"Name 2\",\"newName\":\"ORGANIZATIONBPNAME2\",\"isRemoved\":true,\"indexOrder\":28,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"c30147d8-f298-4384-9425-4afa75992ea5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CITYNAME\",\"label\":\"City\",\"newName\":\"CITYNAME\",\"isRemoved\":true,\"indexOrder\":29,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"3dc42134-bdb2-4a96-b81c-eb699be67598\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTALCODE\",\"label\":\"Postal Code\",\"newName\":\"POSTALCODE\",\"isRemoved\":true,\"indexOrder\":30,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"43445bd6-9d71-4aac-88d4-a3dbeb261f11\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STREETNAME\",\"label\":\"Street and House Number\",\"newName\":\"STREETNAME\",\"isRemoved\":true,\"indexOrder\":31,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b8e83ac8-d465-4531-9f57-46a5c9d8808b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"COUNTRY\",\"label\":\"Country Key\",\"newName\":\"COUNTRY\",\"isRemoved\":true,\"indexOrder\":32,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"56b053e7-28c5-42bd-b503-20727651345e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CONCATENATEDINTERNATIONALLOCNO\",\"label\":\"Cocatenated International Location Number\",\"newName\":\"CONCATENATEDINTERNATIONALLOCNO\",\"isRemoved\":true,\"indexOrder\":33,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1bec7672-7bf7-457b-9c22-cd053e1c8471\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERPROCUREMENTBLOCK\",\"label\":\"Function That Will Be Blocked\",\"newName\":\"SUPPLIERPROCUREMENTBLOCK\",\"isRemoved\":true,\"indexOrder\":34,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"7561288e-00f1-401e-83f5-244b21a76487\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"label\":\"Supplier's QM system\",\"newName\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"isRemoved\":true,\"indexOrder\":35,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"27a22f99-003b-428b-ac3f-19886a1d410e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"label\":\"Validity date of certification\",\"newName\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"isRemoved\":true,\"indexOrder\":36,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"3b40708b-11ff-4449-9645-2968fe15f18f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERLANGUAGE\",\"label\":\"Language Key\",\"newName\":\"SUPPLIERLANGUAGE\",\"isRemoved\":true,\"indexOrder\":37,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e45fb775-281f-4170-9f49-47e89c5ae746\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"label\":\"Account Number of the Alternative Payee\",\"newName\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"isRemoved\":true,\"indexOrder\":38,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"acd2fcb6-3766-40e9-9763-17207d037e68\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER1\",\"label\":\"First telephone number\",\"newName\":\"PHONENUMBER1\",\"isRemoved\":true,\"indexOrder\":39,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"ccb0d81d-5eec-49eb-ba97-db7cf2e11b5a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FAXNUMBER\",\"label\":\"Fax Number\",\"newName\":\"FAXNUMBER\",\"isRemoved\":true,\"indexOrder\":40,\"length\":31,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"97c8f721-66cd-435f-b4a3-4b4efb1eb007\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISNATURALPERSON\",\"label\":\"Natural Person\",\"newName\":\"ISNATURALPERSON\",\"isRemoved\":true,\"indexOrder\":41,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"eec760b0-f2c7-4ad3-971b-20bc4d80c8ad\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERRESPONSIBLE\",\"label\":\"Tax Number at Responsible Tax Authority\",\"newName\":\"TAXNUMBERRESPONSIBLE\",\"isRemoved\":true,\"indexOrder\":42,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"07d6e09f-eb08-4209-b387-18ba07528b21\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_CONTRACTORBUSINESSTYPE\",\"label\":\"Subcontractor's Business Type\",\"newName\":\"UK_CONTRACTORBUSINESSTYPE\",\"isRemoved\":true,\"indexOrder\":43,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"3dd1a411-b33c-4d0f-8e42-176a69f3ad9c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTRADINGNAME\",\"label\":\"Partner's Trading Name\",\"newName\":\"UK_PARTNERTRADINGNAME\",\"isRemoved\":true,\"indexOrder\":44,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"38c959f4-1f76-4f9d-8ed7-a99b3af0fb34\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTAXREFERENCE\",\"label\":\"Partner's Unique Tax Reference (UTR)\",\"newName\":\"UK_PARTNERTAXREFERENCE\",\"isRemoved\":true,\"indexOrder\":45,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"60fc6780-0f76-41ad-b77f-7ec5b9b3ff73\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONSTATUS\",\"label\":\"Verification Status\",\"newName\":\"UK_VERIFICATIONSTATUS\",\"isRemoved\":true,\"indexOrder\":46,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"626c434d-f9af-45c6-b517-cb8aa6587a1a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONNUMBER\",\"label\":\"Verification Number\",\"newName\":\"UK_VERIFICATIONNUMBER\",\"isRemoved\":true,\"indexOrder\":47,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"706dea03-2a7d-4c07-8dd8-dad66d878067\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_COMPANYREGISTRATIONNUMBER\",\"label\":\"Companies House Registration Number\",\"newName\":\"UK_COMPANYREGISTRATIONNUMBER\",\"isRemoved\":true,\"indexOrder\":48,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"41bc838b-c373-4836-a8a1-4f2ea1196e02\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFIEDTAXSTATUS\",\"label\":\"Tax Status of the Verified Subcontractor\",\"newName\":\"UK_VERIFIEDTAXSTATUS\",\"isRemoved\":true,\"indexOrder\":49,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b2fc2612-9459-4dbd-aeaf-a1e7c87cc60e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FORMOFADDRESS\",\"label\":\"Title\",\"newName\":\"FORMOFADDRESS\",\"isRemoved\":true,\"indexOrder\":50,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"77f1baa1-c066-433b-9c08-d3b997eeec93\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REFERENCEACCOUNTGROUP\",\"label\":\"Vendor Name\",\"newName\":\"REFERENCEACCOUNTGROUP\",\"isRemoved\":true,\"indexOrder\":51,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"9739b594-026b-4016-a0f0-bb5401abcc26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATLIABILITY\",\"label\":\"Liable for VAT\",\"newName\":\"VATLIABILITY\",\"isRemoved\":true,\"indexOrder\":52,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"41304964-6274-495d-b5b8-8d7ef5c83846\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RESPONSIBLETYPE\",\"label\":\"Tax type\",\"newName\":\"RESPONSIBLETYPE\",\"isRemoved\":true,\"indexOrder\":53,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"ead00431-f9c3-4780-afef-4e9d6c99715a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERTYPE\",\"label\":\"Tax Number Type\",\"newName\":\"TAXNUMBERTYPE\",\"isRemoved\":true,\"indexOrder\":54,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"c4310832-e602-446b-947d-7feb96bc3f1b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCALADDRESS\",\"label\":\"Account number of the master record with fiscal address\",\"newName\":\"FISCALADDRESS\",\"isRemoved\":true,\"indexOrder\":55,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"d7d7b1a7-efbf-43c8-8f72-02356b5e3420\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUSINESSTYPE\",\"label\":\"Type of Business\",\"newName\":\"BUSINESSTYPE\",\"isRemoved\":true,\"indexOrder\":56,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"50790cbb-041a-46fe-80f6-bf8f472b59be\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BIRTHDATE\",\"label\":\"Date of Birth of the Person Subject to Withholding Tax\",\"newName\":\"BIRTHDATE\",\"isRemoved\":true,\"indexOrder\":57,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"eaa33156-b10e-4461-af3a-eb266a33307d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"label\":\"Payment Block\",\"newName\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"isRemoved\":true,\"indexOrder\":58,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"294f0228-bf38-4119-8f82-69344b0d172b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SORTFIELD\",\"label\":\"Sort field\",\"newName\":\"SORTFIELD\",\"isRemoved\":true,\"indexOrder\":59,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"bb34d032-19ee-4977-afa7-86082d849015\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER2\",\"label\":\"Second telephone number\",\"newName\":\"PHONENUMBER2\",\"isRemoved\":true,\"indexOrder\":60,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b0f7d113-6ff8-41e6-a372-2804028d4e14\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DELETIONINDICATOR\",\"label\":\"Central Deletion Flag for Master Record\",\"newName\":\"DELETIONINDICATOR\",\"isRemoved\":true,\"indexOrder\":61,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"c2ce18b2-95c6-4a08-bb6d-22c42820c4c5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXINVOICEREPRESENTATIVENAME\",\"label\":\"Name of Representative\",\"newName\":\"TAXINVOICEREPRESENTATIVENAME\",\"isRemoved\":true,\"indexOrder\":62,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"74018382-9204-47a9-8a71-2408b3f59166\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRYTYPE\",\"label\":\"Type of Industry\",\"newName\":\"INDUSTRYTYPE\",\"isRemoved\":true,\"indexOrder\":63,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"02e60eb3-9747-438f-9bde-95687a90bbea\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"label\":\"Vendor Classification for GST\",\"newName\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"isRemoved\":true,\"indexOrder\":64,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"57631c5e-2ac0-43de-821b-dbc5fa5ea4a3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"label\":\"Supplier indicator relevant for proof of delivery\",\"newName\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"isRemoved\":true,\"indexOrder\":65,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5b405134-e7db-48a2-b55e-2c921f47813b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TRADINGPARTNER\",\"label\":\"Company ID of Trading Partner\",\"newName\":\"TRADINGPARTNER\",\"isRemoved\":true,\"indexOrder\":66,\"length\":6,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"a32eae03-0b0f-409b-a4a5-7f8f51d83c7f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BR_TAXISSPLIT\",\"label\":\"Tax Split\",\"newName\":\"BR_TAXISSPLIT\",\"isRemoved\":true,\"indexOrder\":67,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"a855c3a2-9b0c-4858-bade-ab0d584784f7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"label\":\"Is payer making payment in course of carrying on enterprise\",\"newName\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"isRemoved\":true,\"indexOrder\":68,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"3c42e514-59c9-435d-a5a2-4e3e0698b22e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_INDIVIDUALISUNDER18\",\"label\":\"Is an individual under 18 and payment does not exceed $350\",\"newName\":\"AU_INDIVIDUALISUNDER18\",\"isRemoved\":true,\"indexOrder\":69,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e17a9649-1802-4927-a8b5-8cb7ccd38672\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISEXCEEDING75\",\"label\":\"The payment does not exceed $75, excl. GST\",\"newName\":\"AU_PAYMENTISEXCEEDING75\",\"isRemoved\":true,\"indexOrder\":70,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"4d86f605-c7d6-4857-ab4d-f6b21b04bd93\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"label\":\"The supply that the payment relates to is wholly input taxed\",\"newName\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"isRemoved\":true,\"indexOrder\":71,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"4b697b9f-a66f-435e-913b-35c7e047fb65\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"label\":\"The supply is made by an individual without gain\",\"newName\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"isRemoved\":true,\"indexOrder\":72,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"594e4313-6a8a-4168-b3e3-3b8d7742689b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLIERISENTITLEDTOABN\",\"label\":\"The supplier is not entitled to an ABN\",\"newName\":\"AU_SUPPLIERISENTITLEDTOABN\",\"isRemoved\":true,\"indexOrder\":73,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"cdb48d63-6652-44b9-b19c-454474e5a65b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"label\":\"The whole of the payment is exempt income.\",\"newName\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"isRemoved\":true,\"indexOrder\":74,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"cc4cc1e1-b229-4e16-878a-f1b1d4ecf656\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"label\":\"An activity done as a private recreational pursuit\",\"newName\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"isRemoved\":true,\"indexOrder\":75,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5f189cff-0f09-43eb-8160-09be94687137\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"label\":\"wholly of a private or domestic nature\",\"newName\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"isRemoved\":true,\"indexOrder\":76,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"8669469e-485a-405d-8c78-67e87051fa06\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISTOBEACCEPTEDATORIGIN\",\"label\":\"Acceptance At Origin\",\"newName\":\"ISTOBEACCEPTEDATORIGIN\",\"isRemoved\":true,\"indexOrder\":77,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"0d89352d-9549-4c7c-88ba-94c084683434\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"label\":\"Account Number of Master Record of Tax Office Responsible\",\"newName\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"isRemoved\":true,\"indexOrder\":78,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5892ca7e-071a-49fb-b612-656281c7beeb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEISALLOWED\",\"label\":\"Indicator: Alternative Payee in Document Allowed?\",\"newName\":\"ALTERNATIVEPAYEEISALLOWED\",\"isRemoved\":true,\"indexOrder\":79,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"c95a8e3d-623c-415b-829c-bec65e1eafd7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_CREATIONDATE\",\"label\":\"Created on Date\",\"newName\":\"CA_CREATIONDATE\",\"isRemoved\":true,\"indexOrder\":80,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"45b7a032-d64f-4744-bb56-b28eba4d0cd3\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"label\":\"Certification Validity Date\",\"newName\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"isRemoved\":true,\"indexOrder\":81,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"f46777b1-6604-4902-bbad-87230e106c18\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_BIRTHDATE\",\"label\":\"Birth Date of the Person Subject to Withholding Tax\",\"newName\":\"CA_BIRTHDATE\",\"isRemoved\":true,\"indexOrder\":82,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"909212ce-944a-4d7e-acc4-b071813eee64\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DISTRICT\",\"label\":\"District\",\"newName\":\"DISTRICT\",\"isRemoved\":true,\"indexOrder\":83,\"length\":35,\"precision\":0,\"scale\":0},\"6cd22587-a4cc-4599-a920-314dc7749c91\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX\",\"label\":\"PO Box\",\"newName\":\"PO_BOX\",\"isRemoved\":true,\"indexOrder\":84,\"length\":10,\"precision\":0,\"scale\":0},\"93128c3d-5dbb-43ba-9d04-81ff0f8af8a8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX_POSTALCODE\",\"label\":\"P.O. Box Postal Code\",\"newName\":\"PO_BOX_POSTALCODE\",\"isRemoved\":true,\"indexOrder\":85,\"length\":10,\"precision\":0,\"scale\":0},\"4bab9e54-dcaa-474e-9aa4-7a494e6cf89e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTOKK\",\"label\":\"Vendor account group\",\"newName\":\"KTOKK\",\"isRemoved\":true,\"indexOrder\":86,\"length\":4,\"precision\":0,\"scale\":0},\"a34ebc64-04e0-477a-bdb6-cded92b322db\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AGENCYLOCATIONCODE\",\"label\":\"Agency Location Code\",\"newName\":\"AGENCYLOCATIONCODE\",\"isRemoved\":true,\"indexOrder\":87,\"length\":8,\"precision\":0,\"scale\":0},\"b61572e1-cb9b-4ece-a0c1-713ca47fe2e1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIER\",\"label\":\"Account Number of Vendor or Creditor\",\"newName\":\"SUPPLIER\",\"indexOrder\":0,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"labelElement\":\"d0ca3ef5-afae-4e78-a4cf-bf7a4406fa38\"},\"28375146-85f2-4214-a7fc-caa126e8fb1b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERACCOUNTGROUP\",\"label\":\"Vendor account group\",\"newName\":\"SUPPLIERACCOUNTGROUP\",\"indexOrder\":1,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T1\"},\"d0ca3ef5-afae-4e78-a4cf-bf7a4406fa38\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERNAME\",\"label\":\"Name of Supplier\",\"newName\":\"SUPPLIERNAME\",\"indexOrder\":2,\"length\":80,\"precision\":0,\"scale\":0,\"isDimension\":true,\"semanticType\":\"@Semantics.text\",\"nativeDataType\":\"NVARCHAR\"},\"98d556cf-d8eb-40ac-8470-9d7cb60e9ecb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERFULLNAME\",\"label\":\"Supplier Full Name\",\"newName\":\"SUPPLIERFULLNAME\",\"indexOrder\":3,\"length\":220,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"52f45b54-6622-46c9-ae1e-f4b28d3e0206\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISBUSINESSPURPOSECOMPLETED\",\"label\":\"Business Purpose Completed Flag\",\"newName\":\"ISBUSINESSPURPOSECOMPLETED\",\"indexOrder\":4,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5b583d5e-46b1-41ac-afc3-4d09c011f816\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATEDBYUSER\",\"label\":\"Name of Person who Created the Object\",\"newName\":\"CREATEDBYUSER\",\"indexOrder\":5,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"dbc56d2b-4be1-4fce-9220-00a138b82a3e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CREATIONDATE\",\"label\":\"Date on which the Record Was Created\",\"newName\":\"CREATIONDATE\",\"indexOrder\":6,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\"},\"5b2a349b-34ad-4a99-b31a-7ce6743ad27e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISONETIMEACCOUNT\",\"label\":\"Indicator: Is the account a one-time account?\",\"newName\":\"ISONETIMEACCOUNT\",\"indexOrder\":7,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS2\"},\"b192362c-363e-4502-9f66-94c930476e7d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AUTHORIZATIONGROUP\",\"label\":\"Authorization Group\",\"newName\":\"AUTHORIZATIONGROUP\",\"indexOrder\":8,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"188705f6-3aad-49ac-bec7-a882c5199896\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATREGISTRATION\",\"label\":\"VAT Registration Number\",\"newName\":\"VATREGISTRATION\",\"indexOrder\":9,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5ac9a731-fc0d-4e95-b9c7-da0a17b95dea\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"label\":\"Central posting block\",\"newName\":\"ACCOUNTISBLOCKEDFORPOSTING\",\"indexOrder\":10,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"f5c00d26-1129-4e25-aa02-9a7432e13c0a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXJURISDICTION\",\"label\":\"Tax Jurisdiction\",\"newName\":\"TAXJURISDICTION\",\"indexOrder\":11,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"aa8dc99c-0afc-4427-acb2-5c34f823320a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERCORPORATEGROUP\",\"label\":\"Group key\",\"newName\":\"SUPPLIERCORPORATEGROUP\",\"indexOrder\":12,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"0530ef1f-00e6-49a0-993d-936cead6f865\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CUSTOMER\",\"label\":\"Customer Number\",\"newName\":\"CUSTOMER\",\"indexOrder\":13,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_CU\"},\"a10b2231-db7c-4069-a35a-1b48efede6f5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRY\",\"label\":\"Industry key\",\"newName\":\"INDUSTRY\",\"indexOrder\":14,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"8328b8d5-3ac7-46b6-9c9f-054f18ffbb33\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER1\",\"label\":\"Tax Number 1\",\"newName\":\"TAXNUMBER1\",\"indexOrder\":15,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"f2fad2bf-d14e-4020-9b59-9ed34773706d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER2\",\"label\":\"Tax Number 2\",\"newName\":\"TAXNUMBER2\",\"indexOrder\":16,\"length\":11,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"007818c2-2e60-4fca-8849-038efaef4fe7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER3\",\"label\":\"Tax Number 3\",\"newName\":\"TAXNUMBER3\",\"indexOrder\":17,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"ef7a5229-e8d8-4aa7-9bc7-fe99a85ac430\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER4\",\"label\":\"Tax Number 4\",\"newName\":\"TAXNUMBER4\",\"indexOrder\":18,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"0019e791-c488-4240-bd45-2016374a14bc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBER5\",\"label\":\"Tax Number 5\",\"newName\":\"TAXNUMBER5\",\"indexOrder\":19,\"length\":60,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b8167823-b50e-4ced-bbff-157a18944317\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTINGISBLOCKED\",\"label\":\"Central posting block\",\"newName\":\"POSTINGISBLOCKED\",\"indexOrder\":20,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS\"},\"1323e660-5aa4-4b72-9e2f-56785721a0cc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PURCHASINGISBLOCKED\",\"label\":\"Centrally imposed purchasing block\",\"newName\":\"PURCHASINGISBLOCKED\",\"indexOrder\":21,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS1\"},\"5ad5155e-6c21-4a61-ae0b-5ea629dbc696\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER1\",\"label\":\"International location number  (part 1)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER1\",\"indexOrder\":22,\"length\":7,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"746ff9a9-b277-4abf-8e0e-0ffdb9a4d25b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER2\",\"label\":\"International location number (Part 2)\",\"newName\":\"INTERNATIONALLOCATIONNUMBER2\",\"indexOrder\":23,\"length\":5,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"0f78bbe5-3b8d-49c7-8184-b5b001ad504b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INTERNATIONALLOCATIONNUMBER3\",\"label\":\"Check digit for the international location number\",\"newName\":\"INTERNATIONALLOCATIONNUMBER3\",\"indexOrder\":24,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"VARCHAR\"},\"87ff7e13-19e6-4673-bc3c-1967c54cebde\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ADDRESSID\",\"label\":\"Address\",\"newName\":\"ADDRESSID\",\"indexOrder\":25,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1cba8edf-c9f4-467f-8586-e8220abe8a63\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REGION\",\"label\":\"Region (State, Province, County)\",\"newName\":\"REGION\",\"indexOrder\":26,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T2\"},\"f4609656-562a-4944-a954-3cd6a647fa4a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME1\",\"label\":\"Name 1\",\"newName\":\"ORGANIZATIONBPNAME1\",\"indexOrder\":27,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"121d318a-569e-4750-94e7-b48ec4909f8a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ORGANIZATIONBPNAME2\",\"label\":\"Name 2\",\"newName\":\"ORGANIZATIONBPNAME2\",\"indexOrder\":28,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"4d1423bd-829a-4156-b324-df0b2b79e316\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CITYNAME\",\"label\":\"City\",\"newName\":\"CITYNAME\",\"indexOrder\":29,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b2af5574-d942-4192-85b6-6a44f796163c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"POSTALCODE\",\"label\":\"Postal Code\",\"newName\":\"POSTALCODE\",\"indexOrder\":30,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"fcd4ebaa-a76e-44c2-9908-e349b5cbf507\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"STREETNAME\",\"label\":\"Street and House Number\",\"newName\":\"STREETNAME\",\"indexOrder\":31,\"length\":35,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"2e7e30e9-f282-459d-91d2-c200977811ed\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"COUNTRY\",\"label\":\"Country Key\",\"newName\":\"COUNTRY\",\"indexOrder\":32,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T2\"},\"7ea9070b-a16b-468d-942f-c6dd0d87c64b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CONCATENATEDINTERNATIONALLOCNO\",\"label\":\"Cocatenated International Location Number\",\"newName\":\"CONCATENATEDINTERNATIONALLOCNO\",\"indexOrder\":33,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e0f9d5a7-97a8-4ec4-bc42-214efacb79ac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERPROCUREMENTBLOCK\",\"label\":\"Function That Will Be Blocked\",\"newName\":\"SUPPLIERPROCUREMENTBLOCK\",\"indexOrder\":34,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"49073a89-4649-4a44-8a1f-4c72d2a7eb65\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"label\":\"Supplier's QM system\",\"newName\":\"SUPLRQUALITYMANAGEMENTSYSTEM\",\"indexOrder\":35,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"87c89fd6-29ca-45f6-b8c2-b630393eb78f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"label\":\"Validity date of certification\",\"newName\":\"SUPLRQLTYINPROCMTCERTFNVALIDTO\",\"indexOrder\":36,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\"},\"879b0fe5-7731-4b2d-948b-6f053eaec5ba\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPPLIERLANGUAGE\",\"label\":\"Language Key\",\"newName\":\"SUPPLIERLANGUAGE\",\"indexOrder\":37,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_ZV_DWC_T3\"},\"1e3021f5-e988-4ddc-91a7-ee249fd90229\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"label\":\"Account Number of the Alternative Payee\",\"newName\":\"ALTERNATIVEPAYEEACCOUNTNUMBER\",\"indexOrder\":38,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5b784a34-0603-4875-bb3d-569bd737a2d7\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER1\",\"label\":\"First telephone number\",\"newName\":\"PHONENUMBER1\",\"indexOrder\":39,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"f0a2fab1-1059-49b0-804d-a38c9e6bc33f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FAXNUMBER\",\"label\":\"Fax Number\",\"newName\":\"FAXNUMBER\",\"indexOrder\":40,\"length\":31,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"99520897-5574-4ed2-b481-77cd7b74ae3f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISNATURALPERSON\",\"label\":\"Natural Person\",\"newName\":\"ISNATURALPERSON\",\"indexOrder\":41,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"9d1cbc02-ad78-45ed-86d5-6f6bede50aa8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERRESPONSIBLE\",\"label\":\"Tax Number at Responsible Tax Authority\",\"newName\":\"TAXNUMBERRESPONSIBLE\",\"indexOrder\":42,\"length\":18,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"0a1fc488-a05b-4163-be9b-313da0fb8300\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_CONTRACTORBUSINESSTYPE\",\"label\":\"Subcontractor's Business Type\",\"newName\":\"UK_CONTRACTORBUSINESSTYPE\",\"indexOrder\":43,\"length\":12,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"d658dcbf-944a-4260-87cb-a4116298501d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTRADINGNAME\",\"label\":\"Partner's Trading Name\",\"newName\":\"UK_PARTNERTRADINGNAME\",\"indexOrder\":44,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"05885cc4-baa5-4487-92a6-3f592523895d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_PARTNERTAXREFERENCE\",\"label\":\"Partner's Unique Tax Reference (UTR)\",\"newName\":\"UK_PARTNERTAXREFERENCE\",\"indexOrder\":45,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1d4f7e64-df82-4bd4-a98c-a4c2f2a60e09\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONSTATUS\",\"label\":\"Verification Status\",\"newName\":\"UK_VERIFICATIONSTATUS\",\"indexOrder\":46,\"length\":3,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"1de0f0fa-1143-4d05-a878-3064df2b025c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFICATIONNUMBER\",\"label\":\"Verification Number\",\"newName\":\"UK_VERIFICATIONNUMBER\",\"indexOrder\":47,\"length\":20,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"8d904107-14ba-4f26-b177-fae6e74ae9fc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_COMPANYREGISTRATIONNUMBER\",\"label\":\"Companies House Registration Number\",\"newName\":\"UK_COMPANYREGISTRATIONNUMBER\",\"indexOrder\":48,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"86c63699-7109-4ee7-ab28-d17b08fd60ce\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"UK_VERIFIEDTAXSTATUS\",\"label\":\"Tax Status of the Verified Subcontractor\",\"newName\":\"UK_VERIFIEDTAXSTATUS\",\"indexOrder\":49,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"99c682c2-3dad-424a-9f54-7d8683ba8e41\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FORMOFADDRESS\",\"label\":\"Title\",\"newName\":\"FORMOFADDRESS\",\"indexOrder\":50,\"length\":15,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"2128ea89-8a03-4d5f-9a93-31188d47c0ff\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"REFERENCEACCOUNTGROUP\",\"label\":\"Vendor Name\",\"newName\":\"REFERENCEACCOUNTGROUP\",\"indexOrder\":51,\"length\":4,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"660bdc94-732a-4b22-b2bd-712c600f6324\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VATLIABILITY\",\"label\":\"Liable for VAT\",\"newName\":\"VATLIABILITY\",\"indexOrder\":52,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"e94fbfcc-4d54-42ce-807b-7d5e4a421cca\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"RESPONSIBLETYPE\",\"label\":\"Tax type\",\"newName\":\"RESPONSIBLETYPE\",\"indexOrder\":53,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b27294db-979e-4677-92b9-285563397c7d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXNUMBERTYPE\",\"label\":\"Tax Number Type\",\"newName\":\"TAXNUMBERTYPE\",\"indexOrder\":54,\"length\":2,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5f2ede31-156f-4d25-86ef-afdce025c2eb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FISCALADDRESS\",\"label\":\"Account number of the master record with fiscal address\",\"newName\":\"FISCALADDRESS\",\"indexOrder\":55,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"566ec402-d36e-45fb-8995-527515d27132\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BUSINESSTYPE\",\"label\":\"Type of Business\",\"newName\":\"BUSINESSTYPE\",\"indexOrder\":56,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"ec6a8403-1148-4793-a259-388d7c338d3b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BIRTHDATE\",\"label\":\"Date of Birth of the Person Subject to Withholding Tax\",\"newName\":\"BIRTHDATE\",\"indexOrder\":57,\"length\":8,\"precision\":0,\"scale\":0,\"isDimension\":true,\"isVisible\":false,\"nativeDataType\":\"VARCHAR\"},\"d8d8111d-bac5-450b-832e-07b9cdc83b92\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"label\":\"Payment Block\",\"newName\":\"PAYMENTISBLOCKEDFORSUPPLIER\",\"indexOrder\":58,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS3\"},\"9024486f-ff6e-4d4c-8ccb-d6acb2c1c003\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SORTFIELD\",\"label\":\"Sort field\",\"newName\":\"SORTFIELD\",\"indexOrder\":59,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"17b8f4a0-363f-4792-a93d-0e8e66cc509d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PHONENUMBER2\",\"label\":\"Second telephone number\",\"newName\":\"PHONENUMBER2\",\"indexOrder\":60,\"length\":16,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"224b663b-5014-4ec4-b86d-4abf90aa8d87\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DELETIONINDICATOR\",\"label\":\"Central Deletion Flag for Master Record\",\"newName\":\"DELETIONINDICATOR\",\"indexOrder\":61,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"72a4e1ea-eb27-49be-8b6a-7592f792a0a8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TAXINVOICEREPRESENTATIVENAME\",\"label\":\"Name of Representative\",\"newName\":\"TAXINVOICEREPRESENTATIVENAME\",\"indexOrder\":62,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"42429adb-6f83-486f-90d2-831a949327ae\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"INDUSTRYTYPE\",\"label\":\"Type of Industry\",\"newName\":\"INDUSTRYTYPE\",\"indexOrder\":63,\"length\":30,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"460b78ff-8b48-4d69-9258-1debb5e3d2d8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"label\":\"Vendor Classification for GST\",\"newName\":\"IN_GSTSUPPLIERCLASSIFICATION\",\"indexOrder\":64,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"9c709afe-d406-4266-8de2-5b79790f3fe8\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"label\":\"Supplier indicator relevant for proof of delivery\",\"newName\":\"SUPLRPROOFOFDELIVRLVTCODE\",\"indexOrder\":65,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"b721aa45-b482-4936-8917-f2a005d1e48b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"TRADINGPARTNER\",\"label\":\"Company ID of Trading Partner\",\"newName\":\"TRADINGPARTNER\",\"indexOrder\":66,\"length\":6,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"4b0ae72f-30f6-4011-ae9f-ff46d8230d67\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BR_TAXISSPLIT\",\"label\":\"Tax Split\",\"newName\":\"BR_TAXISSPLIT\",\"indexOrder\":67,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"5ac0f2ba-6b7f-4b1f-a30f-1aa26b2cb754\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"label\":\"Is payer making payment in course of carrying on enterprise\",\"newName\":\"AU_PAYERISPAYINGTOCARRYONENT\",\"indexOrder\":68,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS4\"},\"52d30737-c24e-4823-8d1c-9934943ba7f1\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_INDIVIDUALISUNDER18\",\"label\":\"Is an individual under 18 and payment does not exceed $350\",\"newName\":\"AU_INDIVIDUALISUNDER18\",\"indexOrder\":69,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS5\"},\"475b7fbb-872e-41e0-bf93-ad87631065d9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISEXCEEDING75\",\"label\":\"The payment does not exceed $75, excl. GST\",\"newName\":\"AU_PAYMENTISEXCEEDING75\",\"indexOrder\":70,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS6\"},\"a5465dfa-dcd8-4f19-b177-9843f602eb7d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"label\":\"The supply that the payment relates to is wholly input taxed\",\"newName\":\"AU_PAYMENTISWHOLLYINPUTTAXED\",\"indexOrder\":71,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS7\"},\"68e7bf2f-7010-4b8a-badb-7a9c5ac3cc26\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"label\":\"The supply is made by an individual without gain\",\"newName\":\"AU_PARTNERISSUPPLYWITHOUTGAIN\",\"indexOrder\":72,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS8\"},\"96b0da86-82c1-47fa-9c5d-eeb53f7b1cde\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLIERISENTITLEDTOABN\",\"label\":\"The supplier is not entitled to an ABN\",\"newName\":\"AU_SUPPLIERISENTITLEDTOABN\",\"indexOrder\":73,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS9\"},\"45f63d93-515a-4e5d-a099-1d700f563d99\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"label\":\"The whole of the payment is exempt income.\",\"newName\":\"AU_PAYMENTISINCOMEEXEMPTED\",\"indexOrder\":74,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS10\"},\"399b7bd6-c014-4b4f-b841-7a982a1a4771\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"label\":\"An activity done as a private recreational pursuit\",\"newName\":\"AU_SUPPLYISMADEASPRIVATEHOBBY\",\"indexOrder\":75,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS11\"},\"8ef2657e-53aa-49c1-8308-49d14f4ccd96\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"label\":\"wholly of a private or domestic nature\",\"newName\":\"AU_SUPPLYMADEISOFDMSTCNATURE\",\"indexOrder\":76,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS12\"},\"521b3bb8-eebf-424d-9369-090ae008b7e6\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ISTOBEACCEPTEDATORIGIN\",\"label\":\"Acceptance At Origin\",\"newName\":\"ISTOBEACCEPTEDATORIGIN\",\"indexOrder\":77,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS13\"},\"b8cfa5a5-6c5d-412b-a954-d0f4c2f7fccc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"label\":\"Account Number of Master Record of Tax Office Responsible\",\"newName\":\"SUPLRTAXAUTHORITYACCOUNTNUMBER\",\"indexOrder\":78,\"length\":10,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\"},\"f99cb1f9-719c-4ac6-96bd-57fa7b01a1af\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ALTERNATIVEPAYEEISALLOWED\",\"label\":\"Indicator: Alternative Payee in Document Allowed?\",\"newName\":\"ALTERNATIVEPAYEEISALLOWED\",\"indexOrder\":79,\"length\":1,\"precision\":0,\"scale\":0,\"isDimension\":true,\"nativeDataType\":\"NVARCHAR\",\"foreignText\":\"_HL_MD_XS14\"},\"b441dcc8-cc0b-4904-9919-a8130c9a1145\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_CREATIONDATE\",\"label\":\"Created on Date\",\"newName\":\"CA_CREATIONDATE\",\"indexOrder\":80,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"04138304-f792-42be-b798-81423117c64d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"label\":\"Certification Validity Date\",\"newName\":\"CA_SUPLRQLTYINPROCMTCERTFNVALI\",\"indexOrder\":81,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"24713839-e7a4-462a-b028-713c58cf8751\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"CA_BIRTHDATE\",\"label\":\"Birth Date of the Person Subject to Withholding Tax\",\"newName\":\"CA_BIRTHDATE\",\"indexOrder\":82,\"dataType\":\"cds.Date\",\"length\":0,\"precision\":0,\"scale\":0},\"e2a148ff-a900-4f88-b080-10170a957abc\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DISTRICT\",\"label\":\"District\",\"newName\":\"DISTRICT\",\"indexOrder\":83,\"length\":35,\"precision\":0,\"scale\":0},\"8b44f06d-f4fb-4efb-b256-ff358dc1fc4e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX\",\"label\":\"PO Box\",\"newName\":\"PO_BOX\",\"indexOrder\":84,\"length\":10,\"precision\":0,\"scale\":0},\"be346ccc-653f-4dc0-992a-1f55615ff8ac\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PO_BOX_POSTALCODE\",\"label\":\"P.O. Box Postal Code\",\"newName\":\"PO_BOX_POSTALCODE\",\"indexOrder\":85,\"length\":10,\"precision\":0,\"scale\":0},\"7f5d68e0-03ab-44aa-80c1-cebcb2c86919\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KTOKK\",\"label\":\"Vendor account group\",\"newName\":\"KTOKK\",\"indexOrder\":86,\"length\":4,\"precision\":0,\"scale\":0,\"foreignText\":\"_ZV_DWC_T0\"},\"42837006-5348-4dba-8a63-638600bd4741\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"AGENCYLOCATIONCODE\",\"label\":\"Agency Location Code\",\"newName\":\"AGENCYLOCATIONCODE\",\"indexOrder\":87,\"length\":8,\"precision\":0,\"scale\":0},\"79c4d155-09d0-41e1-b5ce-a5c32ef4ec5e\":{\"classDefinition\":\"sap.cdw.commonmodel.ElementMapping\",\"source\":\"0e584d80-006c-4db0-9126-39b5144aa4ef\",\"target\":\"b61572e1-cb9b-4ece-a0c1-713ca47fe2e1\"},\"ec5fa01a-c594-47be-86fc-cfd90d87644f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":154.99999940395355,\"y\":-20.017247697184956,\"width\":140,\"height\":40,\"object\":\"92513119-a44e-47b1-8407-6aa15000465d\"},\"f09d9e6f-373d-4d68-ab25-3498a580d578\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-270.99999940395355,\"y\":-19.982752302815044,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"79b7eecf-382a-46b9-ad98-48a3cd013d56\"},\"c0f5552f-cce5-4002-9643-29cc7e932b8f\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.CalculatedSymbol\",\"x\":56.99999940395355,\"y\":-16.01724769718496,\"object\":\"6cfd108b-f1f4-4ebd-956c-cdd666fbb23e\"},\"6be4e256-e014-4f8a-9c0c-6b161046a682\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"104.99999940395355,-0.017247697184959776 154.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"c0f5552f-cce5-4002-9643-29cc7e932b8f\",\"targetSymbol\":\"ec5fa01a-c594-47be-86fc-cfd90d87644f\"},\"159ce11e-80d3-4e69-85dd-2c18a3fbd318\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.RenameSymbol\",\"x\":-60.99999940395355,\"y\":-15.98275230281505,\"object\":\"b4daaa04-95f5-4c1f-b1a9-e8fc41dbf647\"},\"a7d4e618-efec-4f61-9266-13bb8a73ae1d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-110.99999940395355,0.017247697184956223 -60.99999940395355,0.017247697184956223\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"f09d9e6f-373d-4d68-ab25-3498a580d578\",\"targetSymbol\":\"159ce11e-80d3-4e69-85dd-2c18a3fbd318\"},\"31104d05-30dd-41ea-996c-64984f9485cd\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-12.999999403953552,0.017247697184956223 22,0.017247697184956223 22,-0.017247697184959776 56.99999940395355,-0.017247697184959776\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"159ce11e-80d3-4e69-85dd-2c18a3fbd318\",\"targetSymbol\":\"c0f5552f-cce5-4002-9643-29cc7e932b8f\"}}}"
+    },
+    "MD_STG": {
+      "kind": "context",
+      "@EndUserText.label": "Dev-Master Data Staging",
+      "@DataWarehouse.space.schema": "MD_STG",
+      "@DataWarehouse.space.name": "MD_STG"
+    },
+    "MD_STG.ZV_DWC_T077Y": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "KTOKK": {
+          "@EndUserText.label": "Vendor account group",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "TXT30"
+            }
+          ]
+        },
+        "TXT30": {
+          "@EndUserText.label": "Account Group Name",
+          "type": "cds.String",
+          "length": 30,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Account Group Names - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_MDG_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T077Y$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T002T": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "SPTXT"
+            }
+          ]
+        },
+        "SPRSL": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "SPTXT": {
+          "@EndUserText.label": "Name of Language",
+          "type": "cds.String",
+          "length": 16,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Language Key Texts - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T002T$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_T005U": {
+      "kind": "entity",
+      "elements": {
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "LAND1": {
+          "@EndUserText.label": "Country Key",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BEZEI"
+            }
+          ]
+        },
+        "BLAND": {
+          "@EndUserText.label": "Region (State, Province, County)",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "BEZEI"
+            }
+          ]
+        },
+        "BEZEI": {
+          "@EndUserText.label": "Description",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Taxes: Region Key: Texts - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.remote.connection": "SAP_MDG_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_T005U$F",
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.ZV_DWC_CUST_TEXT": {
+      "kind": "entity",
+      "elements": {
+        "CUSTOMER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Customer Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "CUSTOMERNAME"
+            }
+          ],
+          "notNull": true
+        },
+        "LANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "@Semantics.language": true,
+          "notNull": true
+        },
+        "CUSTOMERNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Customer",
+          "type": "cds.String",
+          "length": 80,
+          "@Semantics.text": true
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "@EndUserText.label": "Customer Master Data Text",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@DataWarehouse.consumption.external": false,
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_XS": {
+      "kind": "entity",
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "LANGUAGE_DEPENDENT_TEXT"
+        }
+      ],
+      "elements": {
+        "FLAG": {
+          "@EndUserText.label": "Text Name",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "notNull": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "TEXT"
+            }
+          ]
+        },
+        "SPRAS": {
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 2,
+          "key": true,
+          "notNull": true,
+          "@Semantics.language": true
+        },
+        "TEXT": {
+          "@EndUserText.label": "Text",
+          "type": "cds.String",
+          "length": 10,
+          "@Semantics.text": true
+        }
+      },
+      "@EndUserText.label": "Texts for X/Space",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "@cds.persistence.exists": true
+    },
+    "MD_STG.HL_MD_SUPPLIER": {
+      "kind": "entity",
+      "elements": {
+        "SUPPLIER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account Number of Vendor or Creditor",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "@Analytics.dimension": true,
+          "@ObjectModel.text.element": [
+            {
+              "=": "SUPPLIERNAME"
+            }
+          ],
+          "notNull": true
+        },
+        "SUPPLIERACCOUNTGROUP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Vendor account group",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T1"
+          },
+          "@Analytics.dimension": true
+        },
+        "SUPPLIERNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Supplier",
+          "type": "cds.String",
+          "length": 80,
+          "@Analytics.dimension": true,
+          "@Semantics.text": true
+        },
+        "SUPPLIERFULLNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Supplier Full Name",
+          "type": "cds.String",
+          "length": 220,
+          "@Analytics.dimension": true
+        },
+        "ISBUSINESSPURPOSECOMPLETED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Business Purpose Completed Flag",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "CREATEDBYUSER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Person who Created the Object",
+          "type": "cds.String",
+          "length": 12,
+          "@Analytics.dimension": true
+        },
+        "CREATIONDATE": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date on which the Record Was Created",
+          "type": "cds.String",
+          "length": 8,
+          "@Analytics.dimension": true,
+          "@Analytics.hidden": true
+        },
+        "ISONETIMEACCOUNT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Is the account a one-time account?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS2"
+          },
+          "@Analytics.dimension": true
+        },
+        "AUTHORIZATIONGROUP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Authorization Group",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true
+        },
+        "VATREGISTRATION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "VAT Registration Number",
+          "type": "cds.String",
+          "length": 20,
+          "@Analytics.dimension": true
+        },
+        "ACCOUNTISBLOCKEDFORPOSTING": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Central posting block",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "TAXJURISDICTION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Jurisdiction",
+          "type": "cds.String",
+          "length": 15,
+          "@Analytics.dimension": true
+        },
+        "SUPPLIERCORPORATEGROUP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Group key",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "CUSTOMER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Customer Number",
+          "type": "cds.String",
+          "length": 10,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_CU"
+          },
+          "@Analytics.dimension": true
+        },
+        "INDUSTRY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Industry key",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBER1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number 1",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBER2": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number 2",
+          "type": "cds.String",
+          "length": 11,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBER3": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number 3",
+          "type": "cds.String",
+          "length": 18,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBER4": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number 4",
+          "type": "cds.String",
+          "length": 18,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBER5": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number 5",
+          "type": "cds.String",
+          "length": 60,
+          "@Analytics.dimension": true
+        },
+        "POSTINGISBLOCKED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Central posting block",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS"
+          },
+          "@Analytics.dimension": true
+        },
+        "PURCHASINGISBLOCKED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Centrally imposed purchasing block",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS1"
+          },
+          "@Analytics.dimension": true
+        },
+        "INTERNATIONALLOCATIONNUMBER1": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "International location number  (part 1)",
+          "type": "cds.String",
+          "length": 7,
+          "@Analytics.dimension": true
+        },
+        "INTERNATIONALLOCATIONNUMBER2": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "International location number (Part 2)",
+          "type": "cds.String",
+          "length": 5,
+          "@Analytics.dimension": true
+        },
+        "INTERNATIONALLOCATIONNUMBER3": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Check digit for the international location number",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "ADDRESSID": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Address",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "REGION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Region (State, Province, County)",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T2"
+          },
+          "@Analytics.dimension": true
+        },
+        "ORGANIZATIONBPNAME1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name 1",
+          "type": "cds.String",
+          "length": 35,
+          "@Analytics.dimension": true
+        },
+        "ORGANIZATIONBPNAME2": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name 2",
+          "type": "cds.String",
+          "length": 35,
+          "@Analytics.dimension": true
+        },
+        "CITYNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "City",
+          "type": "cds.String",
+          "length": 35,
+          "@Analytics.dimension": true
+        },
+        "POSTALCODE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Postal Code",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "STREETNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Street and House Number",
+          "type": "cds.String",
+          "length": 35,
+          "@Analytics.dimension": true
+        },
+        "COUNTRY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Country Key",
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T2"
+          },
+          "@Analytics.dimension": true
+        },
+        "CONCATENATEDINTERNATIONALLOCNO": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Cocatenated International Location Number",
+          "type": "cds.String",
+          "length": 20,
+          "@Analytics.dimension": true
+        },
+        "SUPPLIERPROCUREMENTBLOCK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Function That Will Be Blocked",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true
+        },
+        "SUPLRQUALITYMANAGEMENTSYSTEM": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Supplier's QM system",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true
+        },
+        "SUPLRQLTYINPROCMTCERTFNVALIDTO": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Validity date of certification",
+          "type": "cds.String",
+          "length": 8,
+          "@Analytics.dimension": true,
+          "@Analytics.hidden": true
+        },
+        "SUPPLIERLANGUAGE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Language Key",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T3"
+          },
+          "@Analytics.dimension": true
+        },
+        "ALTERNATIVEPAYEEACCOUNTNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account Number of the Alternative Payee",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "PHONENUMBER1": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "First telephone number",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true
+        },
+        "FAXNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Fax Number",
+          "type": "cds.String",
+          "length": 31,
+          "@Analytics.dimension": true
+        },
+        "ISNATURALPERSON": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Natural Person",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBERRESPONSIBLE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number at Responsible Tax Authority",
+          "type": "cds.String",
+          "length": 18,
+          "@Analytics.dimension": true
+        },
+        "UK_CONTRACTORBUSINESSTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Subcontractor's Business Type",
+          "type": "cds.String",
+          "length": 12,
+          "@Analytics.dimension": true
+        },
+        "UK_PARTNERTRADINGNAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Partner's Trading Name",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true
+        },
+        "UK_PARTNERTAXREFERENCE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Partner's Unique Tax Reference (UTR)",
+          "type": "cds.String",
+          "length": 20,
+          "@Analytics.dimension": true
+        },
+        "UK_VERIFICATIONSTATUS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Verification Status",
+          "type": "cds.String",
+          "length": 3,
+          "@Analytics.dimension": true
+        },
+        "UK_VERIFICATIONNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Verification Number",
+          "type": "cds.String",
+          "length": 20,
+          "@Analytics.dimension": true
+        },
+        "UK_COMPANYREGISTRATIONNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Companies House Registration Number",
+          "type": "cds.String",
+          "length": 8,
+          "@Analytics.dimension": true
+        },
+        "UK_VERIFIEDTAXSTATUS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Status of the Verified Subcontractor",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "FORMOFADDRESS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Title",
+          "type": "cds.String",
+          "length": 15,
+          "@Analytics.dimension": true
+        },
+        "REFERENCEACCOUNTGROUP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Vendor Name",
+          "type": "cds.String",
+          "length": 4,
+          "@Analytics.dimension": true
+        },
+        "VATLIABILITY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Liable for VAT",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "RESPONSIBLETYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax type",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true
+        },
+        "TAXNUMBERTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Number Type",
+          "type": "cds.String",
+          "length": 2,
+          "@Analytics.dimension": true
+        },
+        "FISCALADDRESS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account number of the master record with fiscal address",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "BUSINESSTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Type of Business",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true
+        },
+        "BIRTHDATE": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Date of Birth of the Person Subject to Withholding Tax",
+          "type": "cds.String",
+          "length": 8,
+          "@Analytics.dimension": true,
+          "@Analytics.hidden": true
+        },
+        "PAYMENTISBLOCKEDFORSUPPLIER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Payment Block",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS3"
+          },
+          "@Analytics.dimension": true
+        },
+        "SORTFIELD": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sort field",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "PHONENUMBER2": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Second telephone number",
+          "type": "cds.String",
+          "length": 16,
+          "@Analytics.dimension": true
+        },
+        "DELETIONINDICATOR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Central Deletion Flag for Master Record",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "TAXINVOICEREPRESENTATIVENAME": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Name of Representative",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "INDUSTRYTYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Type of Industry",
+          "type": "cds.String",
+          "length": 30,
+          "@Analytics.dimension": true
+        },
+        "IN_GSTSUPPLIERCLASSIFICATION": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Vendor Classification for GST",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "SUPLRPROOFOFDELIVRLVTCODE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Supplier indicator relevant for proof of delivery",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "TRADINGPARTNER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Company ID of Trading Partner",
+          "type": "cds.String",
+          "length": 6,
+          "@Analytics.dimension": true
+        },
+        "BR_TAXISSPLIT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Tax Split",
+          "type": "cds.String",
+          "length": 1,
+          "@Analytics.dimension": true
+        },
+        "AU_PAYERISPAYINGTOCARRYONENT": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Is payer making payment in course of carrying on enterprise",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS4"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_INDIVIDUALISUNDER18": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Is an individual under 18 and payment does not exceed $350",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS5"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_PAYMENTISEXCEEDING75": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "The payment does not exceed $75, excl. GST",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS6"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_PAYMENTISWHOLLYINPUTTAXED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "The supply that the payment relates to is wholly input taxed",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS7"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_PARTNERISSUPPLYWITHOUTGAIN": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "The supply is made by an individual without gain",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS8"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_SUPPLIERISENTITLEDTOABN": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "The supplier is not entitled to an ABN",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS9"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_PAYMENTISINCOMEEXEMPTED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "The whole of the payment is exempt income.",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS10"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_SUPPLYISMADEASPRIVATEHOBBY": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "An activity done as a private recreational pursuit",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS11"
+          },
+          "@Analytics.dimension": true
+        },
+        "AU_SUPPLYMADEISOFDMSTCNATURE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "wholly of a private or domestic nature",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS12"
+          },
+          "@Analytics.dimension": true
+        },
+        "ISTOBEACCEPTEDATORIGIN": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Acceptance At Origin",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS13"
+          },
+          "@Analytics.dimension": true
+        },
+        "SUPLRTAXAUTHORITYACCOUNTNUMBER": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Account Number of Master Record of Tax Office Responsible",
+          "type": "cds.String",
+          "length": 10,
+          "@Analytics.dimension": true
+        },
+        "ALTERNATIVEPAYEEISALLOWED": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Indicator: Alternative Payee in Document Allowed?",
+          "type": "cds.String",
+          "length": 1,
+          "@ObjectModel.text.association": {
+            "=": "_HL_MD_XS14"
+          },
+          "@Analytics.dimension": true
+        },
+        "CA_CREATIONDATE": {
+          "@EndUserText.label": "Created on Date",
+          "type": "cds.Date"
+        },
+        "CA_SUPLRQLTYINPROCMTCERTFNVALI": {
+          "@EndUserText.label": "Certification Validity Date",
+          "type": "cds.Date"
+        },
+        "CA_BIRTHDATE": {
+          "@EndUserText.label": "Birth Date of the Person Subject to Withholding Tax",
+          "type": "cds.Date"
+        },
+        "DISTRICT": {
+          "@EndUserText.label": "District",
+          "type": "cds.String",
+          "length": 35
+        },
+        "PO_BOX": {
+          "@EndUserText.label": "PO Box",
+          "type": "cds.String",
+          "length": 10
+        },
+        "PO_BOX_POSTALCODE": {
+          "@EndUserText.label": "P.O. Box Postal Code",
+          "type": "cds.String",
+          "length": 10
+        },
+        "KTOKK": {
+          "@EndUserText.label": "Vendor account group",
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.text.association": {
+            "=": "_ZV_DWC_T0"
+          }
+        },
+        "AGENCYLOCATIONCODE": {
+          "@EndUserText.label": "Agency Location Code",
+          "type": "cds.String",
+          "length": 8
+        },
+        "_ZV_DWC_T0": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "KTOKK"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T0",
+                "KTOKK"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T077Y",
+          "@EndUserText.label": "Supplier Master Data to Account Group Names - Transaction Data"
+        },
+        "_ZV_DWC_T1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SUPPLIERACCOUNTGROUP"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T1",
+                "KTOKK"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T077Y",
+          "@EndUserText.label": "Supplier Master Data to Account Group Names - Transaction Data1"
+        },
+        "_ZV_DWC_CU": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "CUSTOMER"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_CU",
+                "CUSTOMER"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_CUST_TEXT",
+          "@EndUserText.label": "Supplier Master Data to Customer Master Data Text"
+        },
+        "_HL_MD_XS": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "POSTINGISBLOCKED"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space"
+        },
+        "_HL_MD_XS1": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "PURCHASINGISBLOCKED"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS1",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space1"
+        },
+        "_HL_MD_XS2": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ISONETIMEACCOUNT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS2",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space2"
+        },
+        "_ZV_DWC_T2": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "REGION"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T2",
+                "BLAND"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "COUNTRY"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T2",
+                "LAND1"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T005U",
+          "@EndUserText.label": "Supplier Master Data to Taxes: Region Key: Texts - Transaction Data"
+        },
+        "_ZV_DWC_T3": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "SUPPLIERLANGUAGE"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_ZV_DWC_T3",
+                "SPRAS"
+              ]
+            }
+          ],
+          "target": "MD_STG.ZV_DWC_T002T",
+          "@EndUserText.label": "Supplier Master Data to Language Key Texts - Transaction Data"
+        },
+        "_HL_MD_XS3": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "PAYMENTISBLOCKEDFORSUPPLIER"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS3",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space3"
+        },
+        "_HL_MD_XS4": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_PAYERISPAYINGTOCARRYONENT"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS4",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space4"
+        },
+        "_HL_MD_XS5": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_INDIVIDUALISUNDER18"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS5",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space5"
+        },
+        "_HL_MD_XS6": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_PAYMENTISEXCEEDING75"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS6",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space6"
+        },
+        "_HL_MD_XS7": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_PAYMENTISWHOLLYINPUTTAXED"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS7",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space7"
+        },
+        "_HL_MD_XS8": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_PARTNERISSUPPLYWITHOUTGAIN"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS8",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space8"
+        },
+        "_HL_MD_XS9": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_SUPPLIERISENTITLEDTOABN"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS9",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space9"
+        },
+        "_HL_MD_XS10": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_PAYMENTISINCOMEEXEMPTED"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS10",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space10"
+        },
+        "_HL_MD_XS11": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_SUPPLYISMADEASPRIVATEHOBBY"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS11",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space11"
+        },
+        "_HL_MD_XS12": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "AU_SUPPLYMADEISOFDMSTCNATURE"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS12",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space12"
+        },
+        "_HL_MD_XS13": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ISTOBEACCEPTEDATORIGIN"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS13",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space13"
+        },
+        "_HL_MD_XS14": {
+          "type": "cds.Association",
+          "on": [
+            {
+              "ref": [
+                "ALTERNATIVEPAYEEISALLOWED"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "_HL_MD_XS14",
+                "FLAG"
+              ]
+            }
+          ],
+          "target": "MD_STG.HL_MD_XS",
+          "@EndUserText.label": "Supplier Master Data to Texts for X/Space14"
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "ANALYTICAL_DIMENSION"
+        }
+      ],
+      "@EndUserText.label": "Supplier Master Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@cds.persistence.exists": true
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

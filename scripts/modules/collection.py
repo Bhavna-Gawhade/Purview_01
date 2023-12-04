@@ -23,7 +23,13 @@ import string
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    
 ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
 
 
@@ -128,26 +134,26 @@ def flatten_collections(data):
     return list(collections.values())
 
 
-def get_nested_collections():
+def get_nested_collections(client):
     """
     Retrieves a list of collections that are nested.
 
     Returns:
         list: A list of dictionaries representing the collections.
     """
-    generator = CLIENT.collections.list_collections()
+    generator = client.collections.list_collections()
     collections = nest_collections(generator)
     return collections
 
 
-def get_flattened_collections():
+def get_flattened_collections(client):
     """
     Retrieves a list of collections that is a flattened hierarchy.
 
     Returns:
         list: A list of dictionaries representing the collections.
     """
-    generator = CLIENT.collections.list_collections()
+    generator = client.collections.list_collections()
     collections = flatten_collections(generator)
     return collections
 
@@ -184,7 +190,7 @@ def create_unique_collection_name():
             return new_name
 
 
-def create_collection(friendly_name: str, parent_collection_name: str, description: str):
+def create_collection(client, friendly_name: str, parent_collection_name: str, description: str):
     """
     Creates or updates a collection with the specified details.
 
@@ -197,7 +203,7 @@ def create_collection(friendly_name: str, parent_collection_name: str, descripti
         dict: The result of creating or updating the collection.
     """
     name = create_unique_collection_name()
-    result = CLIENT.collections.create_or_update_collection(name, friendly_name, parent_collection_name, description)
+    result = client.collections.create_or_update_collection(name, friendly_name, parent_collection_name, description)
     return result
 
 
@@ -221,7 +227,7 @@ def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
     return new_dict
 
 
-def get_all_entities_in_collection(collection_name: str):
+def get_all_entities_in_collection(client, collection_name: str):
     """
     Retrieves all entities in the specified collection.
 
@@ -235,7 +241,7 @@ def get_all_entities_in_collection(collection_name: str):
     """
     json_str = '{"collectionId": "' + collection_name + '"}'
     json_obj = json.loads(json_str)
-    result = CLIENT.discovery.search_entities(query = collection_name, search_filter=json_obj)
+    result = client.discovery.search_entities(query = collection_name, search_filter=json_obj)
 
     all_entities_in_collection = []
     mapping = {"id": "guid"}
@@ -247,7 +253,7 @@ def get_all_entities_in_collection(collection_name: str):
     return all_entities_in_collection
 
 
-def delete_collection(collection_name: str):
+def delete_collection(client, collection_name: str):
     """
     Deletes a collection with the specified name.
 
@@ -258,7 +264,7 @@ def delete_collection(collection_name: str):
         Any: The result of the delete operation.
 
     """
-    result = CLIENT.collections.delete_collection(collection_name)
+    result = client.collections.delete_collection(collection_name)
     return result
 
 

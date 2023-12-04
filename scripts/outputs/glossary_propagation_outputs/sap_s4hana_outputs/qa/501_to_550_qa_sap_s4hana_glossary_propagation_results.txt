@@ -1,0 +1,207 @@
+Glossary Terms Propagated Across SAP S4HANA Assets
+Ran for Glossary Terms 501 to 550
+Ran on SAP S4HANA Tables and Views
+_____________________________________________________________
+
+Glossary Term Number: 501
+Assigned glossary term, Case Pack, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZCSPK
+
+Glossary Term Number: 502
+Assigned glossary term, Contact person Function, to 8 entities
+Unique column names that the glossary term was applied to:
+   PAFKT
+
+Glossary Term Number: 503
+No matches for glossary term, Customer Classification
+
+Glossary Term Number: 504
+Assigned glossary term, COT, to 8 entities
+Unique column names that the glossary term was applied to:
+   KATR6
+
+Glossary Term Number: 505
+No matches for glossary term, AFS Customer Group
+
+Glossary Term Number: 506
+Assigned glossary term, Customer Group, to 8 entities
+Unique column names that the glossary term was applied to:
+   KDGRP
+
+Glossary Term Number: 507
+No matches for glossary term, AFS Customer Number of Business Partner
+
+Glossary Term Number: 508
+Assigned glossary term, Customer Number of Business Partner, to 8 entities
+Unique column names that the glossary term was applied to:
+   KUNN2
+
+Glossary Term Number: 509
+Assigned glossary term, Customer Retail on Ticket, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZCRETOT
+
+Glossary Term Number: 510
+No matches for glossary term, AFS Express Train Station Express Station
+
+Glossary Term Number: 511
+Assigned glossary term, Express Train Station Express Station, to 8 entities
+Unique column names that the glossary term was applied to:
+   BAHNE
+
+Glossary Term Number: 512
+Assigned glossary term, First name, to 8 entities
+Unique column names that the glossary term was applied to:
+   NAMEV
+
+Glossary Term Number: 513
+No matches for glossary term, AFS First name
+
+Glossary Term Number: 514
+Assigned glossary term, Folded w Size strip, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZFOLDWS
+
+Glossary Term Number: 515
+No matches for glossary term, AFS Freight Terms
+
+Glossary Term Number: 516
+Assigned glossary term, Hanger, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZHANGER
+
+Glossary Term Number: 517
+No matches for glossary term, AFS Indicator: Record Payment History ?
+
+Glossary Term Number: 518
+Assigned glossary term, Indicator: Record Payment History ?, to 8 entities
+Unique column names that the glossary term was applied to:
+   XZVER
+
+Glossary Term Number: 519
+Assigned glossary term, Inv Output Type, to 8 entities
+Unique column names that the glossary term was applied to:
+   KVGR3
+
+Glossary Term Number: 520
+No matches for glossary term, AFS Inv Output Type
+
+Glossary Term Number: 521
+No matches for glossary term, AFS Invoice at DC
+
+Glossary Term Number: 522
+No matches for glossary term, Is Bankrupt?
+
+Glossary Term Number: 523
+No matches for glossary term, Is EDI Required?
+
+Glossary Term Number: 524
+No matches for glossary term, Is yearly Gross estimated value exceeds $600K?
+
+Glossary Term Number: 525
+No matches for glossary term, AFS Key of the Lockbox to Which the Customer Is to Pay
+
+Glossary Term Number: 526
+Assigned glossary term, Key of the Lockbox to Which the Customer Is to Pay, to 8 entities
+Unique column names that the glossary term was applied to:
+   LOCKB
+
+Glossary Term Number: 527
+No matches for glossary term, AFS Leg Div
+
+Glossary Term Number: 528
+Assigned glossary term, MSRP on Tickets, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZMSRPOT
+
+Glossary Term Number: 529
+Assigned glossary term, Master Invoice, to 8 entities
+Unique column names that the glossary term was applied to:
+   KATR1
+
+Glossary Term Number: 530
+No matches for glossary term, AFS Master Invoice
+
+Glossary Term Number: 531
+Assigned glossary term, Maximum Number of Partial Deliveries Allowed Per Item, to 8 entities
+Unique column names that the glossary term was applied to:
+   ANTLF
+
+Glossary Term Number: 532
+No matches for glossary term, AFS National Account Flag
+
+Glossary Term Number: 533
+No matches for glossary term, AFS Order Combination Indicator
+
+Glossary Term Number: 534
+Assigned glossary term, Order Combination Indicator, to 8 entities
+Unique column names that the glossary term was applied to:
+   KZAZU
+
+Glossary Term Number: 535
+Assigned glossary term, PSST Grouping Rule, to 8 entities
+Unique column names that the glossary term was applied to:
+   RFM_PSST_RULE
+
+Glossary Term Number: 536
+Assigned glossary term, Packing Slip, to 4 entities
+Unique column names that the glossary term was applied to:
+   ZZPKSLIP
+
+Glossary Term Number: 537
+Assigned glossary term, Parent Account, to 8 entities
+Unique column names that the glossary term was applied to:
+   KATR3
+
+Glossary Term Number: 538
+Assigned glossary term, Partial Delivery at Item Level, to 8 entities
+Unique column names that the glossary term was applied to:
+   KZTLF
+
+Glossary Term Number: 539
+No matches for glossary term, AFS Previous Master Record Number (AFS Number)
+
+Glossary Term Number: 540
+Assigned glossary term, Previous Master Record Number (AFS Number), to 8 entities
+Unique column names that the glossary term was applied to:
+   ALTKN
+
+Glossary Term Number: 541
+No matches for glossary term, AFS Price Group (Customer)
+
+Glossary Term Number: 542
+Assigned glossary term, Price Group (Customer), to 8 entities
+Unique column names that the glossary term was applied to:
+   KONDA
+
+Glossary Term Number: 543
+No matches for glossary term, AFS Price List Type
+
+Glossary Term Number: 544
+Assigned glossary term, Price List Type, to 8 entities
+Unique column names that the glossary term was applied to:
+   PLTYP
+
+Glossary Term Number: 545
+No matches for glossary term, AFS Pricing Procedure Assigned to this Customer
+
+Glossary Term Number: 546
+Assigned glossary term, Pricing Procedure Assigned to this Customer, to 8 entities
+Unique column names that the glossary term was applied to:
+   KALKS
+
+Glossary Term Number: 547
+No matches for glossary term, AFS Selection Rule for Payment Advices
+
+Glossary Term Number: 548
+Assigned glossary term, Selection Rule for Payment Advices, to 8 entities
+Unique column names that the glossary term was applied to:
+   SREGL
+
+Glossary Term Number: 549
+No matches for glossary term, Setting for Packing Materials in Documents
+
+Glossary Term Number: 550
+No matches for glossary term, AFS Shipping Conditions
+

@@ -1,0 +1,248 @@
+Glossary Terms Propagated Across SAP HANA Assets
+Ran for Glossary Terms 151 to 200
+Ran on SAP HANA Views and Tables
+_____________________________________________________________
+
+Glossary Term Number: 151
+Assigned glossary term, GPC Family, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZGPCFAMILY
+
+Glossary Term Number: 152
+Assigned glossary term, GPC Segment, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZGPCSEGMENT
+
+Glossary Term Number: 153
+Assigned glossary term, Gender, to 18 entities
+Unique column names that the glossary term was applied to:
+   ZZGENDER
+
+Glossary Term Number: 154
+Assigned glossary term, Gender Department, to 13 entities
+Unique column names that the glossary term was applied to:
+   ZZGENDERDEPT
+
+Glossary Term Number: 155
+Assigned glossary term, Gender Group, to 14 entities
+Unique column names that the glossary term was applied to:
+   ZZGENDERGROUP
+
+Glossary Term Number: 156
+Assigned glossary term, General Item category group, to 6 entities
+Unique column names that the glossary term was applied to:
+   MTPOS_MARA
+
+Glossary Term Number: 157
+Assigned glossary term, Goods Receipt Processing Time in Days, to 10 entities
+Unique column names that the glossary term was applied to:
+   WEBAZ
+
+Glossary Term Number: 158
+Assigned glossary term, Gross weight, to 106 entities
+Unique column names that the glossary term was applied to:
+   BRGEW
+
+Glossary Term Number: 159
+Assigned glossary term, Growth Team, to 9 entities
+Unique column names that the glossary term was applied to:
+   ZZGROWTHTEAM
+
+Glossary Term Number: 160
+Assigned glossary term, Height, to 15 entities
+Unique column names that the glossary term was applied to:
+   HOEHE
+
+Glossary Term Number: 161
+No matches for glossary term, Imperfect Selling SKU
+Glossary Term Number: 162
+Assigned glossary term, Ind: Flag material for deletion at distribution chain level, to 17 entities
+Unique column names that the glossary term was applied to:
+   LVORM
+
+Glossary Term Number: 163
+Assigned glossary term, Indicator for relevancy to costing, to 5 entities
+Unique column names that the glossary term was applied to:
+   SANKA
+
+Glossary Term Number: 164
+Assigned glossary term, Indicator: "automatic purchase order allowed", to 4 entities
+Unique column names that the glossary term was applied to:
+   KAUTB
+
+Glossary Term Number: 165
+Assigned glossary term, Indicator: Critical part, to 4 entities
+Unique column names that the glossary term was applied to:
+   KZKRI
+
+Glossary Term Number: 166
+Assigned glossary term, Indicator: Latest Released BOM Version, to 5 entities
+Unique column names that the glossary term was applied to:
+   VERSNLASTIND
+
+Glossary Term Number: 167
+Assigned glossary term, Indicator: Use of Season, to 6 entities
+Unique column names that the glossary term was applied to:
+   FSH_SEALV
+
+Glossary Term Number: 168
+Assigned glossary term, Indicator: item relevant to engineering, to 5 entities
+Unique column names that the glossary term was applied to:
+   SANKO
+
+Glossary Term Number: 169
+Assigned glossary term, Indicator: recursiveness allowed, to 5 entities
+Unique column names that the glossary term was applied to:
+   REKRS
+
+Glossary Term Number: 170
+Assigned glossary term, Industry sector, to 6 entities
+Unique column names that the glossary term was applied to:
+   MBRSH
+
+Glossary Term Number: 171
+Assigned glossary term, Inherited node number of BOM item, to 5 entities
+Unique column names that the glossary term was applied to:
+   STVKN
+
+Glossary Term Number: 172
+Assigned glossary term, Inhouse production, to 4 entities
+Unique column names that the glossary term was applied to:
+   DZEIT
+
+Glossary Term Number: 173
+Assigned glossary term, Internal counter, to 12 entities
+Unique column names that the glossary term was applied to:
+   STPOZ
+   STKOZ
+   STASZ
+
+Glossary Term Number: 174
+Assigned glossary term, International Article Number (GTIN/EAN/UPC), to 134 entities
+Unique column names that the glossary term was applied to:
+   EAN11
+
+Glossary Term Number: 175
+Assigned glossary term, Inventory Capacity Group, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZINVCAPACITYGROUP
+
+Glossary Term Number: 176
+Assigned glossary term, Inventory Group, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZINVGROUP
+
+Glossary Term Number: 177
+No matches for glossary term, Irregular Selling SKU
+Glossary Term Number: 178
+Assigned glossary term, Issue Storage Location, to 4 entities
+Unique column names that the glossary term was applied to:
+   LGPRO
+
+Glossary Term Number: 179
+Assigned glossary term, Issuing Plant, to 8 entities
+Unique column names that the glossary term was applied to:
+   PSWRK
+
+Glossary Term Number: 180
+Assigned glossary term, Item category (bill of material), to 8 entities
+Unique column names that the glossary term was applied to:
+   POSTP
+
+Glossary Term Number: 181
+Assigned glossary term, Item category group from material master, to 13 entities
+Unique column names that the glossary term was applied to:
+   MTPOS
+
+Glossary Term Number: 182
+Assigned glossary term, Item group, to 5 entities
+Unique column names that the glossary term was applied to:
+   IDPOS
+
+Glossary Term Number: 183
+Assigned glossary term, LCA Classification, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZLCA
+
+Glossary Term Number: 184
+Assigned glossary term, LRP Style, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZLRPSTYLE
+
+Glossary Term Number: 185
+Assigned glossary term, Length, to 15 entities
+Unique column names that the glossary term was applied to:
+   LAENG
+
+Glossary Term Number: 186
+Assigned glossary term, Listing functions (assortments) are active, to 9 entities
+Unique column names that the glossary term was applied to:
+   LSTAK
+
+Glossary Term Number: 187
+Assigned glossary term, Listing procedure for distr center assortment categories, to 9 entities
+Unique column names that the glossary term was applied to:
+   LSTVZ
+
+Glossary Term Number: 188
+Assigned glossary term, Loading Group, to 4 entities
+Unique column names that the glossary term was applied to:
+   LADGR
+
+Glossary Term Number: 189
+Assigned glossary term, Lot Size for Product Costing, to 4 entities
+Unique column names that the glossary term was applied to:
+   LOSGR
+
+Glossary Term Number: 190
+Assigned glossary term, MERCHANDISING RESPONSIBLE, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZMERCHRESP
+
+Glossary Term Number: 191
+Assigned glossary term, MRP Controller (Materials Planner), to 8 entities
+Unique column names that the glossary term was applied to:
+   DISPO
+
+Glossary Term Number: 192
+Assigned glossary term, MRP Type, to 4 entities
+Unique column names that the glossary term was applied to:
+   DISMM
+
+Glossary Term Number: 193
+No matches for glossary term, Manufactured / Sourced
+Glossary Term Number: 194
+Assigned glossary term, Marketing Responsibility, to 8 entities
+Unique column names that the glossary term was applied to:
+   ZZMARKETINGRESP
+
+Glossary Term Number: 195
+Assigned glossary term, Master Garment Style, to 6 entities
+Unique column names that the glossary term was applied to:
+   ZZMASTERGAR
+
+Glossary Term Number: 196
+Assigned glossary term, Material Category, to 21 entities
+Unique column names that the glossary term was applied to:
+   ATTYP
+
+Glossary Term Number: 197
+Assigned glossary term, Material Description (Short Text), to 27 entities
+Unique column names that the glossary term was applied to:
+   MAKTX
+
+Glossary Term Number: 198
+Assigned glossary term, Material Group 1, to 88 entities
+Unique column names that the glossary term was applied to:
+   MVGR1
+
+Glossary Term Number: 199
+Assigned glossary term, Material Group 2, to 92 entities
+Unique column names that the glossary term was applied to:
+   MVGR2
+
+Glossary Term Number: 200
+Assigned glossary term, Material Group 3, to 88 entities
+Unique column names that the glossary term was applied to:
+   MVGR3
+

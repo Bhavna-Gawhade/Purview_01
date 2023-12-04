@@ -23,11 +23,19 @@ import pandas as pd
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    
 
 # Functions
 # ---------------
+
+def incorporate_ignore_words():
+    print()
 
 def handle_word(word: str, mappings_dict: dict):
     """
@@ -91,7 +99,7 @@ def get_regex_dict(classification: dict, mappings_dict: dict):
     return regex_dict
 
 
-def generate_all_regex(excel_file_path: str, classification_sheet_name: str, mappings_sheet_name: str):
+def generate_all_regex(excel_file_path: str, classification_sheet_name: str, mappings_sheet_name: str, ignore_words_sheet_name: str):
     """
     Generates a list of dictionaries containing regex information for all classifications.
 
@@ -106,6 +114,7 @@ def generate_all_regex(excel_file_path: str, classification_sheet_name: str, map
     all_regex_dicts = []
     classifications = process_classifications_sheet(excel_file_path, classification_sheet_name)
     mappings = process_mappings_sheet(excel_file_path, mappings_sheet_name)
+    ignore_words = process_ignore_words_sheet(excel_file_path, ignore_words_sheet_name)
     mappings_dict = {mapping['word']: mapping['abbreviations'] for mapping in mappings}
 
     for c in classifications:

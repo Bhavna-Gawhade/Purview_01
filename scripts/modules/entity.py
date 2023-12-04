@@ -4,11 +4,12 @@
 # Function Imports
 # ---------------
 from utils import get_credentials, create_purview_client
+from modules.glossary_propagation.shared_glossary_functions import *
 
 
 # Package Imports
 # ---------------
-from pyapacheatlas.core.typedef import EntityTypeDef
+from pyapacheatlas.core.typedef import EntityTypeDef, AtlasAttributeDef
 from pyapacheatlas.core import AtlasEntity, AtlasProcess, PurviewClient
 from pathlib import Path
 
@@ -21,8 +22,13 @@ from pathlib import Path
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    
 SYNAPSE_STORED_PROCEDURE_DEF = EntityTypeDef(
   name = "synapse_stored_procedure",
   superTypes = ["Process"]
@@ -48,17 +54,113 @@ SAS_TYPEDEF = EntityTypeDef(
   superTypes = ["DataSet"]
 )
 
+DATA_WAREHOUSE_LOAD_ROUTINE_DEF = EntityTypeDef(
+  name = "dw_routine",
+  superTypes = ["Process"]
+)
+
+DATA_WAREHOUSE_VIEW_CREATION_DEF = EntityTypeDef(
+  name = "dw_view_creation",
+  superTypes = ["Process"]
+)
+
+DSP_CONNECTION_DEF = EntityTypeDef(
+  name = "dsp_connection",
+  superTypes = ["Process"]
+)
+
+SHAREPOINT_ENTITY_DEF = EntityTypeDef(
+  name = "SharePoint Entity",
+  superTypes = ["DataSet"]
+)
+
+SHAREPOINT_TO_PBI_DEF = EntityTypeDef(
+  name = "sharepoint_to_pbi",
+  superTypes = ["Process"]
+)
+  
+
+# NEW below. As of 9/25/23.
+
+# NEEDS TO BE PROCESS NOT DATASET
+
+# -------------------------------------------------------------------------------
+# Connects Synapse (Azure SQL DBs) to Power BI datasets
+SQL_DATABASE_EXTRACT_ATTRIBUTES = AtlasAttributeDef(
+    displayName = "SQL Database Extract",
+    description = "This type is used to connect Power BI datasets to Synapse.",
+    name = "sql_database_extract"
+)
+    
+SQL_DATABASE_EXTRACT_TYPEDEF = EntityTypeDef(
+  name = "sql_database_extract",
+  superTypes = ["Process"],
+  attributeDefs = [SQL_DATABASE_EXTRACT_ATTRIBUTES]
+)
+
+# -------------------------------------------------------------------------------
+# Connects Power BI tables to Power BI datasets
+
+POWERBI_TABLE_TO_DATASET_ATTRIBUTES = AtlasAttributeDef(
+    displayName = "PBI Table to PBI Dataset Connection",
+    description = "This type is used to connect PowerBI tables to PowerBI datasets.",
+    name = "PBI_Table_to_PBI_Dataset_Connection"
+)
+    
+POWERBI_TABLE_TO_DATASET_TYPEDEF = EntityTypeDef(
+  name = "PBI_Table_to_PBI_Dataset_Connection",
+  superTypes = ["Process"],
+  attributeDefs = [POWERBI_TABLE_TO_DATASET_ATTRIBUTES]
+)
+
+# -------------------------------------------------------------------------------
+# Connects Azure SQL DBs to Power BI tables
+
+SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES = AtlasAttributeDef(
+    displayName = "SQL to PBI Table Connection",
+    description = "This type is used to connect Azure SQL DBs to PowerBI tables.",
+    name = "SQL_to_PBI_Table_Connection"
+)
+    
+SQL_TO_PBI_TABLE_CONNECTION_TYPEDEF = EntityTypeDef(
+  name = "SQL_to_PBI_Table_Connection",
+  superTypes = ["Process"],
+  attributeDefs = [SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES]
+)
+
+
+# -------------------------------------------------------------------------------
+# Created Type for Power BI tables
+
+# ERROR told a Microsoft Built-In Type for "powerbi_table"
+POWER_BI_TABLE_TYPEDEF = EntityTypeDef(
+  name = "Power_BI_Table",
+  superTypes = ["DataSet"]
+)
+
+####
+
+PKMS_RECORD_DEF = EntityTypeDef(
+  name = "PKMS_Record",
+  superTypes = ["DataSet"]
+)
+
+PKMS_COLUMN_DEF = EntityTypeDef(
+  name = "PKMS_Column",
+  superTypes = ["Column"]
+)
+
 
 # Functions
 # ---------------
 
-def create_entity(name: str, type_name: str, qualified_name: str):
+def create_entity(client, name: str, type_name: str, qualified_name: str):
     atlas_entity = AtlasEntity(name = name, typeName = type_name, qualified_name = qualified_name)
-    result = CLIENT.upload_entities(atlas_entity)
+    result = client.upload_entities(atlas_entity)
     return result
 
 
-def get_entity_from_qualified_name(qualified_name):
+def get_entity_from_qualified_name(qualified_name, client):
     """
     Retrieves an entity from the catalog based on the provided qualified name.
 
@@ -68,7 +170,8 @@ def get_entity_from_qualified_name(qualified_name):
     Returns:
         dict: The entity found based on the qualified name.
     """
-    entities_found = CLIENT.discovery.search_entities(query=qualified_name)
+    entities_found = client.discovery.search_entities(query=qualified_name)
+    print(entities_found)
 
     # Extract entities from the generator
     entities = []
@@ -90,8 +193,8 @@ def get_entity_from_qualified_name(qualified_name):
     return entity
 
 
-def get_entity_typename_from_qualified_name(qualified_name):
-    entities_found = CLIENT.discovery.search_entities(query=qualified_name)
+def get_entity_typename_from_qualified_name(client, qualified_name):
+    entities_found = client.discovery.search_entities(query=qualified_name)
     entities = []
     for entity in entities_found:
         if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
@@ -106,8 +209,8 @@ def get_entity_typename_from_qualified_name(qualified_name):
     return entity_typename
 
 
-def get_all_typedefs():
-    all_typedefs = CLIENT.get_all_typedefs()
+def get_all_typedefs(client):
+    all_typedefs = client.get_all_typedefs()
     entity_defs = all_typedefs["entityDefs"]
     all_type_names = []
 
@@ -120,7 +223,7 @@ def get_all_typedefs():
     return unique_type_names
 
 
-def upload_custom_type_def(type_def: EntityTypeDef):
+def upload_custom_type_def(client, type_def: EntityTypeDef):
     """
     Uploads a custom entity type definition to the catalog.
 
@@ -130,16 +233,443 @@ def upload_custom_type_def(type_def: EntityTypeDef):
     Returns:
         dict: The result of the upload operation.
     """
-    result = CLIENT.upload_typedefs(
+    result = client.upload_typedefs(
         entityDefs=[type_def],
         force_update=True
     )
     return result
 
 
-def search_by_entity_type(entity_type_name):
-    result = CLIENT.discovery.browse(entityType=entity_type_name)
+def search_by_entity_type(client, entity_type_name):
+    result = client.discovery.browse(entityType=entity_type_name)
     print(result)
+
+
+def delete_by_entity_type(client, entity_type_name):
+    entities = client.discovery.browse(entity_type_name).get("value")
+    guids = []
+    for e in entities:
+        guid = e.get("id")
+        guids.append(guid)
+        delete_guid = client.delete_entity(guid)
+        print(delete_guid)
+        print("Above, deleted GUID: " + guid + "\n\n")
+
+
+def get_guids_of_entities_with_specific_type(client, entity_type):
+    browse_result = client.discovery.browse(entityType=entity_type)
+    # utilize offset to skip the first results, until you reach the count number
+    # result of browse is a dict of @search.count and value
+    
+    # the "value" gives results in increments of 100
+    total_search_count = browse_result.get("@search.count")
+    count = 0
+    list_of_guids = []
+    while count < total_search_count:
+        browse_result = client.discovery.browse(entityType = entity_type, offset = count)
+        entities = browse_result.get("value")
+        count += len(entities)
+        
+        for value_dict in entities:
+            list_of_guids.append(value_dict.get("id"))
+
+        #filtered_list = [e for e in entities if e.get("entityType") == entity_type]
+        #list_of_guids.extend(filtered_list)
+        """for value_dict in entities:
+            if value_dict.get("entityType") == entity_type:
+                list_of_guids.append(value_dict.get("id"))"""
+
+    return list_of_guids
+
+
+def specific_client_get_guids_of_entities_with_specific_type(client, entity_type):
+    browse_result = client.discovery.browse(entityType=entity_type)
+
+    # utilize offset to skip the first results, until you reach the count number
+    # result of browse is a dict of @search.count and value
+    
+    # the "value" gives results in increments of 100
+    total_search_count = browse_result.get("@search.count")
+    print("search count: " + str(total_search_count))
+
+    count = 0
+    list_of_guids = []
+    while count < total_search_count:
+        browse_result = client.discovery.browse(entityType = entity_type, offset = count)
+        entities = browse_result.get("value")
+        count += len(entities)
+        print(count)
+
+        for value_dict in entities:
+            list_of_guids.append(value_dict.get("id"))
+
+    return list_of_guids
+
+
+def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_start_inclusive, subset_end_exclusive):
+    subset_list_of_guids = list_of_guids[subset_start_inclusive : subset_end_exclusive]
+    entity_details = []
+    count = 0
+    for guid in subset_list_of_guids:
+        print(count)
+        pulled = client.get_entity(guid)
+        entity = pulled.get("entities")[0]
+        entry = {
+            "guid": guid, 
+            "entity": entity, # just use the first entry
+            "columns": entity.get("relationshipAttributes").get("columns")
+        }
+        entity_details.append(entry)
+        count += 1
+
+    return entity_details
+
+#def get_all_datalake_entities_with_type():
+    #print()
+
+
+def get_columns_from_datalake(client, tabular_schema_guid):
+    tabular_schema_details = client.get_entity(tabular_schema_guid).get("entities")[0]
+    return tabular_schema_details.get("relationshipAttributes").get("columns")
+            
+
+def get_all_entities_with_type(client, entity_type):
+    list_of_guids = specific_client_get_guids_of_entities_with_specific_type(client, entity_type)
+    print("Pulled all guids for type: " + entity_type)
+    print("Now pulling the entity details for each guid")
+
+    all_entity_details = []
+    count = 0
+    for guid in list_of_guids:
+        count = count + 1
+        print(count)
+
+        pulled = client.get_entity(guid)
+        entity = pulled.get("entities")[0]
+        entry = {
+            "guid": guid, 
+            "entity": entity, # just use the first entry
+            "columns": entity.get("relationshipAttributes").get("columns")
+        }
+        if entity_type == "azure_datalake_gen2_resource_set" and "tabular_schema" in entity.get("relationshipAttributes"):
+            resource_set_tabular_schema_guid = entity.get("relationshipAttributes").get("tabular_schema").get("guid")
+            entry["columns"] = get_columns_from_datalake(client, resource_set_tabular_schema_guid)
+            print(entry["columns"])
+        all_entity_details.append(entry)
+
+    all_entities_with_type = {
+        "entity_type": entity_type,
+        "info_pulled_on": datetime.now().strftime("%m/%d/%Y %H:%M"),
+        "all_entity_details" : all_entity_details
+    }
+    return all_entities_with_type
+
+
+def OLD_pull_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+    entity_type = "powerbi_dataset"
+    powerbi_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(powerbi_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")
+    
+    entity_type = "azure_sql_dw_table"
+    azure_sql_dw_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)   
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_sql_dw_table_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "data_sources": {
+            "powerbi": {
+                "powerbi_dataset": powerbi_dataset_all_entities_with_type
+            },
+            "azure_sql_dw": {
+                "azure_sql_dw_table" : azure_sql_dw_table_all_entities_with_type
+            }
+        }
+    }
+    
+    output_filename = purview_account_short_name + "_pulled_entities.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
+
+def OLD_pull_prod_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+    entity_type = "powerbi_dataset"
+    powerbi_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(powerbi_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "azure_sql_dw_table"
+    azure_sql_dw_table_all_entities_with_type = get_all_entities_with_type(client, entity_type) 
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_sql_dw_table_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "azure_datalake_gen2_resource_set"
+    azure_datalake_gen2_resource_set_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_datalake_gen2_resource_set_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "data_sources": {
+            "powerbi": {
+                "powerbi_dataset": powerbi_dataset_all_entities_with_type
+            },
+            "azure_sql_dw": {
+                "azure_sql_dw_table" : azure_sql_dw_table_all_entities_with_type
+            },
+            "azure_datalake_gen2": {
+                "azure_datalake_gen2_resource_set": azure_datalake_gen2_resource_set_all_entities_with_type
+            }
+        }
+    }
+    
+    output_filename = purview_account_short_name + "_pulled_entities.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
+
+
+
+def pull_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+    entity_type = "powerbi_dataset"
+    powerbi_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(powerbi_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "azure_sql_dw_table"
+    azure_sql_dw_table_all_entities_with_type = get_all_entities_with_type(client, entity_type) 
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_sql_dw_table_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "sap_hana_view"
+    sap_hana_view_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_hana_view_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "sap_hana_table"
+    sap_hana_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_hana_table_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "sap_s4hana_view"
+    sap_s4hana_view_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_s4hana_view_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+
+    entity_type = "sap_s4hana_table"
+    sap_s4hana_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_s4hana_table_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    entity_type = "azure_datalake_gen2_resource_set"
+    azure_datalake_gen2_resource_set_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_datalake_gen2_resource_set_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "data_sources": {
+            "powerbi": {
+                "powerbi_dataset": powerbi_dataset_all_entities_with_type
+            },
+            "azure_sql_dw": {
+                "azure_sql_dw_table" : azure_sql_dw_table_all_entities_with_type
+            },
+            "sap_hana": {
+                "sap_hana_view": sap_hana_view_all_entities_with_type,
+                "sap_hana_table": sap_hana_table_all_entities_with_type
+            },
+            "sap_s4hana": {
+                "sap_s4hana_view": sap_s4hana_view_all_entities_with_type,
+                "sap_s4hana_table": sap_s4hana_table_all_entities_with_type,
+            },
+            "azure_datalake_gen2": {
+                "azure_datalake_gen2_resource_set": azure_datalake_gen2_resource_set_all_entities_with_type
+            }
+        }
+    }
+    
+    output_filename = purview_account_short_name + "_pulled_entities.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
+
+
+def pull_qa_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+    entity_type = "powerbi_dataset"
+    powerbi_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(powerbi_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "azure_sql_dw_table"
+    azure_sql_dw_table_all_entities_with_type = get_all_entities_with_type(client, entity_type) 
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_sql_dw_table_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "sap_hana_view"
+    sap_hana_view_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_hana_view_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "sap_s4hana_view"
+    sap_s4hana_view_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_s4hana_view_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+
+    entity_type = "sap_s4hana_table"
+    sap_s4hana_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sap_s4hana_table_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    entity_type = "azure_datalake_gen2_resource_set"
+    azure_datalake_gen2_resource_set_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_datalake_gen2_resource_set_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "data_sources": {
+            "powerbi": {
+                "powerbi_dataset": powerbi_dataset_all_entities_with_type
+            },
+            "azure_sql_dw": {
+                "azure_sql_dw_table" : azure_sql_dw_table_all_entities_with_type
+            },
+            "sap_hana": {
+                "sap_hana_view": sap_hana_view_all_entities_with_type
+            },
+            "sap_s4hana": {
+                "sap_s4hana_view": sap_s4hana_view_all_entities_with_type,
+                "sap_s4hana_table": sap_s4hana_table_all_entities_with_type,
+            },
+            "azure_datalake_gen2": {
+                "azure_datalake_gen2_resource_set": azure_datalake_gen2_resource_set_all_entities_with_type
+            }
+        }
+    }
+    
+    output_filename = purview_account_short_name + "_pulled_entities.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
+
+
+def pull_qa_datalake_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+
+    entity_type = "azure_datalake_gen2_resource_set"
+    azure_datalake_gen2_resource_set_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(azure_datalake_gen2_resource_set_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "data_sources": {
+            "azure_datalake_gen2": {
+                "azure_datalake_gen2_resource_set": azure_datalake_gen2_resource_set_all_entities_with_type
+            }
+        }
+    }
+    
+    output_filename = "datalake_only_" + purview_account_short_name + "_pulled_entities.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
+
+
+def upload_custom_type_def_with_specific_client(client, type_def: EntityTypeDef):
+    result = client.upload_typedefs(
+        entityDefs=[type_def],
+        force_update=True
+    )
+    return result
+
+
+def get_all_entities_nested_from_qualified_name(client, qualified_name):
+    entities_found = client.discovery.search_entities(query=qualified_name)
+
+    # Extract entities from the generator
+    entities = []
+    for entity in entities_found:
+        entities.append(entity)
+
+    if len(entities) == 0:
+        raise ValueError(f"No entities were found with this qualified name: {qualified_name}")
+
+    return entities
+
+
+def pull_lineage_connections_from_purview(purview_account_short_name, purview_account_full_name, client):
+    entity_type = "dsp_connection"
+    dsp_connection_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(dsp_connection_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "dw_routine"
+    dw_routine_all_entities_with_type = get_all_entities_with_type(client, entity_type) 
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(dw_routine_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "dw_view_creation"
+    dw_view_creation_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(dw_view_creation_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "ingestion_framework"
+    ingestion_framework_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(ingestion_framework_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+    
+    entity_type = "PBI_Table_to_PBI_Dataset_Connection"
+    pbi_table_to_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(pbi_table_to_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")   
+
+    entity_type = "sql_database_source"
+    sql_database_source_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sql_database_source_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    entity_type = "SQL_to_PBI_Table_Connection"
+    sql_to_pbi_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sql_to_pbi_table_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    entity_type = "sharepoint_to_pbi"
+    sharepoint_to_pbi_all_entities_with_type = get_all_entities_with_type(client, entity_type)
+    print("Successfully pulled all: " + entity_type + " assets")
+    print(str(len(sharepoint_to_pbi_all_entities_with_type)) + " " + entity_type + " assets pulled") 
+
+    pulled_entities = {
+        "purview_account": purview_account_full_name,
+        "lineage_connections": {
+            "dsp_connection": dsp_connection_all_entities_with_type,
+            "dw_routine": dw_routine_all_entities_with_type,
+            "dw_view_creation": dw_view_creation_all_entities_with_type,
+            "ingestion_framework": ingestion_framework_all_entities_with_type,
+            "PBI_Table_to_PBI_Dataset_Connection": pbi_table_to_dataset_all_entities_with_type,
+            "sql_database_source": sql_database_source_all_entities_with_type,
+            "SQL_to_PBI_Table_Connection": sql_to_pbi_table_all_entities_with_type,
+            "sharepoint_to_pbi": sharepoint_to_pbi_all_entities_with_type
+        }
+    }
+    
+    output_filename = purview_account_short_name + "_pulled_lineage_connections.json"
+    with open(output_filename, "w", encoding="utf-8") as json_file:
+        json.dump(pulled_entities, json_file, indent=3)
+    print(f'Data has been written to "{output_filename}" with the desired formatting.')
+
+    return pulled_entities
 
 
 # Main Processing

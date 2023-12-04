@@ -1,0 +1,985 @@
+{
+  "definitions": {
+    "IL_OTC_BILLING_DUELIST_01": {
+      "kind": "entity",
+      "elements": {
+        "FKTYP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Billing Category",
+          "type": "cds.String",
+          "length": 1,
+          "key": true,
+          "notNull": true
+        },
+        "VKORG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "FKDAT": {
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Billing Date",
+          "type": "cds.String",
+          "length": 8,
+          "key": true,
+          "notNull": true
+        },
+        "KUNNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sold-To Party",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "FKART": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Billing Type",
+          "type": "cds.String",
+          "length": 4,
+          "key": true,
+          "notNull": true
+        },
+        "LLAND": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Destination Country/Region",
+          "type": "cds.String",
+          "length": 3,
+          "key": true,
+          "notNull": true
+        },
+        "VBELN": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales and Distribution Document Number",
+          "type": "cds.String",
+          "length": 10,
+          "key": true,
+          "notNull": true
+        },
+        "VBTYP": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "SD Document Category",
+          "type": "cds.String",
+          "length": 4
+        },
+        "ADRNR": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Address number of the sold-to party",
+          "type": "cds.String",
+          "length": 10
+        },
+        "SORTKRI": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sort Criterion",
+          "type": "cds.String",
+          "length": 20
+        },
+        "FAKSK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Billing Block in SD Document",
+          "type": "cds.String",
+          "length": 2
+        },
+        "VTWEG": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Distribution Channel",
+          "type": "cds.String",
+          "length": 2
+        },
+        "SPART": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Division",
+          "type": "cds.String",
+          "length": 2
+        },
+        "VSTEL": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Shipping Point / Receiving Point",
+          "type": "cds.String",
+          "length": 4
+        },
+        "PDSTK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "POD Status on Header Level",
+          "type": "cds.String",
+          "length": 1
+        },
+        "NETWR": {
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Net Value in Document Currency",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal"
+        },
+        "WAERK": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "SD document currency",
+          "type": "cds.String",
+          "length": 5
+        },
+        "BDR_REF": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Source document on which a billing document request is based",
+          "type": "cds.String",
+          "length": 10
+        },
+        "BDR_REF_LOGSYS": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Logical system containing source document of BDR",
+          "type": "cds.String",
+          "length": 10
+        },
+        "DRAFT_TYPE": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Draft mode",
+          "type": "cds.String",
+          "length": 1
+        },
+        "DBD_REF": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Draft Billing Document Reference",
+          "type": "cds.String",
+          "length": 10
+        },
+        "VBART": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Sales and Distribution Document Type",
+          "type": "cds.String",
+          "length": 4
+        },
+        "SOLUTION_ORDER_ID": {
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "@EndUserText.label": "Solution Order",
+          "type": "cds.String",
+          "length": 10
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "ZV_DWC_VKDFS"
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "FKTYP"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "VKORG"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "FKDAT"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "KUNNR"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "FKART"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "LLAND"
+              ]
+            },
+            {
+              "key": true,
+              "ref": [
+                "VBELN"
+              ]
+            },
+            {
+              "ref": [
+                "VBTYP"
+              ]
+            },
+            {
+              "ref": [
+                "ADRNR"
+              ]
+            },
+            {
+              "ref": [
+                "SORTKRI"
+              ]
+            },
+            {
+              "ref": [
+                "FAKSK"
+              ]
+            },
+            {
+              "ref": [
+                "VTWEG"
+              ]
+            },
+            {
+              "ref": [
+                "SPART"
+              ]
+            },
+            {
+              "ref": [
+                "VSTEL"
+              ]
+            },
+            {
+              "ref": [
+                "PDSTK"
+              ]
+            },
+            {
+              "ref": [
+                "NETWR"
+              ]
+            },
+            {
+              "ref": [
+                "WAERK"
+              ]
+            },
+            {
+              "ref": [
+                "BDR_REF"
+              ]
+            },
+            {
+              "ref": [
+                "BDR_REF_LOGSYS"
+              ]
+            },
+            {
+              "ref": [
+                "DRAFT_TYPE"
+              ]
+            },
+            {
+              "ref": [
+                "DBD_REF"
+              ]
+            },
+            {
+              "ref": [
+                "VBART"
+              ]
+            },
+            {
+              "ref": [
+                "SOLUTION_ORDER_ID"
+              ]
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "SD Billing Initiator - IL",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.consumption.external": true,
+      "@DataWarehouse.querybuilder.model": "{\"contents\":{\"65e74c42-d91e-415e-b8b3-5f648d2875c6\":{\"classDefinition\":\"sap.cdw.querybuilder.Model\",\"name\":\"IL_OTC_BILLING_DUELIST_01\",\"label\":\"SD Billing Initiator - IL\",\"modificationDate\":1665502791100,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"output\":\"6b768f43-2d33-44e7-b148-760ce8d3651b\",\"nodes\":{\"6b768f43-2d33-44e7-b148-760ce8d3651b\":{\"name\":\"IL_OTC_BILLING_DUELIST_01\"},\"54f6d1d0-3358-4d21-b761-64fff62cf107\":{\"name\":\"ZV_DWC_VKDFS\"}},\"diagrams\":{\"f1350c94-5525-4079-a437-b81bc3449018\":{}}},\"6b768f43-2d33-44e7-b148-760ce8d3651b\":{\"classDefinition\":\"sap.cdw.querybuilder.Output\",\"name\":\"IL_OTC_BILLING_DUELIST_01\",\"type\":\"graphicView\",\"isPinToMemoryEnabled\":false,\"modificationDate\":1665502791100,\"deploymentDate\":0,\"#objectStatus\":\"0\",\"elements\":{\"997382a6-0bb3-478a-8405-741bd9193b47\":{\"name\":\"FKTYP\"},\"d07e33b2-4225-401d-a9fd-cc650f15a046\":{\"name\":\"VKORG\"},\"6e42fc7c-4683-4732-9725-d4916e4f0b37\":{\"name\":\"FKDAT\"},\"235acd64-c8b5-44e3-a52a-9826d40abc42\":{\"name\":\"KUNNR\"},\"ca90ec33-aec1-4b02-a177-3b4c9086c3c2\":{\"name\":\"FKART\"},\"3497505a-10f7-4649-b484-d1cb2d62bfcf\":{\"name\":\"LLAND\"},\"c6102f45-888a-4a2b-983f-cc0d42b66d7d\":{\"name\":\"VBELN\"},\"9e1e3b1c-f300-4814-a5b9-df341c85aeef\":{\"name\":\"VBTYP\"},\"7ea5cfee-a5e5-4199-b2e0-5b722c0d5f49\":{\"name\":\"ADRNR\"},\"376afe9d-1b57-4802-b857-5d384fa4f82f\":{\"name\":\"SORTKRI\"},\"967bdb98-3dfa-47d0-bedc-10d106dc5716\":{\"name\":\"FAKSK\"},\"cc6f38fd-2232-4609-b61e-40a423079656\":{\"name\":\"VTWEG\"},\"1eded0bb-0f66-4cb2-9e9a-3b516570f098\":{\"name\":\"SPART\"},\"d7396690-5efa-4687-82e0-47cc178a43a0\":{\"name\":\"VSTEL\"},\"d401e3f8-febf-45f5-9700-382a9403cf64\":{\"name\":\"PDSTK\"},\"c94cf878-67dc-43fe-bffe-ae737a9e95cd\":{\"name\":\"NETWR\"},\"da421dfe-57bf-46bb-9c5b-bd42949893e5\":{\"name\":\"WAERK\"},\"9343bf6b-afe1-4bdb-98d9-960e991175fb\":{\"name\":\"BDR_REF\"},\"fbe2716b-d174-484f-aaa9-8207a975f40c\":{\"name\":\"BDR_REF_LOGSYS\"},\"532c67a7-937f-49b6-bae3-0d9621254f1a\":{\"name\":\"DRAFT_TYPE\"},\"fdf9919c-4f60-42f5-b6a5-fff1eeb2c354\":{\"name\":\"DBD_REF\"},\"c7b541e8-7abf-428f-8e53-93ceb95edab2\":{\"name\":\"VBART\"},\"aacfe39e-78b1-4c0f-801b-a426b8b25a44\":{\"name\":\"SOLUTION_ORDER_ID\"}}},\"54f6d1d0-3358-4d21-b761-64fff62cf107\":{\"classDefinition\":\"sap.cdw.querybuilder.Entity\",\"name\":\"ZV_DWC_VKDFS\",\"label\":\"SD Billing Initiator - Transaction Data\",\"type\":8,\"remote\":{\"connection\":\"SAP_S4_AB\",\"table\":\"ABAP_CDS.ZV_DWC_VKDFS$F\"},\"isPinToMemoryEnabled\":false,\"isAllowConsumption\":false,\"isHiddenInUi\":false,\"modificationDate\":1665502849294,\"deploymentDate\":1665502871154,\"#objectStatus\":\"1\",\"elements\":{\"ffc03058-0c56-47c2-89e1-97fc6fba3418\":{\"name\":\"FKTYP\"},\"c9782202-61d5-4774-a2c2-0ef3250fdd4a\":{\"name\":\"VKORG\"},\"ecd88c54-0bb8-4511-9d15-97ca0fd61d25\":{\"name\":\"FKDAT\"},\"069d85b9-799d-40c6-89a5-f03cb2fed062\":{\"name\":\"KUNNR\"},\"58d9c068-a8d5-44ef-803e-18070c5c94ed\":{\"name\":\"FKART\"},\"0d21370d-c74e-4b04-afe2-8adea441cfec\":{\"name\":\"LLAND\"},\"644674e7-e055-4c46-8640-34351860e072\":{\"name\":\"VBELN\"},\"0daa1bb5-0d12-4d36-a01d-f71acee8537a\":{\"name\":\"VBTYP\"},\"9e13861d-4579-400e-abcc-e99e0f82411b\":{\"name\":\"ADRNR\"},\"28d9015e-476b-4215-bcb3-58757d3a3e3b\":{\"name\":\"SORTKRI\"},\"ebd75126-70aa-40cc-a570-57df93ac1441\":{\"name\":\"FAKSK\"},\"371da730-2531-49f5-9480-c1dfc9dc2f4d\":{\"name\":\"VTWEG\"},\"831224d5-3884-4b01-b0de-319b7099cbd9\":{\"name\":\"SPART\"},\"0d428dde-c062-43cc-bbd8-ea927d775e28\":{\"name\":\"VSTEL\"},\"fbe670d1-14af-4d04-81c8-e04f98c2015e\":{\"name\":\"PDSTK\"},\"d955fc2e-0589-443c-919b-dde1702063bd\":{\"name\":\"NETWR\"},\"bac493ef-2150-4292-9ce6-85948c4eec57\":{\"name\":\"WAERK\"},\"18cf6964-8012-4778-bd7f-884085b2bc7b\":{\"name\":\"BDR_REF\"},\"a788751f-d8de-43e1-b466-1b80708bf8d4\":{\"name\":\"BDR_REF_LOGSYS\"},\"ba2f81dd-8fe9-45a8-a94e-62c89562a900\":{\"name\":\"DRAFT_TYPE\"},\"5002da06-5403-4cae-a293-9bc1a4d940be\":{\"name\":\"DBD_REF\"},\"7c6f5dac-9792-4521-a3d9-1638933ad240\":{\"name\":\"VBART\"},\"6a343735-d190-47b1-953b-387fc0c76070\":{\"name\":\"SOLUTION_ORDER_ID\"}},\"successorNode\":\"6b768f43-2d33-44e7-b148-760ce8d3651b\"},\"f1350c94-5525-4079-a437-b81bc3449018\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.Diagram\",\"symbols\":{\"f1deacbd-e6a9-4407-89ec-9178bcc311e0\":{},\"77adfe0d-b4f2-4ec5-901d-7b5f823f452d\":{\"name\":\"Entity Symbol 1\"},\"4dfd6909-b949-41fd-bc69-1881846d6215\":{}}},\"997382a6-0bb3-478a-8405-741bd9193b47\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKTYP\",\"label\":\"Billing Category\",\"newName\":\"FKTYP\",\"indexOrder\":0,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"d07e33b2-4225-401d-a9fd-cc650f15a046\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"6e42fc7c-4683-4732-9725-d4916e4f0b37\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKDAT\",\"label\":\"Billing Date\",\"newName\":\"FKDAT\",\"indexOrder\":2,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"235acd64-c8b5-44e3-a52a-9826d40abc42\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KUNNR\",\"label\":\"Sold-To Party\",\"newName\":\"KUNNR\",\"indexOrder\":3,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"ca90ec33-aec1-4b02-a177-3b4c9086c3c2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKART\",\"label\":\"Billing Type\",\"newName\":\"FKART\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"3497505a-10f7-4649-b484-d1cb2d62bfcf\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LLAND\",\"label\":\"Destination Country/Region\",\"newName\":\"LLAND\",\"indexOrder\":5,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"c6102f45-888a-4a2b-983f-cc0d42b66d7d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBELN\",\"label\":\"Sales and Distribution Document Number\",\"newName\":\"VBELN\",\"indexOrder\":6,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"9e1e3b1c-f300-4814-a5b9-df341c85aeef\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBTYP\",\"label\":\"SD Document Category\",\"newName\":\"VBTYP\",\"indexOrder\":7,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"7ea5cfee-a5e5-4199-b2e0-5b722c0d5f49\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ADRNR\",\"label\":\"Address number of the sold-to party\",\"newName\":\"ADRNR\",\"indexOrder\":8,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"376afe9d-1b57-4802-b857-5d384fa4f82f\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SORTKRI\",\"label\":\"Sort Criterion\",\"newName\":\"SORTKRI\",\"indexOrder\":9,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"967bdb98-3dfa-47d0-bedc-10d106dc5716\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FAKSK\",\"label\":\"Billing Block in SD Document\",\"newName\":\"FAKSK\",\"indexOrder\":10,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"cc6f38fd-2232-4609-b61e-40a423079656\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VTWEG\",\"label\":\"Distribution Channel\",\"newName\":\"VTWEG\",\"indexOrder\":11,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"1eded0bb-0f66-4cb2-9e9a-3b516570f098\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPART\",\"label\":\"Division\",\"newName\":\"SPART\",\"indexOrder\":12,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"d7396690-5efa-4687-82e0-47cc178a43a0\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VSTEL\",\"label\":\"Shipping Point / Receiving Point\",\"newName\":\"VSTEL\",\"indexOrder\":13,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"d401e3f8-febf-45f5-9700-382a9403cf64\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PDSTK\",\"label\":\"POD Status on Header Level\",\"newName\":\"PDSTK\",\"indexOrder\":14,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"c94cf878-67dc-43fe-bffe-ae737a9e95cd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"NETWR\",\"label\":\"Net Value in Document Currency\",\"newName\":\"NETWR\",\"indexOrder\":15,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}]},\"da421dfe-57bf-46bb-9c5b-bd42949893e5\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WAERK\",\"label\":\"SD document currency\",\"newName\":\"WAERK\",\"indexOrder\":16,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"9343bf6b-afe1-4bdb-98d9-960e991175fb\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BDR_REF\",\"label\":\"Source document on which a billing document request is based\",\"newName\":\"BDR_REF\",\"indexOrder\":17,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"fbe2716b-d174-484f-aaa9-8207a975f40c\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BDR_REF_LOGSYS\",\"label\":\"Logical system containing source document of BDR\",\"newName\":\"BDR_REF_LOGSYS\",\"indexOrder\":18,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"532c67a7-937f-49b6-bae3-0d9621254f1a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DRAFT_TYPE\",\"label\":\"Draft mode\",\"newName\":\"DRAFT_TYPE\",\"indexOrder\":19,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"fdf9919c-4f60-42f5-b6a5-fff1eeb2c354\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DBD_REF\",\"label\":\"Draft Billing Document Reference\",\"newName\":\"DBD_REF\",\"indexOrder\":20,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"c7b541e8-7abf-428f-8e53-93ceb95edab2\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBART\",\"label\":\"Sales and Distribution Document Type\",\"newName\":\"VBART\",\"indexOrder\":21,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"aacfe39e-78b1-4c0f-801b-a426b8b25a44\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SOLUTION_ORDER_ID\",\"label\":\"Solution Order\",\"newName\":\"SOLUTION_ORDER_ID\",\"indexOrder\":22,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}]},\"ffc03058-0c56-47c2-89e1-97fc6fba3418\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKTYP\",\"label\":\"Billing Category\",\"newName\":\"FKTYP\",\"indexOrder\":0,\"isKey\":true,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"997382a6-0bb3-478a-8405-741bd9193b47\"},\"c9782202-61d5-4774-a2c2-0ef3250fdd4a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VKORG\",\"label\":\"Sales Organization\",\"newName\":\"VKORG\",\"indexOrder\":1,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"d07e33b2-4225-401d-a9fd-cc650f15a046\"},\"ecd88c54-0bb8-4511-9d15-97ca0fd61d25\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKDAT\",\"label\":\"Billing Date\",\"newName\":\"FKDAT\",\"indexOrder\":2,\"isKey\":true,\"length\":8,\"precision\":0,\"scale\":0,\"nativeDataType\":\"VARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"6e42fc7c-4683-4732-9725-d4916e4f0b37\"},\"069d85b9-799d-40c6-89a5-f03cb2fed062\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"KUNNR\",\"label\":\"Sold-To Party\",\"newName\":\"KUNNR\",\"indexOrder\":3,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"235acd64-c8b5-44e3-a52a-9826d40abc42\"},\"58d9c068-a8d5-44ef-803e-18070c5c94ed\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FKART\",\"label\":\"Billing Type\",\"newName\":\"FKART\",\"indexOrder\":4,\"isKey\":true,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"ca90ec33-aec1-4b02-a177-3b4c9086c3c2\"},\"0d21370d-c74e-4b04-afe2-8adea441cfec\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"LLAND\",\"label\":\"Destination Country/Region\",\"newName\":\"LLAND\",\"indexOrder\":5,\"isKey\":true,\"length\":3,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"3497505a-10f7-4649-b484-d1cb2d62bfcf\"},\"644674e7-e055-4c46-8640-34351860e072\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBELN\",\"label\":\"Sales and Distribution Document Number\",\"newName\":\"VBELN\",\"indexOrder\":6,\"isKey\":true,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"isNotNull\":true,\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"c6102f45-888a-4a2b-983f-cc0d42b66d7d\"},\"0daa1bb5-0d12-4d36-a01d-f71acee8537a\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBTYP\",\"label\":\"SD Document Category\",\"newName\":\"VBTYP\",\"indexOrder\":7,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"9e1e3b1c-f300-4814-a5b9-df341c85aeef\"},\"9e13861d-4579-400e-abcc-e99e0f82411b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"ADRNR\",\"label\":\"Address number of the sold-to party\",\"newName\":\"ADRNR\",\"indexOrder\":8,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"7ea5cfee-a5e5-4199-b2e0-5b722c0d5f49\"},\"28d9015e-476b-4215-bcb3-58757d3a3e3b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SORTKRI\",\"label\":\"Sort Criterion\",\"newName\":\"SORTKRI\",\"indexOrder\":9,\"length\":20,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"376afe9d-1b57-4802-b857-5d384fa4f82f\"},\"ebd75126-70aa-40cc-a570-57df93ac1441\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"FAKSK\",\"label\":\"Billing Block in SD Document\",\"newName\":\"FAKSK\",\"indexOrder\":10,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"967bdb98-3dfa-47d0-bedc-10d106dc5716\"},\"371da730-2531-49f5-9480-c1dfc9dc2f4d\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VTWEG\",\"label\":\"Distribution Channel\",\"newName\":\"VTWEG\",\"indexOrder\":11,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"cc6f38fd-2232-4609-b61e-40a423079656\"},\"831224d5-3884-4b01-b0de-319b7099cbd9\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SPART\",\"label\":\"Division\",\"newName\":\"SPART\",\"indexOrder\":12,\"length\":2,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"1eded0bb-0f66-4cb2-9e9a-3b516570f098\"},\"0d428dde-c062-43cc-bbd8-ea927d775e28\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VSTEL\",\"label\":\"Shipping Point / Receiving Point\",\"newName\":\"VSTEL\",\"indexOrder\":13,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"d7396690-5efa-4687-82e0-47cc178a43a0\"},\"fbe670d1-14af-4d04-81c8-e04f98c2015e\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"PDSTK\",\"label\":\"POD Status on Header Level\",\"newName\":\"PDSTK\",\"indexOrder\":14,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"d401e3f8-febf-45f5-9700-382a9403cf64\"},\"d955fc2e-0589-443c-919b-dde1702063bd\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"NETWR\",\"label\":\"Net Value in Document Currency\",\"newName\":\"NETWR\",\"indexOrder\":15,\"dataType\":\"cds.Decimal\",\"length\":0,\"precision\":17,\"scale\":2,\"nativeDataType\":\"DECIMAL\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"c94cf878-67dc-43fe-bffe-ae737a9e95cd\"},\"bac493ef-2150-4292-9ce6-85948c4eec57\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"WAERK\",\"label\":\"SD document currency\",\"newName\":\"WAERK\",\"indexOrder\":16,\"length\":5,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"da421dfe-57bf-46bb-9c5b-bd42949893e5\"},\"18cf6964-8012-4778-bd7f-884085b2bc7b\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BDR_REF\",\"label\":\"Source document on which a billing document request is based\",\"newName\":\"BDR_REF\",\"indexOrder\":17,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"9343bf6b-afe1-4bdb-98d9-960e991175fb\"},\"a788751f-d8de-43e1-b466-1b80708bf8d4\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"BDR_REF_LOGSYS\",\"label\":\"Logical system containing source document of BDR\",\"newName\":\"BDR_REF_LOGSYS\",\"indexOrder\":18,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"fbe2716b-d174-484f-aaa9-8207a975f40c\"},\"ba2f81dd-8fe9-45a8-a94e-62c89562a900\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DRAFT_TYPE\",\"label\":\"Draft mode\",\"newName\":\"DRAFT_TYPE\",\"indexOrder\":19,\"length\":1,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"532c67a7-937f-49b6-bae3-0d9621254f1a\"},\"5002da06-5403-4cae-a293-9bc1a4d940be\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"DBD_REF\",\"label\":\"Draft Billing Document Reference\",\"newName\":\"DBD_REF\",\"indexOrder\":20,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"fdf9919c-4f60-42f5-b6a5-fff1eeb2c354\"},\"7c6f5dac-9792-4521-a3d9-1638933ad240\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"VBART\",\"label\":\"Sales and Distribution Document Type\",\"newName\":\"VBART\",\"indexOrder\":21,\"length\":4,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"c7b541e8-7abf-428f-8e53-93ceb95edab2\"},\"6a343735-d190-47b1-953b-387fc0c76070\":{\"classDefinition\":\"sap.cdw.querybuilder.Element\",\"name\":\"SOLUTION_ORDER_ID\",\"label\":\"Solution Order\",\"newName\":\"SOLUTION_ORDER_ID\",\"indexOrder\":22,\"length\":10,\"precision\":0,\"scale\":0,\"nativeDataType\":\"NVARCHAR\",\"allowedExpressions\":[{\"#\":\"EQUAL\"},{\"#\":\"LIKE\"},{\"#\":\"BETWEEN\"}],\"successorElement\":\"aacfe39e-78b1-4c0f-801b-a426b8b25a44\"},\"f1deacbd-e6a9-4407-89ec-9178bcc311e0\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.OutputSymbol\",\"x\":47,\"y\":-20,\"width\":140,\"height\":40,\"object\":\"6b768f43-2d33-44e7-b148-760ce8d3651b\"},\"77adfe0d-b4f2-4ec5-901d-7b5f823f452d\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.EntitySymbol\",\"name\":\"Entity Symbol 1\",\"x\":-163,\"y\":-20,\"width\":160,\"height\":40,\"displayName\":\"Entity Symbol 1\",\"object\":\"54f6d1d0-3358-4d21-b761-64fff62cf107\"},\"4dfd6909-b949-41fd-bc69-1881846d6215\":{\"classDefinition\":\"sap.cdw.querybuilder.ui.AssociationSymbol\",\"points\":\"-3,0 47,0\",\"contentOffsetX\":5,\"contentOffsetY\":5,\"sourceSymbol\":\"77adfe0d-b4f2-4ec5-901d-7b5f823f452d\",\"targetSymbol\":\"f1deacbd-e6a9-4407-89ec-9178bcc311e0\"}}}"
+    },
+    "ZV_DWC_VKDFS": {
+      "kind": "entity",
+      "elements": {
+        "FKTYP": {
+          "@EndUserText.label": "Billing Category",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VKORG": {
+          "@EndUserText.label": "Sales Organization",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "FKDAT": {
+          "@EndUserText.label": "Billing Date",
+          "type": "cds.String",
+          "length": 8,
+          "@DataWarehouse.native.dataType": "VARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "KUNNR": {
+          "@EndUserText.label": "Sold-To Party",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "FKART": {
+          "@EndUserText.label": "Billing Type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "LLAND": {
+          "@EndUserText.label": "Destination Country/Region",
+          "type": "cds.String",
+          "length": 3,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VBELN": {
+          "@EndUserText.label": "Sales and Distribution Document Number",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ],
+          "key": true,
+          "notNull": true
+        },
+        "VBTYP": {
+          "@EndUserText.label": "SD Document Category",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "ADRNR": {
+          "@EndUserText.label": "Address number of the sold-to party",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SORTKRI": {
+          "@EndUserText.label": "Sort Criterion",
+          "type": "cds.String",
+          "length": 20,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "FAKSK": {
+          "@EndUserText.label": "Billing Block in SD Document",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VTWEG": {
+          "@EndUserText.label": "Distribution Channel",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SPART": {
+          "@EndUserText.label": "Division",
+          "type": "cds.String",
+          "length": 2,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VSTEL": {
+          "@EndUserText.label": "Shipping Point / Receiving Point",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "PDSTK": {
+          "@EndUserText.label": "POD Status on Header Level",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "NETWR": {
+          "@EndUserText.label": "Net Value in Document Currency",
+          "precision": 17,
+          "scale": 2,
+          "type": "cds.Decimal",
+          "@DataWarehouse.native.dataType": "DECIMAL",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "WAERK": {
+          "@EndUserText.label": "SD document currency",
+          "type": "cds.String",
+          "length": 5,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BDR_REF": {
+          "@EndUserText.label": "Source document on which a billing document request is based",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "BDR_REF_LOGSYS": {
+          "@EndUserText.label": "Logical system containing source document of BDR",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DRAFT_TYPE": {
+          "@EndUserText.label": "Draft mode",
+          "type": "cds.String",
+          "length": 1,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "DBD_REF": {
+          "@EndUserText.label": "Draft Billing Document Reference",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "VBART": {
+          "@EndUserText.label": "Sales and Distribution Document Type",
+          "type": "cds.String",
+          "length": 4,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        },
+        "SOLUTION_ORDER_ID": {
+          "@EndUserText.label": "Solution Order",
+          "type": "cds.String",
+          "length": 10,
+          "@DataWarehouse.native.dataType": "NVARCHAR",
+          "@DataWarehouse.capabilities.filter.allowedExpressions": [
+            {
+              "#": "EQUAL"
+            },
+            {
+              "#": "LIKE"
+            },
+            {
+              "#": "BETWEEN"
+            }
+          ]
+        }
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "SQL_DATA_SOURCE"
+        },
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "@EndUserText.label": "SD Billing Initiator - Transaction Data",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@DataWarehouse.remote.connection": "SAP_S4_AB",
+      "@DataWarehouse.remote.entity": "ABAP_CDS.ZV_DWC_VKDFS$F"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

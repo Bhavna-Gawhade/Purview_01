@@ -1,0 +1,44 @@
+{
+  "definitions": {
+    "ZV_DWC_FDNAM": {
+      "kind": "entity",
+      "@EndUserText.label": "Incomplete Reason Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "DATA_STRUCTURE"
+      },
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "DATA_STRUCTURE"
+        }
+      ],
+      "elements": {
+        "FDNAM": {
+          "@EndUserText.label": "Incomplete Reason",
+          "type": "cds.String",
+          "length": 30,
+          "key": true,
+          "notNull": true
+        },
+        "LANGU": {
+          "@EndUserText.label": "Language",
+          "type": "cds.String",
+          "length": 2,
+          "key": true,
+          "notNull": true
+        },
+        "TXTLG": {
+          "@EndUserText.label": "Description",
+          "type": "cds.String",
+          "length": 100
+        }
+      }
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.19.2"
+  },
+  "$version": "1.0"
+}

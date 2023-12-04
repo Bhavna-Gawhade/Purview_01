@@ -12,6 +12,8 @@ from modules.lineage.shared_lineage_functions import *
 # ---------------
 
 from pathlib import Path
+import json
+import os
 
 
 # Constants
@@ -104,7 +106,7 @@ def get_info_from_entity_dict(entity_dict: dict, qualified_name_headers: dict):
         raise ValueError("Invalid entity dictionary. 'entity_dict' argument must be a dictionary.")
 
 
-def upload_lineage_from_payload(payload: dict, qualified_name_headers: dict, entity_type_name: str) -> list:
+def upload_lineage_from_payload(client, payload: dict, qualified_name_headers: dict, entity_type_name: str) -> list:
     """
     Uploads lineage information from the given payload dictionary by extracting source and target information
     and creating lineage relationships between them.
@@ -132,7 +134,7 @@ def upload_lineage_from_payload(payload: dict, qualified_name_headers: dict, ent
                     "target_qualified_name": target_info["qualified_name"]
                 }
 
-                result = get_and_add_lineage_from_payload_process(all_info, entity_type_name)
+                result = get_and_add_lineage_from_payload_process(client, all_info, entity_type_name)
                 results.append(result)
 
         return results
@@ -143,7 +145,7 @@ def upload_lineage_from_payload(payload: dict, qualified_name_headers: dict, ent
         raise ValueError("Invalid payload dictionary. 'payload' argument must be a dictionary.")
 
 
-def get_and_add_lineage_from_payload_process(all_info: dict, entity_type_name: str) -> dict:
+def get_and_add_lineage_from_payload_process(client, all_info: dict, entity_type_name: str) -> dict:
     """
     Gets source and target entities from the given information, and adds a lineage relationship between them.
 
@@ -155,16 +157,144 @@ def get_and_add_lineage_from_payload_process(all_info: dict, entity_type_name: s
         dict: A dictionary containing the result of adding the lineage relationship.
     """
     try:
-        source_entity = get_entity_from_qualified_name(all_info["source_qualified_name"])
-        target_entity = get_entity_from_qualified_name(all_info["target_qualified_name"])
+        #source_entity = get_entity_from_qualified_name(all_info["source_qualified_name"])
+        #target_entity = get_entity_from_qualified_name(all_info["target_qualified_name"])
+        #source_entity = get_entity_from_qualified_name_with_specific_client(client, all_info["source_qualified_name"])
+        #target_entity = get_entity_from_qualified_name_with_specific_client(client, all_info["target_qualified_name"])
+        source_entity = get_closest_entity_from_qualified_name_with_specific_client(client, all_info["source_qualified_name"])
+        target_entity = get_closest_entity_from_qualified_name_with_specific_client(client, all_info["target_qualified_name"])
 
-        result = add_manual_lineage([source_entity], [target_entity], entity_type_name)
+        result = add_manual_lineage(client, [source_entity], [target_entity], entity_type_name)
         return result
 
     except KeyError as e:
         raise ValueError(f"Invalid information dictionary. Missing key: {str(e)}")
     except TypeError:
         raise ValueError("Invalid information dictionary. 'all_info' argument must be a dictionary.")
+    
+
+def process_json_file(file_path):
+    """
+    Process the JSON file and extract the source, target, and process payloads.
+
+    Args:
+        file_path (str): The path to the JSON file.
+
+    Returns:
+        dict: A dictionary containing the source, target, and process payloads.
+    """
+
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+
+    try:
+        # Extract data payloads and process payloads
+        data_payloads = data['configurationPayload']['dataPayload']
+        process_payloads = data['configurationPayload']['processPayload']
+
+        # Process and extract source and target payloads
+        source_payloads = []
+        target_payloads = []
+        process_info_list = []
+
+        # Process and extract process payloads
+        for payload in process_payloads:
+            label = payload['label']
+            process_config = payload['processConfig']
+
+            # Split label into source and target
+            source, target = label.split(' -> ')
+
+            # Add in process to ensure "Curated" matches to "Curated Ingest" in the data payloads
+            if target == 'Curated':
+                target = "Curated Ingest"
+
+            if source == 'Curated':
+                source = "Curated Ingest"
+
+            process_info = {
+                'processSystem': payload['processSystem'],
+                'processType': payload['processType'],
+                'label': payload['label'],
+                'source': source,
+                'target': target,
+            }
+
+            # Get the databricks specific information
+            if payload['processSystem'] == 'databricks':
+                process_info['notebookPath'] = process_config['notebookPath']
+                process_info['jobComplexity'] = process_config['linkedService']['jobComplexity']
+                process_info['jobSize'] = process_config['linkedService']['jobSize']
+
+            process_info_list.append(process_info)
+
+        # Iterate over the data payloads to get the proper objects out
+        for payload in data_payloads:
+
+            # Get the label from the payload and extract the true source to link it to the payload
+            label = payload['label']
+            payload_label = label.replace(' Source', '').replace(' Sink', '')
+            dataSystem = payload['dataSystem']
+            file = payload.get('config', {}).get('file', '')  # Access 'config' dictionary and use dict.get() to handle missing 'config' or 'file' keys
+
+            info = {
+                'label': label,
+                'dataSystem': dataSystem,
+                "file": file
+            }
+
+            # Pull out the keys
+            if 'dataSource' in payload:
+                info['dataSource'] = payload['dataSource']
+
+            # Pull out the data config if it is present
+            if 'dataConfig' in payload:
+                data_config = payload['dataConfig']
+
+                # Include 'path' if present in dataConfig as well as 'synapseTable' and 'mergeProcedure'
+                for attr in ['path', 'synapseTable', 'mergeProcedure']:
+                    if attr in data_config:
+                        # Replace placeholders in the path with curly braces
+                        info[attr] = data_config[attr].replace('@@Year@@', '{Year}').replace('@@Month@@', '{Month}').replace('@@Day@@', '{Day}').replace("*", info["file"])
+
+            # If data extractor is dataFactory, compile the full path of the data
+            if payload['dataSystem'] == 'dataFactory':
+                if 'config' in payload and 'container' in payload['config']:
+                    # Craft the path based on the file components in the label
+                    path = f"/{payload['config']['container']}/{payload['config']['directory']}/{{Year}}/{{Month}}/{{Day}}/{'/'.join(info['file'])}"
+                    info['path'] = path
+                    ##info['path'] = path.replace('Raw Ingest', '{Raw Ingest}').replace('Curated Ingest', '{Curated Ingest}')
+                else:
+                    info['path'] = ""
+
+            # Include Extract the sink
+            if 'Sink' in label:
+                target_payloads.append(info)
+
+            # Add to the source payloads list if the payload is a 'Source'
+            elif 'Source' in label:
+                source_payloads.append(info)
+
+            # Iterate over all processes and find where the object is a source or sink
+            for proc in process_info_list:
+                if payload_label == proc['source'] and dataSystem == proc['processSystem']:
+                    proc['sourceDataPayload'] = info
+                elif payload_label == proc['target'] and dataSystem == proc['processSystem']:
+                    proc['targetDataPayload'] = info
+
+        # Create dictionary with source, target, and process payloads
+        result = {
+            "source": source_payloads,
+            "target": target_payloads,
+            "process": process_info_list
+        }
+
+        return result
+
+    except KeyError as e:
+        raise ValueError(f"Invalid payload. Missing key: {str(e)}")
+    except (TypeError, IndexError):
+        raise ValueError("Invalid payload. Invalid structure or format.")
 
 
 def process_payload(data: dict):
@@ -281,6 +411,38 @@ def process_payload(data: dict):
         raise ValueError("Invalid payload. Invalid structure or format.")
 
 
+def datalake_to_data_warehouse_lineage_from_payload(client, file_name):
+    # Open the JSON file using `with open`
+    with open(file_name) as json_file:
+        # Load the JSON data
+        data = json.load(json_file)
+
+    # Process the payload
+    payload = process_payload(data = data)
+    print(json.dumps(payload, indent=4))
+      
+    # Add in admin info
+    qualified_name_headers = {
+        "ingestion_header": "https://hbipd01analyticsdls.dfs.core.windows.net",
+        "synapse_table_header": "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw"
+    }
+    entity_type_name = "ingestion_framework"
+
+    # Upload the lineage based off of the payload
+    results = upload_lineage_from_payload(client, payload, qualified_name_headers, entity_type_name)
+    for result in results:
+        print(json.dumps(result, indent=4))
+        print()
+
+
+def manually_connect_dl_to_dw_via_qualified_names(client, source_qual_name, target_qual_name):
+    source_entity = get_closest_entity_from_qualified_name_with_specific_client(client, source_qual_name)
+    target_entity = get_closest_entity_from_qualified_name_with_specific_client(client, target_qual_name)
+    process_type_name = "ingestion_framework"
+    result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
+    print(result)
+
+    
 # Main Processing
 # ---------------
 
