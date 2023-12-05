@@ -293,30 +293,6 @@ def get_guids_of_entities_with_specific_type(client, entity_type):
     return list_of_guids
 
 
-def specific_client_get_guids_of_entities_with_specific_type(client, entity_type):
-    browse_result = client.discovery.browse(entityType=entity_type)
-
-    # utilize offset to skip the first results, until you reach the count number
-    # result of browse is a dict of @search.count and value
-    
-    # the "value" gives results in increments of 100
-    total_search_count = browse_result.get("@search.count")
-    print("search count: " + str(total_search_count))
-
-    count = 0
-    list_of_guids = []
-    while count < total_search_count:
-        browse_result = client.discovery.browse(entityType = entity_type, offset = count)
-        entities = browse_result.get("value")
-        count += len(entities)
-        print(count)
-
-        for value_dict in entities:
-            list_of_guids.append(value_dict.get("id"))
-
-    return list_of_guids
-
-
 def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_start_inclusive, subset_end_exclusive):
     subset_list_of_guids = list_of_guids[subset_start_inclusive : subset_end_exclusive]
     entity_details = []
@@ -345,7 +321,7 @@ def get_columns_from_datalake(client, tabular_schema_guid):
             
 
 def get_all_entities_with_type(client, entity_type):
-    list_of_guids = specific_client_get_guids_of_entities_with_specific_type(client, entity_type)
+    list_of_guids = get_guids_of_entities_with_specific_type(client, entity_type)
     print("Pulled all guids for type: " + entity_type)
     print("Now pulling the entity details for each guid")
 
