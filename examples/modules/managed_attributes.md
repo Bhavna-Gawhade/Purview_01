@@ -45,3 +45,28 @@ def example_add_attributes_to_entity():
     print(json.dumps(response))
 ```
 
+## Delete Managed Attributes from an Entity
+
+With an exisiting managed attribute, you can delete a value to that attribute for a particular entity. You will need to first pull the entity you would like to associate this attribute with. Then you specify the attribute's name and the value you want to delete it for this entity. Finally, you delete the attribute to the entity.
+
+```python
+from scripts.modules.managed_attributes import *
+from scripts.modules.entity import *
+import json
+
+def example_delete_attributes_to_entity():
+    # Get an entity
+    qualified_name = "mssql://hbi-qa01-analytics-dwsrv.database.windows.net/hbiqa01dw/Common/DimWinningPortfolioSkuList"
+    entity = get_entity_from_qualified_name(qualified_name)
+    entity_type = AtlasEntity(
+        name = entity["name"],
+        typeName = entity["typeName"],
+        guid = entity["guid"]
+    )
+
+    # Delete attribute values to an entity
+    attribute_group_name = "PRODUCT"
+    attribute_names = "SIZE"
+    response = delete_attribute(CLIENT, guid, attribute_group_name, attribute_name)
+    print(json.dumps(response))
+```

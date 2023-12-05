@@ -40,11 +40,6 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # Functions
 # ---------------
 
-# create custom PKMS type
-# upload type def to QA and Prod
-# create tables in Prod and connect lineage
-
-
 def parse_pkms_tables_from_excel(client, file_name):
     xls = pd.ExcelFile(file_name)
     tables = {}
@@ -121,7 +116,6 @@ def parse_pkms_tables_from_excel(client, file_name):
                 print("Column added for column guid " + str(column_guid))
 
             print("Table created for: " + record_name + "\n\n\n")
-
 
 
 # Main Processing

@@ -166,7 +166,6 @@ def get_and_add_lineage(table_names: tuple, qualified_name_headers: tuple, entit
         return None
 
 
-
 def add_manual_lineage_with_specific_client(client, source_entities: list, target_entities: list, process_type_name: str, source_type_name, target_type_name, target_name_without_special_char):
     try:
         sources = []
@@ -211,63 +210,6 @@ def add_manual_lineage_with_specific_client(client, source_entities: list, targe
     except (KeyError, TypeError) as e:
         raise ValueError("Invalid input. Expected a list of source_entities and target_entities, and a string process_type_name.") from e
 
-
-def get_entity_from_qualified_name_with_specific_client(client, qualified_name):
-    entities_found = client.discovery.search_entities(query=qualified_name)
-
-    # Extract entities from the generator
-    entities = []
-    for entity in entities_found:
-        """# Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
-        # This is to avoid qualified names that have the same beginning and different extensions
-        # Allow length to differ by 1 for potential '/' at the end
-        if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
-        """    
-        entities.append(entity)
-        break # new
-
-    if len(entities) > 1:
-        raise ValueError(f"More than one entity was returned. There should only be one entity returned from a qualified name. The qualified name used was: {qualified_name}")
-    elif len(entities) == 0:
-        raise ValueError(f"No entity was found with this qualified name: {qualified_name}")
-
-    # Extract the entity found by the search catalog
-    entity = entities[0]
-
-    return entity
-
-def get_closest_entity_from_qualified_name_with_specific_client(client, qualified_name):
-    entities_found = client.discovery.search_entities(query=qualified_name)
-
-    # Extract entities from the generator
-    entities = []
-    for entity in entities_found:
-        entities.append(entity)
-        break
-
-    entity = entities[0]
-    return entity
-
-
-def get_from_qualified_name(client, qualified_name, entity_type):
-    browse_result = client.discovery.browse(entityType=entity_type)
-    # utilize offset to skip the first results, until you reach the count number
-    # result of browse is a dict of @search.count and value
-    
-    # the "value" gives results in increments of 100
-    total_search_count = browse_result.get("@search.count")
-    count = 0
-    list_of_guids = []
-    while count < total_search_count:
-        browse_result = client.discovery.browse(entityType = entity_type, offset = count)
-        entities = browse_result.get("value")
-        count += len(entities)
-        
-        for value_dict in entities:
-            if value_dict.get("qualifiedName") == qualified_name:
-                return value_dict
-
-    return None
 
 # Main Processing
 # ---------------

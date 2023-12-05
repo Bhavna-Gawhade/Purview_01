@@ -790,8 +790,8 @@ def main():
     source_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/mount/Product_Item_Attribute_OAKDWHP1"
     target_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/master/DimAttribute"
 
-    source_entity = get_closest_entity_from_qualified_name_with_specific_client(prod_client, source_qual)
-    target_entity = get_closest_entity_from_qualified_name_with_specific_client(prod_client, target_qual)
+    source_entity = get_entity_from_qualified_name(prod_client, source_qual)
+    target_entity = get_entity_from_qualified_name(prod_client, target_qual)
     process_type_name = "dw_routine"
     result = add_manual_lineage(prod_client, [source_entity], [target_entity], process_type_name)
     print(result)

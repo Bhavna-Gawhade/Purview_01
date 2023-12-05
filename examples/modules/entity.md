@@ -60,6 +60,19 @@ def example_get_entity_from_qualified_name():
     entity = get_entity_from_qualified_name(qualified_name)
     print(entity)
 ```
+<br />
+
+## Get Entity from Qualified Name and Entity Type
+
+```python
+from modules import entity
+
+def example_get_entity_from_qualified_name_using_type():
+    qualified_name = "https://example"
+    entity_type="dev_testing_typedef"
+    entity = get_entity_from_qualified_name_using_type(qualified_name,entity_type)
+    print(entity)
+```
 
 <br />
 
@@ -72,6 +85,19 @@ def example_get_entity_typename_from_qualified_name():
     qualified_name = "https://example"
     entity_typename = get_entity_typename_from_qualified_name(qualified_name)
     print(entity_typename)
+```
+
+<br />
+
+## Upload a custom entity type
+
+```python
+from modules import entity
+
+def example_upload_custom_type_def():
+    type_def = EntityTypeDef(name = "dev_testing_typedef",superTypes = ["DataSet"])
+    result = upload_custom_type_def(type_def)
+    print(result)
 ```
 
 ## Get Entities by Typename, or Search by Entity Type
@@ -90,4 +116,16 @@ def example_search_by_entity_type_with_limit():
     print(result)   
 ```
 
+
+## Delete entity by Entity Type
+
+```python
+from modules import entity
+
+def example_delete_by_entity_type():
+    entity_type_name = "sap_s4hana_table"
+    result = delete_by_entity_type(entity_type_name)
+    print(result)
+    
+```
 

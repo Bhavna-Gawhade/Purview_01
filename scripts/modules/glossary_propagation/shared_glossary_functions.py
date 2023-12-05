@@ -312,24 +312,6 @@ def get_glossary_terms_dict(import_file_name):
     return glossary_terms_dict
 
 
-def OLD_get_glossary_terms_dict():
-    # use the new regex sheet, extract the glossary term name and regex 
-    #file_path = "1_to_500_Glossary_with_Field_Duplicates_at_End_10.2.23.xlsx"
-    file_path = "Glossary_with_Field_Duplicates_at_End_10.2.23.xlsx"
-    glossary_terms_sheet = pd.read_excel(file_path)
-    glossary_terms_dict = []
-    for index, row in glossary_terms_sheet.iterrows():
-        if type(row["Field"]) != float:
-            x = {
-                "name": row["Nick Name"],
-                #"fields": row["Field"].split(",")
-                "fields": [field.strip() for field in row["Field"].split(",")]
-            }
-            glossary_terms_dict.append(x)
-                
-    return glossary_terms_dict
-
-
 def read_glossary_import_file(file_name):
     glossary_terms_sheet = pd.read_excel(file_name)
     glossary_dict_with_fields_as_keys = {}
@@ -338,22 +320,6 @@ def read_glossary_import_file(file_name):
         fields = [field.strip() for field in row["[Attribute][Business Glossary]System-Table-Field"].split(",")]
         for field in fields:
             glossary_dict_with_fields_as_keys[field] = glossary_term_name
-    return glossary_dict_with_fields_as_keys
-
-
-def OLD_get_glossary_dict_with_fields_as_keys():
-    # ONLY works with terms 1-500 where no duplicates
-    # use the new regex sheet, extract the glossary term name and regex 
-
-    file_path = "1_to_500_Glossary_with_Field_Duplicates_at_End_10.2.23.xlsx"
-    glossary_terms_sheet = pd.read_excel(file_path)
-    glossary_dict_with_fields_as_keys = {}
-    for index, row in glossary_terms_sheet.iterrows():
-        glossary_term_name = row["Nick Name"]
-        fields = [field.strip() for field in row["Field"].split(",")]
-        for field in fields:
-            glossary_dict_with_fields_as_keys[field] = glossary_term_name
-     
     return glossary_dict_with_fields_as_keys
 
 

@@ -59,10 +59,10 @@ def build_powerbi_lineage_from_sql_query(client, source_entities_qualified_paths
 
     source_entities_get = []
     for s in source_entities_qualified_paths:
-        ent = get_entity_from_qualified_name_with_specific_client(client, s)
+        ent = get_entity_from_qualified_name(client, s)
         source_entities_get.append(ent)
     
-    target_entity = get_entity_from_qualified_name_with_specific_client(client, target_entity_qualified_path)
+    target_entity = get_entity_from_qualified_name(client, target_entity_qualified_path)
     result = add_manual_lineage_with_specific_client(client, source_entities_get, [target_entity], process_type_name, source_type_name, target_type_name, target_name_without_special_char)
     print(result)
 
