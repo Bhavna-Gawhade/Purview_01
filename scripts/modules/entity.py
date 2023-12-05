@@ -155,6 +155,18 @@ PKMS_COLUMN_DEF = EntityTypeDef(
 # ---------------
 
 def create_entity(client, name: str, type_name: str, qualified_name: str):
+    """
+    Creates and uploads a single Atlas entity with specified properties.
+
+    Parameters:
+        client (PurviewClient): The Purview client used for entity upload.
+        name (str): The name of the entity.
+        type_name (str): The type name of the entity.
+        qualified_name (str): The qualified name of the entity.
+
+    Returns:
+        dict: The result of the entity upload operation.
+    """
     atlas_entity = AtlasEntity(name = name, typeName = type_name, qualified_name = qualified_name)
     result = client.upload_entities(atlas_entity)
     return result
@@ -184,6 +196,18 @@ def get_entity_from_qualified_name(client, qualified_name):
 
 
 def get_entity_from_qualified_name_using_type(client, qualified_name, entity_type):
+    """
+    Retrieves an entity's details from Purview using its qualified name and entity type.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - qualified_name (str): The qualified name of the entity to retrieve.
+    - entity_type (str): The type of the entity to retrieve.
+
+    Returns:
+    - dict or None: A dictionary containing the details of the entity if found, 
+      or None if the entity is not found.
+    """
     browse_result = client.discovery.browse(entityType=entity_type)
     # utilize offset to skip the first results, until you reach the count number
     # result of browse is a dict of @search.count and value
@@ -205,6 +229,19 @@ def get_entity_from_qualified_name_using_type(client, qualified_name, entity_typ
 
 
 def get_entity_typename_from_qualified_name(client, qualified_name):
+    """
+    Retrieves the entity type name from the qualified name using the Purview client.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        qualified_name (str): The qualified name of the entity.
+
+    Returns:
+        str: The entity type name.
+    
+    Raises:
+        ValueError: If more than one entity or no entity is found for the given qualified name.
+    """
     entities_found = client.discovery.search_entities(query=qualified_name)
     entities = []
     for entity in entities_found:
@@ -221,6 +258,15 @@ def get_entity_typename_from_qualified_name(client, qualified_name):
 
 
 def get_all_typedefs(client):
+    """
+    Retrieves all relationship type names from the Purview client.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+
+    Returns:
+        list: A list of unique relationship type names.
+    """
     all_typedefs = client.get_all_typedefs()
     entity_defs = all_typedefs["entityDefs"]
     all_type_names = []
@@ -252,11 +298,28 @@ def upload_custom_type_def(client, type_def: EntityTypeDef):
 
 
 def search_by_entity_type(client, entity_type_name):
+    """
+    Searches and retrieves entities of a specific type in Purview.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type_name (str): The name of the entity type to search for.
+
+    Returns:
+        dict: The search result containing information about entities of the specified type.
+    """
     result = client.discovery.browse(entityType=entity_type_name)
     print(result)
 
 
 def delete_by_entity_type(client, entity_type_name):
+    """
+    Deletes entities of a specific type in Purview.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type_name (str): The name of the entity type to delete.
+    """
     entities = client.discovery.browse(entity_type_name).get("value")
     guids = []
     for e in entities:
@@ -268,6 +331,14 @@ def delete_by_entity_type(client, entity_type_name):
 
 
 def get_guids_of_entities_with_specific_type(client, entity_type):
+    """
+    Retrieves GUIDs of entities with a specific type in Purview.
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type (str): The name of the entity type.
+    Returns:
+        list: A list of GUIDs for entities with the specified type.
+    """
     browse_result = client.discovery.browse(entityType=entity_type)
     # utilize offset to skip the first results, until you reach the count number
     # result of browse is a dict of @search.count and value
