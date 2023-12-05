@@ -228,13 +228,13 @@ def create_lineage_for_view(client, target_qualified_name, qualified_names_of_so
         global prod_dsp_connection_qualified_names
         if connection_qualified_name not in prod_dsp_connection_qualified_names:
             if "views" in source:
-                source_entity = get_from_qualified_name(client, source, "sap_hana_view")
+                source_entity = get_entity_from_qualified_name_using_type(client, source, "sap_hana_view")
             elif "tables" in source:
-                source_entity = get_from_qualified_name(client, source, "sap_hana_table")
+                source_entity = get_entity_from_qualified_name_using_type(client, source, "sap_hana_table")
             if "views" in target_qualified_name:
-                target_entity = get_from_qualified_name(client, target_qualified_name, "sap_hana_view")
+                target_entity = get_entity_from_qualified_name_using_type(client, target_qualified_name, "sap_hana_view")
             elif "tables" in target_qualified_name:
-                target_entity = get_from_qualified_name(client, target_qualified_name, "sap_hana_table")
+                target_entity = get_entity_from_qualified_name_using_type(client, target_qualified_name, "sap_hana_table")
         
             if source_entity == None or target_entity == None:
                 print("One of the entities could not be found with that qualified name. Cannot create lineage.")
@@ -408,7 +408,6 @@ def parse_sap_hana_internal_lineage():
     
     #create_all_tables_for_schema(directory, dsp_qa_header)
     
-    # now that all necessary TD_STG tables are created, we can build lineage connections
     dsp_qa_header_without_schema = "sap_hana://6d3e383d-90d7-45f3-a678-0a9a4dc5d562.hana.prod-us10.hanacloud.ondemand.com/databases/H00/schemas/"
     views_path = "dsp_sap_hana_lineage_input_files/FIN_REP/FIN_REP_Views/"
     file_name = views_path + "RL_FIN_FIGL.json"
@@ -430,8 +429,6 @@ def parse_sap_hana_internal_lineage():
     dsp_prod_header_without_schema = "sap_hana://ff43de60-f60e-41a3-98ed-cec560c93756.hana.prod-us10.hanacloud.ondemand.com/databases/H00/schemas/" 
 
     parse_all_views_for_schema(prod_client, directory, dsp_prod_header_without_schema, schema_this_view_belongs_to)
-    
-
 
     # RUN BELOW FOR TABLE CREATION
     # BELOW IS PROD!!!
@@ -440,17 +437,8 @@ def parse_sap_hana_internal_lineage():
     dsp_prod_header_with_schema = "sap_hana://ff43de60-f60e-41a3-98ed-cec560c93756.hana.prod-us10.hanacloud.ondemand.com/databases/H00/schemas/"  + schema_this_view_belongs_to + "/tables/" 
     directory = "dsp_sap_hana_lineage_input_files/" + schema_this_view_belongs_to + "/" + schema_this_view_belongs_to + "_Tables/"
     
-    REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-    CREDS = get_credentials(cred_type= 'default')
-    client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-    # USE THE QA FILES FOR PROD TABLES AT THIS TIME
     create_all_tables_for_schema(prod_client, directory, dsp_prod_header_with_schema)
     """
-
-
-
-
 
 
 # Main Processing

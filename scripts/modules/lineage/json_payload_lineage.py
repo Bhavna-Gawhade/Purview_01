@@ -18,13 +18,16 @@ import os
 
 # Constants
 # ---------------
-# Define constants at the top of the module, 
-# in all capital letters with underscores separating words.
 
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 LINEAGE_CONNECTIONS = {
     "inputs": [
@@ -157,12 +160,8 @@ def get_and_add_lineage_from_payload_process(client, all_info: dict, entity_type
         dict: A dictionary containing the result of adding the lineage relationship.
     """
     try:
-        #source_entity = get_entity_from_qualified_name(all_info["source_qualified_name"])
-        #target_entity = get_entity_from_qualified_name(all_info["target_qualified_name"])
-        #source_entity = get_entity_from_qualified_name_with_specific_client(client, all_info["source_qualified_name"])
-        #target_entity = get_entity_from_qualified_name_with_specific_client(client, all_info["target_qualified_name"])
-        source_entity = get_closest_entity_from_qualified_name_with_specific_client(client, all_info["source_qualified_name"])
-        target_entity = get_closest_entity_from_qualified_name_with_specific_client(client, all_info["target_qualified_name"])
+        source_entity = get_entity_from_qualified_name(client, all_info["source_qualified_name"])
+        target_entity = get_entity_from_qualified_name(client, all_info["target_qualified_name"])
 
         result = add_manual_lineage(client, [source_entity], [target_entity], entity_type_name)
         return result
@@ -436,8 +435,8 @@ def datalake_to_data_warehouse_lineage_from_payload(client, file_name):
 
 
 def manually_connect_dl_to_dw_via_qualified_names(client, source_qual_name, target_qual_name):
-    source_entity = get_closest_entity_from_qualified_name_with_specific_client(client, source_qual_name)
-    target_entity = get_closest_entity_from_qualified_name_with_specific_client(client, target_qual_name)
+    source_entity = get_entity_from_qualified_name(client, source_qual_name)
+    target_entity = get_entity_from_qualified_name(client, target_qual_name)
     process_type_name = "ingestion_framework"
     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
     print(result)

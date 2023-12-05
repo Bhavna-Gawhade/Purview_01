@@ -22,8 +22,13 @@ from pathlib import Path
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+   
 
 # Functions
 # ---------------
@@ -129,32 +134,10 @@ def parse_view_for_data_warehouse(view_file):
         return sources
     
 
-def ORIGINAL_parse_view_for_data_warehouse(view_file):
-    with open(view_file, 'r') as file:
-        sources = []
-        sql_query = file.read()
-        
-        split_sql_query = sql_query.split("")
-        for i in range(len(split_sql_query)):
-            sql_str = split_sql_query[i]
-            list_of_keywords = ["using", "from", "join"]
-            if sql_str.lower() in list_of_keywords and i != len(split_sql_query) - 1:
-                # replace the periods with slashes for searching them as qualified paths
-                source = split_sql_query[i + 1].replace(".", "/").replace("[", "").replace("]", "").replace("(", "").replace(")", "").replace(";", "")
-                sources.append(source)
-
-        sources = list(set(sources)) # remove duplicates
-        sources = [s for s in sources if '/' in s] # removes empty strings and only allows paths
-        if len(sources) == 0:
-            print("No sources for this view.")
-            sys.exit(0)
-
-        return sources
-
 def build_table_to_source_data_warehouse_internal_lineage(client, qualified_name_header, table, source):
     # stage (source) to table 
-    source_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + source)
-    target_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + table)
+    source_entity = get_entity_from_qualified_name(client, qualified_name_header + source)
+    target_entity = get_entity_from_qualified_name(client, qualified_name_header + table)
     
     if source_entity.get("qualifiedName") != target_entity.get("qualifiedName"):
         result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name = "dw_routine")
@@ -163,16 +146,16 @@ def build_table_to_source_data_warehouse_internal_lineage(client, qualified_name
 
 def build_stage_to_common_data_warehouse_internal_lineage(client, qualified_name_header, common_source_for_the_view, stage_source_for_common, view_purview_partial_path):
     # stage to common 
-    source_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + stage_source_for_common)
-    target_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + common_source_for_the_view)
+    source_entity = get_entity_from_qualified_name(client, qualified_name_header + stage_source_for_common)
+    target_entity = get_entity_from_qualified_name(client, qualified_name_header + common_source_for_the_view)
     
     if source_entity.get("qualifiedName") != target_entity.get("qualifiedName"):
         result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name = "dw_routine")
         print(result)
     
     # common to view
-    source_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + common_source_for_the_view)
-    target_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + view_purview_partial_path)
+    source_entity = get_entity_from_qualified_name(client, qualified_name_header + common_source_for_the_view)
+    target_entity = get_entity_from_qualified_name(client, qualified_name_header + view_purview_partial_path)
     if source_entity.get("qualifiedName") != target_entity.get("qualifiedName"):
         result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name = "dw_view_creation")
         print(result)
@@ -207,8 +190,8 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
                 new_view_file_name = split_common_source[0] + "." + split_common_source[1] + ".sql"
                 prod_parse_data_warehouse_view_internal_lineage(client, new_view_file_name)
                 # still need to connect this to the original view
-                source_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + common_source)
-                target_entity = get_entity_from_qualified_name_with_specific_client(client, qualified_name_header + view_purview_partial_path)
+                source_entity = get_entity_from_qualified_name(client, qualified_name_header + common_source)
+                target_entity = get_entity_from_qualified_name(client, qualified_name_header + view_purview_partial_path)
                 if source_entity.get("qualifiedName") != target_entity.get("qualifiedName"):
                     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name = "dw_view_creation")
                     print(result)
