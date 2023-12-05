@@ -166,7 +166,6 @@ def get_and_add_lineage(table_names: tuple, qualified_name_headers: tuple, entit
         return None
 
 
-
 def add_manual_lineage_with_specific_client(client, source_entities: list, target_entities: list, process_type_name: str, source_type_name, target_type_name, target_name_without_special_char):
     try:
         sources = []

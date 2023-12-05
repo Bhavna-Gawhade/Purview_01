@@ -39,10 +39,6 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # Functions
 # ---------------
 
-# create custom PKMS type
-# upload type def to QA and Prod
-# create tables in Prod and connect lineage
-
 def build_sharepoint_to_pbi_lineage(client, sharepoint_source, sharepoint_short_name, pbi_target, pbi_short_name, process_type_name):
     qualified_name = "sources:" + sharepoint_short_name + "/targets:" + pbi_short_name + "/process_type:" + process_type_name
 

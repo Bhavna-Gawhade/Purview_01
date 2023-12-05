@@ -3,6 +3,7 @@
 
 # Function Imports
 # ---------------
+
 from modules import entity
 from modules.collection.collection_shared_functions import *
 from utils import get_credentials, create_purview_client
@@ -10,6 +11,7 @@ from utils import get_credentials, create_purview_client
 
 # Package Imports
 # ---------------
+
 from pyapacheatlas.core import AtlasEntity, AtlasClassification
 from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
 import json

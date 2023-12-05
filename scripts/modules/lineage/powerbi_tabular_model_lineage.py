@@ -93,7 +93,7 @@ def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_
 
         if source_schema != "" and source_table_name != "":
             source_qualified_name = start_of_source_qualified_name + source_schema + "/" + source_table_name
-            source_entity_details = get_entity_from_qualified_name_with_specific_client(client, source_qualified_name)
+            source_entity_details = get_entity_from_qualified_name(client, source_qualified_name)
 
             table_details = {
                 "powerbi_table_name": t.get("name"),
@@ -163,25 +163,13 @@ def build_lineage_from_sql_to_pbi_table(client, source_dict, target_dict, target
     print()
 
 
-def build_powerbi_lineage_from_tabular_model():
+def prod_build_powerbi_lineage_from_tabular_model():
     # NOTE:
-
-    # !
-
-    # !
-
-    # BEFORE RUNNING AGAIN: 
-    # 
     # Handle power BI table creation. Need to add check for existing created tables.
     # Need to factor schemas into the qualified names.
     # Need to handle if some tables exist already and other's don't.
 
-
-
-    # Prod Account
-    REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-    CREDS = get_credentials(cred_type= 'default')
-    client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    client = prod_client
 
     json_file_path = "Model.bim"
     tabular_model = load_json(json_file_path)
@@ -192,8 +180,6 @@ def build_powerbi_lineage_from_tabular_model():
     pre_extraction_tables_list = tabular_model.get("model").get("tables")
     all_tables_extracted = get_all_tables_from_tabular_model(client, pre_extraction_tables_list, start_of_source_qualified_name)
     
-    print("got all tables")
-
     # Only uncomment if need to create new Power BI tables
     #create_powerbi_tables(client, all_tables_extracted, target_dataset_name_without_special_char, target_dataset_qualified_name)
     
@@ -207,7 +193,7 @@ def build_powerbi_lineage_from_tabular_model():
     
     # This builds PBI Table to PBI
     power_bi_tables = get_custom_power_bi_tables(client) # info for the PBI tables
-    target_dict = get_entity_from_qualified_name_with_specific_client(client, target_dataset_qualified_name)
+    target_dict = get_entity_from_qualified_name(client, target_dataset_qualified_name)
     for source_dict in power_bi_tables:
         build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, target_dataset_name_without_special_char)
                 
@@ -216,12 +202,7 @@ def build_powerbi_lineage_from_tabular_model():
 # ---------------
 
 def main():
-    """REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-    CREDS = get_credentials(cred_type= 'default')
-    client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-
-    tabular_model_lineage()"""
+    print()
 
 
 if __name__ == '__main__':

@@ -3,12 +3,14 @@
 
 # Function Imports
 # ---------------
+
 from modules import entity
 from utils import get_credentials, create_purview_client
 
 
 # Package Imports
 # ---------------
+
 from pyapacheatlas.core import AtlasEntity, AtlasClassification
 from pyapacheatlas.core.entity import AtlasEntity, AtlasUnInit
 import json
@@ -30,8 +32,6 @@ PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
     
-ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
-
 
 # Functions
 # ---------------
@@ -207,24 +207,6 @@ def create_collection(client, friendly_name: str, parent_collection_name: str, d
     return result
 
 
-def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
-    """
-    Changes the key names in a dictionary based on a given key mapping.
-
-    Args:
-        dictionary (dict): The input dictionary.
-        key_mapping (dict): A dictionary containing the mapping of old key names to new key names.
-
-    Returns:
-        dict: The dictionary with updated key names.
-    """
-    new_dict = {}
-    for old_key, new_key in key_mapping.items():
-        if old_key in dictionary:
-            new_dict[new_key] = dictionary[old_key]
-        else:
-            new_dict[new_key] = None
-    return new_dict
 
 
 def get_all_entities_in_collection(client, collection_name: str):
