@@ -162,6 +162,7 @@ def create_entity(client, name: str, type_name: str, qualified_name: str):
         client (PurviewClient): The Purview client used for entity upload.
         name (str): The name of the entity.
         type_name (str): The type name of the entity.
+        
         qualified_name (str): The qualified name of the entity.
 
     Returns:
