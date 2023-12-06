@@ -34,6 +34,17 @@ ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
 # ---------------
 
 def pull_and_move_azure_dw_schema_and_nested_entities_to_collections(client, schema_guid, collection_id):
+    """
+    Pulls Azure SQL Data Warehouse (SQL DW) schema details and its nested entities and moves them to a Purview collection.
+
+    Parameters:
+        client (object): The Purview client object.
+        schema_guid (str): The GUID of the SQL DW schema to be moved.
+        collection_id (str): The ID of the Purview collection to which the schema and nested entities will be moved.
+
+    Returns:
+        dict: The result of the move operation.
+    """
     schema_details = client.get_entity(schema_guid).get("entities")[0]
     guids_to_move_for_this_schema = [schema_guid]
 
@@ -54,6 +65,12 @@ def pull_and_move_azure_dw_schema_and_nested_entities_to_collections(client, sch
 
 
 def move_azure_dw_to_collection():
+    """
+    Moves Azure SQL Data Warehouse (SQL DW) schema and its nested entities to a Purview collection.
+
+    Returns:
+        None
+    """
     REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
     CREDS = get_credentials(cred_type= 'default')
     client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
