@@ -364,32 +364,20 @@ def get_guids_of_entities_with_specific_type(client, entity_type):
 
     return list_of_guids
 
-
-def specific_client_get_guids_of_entities_with_specific_type(client, entity_type):
-    browse_result = client.discovery.browse(entityType=entity_type)
-
-    # utilize offset to skip the first results, until you reach the count number
-    # result of browse is a dict of @search.count and value
-    
-    # the "value" gives results in increments of 100
-    total_search_count = browse_result.get("@search.count")
-    print("search count: " + str(total_search_count))
-
-    count = 0
-    list_of_guids = []
-    while count < total_search_count:
-        browse_result = client.discovery.browse(entityType = entity_type, offset = count)
-        entities = browse_result.get("value")
-        count += len(entities)
-        print(count)
-
-        for value_dict in entities:
-            list_of_guids.append(value_dict.get("id"))
-
-    return list_of_guids
-
-
 def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_start_inclusive, subset_end_exclusive):
+    """
+    Retrieves a subset of entities with a specific type in Purview.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type (str): The name of the entity type.
+        list_of_guids (list): A list of GUIDs for entities with the specified type.
+        subset_start_inclusive (int): The starting index for the subset (inclusive).
+        subset_end_exclusive (int): The ending index for the subset (exclusive).
+
+    Returns:
+        list: A list of dictionaries containing details of entities in the subset.
+    """
     subset_list_of_guids = list_of_guids[subset_start_inclusive : subset_end_exclusive]
     entity_details = []
     count = 0
@@ -412,12 +400,32 @@ def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_
 
 
 def get_columns_from_datalake(client, tabular_schema_guid):
+    """
+    Retrieves columns from a tabular schema in Azure Data Lake Gen2.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        tabular_schema_guid (str): The GUID of the tabular schema.
+
+    Returns:
+        list: A list of columns in the tabular schema.
+    """
     tabular_schema_details = client.get_entity(tabular_schema_guid).get("entities")[0]
     return tabular_schema_details.get("relationshipAttributes").get("columns")
             
 
 def get_all_entities_with_type(client, entity_type):
-    list_of_guids = specific_client_get_guids_of_entities_with_specific_type(client, entity_type)
+    """
+    Retrieves all entities of a specific type in Purview.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type (str): The name of the entity type.
+
+    Returns:
+        dict: Information about all entities of the specified type.
+    """
+    list_of_guids = get_guids_of_entities_with_specific_type(client, entity_type)
     print("Pulled all guids for type: " + entity_type)
     print("Now pulling the entity details for each guid")
 
@@ -449,6 +457,17 @@ def get_all_entities_with_type(client, entity_type):
 
 
 def pull_entities_from_purview(purview_account_short_name, purview_account_full_name, client):
+    """
+    Pulls entities from Purview for various data sources.
+
+    Parameters:
+        purview_account_short_name (str): The short name of the Purview account.
+        purview_account_full_name (str): The full name of the Purview account.
+        client (PurviewClient): The Purview client.
+
+    Returns:
+        dict: Information about the pulled entities.
+    """
     entity_type = "powerbi_dataset"
     powerbi_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
     print("Successfully pulled all: " + entity_type + " assets")
@@ -516,6 +535,16 @@ def pull_entities_from_purview(purview_account_short_name, purview_account_full_
 
 
 def upload_custom_type_def_with_specific_client(client, type_def: EntityTypeDef):
+    """
+    Uploads a custom entity type definition to Purview using the specified Purview client.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - type_def (EntityTypeDef): The custom entity type definition to upload.
+
+    Returns:
+    - dict: The result of the upload operation.
+    """
     result = client.upload_typedefs(
         entityDefs=[type_def],
         force_update=True
@@ -524,6 +553,19 @@ def upload_custom_type_def_with_specific_client(client, type_def: EntityTypeDef)
 
 
 def get_all_entities_nested_from_qualified_name(client, qualified_name):
+    """
+    Searches for entities in Purview using a qualified name and retrieves nested entities.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - qualified_name (str): The qualified name to search for.
+
+    Returns:
+    - list: A list of dictionaries representing the nested entities found.
+    
+    Raises:
+    - ValueError: If no entities are found with the specified qualified name.
+    """
     entities_found = client.discovery.search_entities(query=qualified_name)
 
     # Extract entities from the generator
@@ -538,6 +580,17 @@ def get_all_entities_nested_from_qualified_name(client, qualified_name):
 
 
 def pull_lineage_connections_from_purview(purview_account_short_name, purview_account_full_name, client):
+    """
+    Retrieves lineage connections from Purview for various entity types.
+
+    Parameters:
+    - purview_account_short_name (str): Short name of the Purview account.
+    - purview_account_full_name (str): Full name of the Purview account.
+    - client: Purview client for making API requests.
+
+    Returns:
+    - dict: Dictionary containing pulled lineage connections organized by entity type.
+    """
     entity_type = "dsp_connection"
     dsp_connection_all_entities_with_type = get_all_entities_with_type(client, entity_type)
     print("Successfully pulled all: " + entity_type + " assets")
