@@ -44,6 +44,20 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 
 
 def apply_glossary_terms_and_write_output_of_sap_s4hana(client, file, updated_dict_for_string_matches, updated_dict_for_guids_of_a_glossary_term, start, end):
+    '''
+    Apply glossary terms to SAP S/4HANA views and tables, write output to a file, and log the results.
+
+    Args:
+        client: The Purview Atlas client for glossary term application.
+        file: File object for writing the output log.
+        updated_dict_for_string_matches (dict): Dictionary with glossary term names as keys and lists of matched string names.
+        updated_dict_for_guids_of_a_glossary_term (dict): Dictionary with glossary term names as keys and lists of GUIDs.
+        start (int): Start index for glossary term propagation.
+        end (int): End index for glossary term propagation.
+
+    Returns:
+        file: Updated file object.
+    '''
     count = 0
     for glossary_term_name, list_of_guids in updated_dict_for_guids_of_a_glossary_term.items():
         count += 1 
@@ -82,6 +96,21 @@ def apply_glossary_terms_and_write_output_of_sap_s4hana(client, file, updated_di
 
 
 def prepare_for_propagation_of_sap_s4hana(client, sap_s4hana_view_details, sap_s4hana_table_details, file, start, end, import_file_name):
+    '''
+    Prepare for glossary term propagation across SAP S/4HANA views and tables.
+
+    Args:
+        client: The Purview Atlas client for glossary term propagation.
+        sap_s4hana_view_details (list): List of SAP S/4HANA view entities.
+        sap_s4hana_table_details (list): List of SAP S/4HANA table entities.
+        file: File object for writing the output log.
+        start (int): Start index for glossary term propagation.
+        end (int): End index for glossary term propagation.
+        import_file_name (str): Name of the glossary term import file.
+
+    Returns:
+        list: A list containing the file object, merged_string_matches, and merged_guids.
+    '''
     file.write("Glossary Terms Propagated Across SAP S4HANA Assets\n")
     file.write("Ran for Glossary Terms " + str(start) + " to " + str(end) + "\n")
     file.write("Ran on SAP S4HANA Tables and Views\n_____________________________________________________________\n\n")
@@ -120,8 +149,14 @@ def prepare_for_propagation_of_sap_s4hana(client, sap_s4hana_view_details, sap_s
 
 
 def glossary_propagation_of_sap_s4hana(client, purview_acct_short_name, import_file_name):
-    '''     purview_acct_short_name should be either "prod" or "qa"    '''
+    '''
+    Run glossary term propagation on SAP S/4HANA views and tables for a specified Purview account and import file.
 
+    Args:
+        client: The Purview Atlas client for glossary term propagation.
+        purview_acct_short_name (str): Short name of the Purview account ("prod" or "qa").
+        import_file_name (str): Name of the glossary term import file.
+    '''
     # run this fresh on Prod if need to re-pull entities
     # pull_entities_from_purview("prod", "hbi-pd01-datamgmt-pview", CLIENT)
 
