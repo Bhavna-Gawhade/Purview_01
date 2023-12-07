@@ -147,7 +147,7 @@ def example_get_guids_of_entities_with_specific_type():
 from modules import entity
 
 def example_get_columns_from_datalake():
-    tabular_schema_guid = 1234567891abdu1274e #example guid
+    tabular_schema_guid = "6523d0ca-8804-49fd-a09d-eac2f9ffa977" #example guid
     result = get_columns_from_datalake(tabular_schema_guid)
     print(result)
     
@@ -171,7 +171,7 @@ from modules import entity
 
 def example_pull_entities_from_purview():
     purview_account_short_name = "qa" #example
-    purview_account_full_name = "hbi-pd01-datamgmt-pview"
+    purview_account_full_name = "hbi-qa01-datamgmt-pview"
     result = pull_entities_from_purview(purview_account_short_name, purview_account_full_name)
     print(result)
     

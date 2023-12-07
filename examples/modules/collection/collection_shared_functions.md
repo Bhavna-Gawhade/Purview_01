@@ -36,6 +36,18 @@ def example_get_existing_collection_names():
 
 <br />
 
+## Create unique Collection Name
+
+```python
+from scripts.modules.collection import *
+
+def example_create_unique_collection_name():
+    result = create_unique_collection_name()
+    print(result)
+```
+
+<br />
+
 ## Creating a Collection
 
 ```python
@@ -74,6 +86,33 @@ def example_delete_collection():
     result = sdelete_collection(collection_name)
     print(result)
 ```
+
+<br />
+
+## Create specified collections recursively
+
+```python
+from scripts.modules.collection import *
+
+def example_create_collections_recursive():
+    collections=["ABC","DEF","GHI"] #Specify the collection name to create
+    parent_collection_name = "rtywuy" 
+    result = create_collections_recursive(collections, parent_collection_name)
+    print(result)
+```
+<br />
+
+## Get collection name by using friendly name
+
+```python
+from scripts.modules.collection import *
+
+def example_get_collection_name_from_friendly_name():
+    collection_name = "" # NOTE: this is the collection's name not its friendly name
+    result = get_collection_name_from_friendly_name(collection_name)
+    print(result)
+```
+<br />
 
 ## Creating Subcollections Based off a JSON File
 
@@ -151,3 +190,27 @@ An example of "collections_structure.json" is below:
     }
   ]
 ```
+
+## Get nested packages and all entities by using package GUID
+
+```python
+from scripts.modules.collection import *
+
+def example_collect_nested_packages_and_entities():
+    package_guid = "6523d0ca-8804-49fd-a09d-eac2f9ffa977"
+    result = collect_nested_packages_and_entities(package_guid, collected_guids=None)
+    print(result)
+```
+
+## Move assets to specified collection
+
+```python
+from scripts.modules.collection import *
+
+def example_move_assets_to_ignore_Collection():
+    collection_name = "rtywuy" # NOTE: this is the collection's name not its friendly name
+    base_asset_guid = "6523d0ca-8804-49fd-a09d-eac2f9ffa977"
+    result = move_assets_to_ignore_Collection(base_asset_guid,collection_name)
+    print(result)
+```
+
