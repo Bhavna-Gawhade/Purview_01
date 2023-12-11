@@ -34,6 +34,15 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def alternate_parse_load_routine_for_data_warehouse(load_routine_file):
+    '''
+    Parses a data warehouse load routine SQL file to extract sources.
+
+    Parameters:
+    - load_routine_file (str): The file path of the data warehouse load routine SQL file.
+
+    Returns:
+    list: A list of sources extracted from the load routine.
+    '''
     with open(load_routine_file, 'r') as file:
         sources = []
         sql_query = file.read()
@@ -56,6 +65,15 @@ def alternate_parse_load_routine_for_data_warehouse(load_routine_file):
     
 
 def parse_load_routine_for_data_warehouse(load_routine_file):
+    '''
+    Parses a data warehouse load routine SQL file to extract source paths.
+
+    Parameters:
+    - load_routine_file (str): The file path of the data warehouse load routine SQL file.
+
+    Returns:
+    list: A list of unique source paths extracted from the load routine.
+    '''
     with open(load_routine_file, 'r') as file:
         sources = []
         sql_query = file.read()
@@ -86,6 +104,15 @@ def parse_load_routine_for_data_warehouse(load_routine_file):
 
 
 def alternate_parse_view_for_data_warehouse(view_file):
+    '''
+    Parses a data warehouse view SQL file to extract source paths.
+
+    Parameters:
+    - view_file (str): The file path of the data warehouse view SQL file.
+
+    Returns:
+    list: A list of unique source paths extracted from the view.
+    '''
     with open(view_file, 'r') as file:
         sources = []
         sql_query = file.read() 
@@ -108,6 +135,15 @@ def alternate_parse_view_for_data_warehouse(view_file):
 
 
 def parse_view_for_data_warehouse(view_file):
+    '''
+    Parses a data warehouse view SQL file to extract source paths.
+
+    Parameters:
+    - view_file (str): The file path of the data warehouse view SQL file.
+
+    Returns:
+    list: A list of unique source paths extracted from the view.
+    '''
     with open(view_file, 'r') as file:
         sources = []
         sql_query = file.read()
@@ -135,6 +171,18 @@ def parse_view_for_data_warehouse(view_file):
     
 
 def build_table_to_source_data_warehouse_internal_lineage(client, qualified_name_header, table, source):
+    '''
+    Builds internal lineage from a source to a table in a data warehouse.
+
+    Parameters:
+    - client: The client object for interacting with the metadata repository.
+    - qualified_name_header (str): The common prefix for generating qualified names.
+    - table (str): The name or identifier of the target table in the data warehouse.
+    - source (str): The name or identifier of the source corresponding to the target table.
+
+    Returns:
+    None
+    '''
     # stage (source) to table 
     source_entity = get_entity_from_qualified_name(client, qualified_name_header + source)
     target_entity = get_entity_from_qualified_name(client, qualified_name_header + table)
@@ -145,6 +193,19 @@ def build_table_to_source_data_warehouse_internal_lineage(client, qualified_name
 
 
 def build_stage_to_common_data_warehouse_internal_lineage(client, qualified_name_header, common_source_for_the_view, stage_source_for_common, view_purview_partial_path):
+    '''
+    Builds internal lineage from a stage source to a common source and then to a data warehouse view.
+
+    Parameters:
+    - client: The client object for interacting with the metadata repository.
+    - qualified_name_header (str): The common prefix for generating qualified names.
+    - common_source_for_the_view (str): The common source corresponding to the data warehouse view.
+    - stage_source_for_common (str): The stage source corresponding to the common source.
+    - view_purview_partial_path (str): The partial path representing the data warehouse view in the metadata.
+
+    Returns:
+    None
+    '''
     # stage to common 
     source_entity = get_entity_from_qualified_name(client, qualified_name_header + stage_source_for_common)
     target_entity = get_entity_from_qualified_name(client, qualified_name_header + common_source_for_the_view)
@@ -162,6 +223,16 @@ def build_stage_to_common_data_warehouse_internal_lineage(client, qualified_name
 
 
 def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
+    '''
+    Parses a data warehouse view file to establish internal lineage relationships.
+
+    Parameters:
+    - client: The client object for interacting with the metadata repository.
+    - view_file_name (str): The name of the data warehouse view file.
+
+    Returns:
+    None    
+    '''
     try:
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
@@ -208,6 +279,16 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
 
 
 def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
+    '''
+    Parses a data warehouse table file to establish internal lineage relationships.
+
+    Parameters:
+    - client: The client object for interacting with the metadata repository.
+    - table_file_name (str): The name of the data warehouse table file.
+
+    Returns:
+    None  
+    '''
     try:
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
