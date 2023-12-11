@@ -41,6 +41,16 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def parse_pkms_tables_from_excel(client, file_name):
+    """
+    Parses tables from an Excel file and uploads them to Apache Atlas in a predefined structure.
+
+    Parameters:
+    - client: Purview client for making Atlas API requests.
+    - file_name (str): The name of the Excel file containing tables to be parsed.
+
+    Returns:
+    - None
+    """
     xls = pd.ExcelFile(file_name)
     tables = {}
 

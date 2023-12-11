@@ -48,6 +48,18 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def build_powerbi_lineage_from_sql_query(client, source_entities_qualified_paths, target_entity_qualified_path, target_name_without_special_char):
+    '''
+    Builds lineage information between Azure SQL Database (SQL) sources and a PowerBI target.
+
+    Parameters:
+    - client: The client object for interacting with the metadata repository.
+    - source_entities_qualified_paths (list): List of qualified paths for Azure SQL Database (SQL) entities.
+    - target_entity_qualified_path (str): Qualified path for the PowerBI target entity.
+    - target_name_without_special_char (str): Name of the PowerBI target without special characters.
+
+    Returns:
+    None
+    '''
     # ie. target_name_without_special_char = "5114AmazonKPIReporting"
     """result = upload_custom_type_def_with_specific_client(client, SQL_DATABASE_EXTRACT_TYPEDEF)
     print(result)"""

@@ -411,6 +411,17 @@ def process_payload(data: dict):
 
 
 def datalake_to_data_warehouse_lineage_from_payload(client, file_name):
+    """
+    Processes a JSON payload containing lineage information from a data lake to a data warehouse
+    and uploads the lineage details to Purview.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - file_name (str): The name of the JSON file containing the lineage payload.
+
+    Returns:
+    - None
+    """
     # Open the JSON file using `with open`
     with open(file_name) as json_file:
         # Load the JSON data
@@ -435,6 +446,18 @@ def datalake_to_data_warehouse_lineage_from_payload(client, file_name):
 
 
 def manually_connect_dl_to_dw_via_qualified_names(client, source_qual_name, target_qual_name):
+    """
+    Manually establishes a data lineage connection between a Data Lake (DL) and a Data Warehouse (DW) 
+    using their qualified names.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - source_qual_name (str): The qualified name of the source entity (Data Lake).
+    - target_qual_name (str): The qualified name of the target entity (Data Warehouse).
+
+    Returns:
+    - dict: Result of the lineage connection operation.
+    """
     source_entity = get_entity_from_qualified_name(client, source_qual_name)
     target_entity = get_entity_from_qualified_name(client, target_qual_name)
     process_type_name = "ingestion_framework"
