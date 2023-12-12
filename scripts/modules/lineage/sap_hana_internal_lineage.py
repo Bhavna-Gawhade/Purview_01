@@ -44,6 +44,17 @@ prod_dsp_connection_qualified_names = []
 # ---------------
 
 def parse_dsp_json_of_table(client, path_to_file, table_qualified_name_header_with_schema):
+    '''
+    Parses a JSON file representing a table in a Data Services Project (DSP) and creates corresponding Atlas entities.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation.
+    - path_to_file (str): The file path to the DSP JSON file.
+    - table_qualified_name_header_with_schema (str): The header part of the table's qualified name, including the schema.
+
+    Returns:
+    None
+    '''
     with open(path_to_file, 'r') as json_file:
         json_dict = json.load(json_file)
 
@@ -80,6 +91,18 @@ def parse_dsp_json_of_table(client, path_to_file, table_qualified_name_header_wi
 
 
 def parse_dsp_json_and_create_table(client, json_dict, table_name, table_qualified_name):
+    '''
+    Parses a JSON dictionary representing a table in a Data Services Project (DSP) and creates corresponding Atlas entities.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation.
+    - json_dict (dict): The dictionary containing the DSP JSON information for the table.
+    - table_name (str): The name of the table.
+    - table_qualified_name (str): The qualified name of the table.
+
+    Returns:
+    None
+    '''  
     guid_counter = -1002
     guid_tracker = GuidTracker(starting=guid_counter, direction='decrease')
     table_guid = guid_tracker.get_guid()
@@ -111,6 +134,18 @@ def parse_dsp_json_and_create_table(client, json_dict, table_name, table_qualifi
 
 
 def parse_dsp_json_and_create_view(client, json_dict, view_name, view_qualified_name):
+    '''
+    Parses a JSON dictionary representing a view in a Data Services Project (DSP) and creates corresponding Atlas entities.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation.
+    - json_dict (dict): The dictionary containing the DSP JSON information for the view.
+    - view_name (str): The name of the view.
+    - view_qualified_name (str): The qualified name of the view.
+
+    Returns:
+    None
+    '''  
     guid_counter = -1002
     guid_tracker = GuidTracker(starting=guid_counter, direction='decrease')
     view_guid = guid_tracker.get_guid()
@@ -142,6 +177,17 @@ def parse_dsp_json_and_create_view(client, json_dict, view_name, view_qualified_
 
 
 def get_sap_hana_views_with_substring_of_qualified_name(client, entity_type, qualified_name_header):
+    '''
+    Retrieves SAP HANA views with a substring match in their qualified name.
+
+    Parameters:
+    - client: The Purview Atlas client for entity retrieval.
+    - entity_type (str): The type of entity to retrieve, e.g., "sap_hana_view".
+    - qualified_name_header (str): The substring to match against the qualified names of the entities.
+
+    Returns:
+    list: A list of dictionaries representing matching SAP HANA views.
+    '''
     browse_result = client.discovery.browse(entityType=entity_type)
     total_search_count = browse_result.get("@search.count")
     if total_search_count == 0:
@@ -161,6 +207,15 @@ def get_sap_hana_views_with_substring_of_qualified_name(client, entity_type, qua
 
 
 def find_ref_key(data):
+    '''
+    Recursively searches for a "ref" key in the provided JSON-like data structure.
+
+    Parameters:
+    - data (dict or list): The JSON-like data structure to search.
+
+    Returns:
+    str or None: The value of the "ref" key if found, otherwise None.
+    '''
     if isinstance(data, dict):
         if "SELECT" in data and "from" in data["SELECT"]:
             from_data = data["SELECT"]["from"]
@@ -179,6 +234,15 @@ def find_ref_key(data):
 
 
 def extract_schema_from_qualified_name(qualified_name):
+    '''
+    Extracts the schema name from the given qualified name.
+
+    Parameters:
+    - qualified_name (str): The qualified name containing the schema information.
+
+    Returns:
+    str: The extracted schema name.
+    '''
     result = ""
     if "views" in qualified_name:
         match = re.search(r'schemas/(.*?)/views', qualified_name)
@@ -196,6 +260,15 @@ def extract_schema_from_qualified_name(qualified_name):
 
 
 def extract_entity_name_from_qualified_name(qualified_name):
+    '''
+    Extracts the entity name from the given qualified name.
+
+    Parameters:
+    - qualified_name (str): The qualified name containing the entity information.
+
+    Returns:
+    str: The extracted entity name.
+    '''
     result = ""
     if "views" in qualified_name:
         try:
@@ -214,6 +287,17 @@ def extract_entity_name_from_qualified_name(qualified_name):
 
 
 def create_lineage_for_view(client, target_qualified_name, qualified_names_of_sources):
+    '''
+    Creates lineage connections between a target SAP HANA view and its source entities.
+
+    Parameters:
+    - client: The Purview Atlas client for entity retrieval and lineage creation.
+    - target_qualified_name (str): The qualified name of the target SAP HANA view.
+    - qualified_names_of_sources (list): List of qualified names of source entities.
+
+    Returns:
+    None
+    '''
     target_schema = extract_schema_from_qualified_name(target_qualified_name)
     for source in qualified_names_of_sources:
         source_schema = extract_schema_from_qualified_name(source)
@@ -246,6 +330,18 @@ def create_lineage_for_view(client, target_qualified_name, qualified_names_of_so
         
 
 def parse_json_for_sap_hana_view(client, json_file, dsp_header_without_schema, schema):
+    '''
+    Parses a JSON file containing SAP HANA view information and creates entities accordingly.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation and retrieval.
+    - json_file (str): The path to the JSON file containing SAP HANA view information.
+    - dsp_header_without_schema (str): The DSP header without schema information.
+    - schema (str): The schema to which the views belong.
+
+    Returns:
+    None
+    '''
     with open(json_file, 'r') as file:
         print("FILE NAME: " + json_file + "\n")
         data = json.load(file)
@@ -300,6 +396,18 @@ def parse_json_for_sap_hana_view(client, json_file, dsp_header_without_schema, s
             
                     
 def parse_all_views_for_schema(client, directory, dsp_qa_header_without_schema, schema_this_view_belongs_to):
+    '''
+    Parses all JSON files in a directory containing SAP HANA view information for a specific schema.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation and retrieval.
+    - directory (str): The path to the directory containing JSON files.
+    - dsp_qa_header_without_schema (str): The DSP QA header without schema information.
+    - schema_this_view_belongs_to (str): The schema to which the views belong.
+
+    Returns:
+    None
+    '''
     for filename in os.listdir(directory):
         if filename.endswith('.json'):
             # Process each JSON file
@@ -310,6 +418,17 @@ def parse_all_views_for_schema(client, directory, dsp_qa_header_without_schema, 
 
 
 def create_all_tables_for_schema(client, directory, dsp_header_with_schema):
+    '''
+    Creates tables for SAP HANA schema based on JSON files in a directory.
+
+    Parameters:
+    - client: The Purview Atlas client for entity creation.
+    - directory (str): The path to the directory containing JSON files.
+    - dsp_header_with_schema (str): The DSP header with schema information.
+
+    Returns:
+    None
+    '''
     for filename in os.listdir(directory):
         if filename.endswith('.json'):
             # Process each JSON file
@@ -320,6 +439,20 @@ def create_all_tables_for_schema(client, directory, dsp_header_with_schema):
 
 
 def add_manual_dsp_lineage(client, source_entity, target_entity, process_type_name: str, source_schema, target_schema):
+    '''
+    Adds manual DSP lineage connection between source and target entities.
+
+    Parameters:
+    - client: The Purview Atlas client for lineage creation.
+    - source_entity (dict): Dictionary representing the source entity.
+    - target_entity (dict): Dictionary representing the target entity.
+    - process_type_name (str): The name of the DSP process type.
+    - source_schema (str): The schema of the source entity.
+    - target_schema (str): The schema of the target entity.
+
+    Returns:
+    None
+    '''
     try:
         sources = []
         targets = []
@@ -364,6 +497,12 @@ def add_manual_dsp_lineage(client, source_entity, target_entity, process_type_na
 
 
 def get_existing_prod_sap_hana_view_and_tables_qualified_names():
+    '''
+    Retrieves the qualified names of existing SAP HANA views and tables from a production data file.
+
+    Returns:
+    None
+    '''
     input_filename = "prod_pulled_entities.json"
     prod_pulled_entities = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:
@@ -383,6 +522,12 @@ def get_existing_prod_sap_hana_view_and_tables_qualified_names():
 
 
 def get_existing_prod_dsp_connection_qualified_names():
+    '''
+    Retrieves the qualified names of existing DSP connections from a production data file.
+
+    Returns:
+    None
+    '''
     input_filename = "prod_pulled_lineage_connections.json"
     prod_pulled_lineage_connections = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:
@@ -399,7 +544,12 @@ def get_existing_prod_dsp_connection_qualified_names():
 
 
 def parse_sap_hana_internal_lineage():
+    '''
+    Main function to parse SAP HANA internal lineage, create entities, and build lineage connections.
 
+    Returns:
+    None
+    '''
     get_existing_prod_sap_hana_view_and_tables_qualified_names()
     get_existing_prod_dsp_connection_qualified_names()
 
