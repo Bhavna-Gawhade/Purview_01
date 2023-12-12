@@ -167,6 +167,22 @@ def get_and_add_lineage(table_names: tuple, qualified_name_headers: tuple, entit
 
 
 def add_manual_lineage_with_specific_client(client, source_entities: list, target_entities: list, process_type_name: str, source_type_name, target_type_name, target_name_without_special_char):
+    '''
+    Add manual lineage with a specific Purview Atlas client by creating AtlasEntities for source and target entities,
+    and an AtlasProcess connecting them.
+
+    Args:
+        client: The specific Purview Atlas client for entity upload.
+        source_entities (list): List of source entities.
+        target_entities (list): List of target entities.
+        process_type_name (str): Name of the process type.
+        source_type_name (str): The type name of the source entities.
+        target_type_name (str): The type name of the target entities.
+        target_name_without_special_char (str): The name of the target entity without special characters.
+
+    Returns:
+        dict: Result of the entity upload operation.
+    '''
     try:
         sources = []
         targets = []
