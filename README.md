@@ -30,8 +30,6 @@
 
 # Design Considerations
 
-Every good application has taken the problem statement, goals and objectives and other considerations into account as it is designed and implemented.  Any serious project is able to provide answers the following questions to minimize the amount of rework or redesign that is required once development has been started.
-
 | Name | Description | Overview | 
 | ---- | ---- | ---- | 
 | Solution overview | Our project leverages Microsoft Purview to create a robust Data Catalog and Data Lineage infrastructure. By meticulously scanning varied data sources, we seamlessly integrate data into Purview, establishing a centralized and organized repository. Additionally, our initiative involves developing a detailed business glossary, defining key terms, and structuring a collection hierarchy to enhance data accessibility and promote efficient data management and governance within the organization. |   |
@@ -49,10 +47,11 @@ Every good application has taken the problem statement, goals and objectives and
 
 A complete review of the project to provide context for some of the design decisions, explanation for some of the technical implementations and other key pieces of information that are essential to understanding the work contained in this repository. This includes but is not limited to the following points:
 
-- **Describe the features:** Outline the key features of your application, including any unique or innovative functionality that sets it apart from similar solutions. Be sure to highlight the benefits that users can expect to gain from these features.
-- **Include project-specific information:** If your application is part of a larger project or development effort, provide some context about the project, including the timeline, milestones, and any other relevant information that will help readers understand the scope and objectives of the project.
-- **Execution Flow:** Cover the typical flow of any application invocation or processing pipeline.  This can discuss different error handling that has been implemented and other process structure.
-- **Repository Structure:** If there are any unique organization or formatting aspects to this application, please call this out.
+- **Describe the features:** Our project encompasses three core features: Data Catalog, Glossary, and Data Lineage. The Data Catalog centralizes diverse data sources using Microsoft Purview, promoting seamless data accessibility. The Glossary involves crafting 800 terms, standardizing business terminology, while Data Lineage offers transparent insights into data flow and dependencies, enhancing data governance.</br>*Benifits:*</br>*Data Catalog:* Simplifies data discovery and enhances accessibility.</br>*Glossary:* Fosters a common understanding with standardized business terminology.</br>*Data Lineage:* Provides valuable insights for robust data governance and decision-making..
+- **Include project-specific information:** This initiative is integral to our product data governance strategy, specifically addressing data quality, data cataloging, and data lineage. Aligned with our commitment to excellence, this project contributes to optimizing data management practices within our organization.
+- **Execution Flow:** The project execution involves scanning and integrating data into Microsoft Purview, crafting a detailed glossary, developing end-to-end lineage for Power BI reports, and establishing a structured collection hierarchy. This seamless flow aims to fortify data governance, enhance accessibility, and streamline our data landscape.
+- **Repository Structure:** Our repository adopts a structured approach with three main folders:</br> *Scripts Folder:* This section serves as the code repository, containing the actual scripts along with input and output files. All coding components are neatly organized within this folder, facilitating easy access and maintenance of the project's core functionality.</br> *Examples Folder:*
+In this segment, we provide practical examples corresponding to each code snippet. These examples serve as valuable resources for users, offering a hands-on understanding of how to implement and adapt the code for specific scenarios. This folder enhances the repository's user-friendliness and ensures clarity in code usage.</br> *Docs Folder:* The documentation hub, housed within this folder, encapsulates all project-related documents. Ranging from project specifications to development processes, this comprehensive collection aids users and contributors in understanding the project's nuances and contributes to a smoother development experience..
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
 
