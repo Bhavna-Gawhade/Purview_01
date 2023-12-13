@@ -5,9 +5,9 @@
 
 <center>
 
-# Project / Application Name
+# Microsoft Purview
 
-*Begin by introducing your application and providing some context about its purpose and why it was developed.  This should be high level overview of the challenges that this was meant to overcome, the functionality it includes and the outcomes that it delivers.*
+*Our project focuses on leveraging Microsoft Purview to establish a comprehensive Data Catalog and Data Lineage infrastructure. Through diligent scanning of diverse data sources, we seamlessly integrate data into Purview, ensuring a centralized and organized repository. We also create a detailed business glossary, defining key terms, and establishing a structured collection hierarchy. This initiative not only enhances data accessibility but also facilitates a clear understanding of data lineage, promoting efficient data management and governance within the organization.*
 
 <!-- INCLUDE AN ARCHITECTURE DIAGRAM HERE -->
 
@@ -34,12 +34,17 @@ Every good application has taken the problem statement, goals and objectives and
 
 | Name | Description | Overview | 
 | ---- | ---- | ---- | 
-| Solution overview | Describe the solution in 2-3 sentences. |   |
+| Solution overview | Our project leverages Microsoft Purview to create a robust Data Catalog and Data Lineage infrastructure. By meticulously scanning varied data sources, we seamlessly integrate data into Purview, establishing a centralized and organized repository. Additionally, our initiative involves developing a detailed business glossary, defining key terms, and structuring a collection hierarchy to enhance data accessibility and promote efficient data management and governance within the organization. |   |
 | Budget | Are there any budgeting constraints for this solution that the architecture team should be aware of?  |   |
-| Problem Statement | Clearly define the business problem or challenge that this project aims to solve and address. This should be in terms of technical or business shortfalls that is preventing the organization from realizing value. |   | 
-| Business Goals and Objectives | What objectives and value is the business expecting to be delivered from this analytics solution?  |   |
+| Problem Statement | We aim to work with Purview using Pyapacheatlas, but many essential functionalities are missing, leading us to develop our own solution in this repository. There is a lack of demos on how to use pyapacheatlas, making it challenging to figure out how to develop lineage and catalog features. |   | 
+| Business Goals and Objectives | 
+1. Establishing Comprehensive Data Management: Utilize Microsoft Purview to create a robust Data Catalog and Data Lineage infrastructure, ensuring a centralized repository for efficient data management.
+2. Enhancing Data Accessibility: Through diligent scanning of diverse data sources, seamlessly integrate data into Purview to enhance accessibility across the organization.
+3. Defining Business Terminology: Craft a nuanced business glossary, defining key terms to foster a common understanding of data within the organization.
+4. Structuring Information Hierarchy: Establish a structured collection hierarchy to organize and manage data effectively.
+5. Promoting Data Governance: Facilitate a clear understanding of data lineage, promoting efficient data governance practices within the organization.  |   |
 | Resourcing |  Does your project have the technical resources to successfully develop this solution from an infrastructure and engineering side?  P |  |
-| Project Deliverables | You should be able to exactly quantify the outcomes and artifacts that are expected from this project.  Some examples of this are reports/dashboards, new datasets, ML Models or other applications | | 
+| Project Deliverables | Our primary deliverables encompass the creation of glossary terms across all data assets. This involves meticulously crafting 800 glossary terms to ensure a standardized understanding of critical business terminology. Additionally, we commit to developing end-to-end lineage for six Power BI reports, providing transparent insights into the data flow and dependencies. The project also includes the establishment of a structured collection hierarchy, enhancing the organization and accessibility of data assets. Through these deliverables, we aim to fortify data governance, streamline accessibility, and foster a cohesive understanding of our data landscape within the organization. | | 
 |
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
