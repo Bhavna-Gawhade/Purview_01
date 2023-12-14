@@ -25,11 +25,15 @@
 
 Collections are organizational containers within Microsoft Purview that allow for the grouping of related data assets. They provide a logical structure to navigate and manage data, contributing to effective data governance and discovery.
 
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>
+
 ## Key Concepts
 
 - **Collections:** Containers that group related data assets.
 - **Collection Hierarchy:** The structured organization of collections.
 - **Data Asset Assignment:** Associating data assets with specific collections.
+
+<p align="right">(<a href="collections-top">Back to Top</a>)</p>
 
 ## Creating a Collection
 
@@ -41,6 +45,8 @@ To create a collection in Microsoft Purview:
 4. Provide a name and description for the new collection.
 5. Save the collection.
 
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>
+
 ## Managing Collection Hierarchy
 
 Collections can be organized hierarchically to reflect the structure of your data. Follow these steps to manage the collection hierarchy:
@@ -48,6 +54,8 @@ Collections can be organized hierarchically to reflect the structure of your dat
 1. Access the Purview portal.
 2. Navigate to the Collections section.
 3. Use the options to create sub-collections or reorganize existing ones.
+
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>
 
 ## Assigning Data Assets to Collections
 
@@ -58,6 +66,8 @@ To associate data assets with a collection:
 3. Locate the desired data asset.
 4. Use the options to assign the data asset to one or more collections.
 
+<p align="right">(<a href="collections-top">Back to Top</a>)</p>
+
 ## Viewing and Accessing Collections
 
 Collections can be viewed and accessed through the Purview portal:
@@ -66,16 +76,24 @@ Collections can be viewed and accessed through the Purview portal:
 2. Browse through the collection hierarchy.
 3. Click on a collection to view its contents and associated data assets.
 
+<p align="right">(<a href="collections-top">Back to Top</a>)</p>
+
 ## Best Practices
 
 - **Consistent Naming:** Adopt a naming convention for collections to ensure clarity.
 - **Logical Hierarchy:** Organize collections in a logical hierarchy to simplify navigation.
 - **Regular Updates:** Periodically review and update collections to reflect changes in data assets.
 
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>
+
 ## Troubleshooting
 
-If you encounter issues with collections, refer to the Purview documentation or contact [Support](mailto:support@purview.com) for assistance.
+If you encounter issues with collections, refer to the Purview documentation or please don't hesitate to [reach out to the Data Governance Team](mailto:data_governance_team@hanes.com). We are here to assist you promptly and ensure a smooth experience with our project.
+
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>
 
 ## References
 
 - [Microsoft Purview Documentation](https://docs.microsoft.com/en-us/azure/purview/)
+
+<p align="right">(<a href="#collections-top">Back to Top</a>)</p>

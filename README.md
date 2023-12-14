@@ -66,7 +66,7 @@ In this segment, we provide practical examples corresponding to each code snippe
 
 # Support Information
 
-For any issues or questions, please don't hesitate to [reach out to the Data Governance Team](mailto:data_governance_team@hanes.com) at data_governance_team@hanes.com. We are here to assist you promptly and ensure a smooth experience with our project.
+For any issues or questions, please don't hesitate to [reach out to the Data Governance Team](mailto:data_governance_team@hanes.com). We are here to assist you promptly and ensure a smooth experience with our project.
 
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
