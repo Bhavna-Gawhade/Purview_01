@@ -52,14 +52,16 @@ This robust feature empowers users to establish a comprehensive and standardized
 
 ## Bulk Creating Glossary Terms
 
-To create a glossary term in Microsoft Purview:
+To bulk create glossary terms in Microsoft Purview:
 
-1. Navigate to the Purview portal.
-2. Access the Glossary section.
-3. Click on "Create Term" to define a new business term with a clear name, description, and relevant classifications.
-4. Save the glossary term to establish a standardized and comprehensive business vocabulary.
-
-This robust feature empowers users to establish a comprehensive and standardized business vocabulary, fostering a shared understanding of critical terms across the organization.
+1. Create a CSV or Excel file containing the glossary terms you want to import. Include columns for key information such as Term Name, Description, Category, Stewards and Experts, Domain, etc. 
+2. Navigate to the Purview portal.
+3. Access the Glossary section.
+4. Look for an option or button related to importing glossary terms. This may be labeled as "Import Terms" 
+5. Choose the option to import terms from a file (CSV or Excel).Use the portal's interface to upload the prepared file.
+6. Purview will likely prompt you to map the columns from your file to the corresponding fields in the glossary. Ensure proper mapping of columns to avoid data discrepancies.
+7. Review the imported glossary terms to ensure accuracy. Confirm the import process, and Purview will create the glossary terms based on the data in your file.
+8. Navigate through the glossary section to verify that the bulk terms have been successfully imported. Check for any errors or warnings that may be displayed.
 
 <p align="right">(<a href="#Glossary-top">Back to Top</a>)</p>
 
