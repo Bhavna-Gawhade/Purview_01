@@ -367,7 +367,7 @@ def get_guids_of_entities_with_specific_type(client, entity_type):
 def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_start_inclusive, subset_end_exclusive):
     """
     Retrieves a subset of entities with a specific type in Purview.
-
+    
     Parameters:
         client (PurviewClient): The Purview client.
         entity_type (str): The name of the entity type.
