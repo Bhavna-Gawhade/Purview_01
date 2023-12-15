@@ -14,7 +14,8 @@
 
 - [Introduction](#introduction)
 - [Key Concepts](#key-concepts)
-- [Creating Glossary Terms](#creating-glossary-terms)
+- [Creating Single Glossary Terms](#creating-single-glossary-terms)
+- [Bulk Creating Glossary Terms](#bulk-reating-glossary-terms)
 - [Managing Glossary Hierarchy](#managing-glossary-hierarchy)
 - [Assigning Terms to Assets](#assigning-terms-to-assets)
 - [Viewing and Accessing Glossary](#viewing-and-accessing-glossary)
@@ -36,7 +37,20 @@ The Glossary is a central hub within Microsoft Purview, fostering a common langu
 
 <p align="right">(<a href="#Glossary-top">Back to Top</a>)</p>
 
-## Creating Glossary Terms
+## Creating Single Glossary Terms
+
+To create a glossary term in Microsoft Purview:
+
+1. Navigate to the Purview portal.
+2. Access the Glossary section.
+3. Click on "Create Term" to define a new business term with a clear name, description, and relevant classifications.
+4. Save the glossary term to establish a standardized and comprehensive business vocabulary.
+
+This robust feature empowers users to establish a comprehensive and standardized business vocabulary, fostering a shared understanding of critical terms across the organization.
+
+<p align="right">(<a href="#Glossary-top">Back to Top</a>)</p>
+
+## Bulk Creating Glossary Terms
 
 To create a glossary term in Microsoft Purview:
 
