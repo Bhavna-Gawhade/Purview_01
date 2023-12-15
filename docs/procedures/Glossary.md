@@ -15,7 +15,7 @@
 - [Introduction](#introduction)
 - [Key Concepts](#key-concepts)
 - [Creating Single Glossary Terms](#creating-single-glossary-terms)
-- [Bulk Creating Glossary Terms](#bulk-reating-glossary-terms)
+- [Bulk Creating Glossary Terms](#bulk-creating-glossary-terms)
 - [Managing Glossary Hierarchy](#managing-glossary-hierarchy)
 - [Assigning Terms to Assets](#assigning-terms-to-assets)
 - [Viewing and Accessing Glossary](#viewing-and-accessing-glossary)
