@@ -17,7 +17,7 @@
 - [Viewing Lineage](#viewing-lineage)
 - [Understanding Lineage Diagrams](#understanding-lineage-diagrams)
 - [Navigating Lineage Details](#navigating-lineage-details)
-- [Filtering Lineage Information](#filtering-lineage-information)
+- [Different types of Lineage](#different-types-of-lineage)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 - [References](#references)
@@ -72,9 +72,10 @@ In the "Navigating Lineage Details" phase, users are equipped with interactive t
 
 <p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
-## Filtering Lineage Information
+## Different types of Lineage
 
-The ability to filter lineage information is a powerful feature of Purview, allowing users to tailor their analysis to specific parameters. Time-based filters empower users to focus on particular date ranges, aiding in historical analysis and trend identification. Data type filters enable a more granular exploration, honing in on specific categories of data. Directional filters, whether analyzing backward or forward in the data flow, offer flexibility in scrutinizing lineage paths. This nuanced approach to filtering ensures that users can extract meaningful insights from the lineage information, aligning with their analytical goals and organizational needs.
+There are different types of lineage.Few of them are:
+
 
 <p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
