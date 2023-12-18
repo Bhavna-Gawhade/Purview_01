@@ -32,11 +32,15 @@ Microsoft Purview can capture lineage for data in different parts of your organi
 - Transformed and prepared data
 - Data used by visualization platforms
 
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
+
 ## Key Concepts
 
 - **Lineage Diagram:** A graphical representation of data flow.
 - **Source and Destination:** Identifies the origin and endpoint of data.
 - **Transformation Nodes:** Represents processes or transformations applied to the data.
+
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
 ## Viewing Lineage
 
@@ -48,9 +52,13 @@ To view lineage in Microsoft Purview:
 
 Upon accessing the "Lineage" section of the portal, a rich interface unfolds, revealing a dynamic visual representation of how data traverses through the organization. Users can seamlessly explore and analyze the intricate connections, sources, transformations, and endpoints of their data assets. This intuitive process enhances data transparency and empowers users to make informed decisions by comprehending the complex interplay of data within the organization.
 
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
+
 ## Understanding Lineage Diagrams
 
 Lineage diagrams within Purview serve as dynamic, graphical narratives of data flow. These diagrams intricately showcase the origin of data, the transformations it undergoes, and its final destinations. Key symbols and connections in the diagrams provide valuable context, allowing users to grasp the chronological sequence of data movement. This understanding is pivotal for stakeholders to gain insights into dependencies, identify potential bottlenecks, and ensure the accuracy and integrity of the data as it evolves throughout its lifecycle.
+
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
 ## Navigating Lineage Details
 
@@ -62,15 +70,21 @@ When exploring lineage details in Purview:
 
 In the "Navigating Lineage Details" phase, users are equipped with interactive tools to delve deeper into the intricacies of data lineage. By clicking on specific nodes within the lineage diagram, users can access detailed metadata associated with each data asset. The platform's user-friendly zoom and pan features facilitate a comprehensive exploration, enabling users to traverse through the lineage graph effortlessly. Following connections between nodes provides a guided journey, revealing the relationships between different data elements and shedding light on the entire data flow landscape.
 
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
+
 ## Filtering Lineage Information
 
 The ability to filter lineage information is a powerful feature of Purview, allowing users to tailor their analysis to specific parameters. Time-based filters empower users to focus on particular date ranges, aiding in historical analysis and trend identification. Data type filters enable a more granular exploration, honing in on specific categories of data. Directional filters, whether analyzing backward or forward in the data flow, offer flexibility in scrutinizing lineage paths. This nuanced approach to filtering ensures that users can extract meaningful insights from the lineage information, aligning with their analytical goals and organizational needs.
+
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
 ## Best Practices
 
 - **Consistent Naming:** Maintain consistent naming conventions for assets.
 - **Regular Lineage Reviews:** Periodically review and update lineage information.
 - **Collaboration:** Encourage collaboration between data stakeholders for accurate lineage representation.
+
+<p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
 ## Troubleshooting
 
