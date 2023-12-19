@@ -32,6 +32,17 @@ ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
 # ---------------
 
 def pull_and_move_s4hana_application_component_and_nested_entities_to_collection(client, application_component_guid, collection_id):
+    """
+    Collects and moves S4 HANA application component and its nested entities to a specified collection.
+
+    Parameters:
+        client (object): The Purview client object.
+        application_component_guid (str): The GUID of the S4 HANA application component.
+        collection_id (str): The ID of the collection to which the entities will be moved.
+
+    Returns:
+        dict: A dictionary containing the result of the move operation.
+    """
     application_component_details = client.get_entity(application_component_guid).get("entities")[0]
     guids_to_move_for_this_app_comp = [application_component_guid]
     packages_in_application_component = application_component_details.get("relationshipAttributes").get("packages")
@@ -49,11 +60,15 @@ def pull_and_move_s4hana_application_component_and_nested_entities_to_collection
 
 
 def move_sap_s4hana_to_collection():
-    # run on QA to move S4 HANA MDG application components
-    # send to Sravanthi once Charlie gives back list of items to move
+    """
+    Moves S4 HANA MDG application components to a specified collection.
+
+    Returns:
+        dict: A dictionary containing the result of the move operation.
+    """
     application_component_guid = "5107e860-54fd-4ef6-b960-3fb7284504a7"
     collection_id = "x9hxp5"
-    result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(CLIENT, app_comp_guid, collection_id)
+    result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(CLIENT, application_component_guid, collection_id)
     print(result)
 
 

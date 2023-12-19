@@ -43,6 +43,18 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def propagate_glossary_terms_across_data_lake_resource_sets(datalake_resource_set_entities, client, glossary_term_name, fields):
+    '''
+    Propagate a glossary term across data lake resource sets by matching fields and applying the glossary term.
+
+    Args:
+        datalake_resource_set_entities (list): List of data lake resource set entities.
+        client: The Purview Atlas client for entity upload.
+        glossary_term_name (str): Name of the glossary term to be propagated.
+        fields (list): List of field names to match for glossary term propagation.
+
+    Returns:
+        list: A list containing elapsed time in seconds and matched field names.
+    '''
     start_time = time.time()
     matched_strings = []
 
@@ -73,6 +85,14 @@ def propagate_glossary_terms_across_data_lake_resource_sets(datalake_resource_se
 
 
 def glossary_propagation_of_datalake(client, purview_acct_short_name):
+    '''
+    Run glossary term propagation for data lake entities.
+    Args:
+        purview_acct_short_name : The name of purview account short name.
+        client: The Purview Atlas client for entity upload.
+
+    Note: The function reads entities from a pre-pulled JSON file, applies glossary terms, and logs the results.
+    '''
     # Note: purview_acct_short_name = "qa" or "prod"
     # RUN BELOW FOR REFRESHED PULL OF PROD INSTANCES
     #pull_prod_entities_from_purview("prod", "hbi-pd01-datamgmt-pview", client)
