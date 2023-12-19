@@ -17,7 +17,7 @@
 - [Viewing Lineage](#viewing-lineage)
 - [Understanding Lineage Diagrams](#understanding-lineage-diagrams)
 - [Navigating Lineage Details](#navigating-lineage-details)
-- [Different types of Lineage](#different-types-of-lineage)
+- [Different Types of Lineage](#different-types-of-lineage)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 - [References](#references)
@@ -72,7 +72,7 @@ In the "Navigating Lineage Details" phase, users are equipped with interactive t
 
 <p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
-## Different types of Lineage
+## Different Types of Lineage
 
 There are different types of lineage.Few of them are:
 
