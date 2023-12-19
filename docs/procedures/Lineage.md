@@ -75,7 +75,29 @@ In the "Navigating Lineage Details" phase, users are equipped with interactive t
 ## Different Types of Lineage
 
 There are different types of lineage.Few of them are:
+1. **Internal Data Warehouse Lineage:**
+   - This lineage type focuses on the data flow within an internal data warehouse. It reveals how data moves and transforms within the organization's data warehousing infrastructure, providing insights into the end-to-end journey of data assets.
 
+2. **External Table Lineage:**
+   - External table lineage tracks the flow of data associated with external tables. It illustrates how data is sourced from external tables, transformed, and utilized within the organization's data ecosystem, enhancing visibility into the integration of external data sources.
+
+3. **JSON Payload Lineage:**
+   - JSON payload lineage explores the lineage of data represented in JSON format. It showcases how JSON data is ingested, transformed, and utilized across various processes within the organization, offering clarity on the handling of JSON data payloads.
+
+4. **PKMS Lineage:**
+   - PKMS lineage centers around the flow of data within a PKMS (Public Key Management Service) environment. It outlines the journey of data assets as they traverse through PKMS processes, providing an understanding of data security and encryption practices.
+
+5. **PowerBI SQL Query Lineage:**
+   - PowerBI SQL query lineage reveals the lineage of data manipulated through SQL queries within PowerBI. It illustrates how SQL queries are applied to shape and analyze data within PowerBI, contributing to a comprehensive view of data transformations.
+
+6. **PowerBI Tabular Model Lineage:**
+   - PowerBI Tabular Model lineage focuses on the relationships and dependencies within PowerBI's tabular data model. It showcases how data entities are structured and interconnected within PowerBI, aiding in understanding the composition of analytical models.
+
+7. **SAP HANA Internal Lineage:**
+   - SAP HANA Internal Lineage traces the movement and transformations of data within the SAP HANA environment. It provides insights into how data is processed and utilized within SAP HANA, supporting transparency and governance of SAP HANA data assets.
+
+8. **Stored Procedure Lineage:**
+   - Stored Procedure lineage elucidates the path of data through stored procedures. It showcases how data is manipulated and processed within stored procedures, offering visibility into the execution and impact of stored procedures on data assets.
 
 <p align="right">(<a href="#Lineage-top">Back to Top</a>)</p>
 
