@@ -18,6 +18,7 @@
 - [Configuring Connection Details](#configuring-connection-details)
 - [Scanning SAP HANA Data Assets](#scanning-sap-hana-data-assets)
 - [Verifying Registration and Scanning](#verifying-registration-and-scanning)
+- [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 - [References](#references)
 
