@@ -62,6 +62,7 @@ Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a 
 ## Required Permissions for Scan
 
 - To successfully scan SAP HANA in Microsoft Purview, configure a user with basic authentication (username and password).
+      ```sql
    CREATE USER <user> PASSWORD <password> NO FORCE_FIRST_PASSWORD_CHANGE;
 - Ensure this user has the necessary permissions, such as SELECT METADATA on target schemas (e.g., <schema1>, <schema2>) 
    GRANT SELECT METADATA ON SCHEMA <schema1> TO <user>;
@@ -69,6 +70,8 @@ Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a 
    GRANT SELECT ON _SYS_REPO.ACTIVE_OBJECT TO <user>;
    GRANT SELECT ON SCHEMA _SYS_BI TO <user>;
 - Utilize the provided SQL commands to create the user, grant required permissions, and facilitate seamless metadata retrieval during the scanning process. Refer to Microsoft Purview documentation for detailed instructions and updates.
+
+<p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
 
 ## Scanning SAP HANA Data Assets
 
