@@ -16,6 +16,7 @@
 - [Registering SAP S/4 HANA in Purview](#registering-sap-s4-hana-in-purview)
 - [Configuring Credentials in Purview](#configuring-credentials-in-purview)
 - [Configuring Connection Details](#configuring-connection-details)
+- [Required Permissions for Scan](#required-permissions-for-scan)
 - [Scanning SAP S/4 HANA Data Assets](#scanning-sap-s4-hana-data-assets)
 - [Verifying Registration and Scanning](#verifying-registration-and-scanning)
 - [Best Practices](#best-practices)
@@ -66,6 +67,30 @@ Registering SAP S/4 HANA in Purview is a foundational step in integrating this p
    - Port number
    - Client ID and Secret, if applicable.
 4. The accuracy of these details ensures a secure and reliable communication link between Purview and SAP S/4 HANA. Saving the configuration settings solidifies the connection, setting the stage for successful scanning and metadata retrieval.
+
+<p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
+
+## Required Permissions for Scan
+
+For successful scan execution in Azure Purview, the user account utilized for the scan process must have sufficient permissions to connect to the SAP server and execute specific RFC (Remote Function Call) function modules. The following key RFC function modules are crucial for different aspects of the scan process:
+
+1. **STFC_CONNECTION (Check Connectivity):**
+   - Purpose: Verifies the connectivity to the SAP server.
+   - Permissions: Ensure the user has the necessary permissions to execute this function module.
+
+2. **RFC_SYSTEM_INFO (Check System Information):**
+   - Purpose: Retrieves system information from the SAP server.
+   - Permissions: Grant the user the required permissions to execute RFC_SYSTEM_INFO.
+
+3. **OCS_GET_INSTALLED_COMPS (Check Software Versions):**
+   - Purpose: Checks installed software versions on the SAP server.
+   - Permissions: Authorize the user to execute OCS_GET_INSTALLED_COMPS.
+
+4. **Z_MITI_DOWNLOAD (Main Metadata Import):**
+   - Purpose: Main function module for metadata import, typically created following the Purview guide.
+   - Permissions: The user must have sufficient permissions to execute Z_MITI_DOWNLOAD.
+
+Additionally, it's important to note that the SAP Java Connector (JCo) libraries may invoke additional RFC function modules such as RFC_PING, RFC_METADATA_GET, etc., during the scan process.
 
 <p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
 
