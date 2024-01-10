@@ -15,6 +15,7 @@
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Registering SAP HANA in Purview](#registering-sap-hana-in-purview)
+- [Configuring Credentials in Purview](#configuring-credentials-in-purview)
 - [Configuring Connection Details](#configuring-connection-details)
 - [Required Permissions for Scan](#required-permissions-for-scan)
 - [Scanning SAP HANA Data Assets](#scanning-sap-hana-data-assets)
@@ -43,6 +44,17 @@ Ensure the following prerequisites are met before registering and scanning SAP H
 
 Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a recognized data source within the centralized catalog. This process begins by accessing the Purview portal and navigating to the "Sources" or "Connectors" section. Selecting "Add Source" and choosing "SAP HANA" initiates the registration. Users provide a distinct name for the SAP HANA source, facilitating easy identification within the Purview environment. Saving the registration details triggers the commencement of the integration process, laying the foundation for subsequent configuration and scanning.This registration process establishes a connection between Purview and SAP HANA, facilitating subsequent configuration and scanning activities. It is crucial for ensuring that SAP HANA data becomes an integral part of the centralized data catalog.
 
+<p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
+
+## Configuring Credentials in Purview
+
+- To enhance security and manage sensitive credentials effectively, you can create a secret in Azure Key Vault.  
+- Begin by navigating to the Azure Portal, accessing or creating a Key Vault, and adding a new secret with its respective details.  
+- Note the Secret Identifier (URL) for future reference.  
+- Subsequently, in Microsoft Purview, navigate to management center and access the credentials section, create a new credential for the desired data source (e.g., SAP HANA), and opt for an authentication method using a username and password. 
+- Instead of entering the password directly, reference the secret from Azure Key Vault using the obtained Secret Identifier.  
+- Ensure that the Azure AD application or identity used by Purview has appropriate permissions to access the Azure Key Vault secrets.  
+- Finally, test the connection to confirm that Purview can securely retrieve the credentials from Azure Key Vault, adhering to best practices for credential management.
 
 <p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
 
@@ -73,7 +85,7 @@ Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a 
 
    GRANT SELECT ON _SYS_REPO.ACTIVE_OBJECT TO `<user>`;  
    GRANT SELECT ON SCHEMA _SYS_BI TO `<user>`;  
-   
+
 - Utilize the provided SQL commands to create the user, grant required permissions, and facilitate seamless metadata retrieval during the scanning process. Refer to Microsoft Purview documentation for detailed instructions and updates.
 
 <p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
