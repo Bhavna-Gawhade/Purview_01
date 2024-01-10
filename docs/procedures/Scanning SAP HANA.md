@@ -16,6 +16,7 @@
 - [Prerequisites](#prerequisites)
 - [Registering SAP HANA in Purview](#registering-sap-hana-in-purview)
 - [Configuring Connection Details](#configuring-connection-details)
+- [Required Permissions for Scan](#required-permissions-for-scan)
 - [Scanning SAP HANA Data Assets](#scanning-sap-hana-data-assets)
 - [Verifying Registration and Scanning](#verifying-registration-and-scanning)
 - [Best Practices](#best-practices)
@@ -33,6 +34,7 @@ SAP HANA scanning in Purview allows organizations to capture metadata related to
 Ensure the following prerequisites are met before registering and scanning SAP HANA in Purview:
 
 - Access to the SAP HANA instance.
+- Make sure that VM/IR is configured and Running.
 - Purview account with the necessary permissions for SAP HANA registration.
 
 <p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
@@ -56,6 +58,17 @@ Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a 
 4. The configuration step ensures a secure and accurate link between Purview and SAP HANA, laying the groundwork for successful scanning and metadata retrieval.
 
 <p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
+
+## Required Permissions for Scan
+
+- To successfully scan SAP HANA in Microsoft Purview, configure a user with basic authentication (username and password).
+   CREATE USER <user> PASSWORD <password> NO FORCE_FIRST_PASSWORD_CHANGE;
+- Ensure this user has the necessary permissions, such as SELECT METADATA on target schemas (e.g., <schema1>, <schema2>) 
+   GRANT SELECT METADATA ON SCHEMA <schema1> TO <user>;
+- SELECT on system tables like _SYS_REPO.ACTIVE_OBJECT and system schemas (_SYS_BI, _SYS_BIC). 
+   GRANT SELECT ON _SYS_REPO.ACTIVE_OBJECT TO <user>;
+   GRANT SELECT ON SCHEMA _SYS_BI TO <user>;
+- Utilize the provided SQL commands to create the user, grant required permissions, and facilitate seamless metadata retrieval during the scanning process. Refer to Microsoft Purview documentation for detailed instructions and updates.
 
 ## Scanning SAP HANA Data Assets
 

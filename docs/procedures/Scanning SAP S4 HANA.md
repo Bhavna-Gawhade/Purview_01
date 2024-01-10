@@ -32,6 +32,7 @@ Integrating SAP S/4 HANA with Microsoft Purview extends the data catalog to incl
 Ensure the following prerequisites are met before registering and scanning SAP S/4 HANA in Purview:
 
 - Access to the SAP S/4 HANA instance.
+- Make sure that VM/IR is configured and Running.
 - Purview account with the necessary permissions for SAP S/4 HANA registration.
 
 <p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
