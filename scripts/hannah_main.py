@@ -787,16 +787,18 @@ def main():
     #pkms_entity = qa_client.get_entity(pkms_guid).get("entities")[0]
     #print(pkms_entity)
 
-    source_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/mount/Product_Item_Attribute_OAKDWHP1"
+    """source_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/mount/Product_Item_Attribute_OAKDWHP1"
     target_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/master/DimAttribute"
 
     source_entity = get_entity_from_qualified_name(prod_client, source_qual)
     target_entity = get_entity_from_qualified_name(prod_client, target_qual)
     process_type_name = "dw_routine"
     result = add_manual_lineage(prod_client, [source_entity], [target_entity], process_type_name)
-    print(result)
+    print(result)"""
     
     #manually_connect_dl_to_dw_via_qualified_names(prod_client, source_qual, target_qual)
+    move_sap_s4hana_to_collection()
+    
 
 
 
