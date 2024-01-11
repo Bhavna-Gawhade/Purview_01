@@ -48,6 +48,15 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def load_json(json_file_path):
+    '''
+    Loads JSON data from a file.
+
+    Parameters:
+    - json_file_path (str): The file path to the JSON file.
+
+    Returns:
+    dict: A dictionary containing the loaded JSON data.   
+    '''
     try:
         with open(json_file_path, "r") as json_file:
             model_data = json.load(json_file)
@@ -63,6 +72,15 @@ def load_json(json_file_path):
 
 
 def extract_source_schema_and_table_name(partitions_dict):
+    '''
+    Extracts source schema and table name information from a partitions dictionary.
+
+    Parameters:
+    - partitions_dict (list): List of partition dictionaries.
+
+    Returns:
+    tuple: A tuple containing the extracted source schema and table name.
+    '''
     partition = partitions_dict[0]
     source_schema = ""
     table_name = ""
@@ -85,6 +103,17 @@ def extract_source_schema_and_table_name(partitions_dict):
 
 
 def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_name):
+    '''
+    Retrieves details of all tables from a tabular model, including their source schema and table name.
+
+    Parameters:
+    - client: The Atlas client for making API calls.
+    - tables (list): List of tables from the tabular model.
+    - start_of_source_qualified_name (str): The common prefix for constructing the qualified name of the source entities.
+
+    Returns:
+    list: A list of dictionaries, each containing details of a table, including powerbi_table_name, source_schema, source_table_name, and source entity details.
+    '''
     all_tables = []
     for t in tables:
         source_info = extract_source_schema_and_table_name(t.get("partitions"))
@@ -112,6 +141,15 @@ def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_
 
 
 def build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, target_name):
+    '''
+    Builds a lineage relationship from a Power BI table to a Power BI dataset.
+
+    Parameters:
+    - client: The Atlas client for making API calls.
+    - source_dict (dict): Dictionary containing details of the Power BI table.
+    - target_dict (dict): Dictionary containing details of the Power BI dataset.
+    - target_name (str): The name of the Power BI dataset.
+    '''
     process_type_name = "PBI_Table_to_PBI_Dataset_Connection"
     source_type_name = "PowerBITable"
     target_type_name = "PowerBIDataset"
@@ -123,6 +161,18 @@ def build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, ta
 
 
 def create_powerbi_tables(client, tables, target_dataset_name_without_special_char, target_dataset_qualified_name):
+    '''
+    Creates Power BI table entities in Apache Atlas and returns a list of created entities.
+
+    Parameters:
+    - client: The Atlas client for making API calls.
+    - tables (list): List of dictionaries containing details of Power BI tables.
+    - target_dataset_name_without_special_char (str): The name of the target Power BI dataset without special characters.
+    - target_dataset_qualified_name (str): The qualified name of the target Power BI dataset.
+
+    Returns:
+    - power_bi_tables (list): List of AtlasEntity objects representing the created Power BI table entities.
+    '''
     entity_type = "Power_BI_Table" # custom type can be found under entity.py
 
     power_bi_tables = []
@@ -146,12 +196,33 @@ def create_powerbi_tables(client, tables, target_dataset_name_without_special_ch
 
 
 def get_custom_power_bi_tables(client):
+    '''
+    Retrieves Power BI table entities of a custom type from Apache Atlas.
+
+    Parameters:
+    - client: The Atlas client for making API calls.
+
+    Returns:
+    - entities (list): List of dictionaries representing Power BI table entities.
+    '''
     entity_type = "Power_BI_Table"
     entities = client.discovery.browse(entityType=entity_type).get("value")
     return entities
 
 
 def build_lineage_from_sql_to_pbi_table(client, source_dict, target_dict, target_name):
+    '''
+    Builds lineage from an SQL database table to a Power BI table in Apache Atlas.
+
+    Parameters:
+    - client: The Apache Atlas client for making API calls.
+    - source_dict (dict): Dictionary representing the source SQL table entity.
+    - target_dict (dict): Dictionary representing the target Power BI table entity.
+    - target_name (str): The name of the target Power BI table.
+
+    Returns:
+    - result (dict): Result of the lineage creation operation.
+    '''
     process_type_name = "SQL_to_PBI_Table_Connection"
     source_type_name = "AzureSQLDB"
     target_type_name = "PowerBITable"
@@ -164,6 +235,16 @@ def build_lineage_from_sql_to_pbi_table(client, source_dict, target_dict, target
 
 
 def prod_build_powerbi_lineage_from_tabular_model():
+    '''
+    Build lineage relationships in Apache Atlas from SQL database tables to Power BI tables and from Power BI tables to Power BI datasets.
+
+    Note:
+    - Ensure that the Power BI tables and datasets are created in Atlas before running this script.
+    - The function relies on custom entity types "AzureSQLDB" for SQL database tables and "PowerBITable" for Power BI tables.
+
+    Returns:
+    - None 
+    '''
     # NOTE:
     # Handle power BI table creation. Need to add check for existing created tables.
     # Need to factor schemas into the qualified names.

@@ -43,6 +43,16 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def glossary_propagation_azure_dw(client, purview_acct_short_name):
+    """
+    Perform glossary term propagation in Azure SQL Data Warehouse entities.
+
+    Parameters:
+    - client: Purview client for making API requests.
+    - purview_acct_short_name (str): Short name of the Purview account.
+
+    Returns:
+    - None: Outputs results to files, detailing the glossary term propagation.
+    """
     input_filename = purview_acct_short_name + "_pulled_entities.json"
     pulled_entities = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:

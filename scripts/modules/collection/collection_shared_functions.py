@@ -5,6 +5,7 @@
 # ---------------
 
 from modules import entity
+from scripts.modules.classification.classification import change_key_names
 from utils import get_credentials, create_purview_client
 
 
@@ -337,6 +338,17 @@ def generate_subcollections_from_json(friendly_name: str, json_str: str):
 
 
 def collect_nested_packages_and_entities(client, package_guid, collected_guids=None):
+    """
+    Recursively collects GUIDs of a package and its nested entities.
+
+    Parameters:
+        client (object): The Purview client object.
+        package_guid (str): The GUID of the package to collect.
+        collected_guids (set): A set to store the collected GUIDs. Default is None.
+
+    Returns:
+        set: A set containing the collected GUIDs.
+    """
     if collected_guids is None:
         collected_guids = set()
 

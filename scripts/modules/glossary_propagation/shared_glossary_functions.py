@@ -4,9 +4,9 @@
 # Function Imports
 # ---------------
 
+from modules.entity import get_guids_of_entities_with_specific_type
 from utils import get_credentials, create_purview_client
 from modules.entity import *
-
 
 # Package Imports
 # ---------------
@@ -57,6 +57,16 @@ def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
 
 
 def get_all_guids_of_entities_with_glossary_term(glossary_term_name: str, glossary_name: str):
+    '''
+    Retrieves the GUIDs of entities containing a specific glossary term within a given glossary.
+
+    Parameters:
+        glossary_term_name (str): The name of the glossary term.
+        glossary_name (str): The name of the glossary.
+
+    Returns:
+        list: A list of dictionaries containing the GUIDs with the specified glossary term.
+    '''
     json_str = '{"term": "'+ glossary_term_name +'", "glossary": "' + glossary_name + '"}'
     json_obj = json.loads(json_str)
     result = CLIENT.discovery.search_entities(query = glossary_term_name, search_filter=json_obj)
@@ -72,6 +82,16 @@ def get_all_guids_of_entities_with_glossary_term(glossary_term_name: str, glossa
 
 
 def get_all_entitities_with_glossary_term(glossary_term_name: str, glossary_name: str):
+    '''
+    Retrieves all entities containing a specific glossary term within a given glossary.
+
+    Parameters:
+        glossary_term_name (str): The name of the glossary term.
+        glossary_name (str): The name of the glossary.
+
+    Returns:
+        list: A list of dictionaries representing the entities with the specified glossary term.
+    '''
     # NOTE: This grabs the guids of the entities within which columns with glossary terms are,
     #    NOT the column guids
     all_guids = get_all_guids_of_entities_with_glossary_term(glossary_term_name, glossary_name)
@@ -84,6 +104,16 @@ def get_all_entitities_with_glossary_term(glossary_term_name: str, glossary_name
 
 
 def output_column_names_with_specific_glossary_term(glossary_term_name, column_names_with_glossary_term):
+    '''
+    Outputs column names with a specific glossary term to a text file.
+
+    Parameters:
+        glossary_term_name (str): The name of the glossary term.
+        column_names_with_glossary_term (list): List of column names with the specified glossary term.
+
+    Returns:
+        None
+    '''
     file_path = glossary_term_name + " Column Names.txt"
     with open(file_path, 'w') as file:
         file.write("Glossary Term Name: " + glossary_term_name + "\n")
@@ -94,6 +124,16 @@ def output_column_names_with_specific_glossary_term(glossary_term_name, column_n
 
 
 def get_column_names_with_specific_glossary_term(glossary_term_name, glossary_name):
+    '''
+    Retrieves column names with a specific glossary term within a given glossary.
+
+    Parameters:
+        glossary_term_name (str): The name of the glossary term.
+        glossary_name (str): The name of the glossary.
+
+    Returns:
+        list: A list of column names with the specified glossary term.
+    '''
     entities = get_all_entitities_with_glossary_term(glossary_term_name, glossary_name)
     # relationshipAttributes -> columns (list of dicts) -> guid
     guids_of_columns_within_entity = []
@@ -120,11 +160,34 @@ def get_column_names_with_specific_glossary_term(glossary_term_name, glossary_na
 
 
 def remove_term_from_all_entities(entities_with_glossary_term: list, term_name: str, glossary_name: str):
+    '''
+    Removes a glossary term from all specified entities.
+
+    Parameters:
+        entities_with_glossary_term (list): List of entities with the specified glossary term.
+        term_name (str): The name of the glossary term to be removed.
+        glossary_name (str): The name of the glossary.
+
+    Returns:
+        dict: The result of the removal operation.
+    '''
     result = CLIENT.glossary.delete_assignedTerm(entities=entities_with_glossary_term, termName = term_name, glossary_name = glossary_name)
     return result
 
 
 def output_propagation_results(directory, glossary_term_name, elapsed_time_minutes, matched_strings):
+    '''
+    Outputs propagation results to a text file.
+
+    Parameters:
+        directory (str): The directory to save the results.
+        glossary_term_name (str): The name of the glossary term.
+        elapsed_time_minutes (float): Elapsed time for propagation in minutes.
+        matched_strings (list): List of strings matched during propagation.
+
+    Returns:
+        None
+    '''
     os.makedirs(directory, exist_ok=True) # Create the directory if it doesn't exist
     file_name = glossary_term_name + ".txt"
     file_path = os.path.join(directory, file_name)
@@ -143,12 +206,13 @@ def output_propagation_results(directory, glossary_term_name, elapsed_time_minut
 
 def propagate_glossary_term_by_specific_entity_type(entity_type, glossary_term_name, fields, directory):
     """
-    Propagate a glossary term to columns of a specific entity type, and the entities themselves, based on a regular expression match in their names.
+    Propagate a glossary term to columns of a specific entity type and the entities themselves based on a regular expression match in their names.
 
     Args:
         entity_type (str): The specific entity type (e.g., table) to target for glossary term propagation.
         glossary_term_name (str): The name of the glossary term to propagate.
-        regex (str): The regular expression pattern used to match column names.
+        fields (list): List of field names to match for glossary term propagation.
+        directory (str): The directory to output propagation results.
 
     Returns:
         None
@@ -189,6 +253,19 @@ def propagate_glossary_term_by_specific_entity_type(entity_type, glossary_term_n
 
 
 def propagate_glossary_term_by_specific_entity_type_and_return_string(all_entity_details, client, glossary_term_name, fields, column_type_name):
+    '''
+    Propagates a glossary term to entities of a specific type and returns relevant information.
+
+    Parameters:
+        all_entity_details (list): List of entity details.
+        client (object): The Purview client object.
+        glossary_term_name (str): The name of the glossary term.
+        fields (list): List of fields related to the glossary term.
+        column_type_name (str): The type of column.
+
+    Returns:
+        list: Elapsed time in seconds and a list of matched strings.
+    '''
     start_time = time.time()
     matched_strings = []
     for entry in all_entity_details:
@@ -233,6 +310,15 @@ def prod_glossary_propagation_non_sap():
     # NOTE: some numbers are hard coded. Currently propagating terms 250-500, despite the file containing 1-500.
 
     # PROD ACCOUNT
+    '''
+    Propagates glossary terms in a non-SAP production environment.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    '''
     REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
     CREDS = get_credentials(cred_type= 'default')
     client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
@@ -296,6 +382,15 @@ def prod_glossary_propagation_non_sap():
 
 
 def get_glossary_terms_dict(import_file_name):
+    '''
+    Reads an Excel file and extracts glossary term names and associated fields.
+
+    Parameters:
+        import_file_name (str): The name of the Excel file.
+
+    Returns:
+        list: A list of dictionaries representing glossary terms and associated fields.
+    '''
     # use the new regex sheet, extract the glossary term name and regex 
     #file_path = "1_to_500_Glossary_with_Field_Duplicates_at_End_10.2.23.xlsx"
 
@@ -313,6 +408,15 @@ def get_glossary_terms_dict(import_file_name):
 
 
 def read_glossary_import_file(file_name):
+    '''
+    Reads an Excel file containing glossary terms and their associated fields.
+
+    Parameters:
+        file_name (str): The name of the Excel file.
+
+    Returns:
+        dict: A dictionary with field names as keys and glossary term names as values.
+    '''
     glossary_terms_sheet = pd.read_excel(file_name)
     glossary_dict_with_fields_as_keys = {}
     for index, row in glossary_terms_sheet.iterrows():
@@ -325,6 +429,20 @@ def read_glossary_import_file(file_name):
 
 def propagate_all_glossary_terms_across_specific_entity_type(client, all_entity_details, column_type_name, 
                                                              glossary_dict_with_fields_as_keys, dict_for_string_matches, dict_for_guids_of_a_glossary_term):
+    '''
+    Propagates glossary terms across entities of a specific type and returns relevant information.
+
+    Parameters:
+        client (object): The Purview client object.
+        all_entity_details (list): List of entity details.
+        column_type_name (str): The type of column.
+        glossary_dict_with_fields_as_keys (dict): Dictionary with field names as keys and glossary term names as values.
+        dict_for_string_matches (dict): Dictionary for storing string matches during propagation.
+        dict_for_guids_of_a_glossary_term (dict): Dictionary for storing GUIDs associated with glossary terms.
+
+    Returns:
+        list: Elapsed time in seconds, a dictionary of string matches, and a dictionary of GUIDs.
+    '''
     start_time = time.time()
     for entity in all_entity_details:
         entity_guid = entity.get("guid")
@@ -366,6 +484,15 @@ def propagate_all_glossary_terms_across_specific_entity_type(client, all_entity_
  
 
 def delete_term_from_entity_and_columns(view_guid):
+    '''
+    Deletes a glossary term from a specified view entity and its columns.
+
+    Parameters:
+        view_guid (str): The GUID of the view entity.
+
+    Returns:
+        None
+    '''
     entity_details = CLIENT.get_entity(view_guid).get("entities")[0]
     view_columns = entity_details.get("relationshipAttributes").get("view_columns")
     for c in view_columns:
@@ -391,7 +518,16 @@ def delete_term_from_entity_and_columns(view_guid):
 
 def pull_sap_s4hana_table_columns_without_glossary_terms(purview_acct_short_name, table_name):
     # ie.  purview_acct_short_name = "prod", table_name = "MARA"
-    
+    '''
+    Pulls SAP S/4HANA table columns without associated glossary terms.
+
+    Parameters:
+        purview_acct_short_name (str): The short name of the Purview account.
+        table_name (str): The name of the SAP S/4HANA table.
+
+    Returns:
+        None
+    '''
     input_filename = purview_acct_short_name + "_pulled_entities.json"
     pulled_entities = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:
@@ -440,7 +576,16 @@ def pull_sap_s4hana_table_columns_without_glossary_terms(purview_acct_short_name
 
 def pull_sap_s4hana_columns_of_table(purview_acct_short_name, table_name):
     # ie.  purview_acct_short_name = "prod", table_name = "MARA"
-    
+    '''
+    Pulls SAP S/4HANA table columns and writes them to an Excel file.
+
+    Parameters:
+        purview_acct_short_name (str): The short name of the Purview account.
+        table_name (str): The name of the SAP S/4HANA table.
+
+    Returns:
+        None
+    '''
     input_filename = purview_acct_short_name + "_pulled_entities.json"
     pulled_entities = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:
@@ -474,6 +619,15 @@ def pull_sap_s4hana_columns_of_table(purview_acct_short_name, table_name):
 
 
 def pull_s4_table_columns():
+    '''
+    Pulls SAP S/4HANA table columns without associated glossary terms for a specified table.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    '''
     print()
     
     client = CLIENT
@@ -523,6 +677,15 @@ def pull_s4_table_columns():
 
 
 def extract_fields_for_which_there_are_not_glossary_terms(client):
+    '''
+    Extracts fields for which there are no associated glossary terms and writes them to an Excel file.
+
+    Parameters:
+        client (object): The Purview client object.
+
+    Returns:
+        None
+    '''
     input_filename = "All_Fields_from_Paola.xlsx"
     # load terms
 
@@ -570,6 +733,15 @@ def extract_fields_for_which_there_are_not_glossary_terms(client):
 
 
 def extract_fields_of_table(client):
+    '''
+    Extracts fields of a specified table for which there are no associated glossary terms and writes them to an Excel file.
+
+    Parameters:
+        client (object): The Purview client object.
+
+    Returns:
+        None
+    '''
     # pull table from dict
     # pull column names
     # write column names 
