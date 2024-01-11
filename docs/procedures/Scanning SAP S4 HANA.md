@@ -14,7 +14,9 @@
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Registering SAP S/4 HANA in Purview](#registering-sap-s4-hana-in-purview)
+- [Configuring Credentials in Purview](#configuring-credentials-in-purview)
 - [Configuring Connection Details](#configuring-connection-details)
+- [Required Permissions for Scan](#required-permissions-for-scan)
 - [Scanning SAP S/4 HANA Data Assets](#scanning-sap-s4-hana-data-assets)
 - [Verifying Registration and Scanning](#verifying-registration-and-scanning)
 - [Best Practices](#best-practices)
@@ -32,6 +34,7 @@ Integrating SAP S/4 HANA with Microsoft Purview extends the data catalog to incl
 Ensure the following prerequisites are met before registering and scanning SAP S/4 HANA in Purview:
 
 - Access to the SAP S/4 HANA instance.
+- Make sure that VM/IR is configured and Running.
 - Purview account with the necessary permissions for SAP S/4 HANA registration.
 
 <p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
@@ -39,6 +42,18 @@ Ensure the following prerequisites are met before registering and scanning SAP S
 ## Registering SAP S/4 HANA in Purview
 
 Registering SAP S/4 HANA in Purview is a foundational step in integrating this powerful ERP system into the broader data landscape. Within the Purview portal, users navigate to the "Sources" or "Connectors" section, initiating the process of adding a new source. By selecting "SAP S/4 HANA" as the source type, users establish a connection between Purview and the SAP S/4 HANA instance. Providing a descriptive name for the source enhances identification within the Purview environment. The registration process lays the groundwork for subsequent configuration and scanning activities, enabling comprehensive data governance and cataloging.
+
+<p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
+
+## Configuring Credentials in Purview
+
+- To enhance security and manage sensitive credentials effectively, you can create a secret in Azure Key Vault.  
+- Begin by navigating to the Azure Portal, accessing or creating a Key Vault, and adding a new secret with its respective details.  
+- Note the Secret Identifier (URL) for future reference.  
+- Subsequently, in Microsoft Purview, navigate to management center and access the credentials section, create a new credential for the desired data source (e.g., SAP HANA), and opt for an authentication method using a username and password. 
+- Instead of entering the password directly, reference the secret from Azure Key Vault using the obtained Secret Identifier.  
+- Ensure that the Azure AD application or identity used by Purview has appropriate permissions to access the Azure Key Vault secrets.  
+- Finally, test the connection to confirm that Purview can securely retrieve the credentials from Azure Key Vault, adhering to best practices for credential management.
 
 <p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
 
@@ -52,6 +67,30 @@ Registering SAP S/4 HANA in Purview is a foundational step in integrating this p
    - Port number
    - Client ID and Secret, if applicable.
 4. The accuracy of these details ensures a secure and reliable communication link between Purview and SAP S/4 HANA. Saving the configuration settings solidifies the connection, setting the stage for successful scanning and metadata retrieval.
+
+<p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
+
+## Required Permissions for Scan
+
+For successful scan execution in Azure Purview, the user account utilized for the scan process must have sufficient permissions to connect to the SAP server and execute specific RFC (Remote Function Call) function modules. The following key RFC function modules are crucial for different aspects of the scan process:
+
+1. **STFC_CONNECTION (Check Connectivity):**
+   - Purpose: Verifies the connectivity to the SAP server.
+   - Permissions: Ensure the user has the necessary permissions to execute this function module.
+
+2. **RFC_SYSTEM_INFO (Check System Information):**
+   - Purpose: Retrieves system information from the SAP server.
+   - Permissions: Grant the user the required permissions to execute RFC_SYSTEM_INFO.
+
+3. **OCS_GET_INSTALLED_COMPS (Check Software Versions):**
+   - Purpose: Checks installed software versions on the SAP server.
+   - Permissions: Authorize the user to execute OCS_GET_INSTALLED_COMPS.
+
+4. **Z_MITI_DOWNLOAD (Main Metadata Import):**
+   - Purpose: Main function module for metadata import, typically created following the Purview guide.
+   - Permissions: The user must have sufficient permissions to execute Z_MITI_DOWNLOAD.
+
+Additionally, it's important to note that the SAP Java Connector (JCo) libraries may invoke additional RFC function modules such as RFC_PING, RFC_METADATA_GET, etc., during the scan process.
 
 <p align="right">(<a href="#SAP S/4 HANA-top">Back to Top</a>)</p>
 
