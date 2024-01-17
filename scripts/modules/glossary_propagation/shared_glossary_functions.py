@@ -4,7 +4,6 @@
 # Function Imports
 # ---------------
 
-from modules.entity import get_guids_of_entities_with_specific_type
 from utils import get_credentials, create_purview_client
 from modules.entity import *
 
