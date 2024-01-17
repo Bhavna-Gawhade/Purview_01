@@ -4,8 +4,8 @@
 # Function Imports
 # ---------------
 
-from modules import entity
-from scripts.modules.classification.classification import change_key_names
+
+from modules.classification.classification import change_key_names
 from utils import get_credentials, create_purview_client
 
 

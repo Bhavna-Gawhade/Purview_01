@@ -3,7 +3,7 @@
 
 # Function Imports
 # ---------------
-from modules import entity
+
 from modules.collection.collection_shared_functions import *
 from utils import get_credentials, create_purview_client
 
@@ -24,9 +24,13 @@ import string
 REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-ROOT_COLLECTION_NAME = "hbi-qa01-datamgmt-pview"
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+    
 
 # Functions
 # ---------------
@@ -59,16 +63,16 @@ def pull_and_move_s4hana_application_component_and_nested_entities_to_collection
     return result
 
 
-def move_sap_s4hana_to_collection():
+def move_sap_s4hana_to_collection(client):
     """
     Moves S4 HANA MDG application components to a specified collection.
 
     Returns:
         dict: A dictionary containing the result of the move operation.
     """
-    application_component_guid = "5107e860-54fd-4ef6-b960-3fb7284504a7"
-    collection_id = "x9hxp5"
-    result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(CLIENT, application_component_guid, collection_id)
+    application_component_guid = "9c47efce-5e78-45c9-aa0b-43b9a8a9273e"
+    collection_id = "mpaqu7"
+    result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(client, application_component_guid, collection_id)
     print(result)
 
 
