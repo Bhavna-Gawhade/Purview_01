@@ -12,7 +12,7 @@ __status__ = "Testing"
 # ---------------
 from pathlib import Path
 import os
-from purview.utils import get_credentials, create_purview_client, save_dict_to_json
+from utils import get_credentials, create_purview_client, save_dict_to_json
 from pyapacheatlas.auth import BasicAuthentication, ServicePrincipalAuthentication
 from pyapacheatlas.core import AtlasEntity, AtlasProcess, PurviewClient
 from pyapacheatlas.readers import ExcelConfiguration, ExcelReader
