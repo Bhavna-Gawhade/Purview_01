@@ -1,8 +1,6 @@
 # Hanes repo
 scripts/inputs/BIDW
 scripts/inputs/BIDW/
-scripts/inputs/BIDW/AnalysisServices
-scripts/inputs/BIDW/ProcessPayloads
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
