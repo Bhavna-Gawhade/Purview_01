@@ -290,41 +290,42 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
     None  
     '''
     try:
+        routines_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Routines/"
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
         table = table_file_name.replace(".sql", "").replace(".", "/")
         
         split_source = table.split("/")
         load_routine_file_paths = []
-        load_routine_file_path = "data_warehouse_install/Routines/" + split_source[0] + ".Load" + split_source[1] + ".sql"
+        load_routine_file_path = routines_path + split_source[0] + ".Load" + split_source[1] + ".sql"
 
         if table == "Explore/HBI_UPC_Preferred": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.LoadUPCPreferred.sql"
+            load_routine_file_path = routines_path + "Explore.LoadUPCPreferred.sql"
         elif table == "Explore/Amz_SalesDiagnostic": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.LoadAmz_SalesDiagnosticAPI.sql"
+            load_routine_file_path = routines_path + "Explore.LoadAmz_SalesDiagnosticAPI.sql"
         elif table == "Explore/KeplerMediaSpend": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.Load_KeplerMediaSpend.sql"
+            load_routine_file_path = routines_path + "Explore.Load_KeplerMediaSpend.sql"
         elif table == "stage/DimProduct_Style_Master_1": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/stage.load_DimProductStyleMaster1.sql"
+            load_routine_file_path = routines_path + "stage.load_DimProductStyleMaster1.sql"
         elif table == "dbo/FactDemand":
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_FactDemand_SAP.sql"
+            load_routine_file_path = routines_path + "dbo.load_FactDemand_SAP.sql"
             # plus add second source
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactDemand_STO.sql")
+            load_routine_file_paths.append(routines_path + "dbo.load_FactDemand_STO.sql")
         elif table == "dbo/FactSupply":
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_FactSupply_OnHand.sql"
+            load_routine_file_path = routines_path + "dbo.load_FactSupply_OnHand.sql"
             # plus add other sources
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_STO.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_Intransit.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_WIP.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_ChampionManualWIP.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_SuggestedWorkOrders.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_STO.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_Intransit.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_WIP.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_ChampionManualWIP.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_SuggestedWorkOrders.sql") 
 
         elif table.lower().startswith("master"):
             split_table = table.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/master.load_" + split_table[1] + ".sql"
+            load_routine_file_path = routines_path + "master.load_" + split_table[1] + ".sql"
         elif table.lower().startswith("dbo"):
             split_table = table.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_" + split_table[1] + ".sql"        
+            load_routine_file_path = routines_path + split_table[1] + ".sql"        
         
         load_routine_file_paths.append(load_routine_file_path)
 
