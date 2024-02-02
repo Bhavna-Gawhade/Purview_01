@@ -325,9 +325,9 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
         elif table.lower().startswith("master"):
             split_table = table.split("/")
             load_routine_file_path = routines_path + "master.load_" + split_table[1] + ".sql"
-        elif table.lower().startswith("dbo"):
+        """elif table.lower().startswith("dbo"):
             split_table = table.split("/")
-            load_routine_file_path = routines_path + split_table[1] + ".sql"        
+            load_routine_file_path = routines_path + split_table[1] + ".sql"   """     
         
         load_routine_file_paths.append(load_routine_file_path)
 
