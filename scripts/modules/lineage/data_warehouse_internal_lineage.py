@@ -234,9 +234,11 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
     None    
     '''
     try:
+        views_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Views/"
+        routines_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Routines/"
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
-        view_file_path = "data_warehouse_install/Views/" + view_file_name
+        view_file_path = views_path + view_file_name
         view_purview_partial_path = view_file_name.replace(".sql", "").replace(".", "/")
         common_sources_for_the_view = parse_view_for_data_warehouse(view_file_path)
         print(common_sources_for_the_view)
@@ -244,18 +246,18 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
         for common_source in common_sources_for_the_view:
             print(common_source)
             split_common_source = common_source.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/" + split_common_source[0] + ".Load" + split_common_source[1] + ".sql"
+            load_routine_file_path = routines_path + split_common_source[0] + ".Load" + split_common_source[1] + ".sql"
             
             if common_source == "Common/FactSales" or common_source == "common/FactSales": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-                load_routine_file_path = "data_warehouse_install/Routines/Common.LoadFactSalesDaily.sql"
+                load_routine_file_path = routines_path + "Common.LoadFactSalesDaily.sql"
             elif common_source == "Common/DimFlatHierarchalBOM": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-                load_routine_file_path = "data_warehouse_install/Routines/Common.LoadFlatHierarchalBOM.sql"
+                load_routine_file_path = routines_path + "Common.LoadFlatHierarchalBOM.sql"
             elif common_source.lower().startswith("master"):
                 split_table = common_source.split("/")
-                load_routine_file_path = "data_warehouse_install/Routines/master.load_" + split_table[1] + ".sql"
+                load_routine_file_path = routines_path + "master.load_" + split_table[1] + ".sql"
             elif common_source.lower().startswith("dbo"):
                 split_table = common_source.split("/")
-                load_routine_file_path = "data_warehouse_install/Routines/dbo.load_" + split_table[1] + ".sql"
+                load_routine_file_path = routines_path + "dbo.load_" + split_table[1] + ".sql"
 
             if split_common_source[1].startswith("mvw") or split_common_source[1].startswith("vw"):
                 new_view_file_name = split_common_source[0] + "." + split_common_source[1] + ".sql"
@@ -328,8 +330,6 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
             load_routine_file_path = routines_path + split_table[1] + ".sql"        
         
         load_routine_file_paths.append(load_routine_file_path)
-
-        print(table)
 
         for routine in load_routine_file_paths:
             sources_for_table = parse_load_routine_for_data_warehouse(routine)
