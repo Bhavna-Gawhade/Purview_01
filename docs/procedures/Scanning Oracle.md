@@ -45,7 +45,7 @@ The registration process in Azure Purview involves initiating a new source to co
 
 Configuring connection details is a crucial step following the successful registration of Oracle in Purview. During the registration process, users configure critical connection details to establish a seamless link between Azure Purview and the Oracle database.
 
-1. After registering, Users locate the registered Databricks source in the Purview portal.
+1. After registering, Users locate the registered Oracle source in the Purview portal.
 2. Access the configuration settings.
 3. Enter the required connection details:
    - Specifying the hostname or IP address (Host)
