@@ -37,36 +37,29 @@ Before you begin, ensure the following prerequisites are met:
 
 ## Registering Sql Server in Purview
 
-1. **Authentication for registration:** 
+1. **Authentication for Registration:** 
 
-On-Premises Sql Server Authentication set up can be done in 2 ways:
-    - Sql Authentication  
-    - Windows Authentication
+   On-Premises SQL Server Authentication setup can be done in 2 ways:
+   - **SQL Authentication:** Ensure the SQL Server deployment is configured to allow SQL Server and Windows Authentication. To enable:
+     - Open SQL Server Management Studio (SSMS).
+     - Navigate to Server Properties.
+     - Change Windows Authentication Mode to SQL Server and Windows Authentication Mode.
+   - **Windows Authentication:** Configure the SQL Server deployment to use Windows Authentication mode.
 
-**Sql Authentication:** Ensure the SQL Server deployment is configured to allow SQL Server and Windows Authentication.
-To enable, navigate as below:
-- Open SQL Server Management Studio (SSMS)
-- Navigate to Server Properties
-- Change Windows Authentication Mode to Sql Server and indows Authentication Mode
-
-**Windows Authentication:** Configure the SQL Server deployment to use Windows Authentication mode.
-
-2. **Creating New Login and User:** To scan your SQL server, create a new login and user.
-
-- Navigate to SQL Server Management Studio (SSMS), connect to the server.
-- Navigate to security, select and hold (or right-click) on login and create New login. 
- If Windows Authentication is applied, select Windows authentication. If SQL Authentication is applied, make sure to select SQL authentication.
-- On the left navigation, select Server roles and ensure that public role is assigned.
-- Select User mapping on the left navigation, select all the databases in the map and select the Database role: db_datareader.
-- Select OK to save.
-- If SQL Authentication is applied, navigate again to the user you created,selecting Properties. 
-- Enter a new password and confirm it. Select the 'Specify old password' and enter the old password. It is required to change your password as soon as you create a new login.
+2. **Creating New Login and User:** To scan your SQL Server, create a new login and user.
+   - Navigate to SQL Server Management Studio (SSMS), connect to the server.
+   - Navigate to security, select and hold (or right-click) on login and create New login. If Windows Authentication is applied, select Windows authentication. If SQL Authentication is applied, make sure to select SQL authentication.
+   - On the left navigation, select Server roles and ensure that the public role is assigned.
+   - Select User mapping on the left navigation, select all the databases in the map, and select the Database role: db_datareader.
+   - Select OK to save.
+   - If SQL Authentication is applied, navigate again to the user you created, selecting Properties.
+   - Enter a new password and confirm it. Select the 'Specify old password' and enter the old password. It is required to change your password as soon as you create a new login.
 
 3. **Store SQL Password in a Key Vault:** 
-To integrate SQL Server credentials into Azure Purview, navigate to Key Vault settings and create a new secret with the SQL login password. If your key vault isn't connected to Purview, establish a new connection. Then, create a credential using the username and password from SQL Server, ensuring to select the appropriate authentication method: "SQL authentication" for SQL Authentication and "Windows authentication" for Windows Authentication.
+   To integrate SQL Server credentials into Azure Purview, navigate to Key Vault settings and create a new secret with the SQL login password. If your key vault isn't connected to Purview, establish a new connection. Then, create a credential using the username and password from SQL Server, ensuring to select the appropriate authentication method: "SQL authentication" for SQL Authentication and "Windows authentication" for Windows Authentication.
 
 4. **Register SQL Server in Purview:**
-The registration process is the initial step in integrating on-premises SQL Server with Azure Purview. Users navigate to the Azure Purview Management Center, access the Sources tab, and initiate source registration. Selecting SQL Server as the source type, users provide crucial details such as a descriptive name, connection string, and authentication method. This process establishes the necessary link between Azure Purview and the on-premises SQL Server, laying the foundation for subsequent metadata extraction.
+   The registration process is the initial step in integrating on-premises SQL Server with Azure Purview. Users navigate to the Azure Purview Management Center, access the Sources tab, and initiate source registration. Selecting SQL Server as the source type, users provide crucial details such as a descriptive name, connection string, and authentication method. This process establishes the necessary link between Azure Purview and the on-premises SQL Server, laying the foundation for subsequent metadata extraction.
 
 <p align="right">(<a href="#Sql Server-top">Back to Top</a>)</p>
 
