@@ -79,13 +79,15 @@ SHAREPOINT_TO_PBI_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
   
+DATABRICKS_TO_PBI_DEF = EntityTypeDef(
+  name = "Databricks_to_PBI",
+  superTypes = ["Process"]
+)
 
-# NEW below. As of 9/25/23.
-
-# NEEDS TO BE PROCESS NOT DATASET
 
 # -------------------------------------------------------------------------------
 # Connects Synapse (Azure SQL DBs) to Power BI datasets
+
 SQL_DATABASE_EXTRACT_ATTRIBUTES = AtlasAttributeDef(
     displayName = "SQL Database Extract",
     description = "This type is used to connect Power BI datasets to Synapse.",

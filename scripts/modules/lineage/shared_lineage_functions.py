@@ -65,8 +65,6 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
     try:
         sources = []
         targets = []
-        source_naming_str = ""
-        target_naming_str = ""
 
         for entity in source_entities:
             s = AtlasEntity(
@@ -76,7 +74,7 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
                 guid = entity["id"]
             )
             sources.append(s)
-            source_naming_str = s.name + "/" + source_naming_str
+            source_naming_str = s.name.replace(" ", "_") + "/" 
 
         for entity in target_entities:
             t = AtlasEntity(
@@ -86,7 +84,7 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
                 guid = entity["id"]
             )
             targets.append(t)
-            target_naming_str = t.name + "/" + target_naming_str
+            target_naming_str = t.name.replace(" ", "_") + "/"
 
         process = AtlasProcess(
             name = process_type_name,

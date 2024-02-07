@@ -95,6 +95,9 @@ def build_powerbi_lineage_from_sql_query(client, source_entities_qualified_paths
     # ie. target_name_without_special_char = "5114AmazonKPIReporting"
     """result = upload_custom_type_def_with_specific_client(client, SQL_DATABASE_EXTRACT_TYPEDEF)
     print(result)"""
+
+    #source_entities_qualified_paths=extract_source_entities_qualified_paths(r"Lineage inputs\51.15 Stackline Industry Visibility - Weekly Level - ACTIVEWEAR.xlsx")
+
     
     # for i in here, run get_entity_from_qualified_name, add to list of entities, then pass that to add_manual_lineage
     process_type_name = "sql_database_source"
@@ -110,7 +113,6 @@ def build_powerbi_lineage_from_sql_query(client, source_entities_qualified_paths
     result = add_manual_lineage_with_specific_client(client, source_entities_get, [target_entity], process_type_name, source_type_name, target_type_name, target_name_without_special_char)
     print(result)
 
-source_entities_qualified_paths=extract_source_entities_qualified_paths(r"Lineage inputs\51.15 Stackline Industry Visibility - Weekly Level - ACTIVEWEAR.xlsx")
 
 # Main Function
 # ---------------

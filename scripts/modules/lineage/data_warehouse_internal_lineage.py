@@ -299,7 +299,8 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
         
         split_source = table.split("/")
         load_routine_file_paths = []
-        load_routine_file_path = routines_path + split_source[0] + ".Load" + split_source[1] + ".sql"
+        #load_routine_file_path = routines_path + split_source[0] + ".Load" + split_source[1] + ".sql"
+        load_routine_file_path = routines_path + "dbo.usp_Facility_SAP_HBI_DW_DLY_FACILITY_SAP.sql"
 
         if table == "Explore/HBI_UPC_Preferred": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
             load_routine_file_path = routines_path + "Explore.LoadUPCPreferred.sql"
@@ -333,6 +334,7 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
 
         for routine in load_routine_file_paths:
             sources_for_table = parse_load_routine_for_data_warehouse(routine)
+            print('here')
             for source in sources_for_table:
                 if source != table: # prevent loop to itself
                     build_table_to_source_data_warehouse_internal_lineage(client, qualified_name_header, table, source)
