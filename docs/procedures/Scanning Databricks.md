@@ -60,7 +60,44 @@ The accuracy of these details ensures a secure and reliable communication link b
 
 ## Scanning Databricks Data Assets
 
-Scanning Databricks data assets is a pivotal process for extracting comprehensive metadata and lineage information. In the "Scans" section of Purview, users initiate a new scan and select the Databricks source. The configuration of scan settings, such as frequency and scope, allows organizations to tailor the scanning process to their specific needs. Executing the scan triggers the retrieval of valuable insights into Databricks data assets, including their characteristics, relationships, and data flow within the Databricks environment. This process is essential for maintaining an up-to-date and accurate catalog of Databricks data within the broader organizational landscape.
+Azure Databricks can be scanned in 2 ways:
+1. Azure Databricks Hive Metastore
+2. Azure Databricks Unity Catalog
+
+**Azure Databricks Hive Metastore:**
+1. In the Management Center, go to **Integration Runtimes** and ensure a self-hosted integration runtime is set up. If not, create and manage self hosted integration runtime.
+
+2. Navigate to **Sources** and select the registered Azure Databricks instance. And click on **New scan** to initiate a new scan.
+
+3. Provide the following details for the scan:
+   - **Name:** Assign a name for the scan.
+   - **Extraction method:** Choose to extract metadata from either Hive Metastore or Unity Catalog; opt for Hive Metastore.
+   - **Connect via integration runtime:** Select the configured self-hosted integration runtime.
+   - **Configure credentials:**
+      - Select **Access Token Authentication** while creating a credential.
+      - Input the secret name of the personal access token created.
+   - **Cluster ID:** Specify the cluster ID that Microsoft Purview connects to and powers the scan. Locate it in Azure Databricks workspace under Compute -> your cluster -> Tags -> Automatically added tags -> ClusterId.
+   - **Mount points:** Provide the mount point and Azure Storage source location string when you have external storage manually mounted to Databricks.
+   - **Schema:** The subset of schemas to import expressed as a semicolon separated list of schemas.
+   - **Maximum memory available:** Maximum memory (in gigabytes) available on the customer's machine for the scanning processes to use. This value is dependent on the size of Azure Databricks to be scanned.
+
+4. Select Continue. For Scan trigger, choose whether to set up a schedule or run the scan once. Review your scan and select Save and Run.
+
+**Azure Databricks Unity Catalog:**
+1. Navigate to **Sources** and select the registered Azure Databricks instance. And click on **New scan** to initiate a new scan.
+
+2. Provide the following details for the scan:
+   - **Name:** Assign a name for the scan.
+   - **Extraction method:** Choose to extract metadata from either Hive Metastore or Unity Catalog; opt for Unity Catalog.
+   - **Connect via integration runtime:** Select the default auto resolved Azure integration runtime or a Managed VNet IR you created.
+   - **Credential:**
+      - Select **Access Token Authentication** while creating a credential.
+      - Input the secret name of the personal access token created.
+   - **HTTP path:** Specify the Databricks SQL Warehouse’s HTTP path that Microsoft Purview will connect to and perform the scan
+
+3. To validate the settings, click on Test connection. 
+4. Select Continue. And In Scope your scan page, select the catalog(s) you want to scan.
+5. For Scan trigger, choose whether to set up a schedule or run the scan once. Review your scan and select Save and Run.
 
 <p align="right">(<a href="#Azure Databricks-top">Back to Top</a>)</p>
 
