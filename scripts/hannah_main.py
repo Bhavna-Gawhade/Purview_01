@@ -13,6 +13,7 @@ from modules.lineage.json_payload_lineage import *
 from modules.lineage.shared_lineage_functions import *
 from modules.lineage.powerbi_sql_query_lineage import *
 from modules.lineage.powerbi_tabular_model_lineage import *
+from modules.lineage.cube_lineage import *
 from modules.lineage.data_warehouse_internal_lineage import *
 from modules.lineage.sap_hana_internal_lineage import *
 from modules.lineage.sharepoint_lineage import *
@@ -345,11 +346,14 @@ def main():
     table_file_name = "dbo.usp_Facility_SAP_HBI_DW_DLY_FACILITY_SAP.sql"
     #prod_parse_data_warehouse_table_internal_lineage(prod_client, table_file_name)
 
-    databricks_qualified_name = "default.sbx_retail_sn_osa_rpt@adb-7365464391743055.15.azuredatabricks.net"
+    """databricks_qualified_name = "default.sbx_retail_sn_osa_rpt@adb-7365464391743055.15.azuredatabricks.net"
     pbi_qualified_name = "https://app.powerbi.com/groups/05ed660c-fa68-47df-ab91-fbc24cff51de/datasets/ce2974e2-2378-4223-9c11-c81db83d3802"
     build_lineage_from_databricks_to_pbi(prod_client, databricks_qualified_name, pbi_qualified_name)
-    
+    """
 
+    xmla_file = "inputs/cube_xml_files/POS_stores.xmla"
+    dimensions = parse_cube_xmla(xmla_file)
+    print(dimensions)
 
 
 if __name__ == '__main__':
