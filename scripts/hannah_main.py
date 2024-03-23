@@ -9,16 +9,21 @@ from modules.classification.test_case_generator import *
 from modules.classification.regex_generator import *
 from modules.classification.shared_generator_functions import *
 from modules.classification.classification import *
+
+from modules.lineage.cube_lineage import *
+from modules.lineage.databricks_lineage import *
+from modules.lineage.data_lake_lineage import *
+from modules.lineage.data_warehouse_internal_lineage import *
 from modules.lineage.json_payload_lineage import *
-from modules.lineage.shared_lineage_functions import *
+from modules.lineage.oracle_server_lineage import *
+from modules.lineage.pkms_lineage import *
 from modules.lineage.powerbi_sql_query_lineage import *
 from modules.lineage.powerbi_tabular_model_lineage import *
-from modules.lineage.cube_lineage import *
-from modules.lineage.data_warehouse_internal_lineage import *
 from modules.lineage.sap_hana_internal_lineage import *
+from modules.lineage.shared_lineage_functions import *
 from modules.lineage.sharepoint_lineage import *
-from modules.lineage.databricks_lineage import *
-from modules.lineage.pkms_lineage import *
+from modules.lineage.sql_server_lineage import *
+
 from modules.glossary_propagation.shared_glossary_functions import *
 from modules.glossary_propagation.sap_hana_glossary_propagation import *
 from modules.glossary_propagation.sap_s4hana_glossary_propagation import *
@@ -351,9 +356,19 @@ def main():
     build_lineage_from_databricks_to_pbi(prod_client, databricks_qualified_name, pbi_qualified_name)
     """
 
-    xmla_file = "inputs/cube_xml_files/POS_stores.xmla"
-    dimensions = parse_cube_xmla(xmla_file)
-    print(dimensions)
+
+    """stage_guid = "05d7ba22-2c90-47f6-8492-466dd65188e7"
+    curated_guid = "1922b826-f907-40a2-b198-d0e014a491f0"
+    build_lineage_from_data_lake_stage_to_curated(prod_client, stage_guid, curated_guid)
+    """
+
+    """stage_guid = "05d7ba22-2c90-47f6-8492-466dd65188e7"
+    curated_guid = "1922b826-f907-40a2-b198-d0e014a491f0"
+    build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, stage_guid, curated_guid)
+    """
+
+    pull_data_lake_folder = prod_client.get_entity(guid="f10bccb0-82ca-480a-8ff0-adf6f6f60000")
+    print(pull_data_lake_folder["entities"][0])
 
 
 if __name__ == '__main__':

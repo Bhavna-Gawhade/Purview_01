@@ -84,6 +84,31 @@ DATABRICKS_TO_PBI_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
+SQL_SERVER_TO_PBI_DEF = EntityTypeDef(
+  name = "SQL_Server_to_PBI",
+  superTypes = ["Process"]
+)
+
+ORACLE_SERVER_TO_PBI_DEF = EntityTypeDef(
+  name = "Oracle_Server_to_PBI",
+  superTypes = ["Process"]
+)
+
+CUBE_TO_PBI_DEF = EntityTypeDef(
+  name = "Cube_to_PBI",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_STAGE_TO_CURATED_DEF = EntityTypeDef(
+  name = "DL_Stage_to_DL_Curated",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_CURATED_TO_DATA_WAREHOUSE_STAGE_DEF = EntityTypeDef(
+  name = "DL_Curated_to_DW_Stage",
+  superTypes = ["Process"]
+)
+
 
 # -------------------------------------------------------------------------------
 # Connects Synapse (Azure SQL DBs) to Power BI datasets
@@ -99,6 +124,7 @@ SQL_DATABASE_EXTRACT_TYPEDEF = EntityTypeDef(
   superTypes = ["Process"],
   attributeDefs = [SQL_DATABASE_EXTRACT_ATTRIBUTES]
 )
+
 
 # -------------------------------------------------------------------------------
 # Connects Power BI tables to Power BI datasets
@@ -396,9 +422,6 @@ def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_
         count += 1
 
     return entity_details
-
-#def get_all_datalake_entities_with_type():
-    #print()
 
 
 def get_columns_from_datalake(client, tabular_schema_guid):
