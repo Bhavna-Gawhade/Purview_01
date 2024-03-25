@@ -356,19 +356,64 @@ def main():
     build_lineage_from_databricks_to_pbi(prod_client, databricks_qualified_name, pbi_qualified_name)
     """
 
-
-    """stage_guid = "05d7ba22-2c90-47f6-8492-466dd65188e7"
-    curated_guid = "1922b826-f907-40a2-b198-d0e014a491f0"
-    build_lineage_from_data_lake_stage_to_curated(prod_client, stage_guid, curated_guid)
+    """oracle_guid = "9848f1a5-64dd-4938-9ef0-87f6f6f60000"
+    dl_stage_guid = "e1d66b56-ac99-4c2b-9d32-e9a2d21ac69a"
+    build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
     """
 
-    """stage_guid = "05d7ba22-2c90-47f6-8492-466dd65188e7"
-    curated_guid = "1922b826-f907-40a2-b198-d0e014a491f0"
-    build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, stage_guid, curated_guid)
+    """#manual_file = "b3a2d8a3-315f-4307-9a1d-34a1d416d154"
+    dl_stage_guid = "8fde09d1-83a0-4587-abcb-e8f9c0cfc740"
+    build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
     """
 
-    pull_data_lake_folder = prod_client.get_entity(guid="f10bccb0-82ca-480a-8ff0-adf6f6f60000")
-    print(pull_data_lake_folder["entities"][0])
+    # 1
+    #manual_file = "6d88e3a7-4a9b-471d-b33c-d8da8d7ffb58"
+    #dl_stage_guid = "eeaed6a1-386a-4e07-8ba7-dc6b75af2976"
+    #build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
+    
+    oracle_guid = "bcc4fbe8-ea77-4e82-9aaf-51f6f6f60000"
+    dl_stage_guid = "959b1ad3-8f7f-4533-99ce-9373a4900f8f"
+    build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
+
+
+    # 2
+    dl_stage_guid = "959b1ad3-8f7f-4533-99ce-9373a4900f8f"
+    dl_curated_guid = "60a784bc-9b66-40fe-a1f8-a1d1e0cdde4f"
+    build_lineage_from_data_lake_stage_to_curated(prod_client, dl_stage_guid, dl_curated_guid)
+    
+    
+    #2.5 Curated to Curated
+    source_dl_curated_guid = "60a784bc-9b66-40fe-a1f8-a1d1e0cdde4f" # dim item lifecycle
+    target_dl_curated_guid = "48fcb336-58d9-4887-97d1-e22f42a8ae10" # amz fact daily
+    build_lineage_from_data_lake_curated_to_data_lake_curated(prod_client, source_dl_curated_guid, target_dl_curated_guid)
+
+
+    # 3
+    dl_curated_guid = "48fcb336-58d9-4887-97d1-e22f42a8ae10"
+    dw_guid = "0f234ba5-5ea0-4a87-bea2-f7f6f6f60000"
+    #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
+    
+
+
+    
+    """pull_data_lake_folder = prod_client.get_entity(guid="848f6268-2ee1-439b-a00e-fbf6f6f60000")
+    print(pull_data_lake_folder["entities"][0])"""
+
+
+
+    """SQL_VIEW_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+        name = "SQL_VW_to_DL_Stage",
+        superTypes = ["Process"]
+        )
+    result = qa_client.upload_typedefs(
+        entityDefs=[SQL_VIEW_TO_DATA_LAKE_STAGE_DEF],
+        force_update=True
+    )
+    result = prod_client.upload_typedefs(
+        entityDefs=[SQL_VIEW_TO_DATA_LAKE_STAGE_DEF],
+        force_update=True
+    )"""
+
 
 
 if __name__ == '__main__':

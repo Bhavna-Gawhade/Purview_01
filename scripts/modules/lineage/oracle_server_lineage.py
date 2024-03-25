@@ -43,6 +43,15 @@ def build_lineage_from_oracle_server_to_pbi(client, oracle_asset_qualified_name,
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
 
+def build_lineage_from_oracle_to_data_lake_stage(client, oracle_guid, dl_stage_guid):
+    '''
+    Build lineage from an Oracle asset to a data lake stage asset.
+    '''
+    oracle_type = "oracle_table"
+    dl_type = "azure_datalake_gen2_path"
+    process_type_name = "Oracle_to_DL_Stage"
+    build_lineage_using_guids(client, oracle_guid, oracle_type, dl_stage_guid, dl_type, process_type_name)
+
 
 # Main Processing
 # ---------------

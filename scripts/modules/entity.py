@@ -109,6 +109,31 @@ DATA_LAKE_CURATED_TO_DATA_WAREHOUSE_STAGE_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
+ORACLE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "Oracle_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_MANUAL_FILE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "DL_Manual_File_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+SQL_VIEW_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "SQL_VW_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+SQL_TABLE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+    name = "SQL_Table_to_DL_Stage",
+    superTypes = ["Process"]
+)
+
+DATA_LAKE_CURATED_TO_DATA_LAKE_CURATED_DEF = EntityTypeDef(
+    name = "DL_Curated_to_DL_Curated",
+    superTypes = ["Process"]
+)
+
 
 # -------------------------------------------------------------------------------
 # Connects Synapse (Azure SQL DBs) to Power BI datasets
