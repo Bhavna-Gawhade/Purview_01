@@ -65,8 +65,6 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
     try:
         sources = []
         targets = []
-        source_naming_str = ""
-        target_naming_str = ""
 
         for entity in source_entities:
             s = AtlasEntity(
@@ -76,7 +74,7 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
                 guid = entity["id"]
             )
             sources.append(s)
-            source_naming_str = s.name + "/" + source_naming_str
+            source_naming_str = s.name.replace(" ", "_") + "/" 
 
         for entity in target_entities:
             t = AtlasEntity(
@@ -86,7 +84,7 @@ def add_manual_lineage(client, source_entities: list, target_entities: list, pro
                 guid = entity["id"]
             )
             targets.append(t)
-            target_naming_str = t.name + "/" + target_naming_str
+            target_naming_str = t.name.replace(" ", "_") + "/"
 
         process = AtlasProcess(
             name = process_type_name,
@@ -225,6 +223,57 @@ def add_manual_lineage_with_specific_client(client, source_entities: list, targe
 
     except (KeyError, TypeError) as e:
         raise ValueError("Invalid input. Expected a list of source_entities and target_entities, and a string process_type_name.") from e
+
+
+def build_lineage_using_guids(client, source_guid, source_type, target_guid, target_type, process_type):
+    '''
+    Builds lineage between two assets using their GUIDs.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        source_guid (str): The GUID of the source asset.
+        source_type (str): The type of the source asset.
+        target_guid (str): The GUID of the target asset.
+        target_type (str): The type of the target asset.
+        process_type (str): The type of the process.
+
+    Returns:
+        None
+    '''
+
+    source_entity = client.get_entity(source_guid).get("entities")[0].get("attributes")
+    target_entity = client.get_entity(target_guid).get("entities")[0].get("attributes")
+    process_type_name = process_type
+
+    s = AtlasEntity(
+        name = source_entity.get("name"),
+        typeName = source_type, 
+        qualified_name = source_entity.get("qualifiedName"),
+        guid = source_guid
+    )
+    source_naming_str = s.name.replace(" ", "_") + "/" 
+
+    t = AtlasEntity(
+        name = target_entity.get("name"),
+        typeName = target_type,
+        qualified_name = target_entity.get("qualifiedName"),
+        guid = target_guid
+    )
+    target_naming_str = t.name.replace(" ", "_") + "/"
+
+    process = AtlasProcess(
+        name = process_type_name,
+        typeName = process_type_name,
+        qualified_name = "sources:" + source_naming_str + "targets:" + target_naming_str + "process_type:" + process_type_name,
+        inputs = [s],
+        outputs = [t]
+    )
+
+    result  = client.upload_entities(
+        batch = [t] + [s] + [process]
+    )
+
+    print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
 
 # Main Processing
