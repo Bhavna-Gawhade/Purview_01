@@ -33,7 +33,15 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 
 def build_lineage_from_sql_server_to_pbi(client, sql_asset_qualified_name, pbi_dataset_qualified_name):
     '''
-    Build lineage from a SQL Server's asset to a Power BI dataset.
+    Builds lineage from a SQL Server asset to a Power BI dataset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        sql_asset_qualified_name (str): The qualified name of the SQL Server asset.
+        pbi_dataset_qualified_name (str): The qualified name of the Power BI dataset.
+
+    Returns:
+        None
     '''
 
     source_entity = get_entity_from_qualified_name(client, sql_asset_qualified_name)
