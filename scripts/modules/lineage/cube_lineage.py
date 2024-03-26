@@ -26,6 +26,17 @@ from pathlib import Path
 # ---------------
 
 def ensure_unique_sets(dimensions):
+    '''
+    Ensures uniqueness of attribute IDs within each dimension.
+
+    Parameters:
+        dimensions (dict): A dictionary mapping dimension IDs to lists of attribute IDs.
+
+    Returns:
+        dict: A dictionary with the same structure as the input 'dimensions' dictionary,
+              where each list of attribute IDs is made unique.
+
+    '''
     for dimension_id, attribute_ids in dimensions.items():
         unique_attribute_ids = list(set(attribute_ids))
         dimensions[dimension_id] = unique_attribute_ids
@@ -33,6 +44,17 @@ def ensure_unique_sets(dimensions):
 
 
 def parse_cube_xmla(xmla_file):
+    '''
+    Parses an XMLA file containing cube metadata to extract dimension and attribute information.
+
+    Parameters:
+        xmla_file (str): The path to the XMLA file.
+
+    Returns:
+        dict: A dictionary representing dimensions and their associated attribute IDs.
+              Structure: {dimension_ID: [list of unique attribute IDs]}.
+
+    '''
     tree = ET.parse(xmla_file)
     root = tree.getroot()
     dimensions = {} # structured as {dimension_ID: [list of attribute IDs]}
@@ -149,6 +171,15 @@ def create_cubes_from_xmla_file(client, xmla_file_name, cube_name):
 
 def build_lineage_from_cube_to_pbi(client, cube_guid, pbi_dataset_guid):
     '''
+    Builds lineage from a cube to a Power BI dataset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        cube_guid (str): The GUID of the cube.
+        pbi_dataset_guid (str): The GUID of the Power BI dataset.
+
+    Returns:
+        None
     Build lineage from a cube to a Power BI dataset.
     '''
     cube_type = "DataSet"
