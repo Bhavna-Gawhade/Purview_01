@@ -24,7 +24,15 @@ from pathlib import Path
 
 def build_lineage_from_data_lake_curated_to_data_warehouse_stage(client, dl_curated_guid, dw_stage_guid):
     '''
-    Build lineage from a data lake curated asset to a data warehouse stage asset.
+    Builds lineage from a data lake curated asset to a data warehouse stage asset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        dl_curated_guid (str): The GUID of the data lake curated asset.
+        dw_stage_guid (str): The GUID of the data warehouse stage asset.
+
+    Returns:
+        None
     '''
     dl_type = "azure_datalake_gen2_path"
     dw_type = "azure_sql_dw_table"
@@ -34,6 +42,15 @@ def build_lineage_from_data_lake_curated_to_data_warehouse_stage(client, dl_cura
 
 def build_lineage_from_data_lake_stage_to_curated(client, stage_guid, curated_guid):
     '''
+    Builds lineage from a data lake stage asset to a data lake curated asset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        stage_guid (str): The GUID of the data lake stage asset.
+        curated_guid (str): The GUID of the data lake curated asset.
+
+    Returns:
+        None
     Build lineage from a data lake stage asset to a data lake curated asset.
     '''
     stage_type = "azure_datalake_gen2_path"
@@ -60,7 +77,6 @@ def build_lineage_from_data_lake_curated_to_data_lake_curated(client, source_cur
     target_curated_type = "azure_datalake_gen2_path"
     process_type_name = "DL_Curated_to_DL_Curated"
     build_lineage_using_guids(client, source_curated_guid, source_curated_type, target_curated_guid, target_curated_type, process_type_name)
-
 
 
 # Main Processing

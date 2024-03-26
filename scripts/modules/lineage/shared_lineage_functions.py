@@ -217,7 +217,18 @@ def add_manual_lineage_with_specific_client(client, source_entities: list, targe
 
 def build_lineage_using_guids(client, source_guid, source_type, target_guid, target_type, process_type):
     '''
-    Build lineage between two assets using their guids.
+    Builds lineage between two assets using their GUIDs.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        source_guid (str): The GUID of the source asset.
+        source_type (str): The type of the source asset.
+        target_guid (str): The GUID of the target asset.
+        target_type (str): The type of the target asset.
+        process_type (str): The type of the process.
+
+    Returns:
+        None
     '''
 
     source_entity = client.get_entity(source_guid).get("entities")[0].get("attributes")
