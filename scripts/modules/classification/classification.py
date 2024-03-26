@@ -21,11 +21,6 @@ from pathlib import Path
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-CLIENT = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
 
 # Functions
 # ---------------

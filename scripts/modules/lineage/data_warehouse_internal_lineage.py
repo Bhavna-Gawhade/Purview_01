@@ -19,16 +19,6 @@ from pathlib import Path
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-   
 
 # Functions
 # ---------------
@@ -234,9 +224,11 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
     None    
     '''
     try:
+        views_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Views/"
+        routines_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Routines/"
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
-        view_file_path = "data_warehouse_install/Views/" + view_file_name
+        view_file_path = views_path + view_file_name
         view_purview_partial_path = view_file_name.replace(".sql", "").replace(".", "/")
         common_sources_for_the_view = parse_view_for_data_warehouse(view_file_path)
         print(common_sources_for_the_view)
@@ -244,18 +236,18 @@ def prod_parse_data_warehouse_view_internal_lineage(client, view_file_name):
         for common_source in common_sources_for_the_view:
             print(common_source)
             split_common_source = common_source.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/" + split_common_source[0] + ".Load" + split_common_source[1] + ".sql"
+            load_routine_file_path = routines_path + split_common_source[0] + ".Load" + split_common_source[1] + ".sql"
             
             if common_source == "Common/FactSales" or common_source == "common/FactSales": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-                load_routine_file_path = "data_warehouse_install/Routines/Common.LoadFactSalesDaily.sql"
+                load_routine_file_path = routines_path + "Common.LoadFactSalesDaily.sql"
             elif common_source == "Common/DimFlatHierarchalBOM": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-                load_routine_file_path = "data_warehouse_install/Routines/Common.LoadFlatHierarchalBOM.sql"
+                load_routine_file_path = routines_path + "Common.LoadFlatHierarchalBOM.sql"
             elif common_source.lower().startswith("master"):
                 split_table = common_source.split("/")
-                load_routine_file_path = "data_warehouse_install/Routines/master.load_" + split_table[1] + ".sql"
+                load_routine_file_path = routines_path + "master.load_" + split_table[1] + ".sql"
             elif common_source.lower().startswith("dbo"):
                 split_table = common_source.split("/")
-                load_routine_file_path = "data_warehouse_install/Routines/dbo.load_" + split_table[1] + ".sql"
+                load_routine_file_path = routines_path + "dbo.load_" + split_table[1] + ".sql"
 
             if split_common_source[1].startswith("mvw") or split_common_source[1].startswith("vw"):
                 new_view_file_name = split_common_source[0] + "." + split_common_source[1] + ".sql"
@@ -290,48 +282,49 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
     None  
     '''
     try:
+        routines_path = "inputs/BIDW/DataWarehouse/hbidw/Resources/Install/Routines/"
         qualified_name_header = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
         #Example: view_file_name = "Inventory.vwDimMarketingResponsibilityHierarchy.sql"
         table = table_file_name.replace(".sql", "").replace(".", "/")
         
         split_source = table.split("/")
         load_routine_file_paths = []
-        load_routine_file_path = "data_warehouse_install/Routines/" + split_source[0] + ".Load" + split_source[1] + ".sql"
+        #load_routine_file_path = routines_path + split_source[0] + ".Load" + split_source[1] + ".sql"
+        load_routine_file_path = routines_path + "dbo.usp_Facility_SAP_HBI_DW_DLY_FACILITY_SAP.sql"
 
         if table == "Explore/HBI_UPC_Preferred": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.LoadUPCPreferred.sql"
+            load_routine_file_path = routines_path + "Explore.LoadUPCPreferred.sql"
         elif table == "Explore/Amz_SalesDiagnostic": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.LoadAmz_SalesDiagnosticAPI.sql"
+            load_routine_file_path = routines_path + "Explore.LoadAmz_SalesDiagnosticAPI.sql"
         elif table == "Explore/KeplerMediaSpend": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/Explore.Load_KeplerMediaSpend.sql"
+            load_routine_file_path = routines_path + "Explore.Load_KeplerMediaSpend.sql"
         elif table == "stage/DimProduct_Style_Master_1": # ERROR IN NAMING SCHEMA FOR THIS TABLE LOAD ROUTINE
-            load_routine_file_path = "data_warehouse_install/Routines/stage.load_DimProductStyleMaster1.sql"
+            load_routine_file_path = routines_path + "stage.load_DimProductStyleMaster1.sql"
         elif table == "dbo/FactDemand":
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_FactDemand_SAP.sql"
+            load_routine_file_path = routines_path + "dbo.load_FactDemand_SAP.sql"
             # plus add second source
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactDemand_STO.sql")
+            load_routine_file_paths.append(routines_path + "dbo.load_FactDemand_STO.sql")
         elif table == "dbo/FactSupply":
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_FactSupply_OnHand.sql"
+            load_routine_file_path = routines_path + "dbo.load_FactSupply_OnHand.sql"
             # plus add other sources
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_STO.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_Intransit.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_WIP.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_ChampionManualWIP.sql") 
-            load_routine_file_paths.append("data_warehouse_install/Routines/dbo.load_FactSupply_SuggestedWorkOrders.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_STO.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_Intransit.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_WIP.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_ChampionManualWIP.sql") 
+            load_routine_file_paths.append(routines_path + "dbo.load_FactSupply_SuggestedWorkOrders.sql") 
 
         elif table.lower().startswith("master"):
             split_table = table.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/master.load_" + split_table[1] + ".sql"
-        elif table.lower().startswith("dbo"):
+            load_routine_file_path = routines_path + "master.load_" + split_table[1] + ".sql"
+        """elif table.lower().startswith("dbo"):
             split_table = table.split("/")
-            load_routine_file_path = "data_warehouse_install/Routines/dbo.load_" + split_table[1] + ".sql"        
+            load_routine_file_path = routines_path + split_table[1] + ".sql"   """     
         
         load_routine_file_paths.append(load_routine_file_path)
 
-        print(table)
-
         for routine in load_routine_file_paths:
             sources_for_table = parse_load_routine_for_data_warehouse(routine)
+            print('here')
             for source in sources_for_table:
                 if source != table: # prevent loop to itself
                     build_table_to_source_data_warehouse_internal_lineage(client, qualified_name_header, table, source)

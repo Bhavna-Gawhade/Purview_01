@@ -18,16 +18,6 @@ from pathlib import Path
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-   
 
 # Functions
 # ---------------
@@ -61,11 +51,32 @@ def build_lineage_from_data_lake_stage_to_curated(client, stage_guid, curated_gu
 
     Returns:
         None
+    Build lineage from a data lake stage asset to a data lake curated asset.
     '''
     stage_type = "azure_datalake_gen2_path"
     curated_type = "azure_datalake_gen2_path"
     process_type_name = "DL_Stage_to_DL_Curated"
     build_lineage_using_guids(client, stage_guid, stage_type, curated_guid, curated_type, process_type_name)
+
+
+def build_lineage_from_data_lake_manual_file_to_data_lake_stage(client, manual_file_guid, dl_stage_guid):
+    '''
+    Build lineage from a manually added asset to a data lake stage asset.
+    '''
+    manual_file_type = "azure_datalake_gen2_path"
+    dl_type = "azure_datalake_gen2_path"
+    process_type_name = "DL_Manual_File_to_DL_Stage"
+    build_lineage_using_guids(client, manual_file_guid, manual_file_type, dl_stage_guid, dl_type, process_type_name)
+
+
+def build_lineage_from_data_lake_curated_to_data_lake_curated(client, source_curated_guid, target_curated_guid):
+    '''
+    Build lineage from a manually added asset to a data lake stage asset.
+    '''
+    source_curated_type = "azure_datalake_gen2_path"
+    target_curated_type = "azure_datalake_gen2_path"
+    process_type_name = "DL_Curated_to_DL_Curated"
+    build_lineage_using_guids(client, source_curated_guid, source_curated_type, target_curated_guid, target_curated_type, process_type_name)
 
 
 # Main Processing

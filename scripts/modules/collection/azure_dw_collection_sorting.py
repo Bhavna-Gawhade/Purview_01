@@ -23,16 +23,6 @@ import string
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
 
 # Functions
 # ---------------

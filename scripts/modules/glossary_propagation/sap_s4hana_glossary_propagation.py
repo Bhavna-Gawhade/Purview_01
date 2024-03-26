@@ -28,20 +28,9 @@ import pandas as pd
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-    
 
 # Functions
 # ---------------
-
 
 def apply_glossary_terms_and_write_output_of_sap_s4hana(client, file, updated_dict_for_string_matches, updated_dict_for_guids_of_a_glossary_term, start, end):
     '''

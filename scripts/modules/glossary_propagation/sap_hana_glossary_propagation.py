@@ -27,26 +27,16 @@ import pandas as pd
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 # Functions
 # ---------------
 
-def delete_glossary_terms_from_all_sap_hana_tables():
+def delete_glossary_terms_from_all_sap_hana_tables(client):
     '''
     Delete glossary terms from all SAP HANA tables by iterating through the pulled entities.
 
     Note: This function reads entities from a pre-pulled JSON file and deletes glossary terms from SAP HANA tables.
     '''
-    client = CLIENT
     input_filename = "qa_pulled_entities.json"
     qa_pulled_entities = {}
     with open(input_filename, "r", encoding="utf-8") as json_file:
