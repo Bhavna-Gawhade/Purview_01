@@ -68,6 +68,7 @@ CREDS = get_credentials(cred_type= 'default')
 prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
     
 
+
 # Functions
 # ---------------
 
@@ -256,8 +257,8 @@ def datalake_inventory_stage_ingest_to_curated_ingest():
 
     #input_file = "BIDW/Databricks/01/Workflows/Pipelines/Curated/DimWinningPortfolioSkuList/dependencies/stage_Ingest_to_curated_Ingest.sql"
     # will give back something like ["stage/WinningPortfolioSKUList/Ingest"]
-    partial_source_names = datalake_get_stage_asset(input_file)
-    source_qualified_name = get_inventory_datalake_stage_qualified_name(partial_source_names)
+    #partial_source_names = datalake_get_stage_asset(input_file)
+    #source_qualified_name = get_inventory_datalake_stage_qualified_name(partial_source_names)
 
 
     # iterate through the process payloads until file name found
@@ -367,31 +368,31 @@ def main():
     """
 
     # 1
-    #manual_file = "6d88e3a7-4a9b-471d-b33c-d8da8d7ffb58"
-    #dl_stage_guid = "eeaed6a1-386a-4e07-8ba7-dc6b75af2976"
-    #build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
+    manual_file = "7f9efeca-89cb-4467-a81c-ac14e6432712"
+    dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d"
+    build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
     
-    oracle_guid = "bcc4fbe8-ea77-4e82-9aaf-51f6f6f60000"
-    dl_stage_guid = "959b1ad3-8f7f-4533-99ce-9373a4900f8f"
-    build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
+    #oracle_guid = "bcc4fbe8-ea77-4e82-9aaf-51f6f6f60000"
+    #dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d" # FIRST ONE
+    #build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
 
 
     # 2
-    dl_stage_guid = "959b1ad3-8f7f-4533-99ce-9373a4900f8f"
-    dl_curated_guid = "60a784bc-9b66-40fe-a1f8-a1d1e0cdde4f"
+    dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d" # FIRST ONE
+    dl_curated_guid = "8fad15dd-2089-4272-89c8-b38cb590b612"
     build_lineage_from_data_lake_stage_to_curated(prod_client, dl_stage_guid, dl_curated_guid)
     
     
     #2.5 Curated to Curated
     source_dl_curated_guid = "60a784bc-9b66-40fe-a1f8-a1d1e0cdde4f" # dim item lifecycle
     target_dl_curated_guid = "48fcb336-58d9-4887-97d1-e22f42a8ae10" # amz fact daily
-    build_lineage_from_data_lake_curated_to_data_lake_curated(prod_client, source_dl_curated_guid, target_dl_curated_guid)
+    #build_lineage_from_data_lake_curated_to_data_lake_curated(prod_client, source_dl_curated_guid, target_dl_curated_guid)
 
 
     # 3
-    dl_curated_guid = "48fcb336-58d9-4887-97d1-e22f42a8ae10"
-    dw_guid = "0f234ba5-5ea0-4a87-bea2-f7f6f6f60000"
-    #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
+    dl_curated_guid = "8fad15dd-2089-4272-89c8-b38cb590b612"
+    dw_guid = "51498dcb-2f11-4ce5-95a9-35f6f6f60000"
+    build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
 
 

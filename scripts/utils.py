@@ -33,7 +33,7 @@ def get_credentials(cred_type: str, client_id: str = None, client_secret: str = 
         ValueError: If the provided cred_type is not supported or if cred_type is 'client_secret' but client_id, client_secret, or tenant_id are not provided.
     """
     if cred_type == 'default':
-        return DefaultAzureCredential()
+        return DefaultAzureCredential(exclude_shared_token_cache_credential=True)
     elif cred_type == 'client_secret':
         if not all([client_id, client_secret, tenant_id]):
             raise ValueError("client_id, client_secret, and tenant_id are required when cred_type is 'client_secret'.")
