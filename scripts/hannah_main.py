@@ -368,31 +368,31 @@ def main():
     """
 
     # 1
-    manual_file = "7f9efeca-89cb-4467-a81c-ac14e6432712"
-    dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d"
-    build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
+    #manual_file = "593d4a74-d8ea-4a17-b0f2-a1230250694d" # 4
+    dl_stage_guid = "92e502b6-610d-4904-9d06-320b83cc4ca4"
+    #build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
     
     #oracle_guid = "bcc4fbe8-ea77-4e82-9aaf-51f6f6f60000"
-    #dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d" # FIRST ONE
+    #dl_stage_guid = "ff50a3fd-b6df-4e00-978c-4e139b625942" # FIRST ONE
     #build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
 
 
     # 2
-    dl_stage_guid = "543eaff5-34f6-4ece-9a10-a09ef22d9a2d" # FIRST ONE
-    dl_curated_guid = "8fad15dd-2089-4272-89c8-b38cb590b612"
+    dl_stage_guid = "92e502b6-610d-4904-9d06-320b83cc4ca4"
+    dl_curated_guid = "8a759261-1c79-4b35-a212-4fe295da9e57"
     build_lineage_from_data_lake_stage_to_curated(prod_client, dl_stage_guid, dl_curated_guid)
     
     
     #2.5 Curated to Curated
-    source_dl_curated_guid = "60a784bc-9b66-40fe-a1f8-a1d1e0cdde4f" # dim item lifecycle
-    target_dl_curated_guid = "48fcb336-58d9-4887-97d1-e22f42a8ae10" # amz fact daily
+    """source_dl_curated_guid = "bdacd724-28c8-43e5-a246-01046bc7cba0" # dim item lifecycle
+    target_dl_curated_guid = "8a759261-1c79-4b35-a212-4fe295da9e57" # amz fact daily
     #build_lineage_from_data_lake_curated_to_data_lake_curated(prod_client, source_dl_curated_guid, target_dl_curated_guid)
-
+    """
 
     # 3
-    dl_curated_guid = "8fad15dd-2089-4272-89c8-b38cb590b612"
-    dw_guid = "51498dcb-2f11-4ce5-95a9-35f6f6f60000"
-    build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
+    dl_curated_guid = "8a759261-1c79-4b35-a212-4fe295da9e57"
+    dw_guid = "02b85318-a725-4797-818f-5af6f6f60000"
+    #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
 
 
