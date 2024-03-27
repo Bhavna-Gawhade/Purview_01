@@ -5,7 +5,7 @@
 
 <center>
 
-# Types of Lineage Connections
+# Lineage Connection and Custom Dataset Types
 
 *The goal of a data catalog is to build a robust framework where all the data systems within your environment can naturally connect and report lineage. Lineage connections represent the relationships between different data assets or components within a system. These connections help track the flow of data, transformations, and dependencies across various stages of a data pipeline or workflow.Each type of lineage connection provides valuable insights into the data lifecycle, facilitating data governance, data quality management, impact analysis, and troubleshooting in data-driven environments. All lineage connection processes are defined in entity.py*
 
@@ -31,6 +31,7 @@
 - [Data Lake curated to Data Lake curated](#data-lake-curated-to-data-lake-curated)
 - [PBI Table to PBI Dataset](#pbi-table-to-pbi-dataset)
 - [SQL to PBI Table](#sql-to-pbi-table)
+- [Sharepoint Entity](#sharepoint-entity)
 - [Troubleshooting](#troubleshooting)
 - [References](#references)
 
@@ -253,6 +254,18 @@ Process Name: SQL_to_PBI_Table_Connection
 Function Name : build_lineage_from_sql_to_pbi_table
 
 File containing above function : powerbi_tabular_model_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
+## Sharepoint Entity
+
+This Dataset type create a SharePoint entity 
+
+Dataset Name: SharePoint Entity
+
+Function Name : create_sharepoint_entity
+
+File containing above function : sharepoint_lineage.py
 
 <p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
