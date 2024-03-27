@@ -16,30 +16,10 @@ from pathlib import Path
 
 # Constants
 # ---------------
-   
-SYNAPSE_STORED_PROCEDURE_DEF = EntityTypeDef(
-  name = "synapse_stored_procedure",
-  superTypes = ["Process"]
-)
-
-SYNAPSE_EXTERNAL_TABLE_DEF = EntityTypeDef(
-  name = "synapse_external_table",
-  superTypes = ["Process"]
-)
 
 INGESTION_FRAMEWORK_DEF = EntityTypeDef(
   name = "ingestion_framework",
   superTypes = ["Process"]
-)
-
-TESTING_DATASET_DEF = EntityTypeDef(
-  name = "dev_testing_typedef",
-  superTypes = ["DataSet"]
-)
-
-SAS_TYPEDEF = EntityTypeDef(
-  name = "sas_analytics",
-  superTypes = ["DataSet"]
 )
 
 DATA_WAREHOUSE_LOAD_ROUTINE_DEF = EntityTypeDef(
@@ -122,10 +102,6 @@ DATA_LAKE_CURATED_TO_DATA_LAKE_CURATED_DEF = EntityTypeDef(
     superTypes = ["Process"]
 )
 
-
-# -------------------------------------------------------------------------------
-# Connects Synapse (Azure SQL DBs) to Power BI datasets
-
 SQL_DATABASE_EXTRACT_ATTRIBUTES = AtlasAttributeDef(
     displayName = "SQL Database Extract",
     description = "This type is used to connect Power BI datasets to Synapse.",
@@ -137,10 +113,6 @@ SQL_DATABASE_EXTRACT_TYPEDEF = EntityTypeDef(
   superTypes = ["Process"],
   attributeDefs = [SQL_DATABASE_EXTRACT_ATTRIBUTES]
 )
-
-
-# -------------------------------------------------------------------------------
-# Connects Power BI tables to Power BI datasets
 
 POWERBI_TABLE_TO_DATASET_ATTRIBUTES = AtlasAttributeDef(
     displayName = "PBI Table to PBI Dataset Connection",
@@ -154,9 +126,6 @@ POWERBI_TABLE_TO_DATASET_TYPEDEF = EntityTypeDef(
   attributeDefs = [POWERBI_TABLE_TO_DATASET_ATTRIBUTES]
 )
 
-# -------------------------------------------------------------------------------
-# Connects Azure SQL DBs to Power BI tables
-
 SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES = AtlasAttributeDef(
     displayName = "SQL to PBI Table Connection",
     description = "This type is used to connect Azure SQL DBs to PowerBI tables.",
@@ -168,18 +137,6 @@ SQL_TO_PBI_TABLE_CONNECTION_TYPEDEF = EntityTypeDef(
   superTypes = ["Process"],
   attributeDefs = [SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES]
 )
-
-
-# -------------------------------------------------------------------------------
-# Created Type for Power BI tables
-
-# ERROR told a Microsoft Built-In Type for "powerbi_table"
-POWER_BI_TABLE_TYPEDEF = EntityTypeDef(
-  name = "Power_BI_Table",
-  superTypes = ["DataSet"]
-)
-
-####
 
 PKMS_RECORD_DEF = EntityTypeDef(
   name = "PKMS_Record",
