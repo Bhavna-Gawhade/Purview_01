@@ -17,16 +17,6 @@ from pathlib import Path
 # Constants
 # ---------------
 
-REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-
-REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
-PROJ_PATH = Path(__file__).resolve().parent
-CREDS = get_credentials(cred_type= 'default')
-prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-   
 
 # Functions
 # ---------------
@@ -85,6 +75,7 @@ def build_lineage_from_sql_table_to_data_lake_stage(client, sql_table_guid, dl_s
     dl_type = "azure_datalake_gen2_path"
     process_type_name = "SQL_Table_to_DL_Stage"
     build_lineage_using_guids(client, sql_table_guid, sql_table_type, dl_stage_guid, dl_type, process_type_name)
+
 
 # Main Processing
 # ---------------

@@ -2,7 +2,6 @@
 scripts/inputs/BIDW
 scripts/inputs/BIDW/
 
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -108,6 +107,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+myenv
+.myenv
+myenv/
 
 # Spyder project settings
 .spyderproject
