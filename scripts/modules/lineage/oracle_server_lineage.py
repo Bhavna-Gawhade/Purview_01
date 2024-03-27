@@ -31,60 +31,43 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # Functions
 # ---------------
 
-def build_lineage_from_sql_server_to_pbi(client, sql_asset_qualified_name, pbi_dataset_qualified_name):
+def build_lineage_from_oracle_server_to_pbi(client, oracle_asset_qualified_name, pbi_dataset_qualified_name):
     '''
-    Builds lineage from a SQL Server asset to a Power BI dataset.
+    Builds lineage from an Oracle Server's asset to a Power BI dataset.
 
     Parameters:
         client (object): The client object for accessing the metadata service.
-        sql_asset_qualified_name (str): The qualified name of the SQL Server asset.
+        oracle_asset_qualified_name (str): The qualified name of the Oracle Server asset.
         pbi_dataset_qualified_name (str): The qualified name of the Power BI dataset.
 
     Returns:
         None
     '''
 
-    source_entity = get_entity_from_qualified_name(client, sql_asset_qualified_name)
+    source_entity = get_entity_from_qualified_name(client, oracle_asset_qualified_name)
     target_entity = get_entity_from_qualified_name(client, pbi_dataset_qualified_name)
-    process_type_name = "SQL_Server_to_PBI"
+    process_type_name = "Oracle_Server_to_PBI"
     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
 
-def build_lineage_from_sql_vw_to_data_lake_stage(client, sql_vw_guid, dl_stage_guid):
+def build_lineage_from_oracle_to_data_lake_stage(client, oracle_guid, dl_stage_guid):
     '''
-    Builds lineage from a SQL view to a data lake stage asset.
+    Builds lineage from an Oracle asset to a data lake stage asset.
 
     Parameters:
         client (object): The client object for accessing the metadata service.
-        sql_vw_guid (str): The GUID of the SQL view.
+        oracle_guid (str): The GUID of the Oracle asset.
         dl_stage_guid (str): The GUID of the data lake stage asset.
 
     Returns:
         None
     '''
-    sql_vw_type = "mssql_view"
+    oracle_type = "oracle_table"
     dl_type = "azure_datalake_gen2_path"
-    process_type_name = "SQL_VW_to_DL_Stage"
-    build_lineage_using_guids(client, sql_vw_guid, sql_vw_type, dl_stage_guid, dl_type, process_type_name)
+    process_type_name = "Oracle_to_DL_Stage"
+    build_lineage_using_guids(client, oracle_guid, oracle_type, dl_stage_guid, dl_type, process_type_name)
 
-
-def build_lineage_from_sql_table_to_data_lake_stage(client, sql_table_guid, dl_stage_guid):
-    '''
-    Builds lineage from a SQL table to a data lake stage asset.
-
-    Parameters:
-        client (object): The client object for accessing the metadata service.
-        sql_table_guid (str): The GUID of the SQL table asset.
-        dl_stage_guid (str): The GUID of the data lake stage asset.
-
-    Returns:
-        None
-    '''
-    sql_table_type = "mssql_table"
-    dl_type = "azure_datalake_gen2_path"
-    process_type_name = "SQL_Table_to_DL_Stage"
-    build_lineage_using_guids(client, sql_table_guid, sql_table_type, dl_stage_guid, dl_type, process_type_name)
 
 # Main Processing
 # ---------------

@@ -28,30 +28,10 @@ REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-    
-SYNAPSE_STORED_PROCEDURE_DEF = EntityTypeDef(
-  name = "synapse_stored_procedure",
-  superTypes = ["Process"]
-)
-
-SYNAPSE_EXTERNAL_TABLE_DEF = EntityTypeDef(
-  name = "synapse_external_table",
-  superTypes = ["Process"]
-)
-
+   
 INGESTION_FRAMEWORK_DEF = EntityTypeDef(
   name = "ingestion_framework",
   superTypes = ["Process"]
-)
-
-TESTING_DATASET_DEF = EntityTypeDef(
-  name = "dev_testing_typedef",
-  superTypes = ["DataSet"]
-)
-
-SAS_TYPEDEF = EntityTypeDef(
-  name = "sas_analytics",
-  superTypes = ["DataSet"]
 )
 
 DATA_WAREHOUSE_LOAD_ROUTINE_DEF = EntityTypeDef(
@@ -79,13 +59,61 @@ SHAREPOINT_TO_PBI_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
   
+DATABRICKS_TO_PBI_DEF = EntityTypeDef(
+  name = "Databricks_to_PBI",
+  superTypes = ["Process"]
+)
 
-# NEW below. As of 9/25/23.
+SQL_SERVER_TO_PBI_DEF = EntityTypeDef(
+  name = "SQL_Server_to_PBI",
+  superTypes = ["Process"]
+)
 
-# NEEDS TO BE PROCESS NOT DATASET
+ORACLE_SERVER_TO_PBI_DEF = EntityTypeDef(
+  name = "Oracle_Server_to_PBI",
+  superTypes = ["Process"]
+)
 
-# -------------------------------------------------------------------------------
-# Connects Synapse (Azure SQL DBs) to Power BI datasets
+CUBE_TO_PBI_DEF = EntityTypeDef(
+  name = "Cube_to_PBI",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_STAGE_TO_CURATED_DEF = EntityTypeDef(
+  name = "DL_Stage_to_DL_Curated",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_CURATED_TO_DATA_WAREHOUSE_STAGE_DEF = EntityTypeDef(
+  name = "DL_Curated_to_DW_Stage",
+  superTypes = ["Process"]
+)
+
+ORACLE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "Oracle_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+DATA_LAKE_MANUAL_FILE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "DL_Manual_File_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+SQL_VIEW_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+  name = "SQL_VW_to_DL_Stage",
+  superTypes = ["Process"]
+)
+
+SQL_TABLE_TO_DATA_LAKE_STAGE_DEF = EntityTypeDef(
+    name = "SQL_Table_to_DL_Stage",
+    superTypes = ["Process"]
+)
+
+DATA_LAKE_CURATED_TO_DATA_LAKE_CURATED_DEF = EntityTypeDef(
+    name = "DL_Curated_to_DL_Curated",
+    superTypes = ["Process"]
+)
+
 SQL_DATABASE_EXTRACT_ATTRIBUTES = AtlasAttributeDef(
     displayName = "SQL Database Extract",
     description = "This type is used to connect Power BI datasets to Synapse.",
@@ -97,9 +125,6 @@ SQL_DATABASE_EXTRACT_TYPEDEF = EntityTypeDef(
   superTypes = ["Process"],
   attributeDefs = [SQL_DATABASE_EXTRACT_ATTRIBUTES]
 )
-
-# -------------------------------------------------------------------------------
-# Connects Power BI tables to Power BI datasets
 
 POWERBI_TABLE_TO_DATASET_ATTRIBUTES = AtlasAttributeDef(
     displayName = "PBI Table to PBI Dataset Connection",
@@ -113,9 +138,6 @@ POWERBI_TABLE_TO_DATASET_TYPEDEF = EntityTypeDef(
   attributeDefs = [POWERBI_TABLE_TO_DATASET_ATTRIBUTES]
 )
 
-# -------------------------------------------------------------------------------
-# Connects Azure SQL DBs to Power BI tables
-
 SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES = AtlasAttributeDef(
     displayName = "SQL to PBI Table Connection",
     description = "This type is used to connect Azure SQL DBs to PowerBI tables.",
@@ -127,18 +149,6 @@ SQL_TO_PBI_TABLE_CONNECTION_TYPEDEF = EntityTypeDef(
   superTypes = ["Process"],
   attributeDefs = [SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES]
 )
-
-
-# -------------------------------------------------------------------------------
-# Created Type for Power BI tables
-
-# ERROR told a Microsoft Built-In Type for "powerbi_table"
-POWER_BI_TABLE_TYPEDEF = EntityTypeDef(
-  name = "Power_BI_Table",
-  superTypes = ["DataSet"]
-)
-
-####
 
 PKMS_RECORD_DEF = EntityTypeDef(
   name = "PKMS_Record",
@@ -394,9 +404,6 @@ def get_subset_of_entities_with_type(client, entity_type, list_of_guids, subset_
         count += 1
 
     return entity_details
-
-#def get_all_datalake_entities_with_type():
-    #print()
 
 
 def get_columns_from_datalake(client, tabular_schema_guid):

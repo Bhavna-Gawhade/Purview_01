@@ -6,11 +6,15 @@
 from utils import get_credentials, create_purview_client
 from modules import *
 from modules.lineage.shared_lineage_functions import *
+from pyapacheatlas.core.util import GuidTracker
 
 
 # Imports
 # ---------------
 
+import re
+import json
+import sys
 from pathlib import Path
 
 
@@ -26,30 +30,33 @@ REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
 PROJ_PATH = Path(__file__).resolve().parent
 CREDS = get_credentials(cred_type= 'default')
 prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
-   
+
+
+# Global
+# ---------------
+
 
 # Functions
 # ---------------
 
-def build_lineage_from_oracle_server_to_pbi(client, oracle_asset_qualified_name, pbi_dataset_qualified_name):
+
+def build_lineage_from_databricks_to_pbi(client, databricks_qualified_name, pbi_dataset_qualified_name):
     '''
-    Builds lineage from an Oracle Server's asset to a Power BI dataset.
+    Build lineage from a Databricks table to a Power BI dataset.
 
-    Parameters:
-        client (object): The client object for accessing the metadata service.
-        oracle_asset_qualified_name (str): The qualified name of the Oracle Server asset.
-        pbi_dataset_qualified_name (str): The qualified name of the Power BI dataset.
-
-    Returns:
-        None
+    Args:
+        client: The Purview Atlas client for entity upload.
+        entity_name (str): Name of the SharePoint entity.
+        actual_sharepoint_link (str): Link to the actual SharePoint resource.
+        pbi_dataset_qualified_name (str): Qualified name of the Power BI dataset.
+        pbi_short_name (str): Short name of the Power BI dataset.
     '''
 
-    source_entity = get_entity_from_qualified_name(client, oracle_asset_qualified_name)
+    source_entity = get_entity_from_qualified_name(client, databricks_qualified_name)
     target_entity = get_entity_from_qualified_name(client, pbi_dataset_qualified_name)
-    process_type_name = "Oracle_Server_to_PBI"
+    process_type_name = "Databricks_to_PBI"
     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
-
 
 
 # Main Processing
