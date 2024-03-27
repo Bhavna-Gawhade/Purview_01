@@ -50,6 +50,8 @@ Function Name : manually_connect_dl_to_dw_via_qualified_names
 
 File containing above function : json_payload_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Data Warehouse Routine
 
 This Lineage process connects source to a table and stage to common in a data warehouse..
@@ -59,6 +61,8 @@ Process Name: dw_routine
 Function Name : build_table_to_source_data_warehouse_internal_lineage , build_stage_to_common_data_warehouse_internal_lineage
 
 File containing above function : data_warehouse_internal_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Data Warehouse view creation
 
@@ -70,6 +74,8 @@ Function Name : build_stage_to_common_data_warehouse_internal_lineage, prod_pars
 
 File containing above function : data_warehouse_internal_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## SAP HANA view 
 
 This Lineage process connects between a target SAP HANA view and its source entities.
@@ -79,6 +85,8 @@ Process Name: dsp_connection
 Function Name : create_lineage_for_view
 
 File containing above function : sap_hana_internal_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Sharepoint to PBI 
 
@@ -90,6 +98,8 @@ Function Name : build_sharepoint_to_pbi_lineage
 
 File containing above function : sharepoint_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Databricks to PBI 
 
 This Lineage process connects lineage between databricks and a Power BI dataset.
@@ -99,6 +109,8 @@ Process Name: Databricks_to_PBI
 Function Name : build_lineage_from_databricks_to_pbi
 
 File containing above function : databricks_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## SQL Server to PBI 
 
@@ -110,6 +122,8 @@ Function Name : build_lineage_from_sql_server_to_pbi
 
 File containing above function : sql_server_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Oracle Server to PBI 
 
 This Lineage process connects lineage between Oracle and a Power BI dataset.
@@ -119,6 +133,8 @@ Process Name: Oracle_Server_to_PBI
 Function Name : build_lineage_from_oracle_server_to_pbi
 
 File containing above function : oracle_server_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Cube to PBI 
 
@@ -130,6 +146,8 @@ Function Name : build_lineage_from_cube_to_pbi
 
 File containing above function : cube_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Data Lake Stage to Data Lake Curated
 
 This Lineage process connects lineage between Data Lake Stage and Data Lake Curated
@@ -139,6 +157,8 @@ Process Name: DL_Stage_to_DL_Curated
 Function Name : build_lineage_from_data_lake_stage_to_curated
 
 File containing above function : data_lake_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Data Lake curated to Data warehouse stage
 
@@ -150,6 +170,8 @@ Function Name : build_lineage_from_data_lake_curated_to_data_warehouse_stage
 
 File containing above function : data_lake_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Oracle to Data Lake stage
 
 This Lineage process connects lineage between Oracle and Data Lake stage
@@ -159,6 +181,8 @@ Process Name: Oracle_to_DL_Stage
 Function Name : build_lineage_from_oracle_to_data_lake_stage
 
 File containing above function : oracle_server_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Data Lake Manual to Data Lake stage
 
@@ -170,6 +194,8 @@ Function Name : build_lineage_from_data_lake_manual_file_to_data_lake_stage
 
 File containing above function : data_lake_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## SQL View to Data Lake stage
 
 This Lineage process connects lineage between SQL View and Data Lake stage
@@ -179,6 +205,8 @@ Process Name: SQL_VW_to_DL_Stage
 Function Name : build_lineage_from_sql_vw_to_data_lake_stage
 
 File containing above function : sql_server_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## SQL Table to Data Lake stage
 
@@ -190,6 +218,8 @@ Function Name : build_lineage_from_sql_table_to_data_lake_stage
 
 File containing above function : sql_server_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## Data Lake curated to Data Lake curated
 
 This Lineage process connects lineage between data lake curated asset to another data lake curated asset.
@@ -199,6 +229,8 @@ Process Name: DL_Curated_to_DL_Curated
 Function Name : build_lineage_from_data_lake_curated_to_data_lake_curated
 
 File containing above function : data_lake_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## PBI Table to PBI Dataset
 
@@ -210,6 +242,8 @@ Function Name : build_lineage_from_pbi_table_to_dataset
 
 File containing above function : powerbi_tabular_model_lineage.py
 
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
 ## SQL to PBI Table
 
 This Lineage process connects lineage between SQL and PBI table 
@@ -219,6 +253,8 @@ Process Name: SQL_to_PBI_Table_Connection
 Function Name : build_lineage_from_sql_to_pbi_table
 
 File containing above function : powerbi_tabular_model_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
 ## Troubleshooting
 
