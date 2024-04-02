@@ -12,22 +12,7 @@ def example_add_manual_lineage():
     result = add_manual_lineage(source_entities, target_entities, process_type_name)
     print(result)
 ```
-<br />
 
-## Add manual lineage by creating AtlasEntities for source and target entities
-
-```python
-from scripts.modules.lineage import *
-from scripts.modules.lineage import *
-import json
-
-def example_add_manual_lineage():
-    source_entities=["dimstyle","dimdate","AmzFactDaily"] # specify the source table names
-    target_entities=["51.17 - Media Campaign KPI Reporting"]
-    process_type_name="sql_database_source"
-    result = add_manual_lineage(source_entities, target_entities, process_type_name)
-    print(result)
-```
 <br />
 
 ## Get and Add Lineage for a Synapse Stored Procedure
@@ -138,6 +123,19 @@ def example_add_manual_lineage_with_specific_client():
     target_type_name="power_bi_dataset"
     target_name_without_special_char="5117MediaCampaignKPIReporting"
     result = add_manual_lineage_with_specific_client(source_entities, target_entities, process_type_name, source_type_name, target_type_name, target_name_without_special_char)
+    print(result)
+```
+<br />
+
+## Add manual lineage by using GUIDS
+
+```python
+from scripts.modules.lineage import *
+from scripts.modules.lineage import *
+import json
+
+def example_build_lineage_using_guids():
+    result=build_lineage_using_guids()
     print(result)
 ```
 <br />
