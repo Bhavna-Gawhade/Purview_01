@@ -5,7 +5,7 @@
 
 <center>
 
-# Data Catalog Strategy Documentation
+# Data Catalog Strategy
 
 ---
 
