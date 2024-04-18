@@ -62,8 +62,21 @@
 
    - **Name:** The name of the asset, such as table name, file name, or server name.
    - **Description:** A brief description or summary of the asset's purpose and content.
-   - **Data Type:** It specifies the data source to which the asset belongs to. 
-   E.g., SAP S/4Hana Table,SAP S/4Hana View, Sap Hana View,Sap Hana Table, Azure Data Lake Storage Gen2,Azure Dedicated SQL Pool Table,Power BI Dataset,Power BI Report, Hive Table, Oracle Package, Oracle Synonym, SQL View, SQL Table
+   - **Data Type:** It specifies the data source to which the asset belongs. 
+   Few of the types are:
+      - SAP S/4Hana Table
+      - SAP S/4Hana View
+      - Sap Hana View
+      - Sap Hana Table
+      - Azure Data Lake Storage Gen2
+      - Azure Dedicated SQL Pool Table
+      - Power BI Dataset
+      - Power BI Report
+      - Hive Table
+      - Oracle Package
+      - Oracle Synonym
+      - SQL View
+      - SQL Table
    - **Contact:** The individual or team responsible for managing and maintaining the asset.
    - **Classification:** Annotations used to identify an attribute of an asset or column.
    - **Qualified Name :** A path that defines the location of an asset within its data source.
