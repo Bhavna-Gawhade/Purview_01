@@ -4,6 +4,7 @@
 <!-- Concept TITLE AND OVERVIEW -->
 
 <center>
+
 # Data Glossary Strategy 
 
 ---
