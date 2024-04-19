@@ -150,7 +150,24 @@ def build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, ta
     print()
 
 
-def create_powerbi_tables(client, tables, target_dataset_name_without_special_char, target_dataset_qualified_name):
+def create_powerbi_table(client, table, target_dataset_qualified_name):
+    entity_type = "Power_BI_Table"
+    powerbi_table_name_without_spaces = table["powerbi_table_name"].replace(" ", "")
+    unique_qualified_name = target_dataset_qualified_name + "/" + powerbi_table_name_without_spaces + "Table/"
+    e = AtlasEntity(
+        name = table["powerbi_table_name"],
+        typeName = entity_type,
+        qualified_name = unique_qualified_name,
+        guid = GuidTracker().get_guid()
+    )
+    
+    result  = client.upload_entities(
+        batch = [e]
+    )
+    print(result)
+
+
+def bulk_create_powerbi_tables(client, tables, target_dataset_name_without_special_char, target_dataset_qualified_name):
     '''
     Creates Power BI table entities in Apache Atlas and returns a list of created entities.
 
@@ -224,7 +241,37 @@ def build_lineage_from_sql_to_pbi_table(client, source_dict, target_dict, target
     print()
 
 
-def prod_build_powerbi_lineage_from_tabular_model():
+def append_to_existing_pbi_tables_json(file_path, string_to_append):
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    
+    # Append the pbi table name to the list of existing pbi tables in Purview
+    data["existing_pbi_tables_in_purview"].append(string_to_append)
+    
+    # Write the updated JSON back to the file
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
+
+
+def is_pbi_table_in_json_list(file_path, pbi_table_name):
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    
+    if pbi_table_name in data["existing_pbi_tables_in_purview"]:
+        return True
+    else:
+        return False
+    
+
+def is_pbi_table_already_created(existing_pbi_tables_file_path, pbi_table_name):
+    in_json_list = is_pbi_table_in_json_list(existing_pbi_tables_file_path, pbi_table_name)
+    if in_json_list:
+        return True # pbi table already created
+    else:
+        return False # pbi table not created
+
+
+def prod_build_powerbi_lineage_from_tabular_model(client, model_bim_file_path, target_dataset_name_without_special_char, target_pbi_dataset_qualified_name):
     '''
     Build lineage relationships in Apache Atlas from SQL database tables to Power BI tables and from Power BI tables to Power BI datasets.
 
@@ -236,24 +283,27 @@ def prod_build_powerbi_lineage_from_tabular_model():
     - None 
     '''
     # NOTE:
-    # Handle power BI table creation. Need to add check for existing created tables.
     # Need to factor schemas into the qualified names.
-    # Need to handle if some tables exist already and other's don't.
 
-    client = prod_client
-
-    json_file_path = "Model.bim"
-    tabular_model = load_json(json_file_path)
-    target_dataset_qualified_name = "https://app.powerbi.com/groups/87418287-152f-44c8-931d-7fd6228dda48/datasets/fd27d606-7bf1-4821-9a77-1a78214c38ed"
-    target_dataset_name = "44.40 - InvenModel Tabular Model"
-    target_dataset_name_without_special_char ="4440InvenModelTabularModel"
+    # EXAMPLE: model_bim_file_path = "Model.bim"
+    tabular_model = load_json(model_bim_file_path)
+    # EXAMPLE: target_dataset_name_without_special_char ="4440InvenModelTabularModel"
     start_of_source_qualified_name = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/"
     pre_extraction_tables_list = tabular_model.get("model").get("tables")
     all_tables_extracted = get_all_tables_from_tabular_model(client, pre_extraction_tables_list, start_of_source_qualified_name)
     
-    # Only uncomment if need to create new Power BI tables
-    #create_powerbi_tables(client, all_tables_extracted, target_dataset_name_without_special_char, target_dataset_qualified_name)
+    # Only uncomment if need to bulk create new Power BI tables
+    #bulk_create_powerbi_tables(client, all_tables_extracted, target_dataset_name_without_special_char, target_dataset_qualified_name)
     
+    existing_pbi_tables_file_path = "modules/lineage/existing_pbi_tables_from_model.json"
+    for tbl in all_tables_extracted:
+        pbi_table_name = tbl.get("powerbi_table_name")
+        pbi_table_created = is_pbi_table_already_created(existing_pbi_tables_file_path, pbi_table_name)
+        if not pbi_table_created:
+            create_powerbi_table(client, tbl, target_pbi_dataset_qualified_name)
+            append_to_existing_pbi_tables_json(existing_pbi_tables_file_path, pbi_table_name)
+
+
     # This builds SQL to PBI Table
     source_entities = all_tables_extracted # info for the SQL DBs
     target_entities = get_custom_power_bi_tables(client) # info for the PBI tables
@@ -264,7 +314,7 @@ def prod_build_powerbi_lineage_from_tabular_model():
     
     # This builds PBI Table to PBI
     power_bi_tables = get_custom_power_bi_tables(client) # info for the PBI tables
-    target_dict = get_entity_from_qualified_name(client, target_dataset_qualified_name)
+    target_dict = get_entity_from_qualified_name(client, target_pbi_dataset_qualified_name)
     for source_dict in power_bi_tables:
         build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, target_dataset_name_without_special_char)
                 

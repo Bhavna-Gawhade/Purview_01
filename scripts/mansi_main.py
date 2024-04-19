@@ -73,47 +73,35 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # Functions
 # ---------------
 
+def in_progress_get_entity_from_qualified_name(client, qualified_name):
+    """
+    Retrieves an entity from the catalog based on the provided qualified name.
+
+    Args:
+        qualified_name (str): The qualified name of the entity.
+
+    Returns:
+        dict: The entity found based on the qualified name.
+    """
+    entities_found = client.discovery.search_entities(query=qualified_name)
+    entities = []
+    for entity in entities_found:
+        # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
+        # This is to avoid qualified names that have the same beginning and different extensions
+        # Allow length to differ by 1 for potential '/' at the end
+        if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
+            entities.append(entity)
+            return entities[0]
+
+    return None
+
 
 # Main Function
 # ---------------
 
 def main():
-
-    # 1
-    #manual_file = "df5e833e-1b9f-4c00-ab44-9f4933a24690"
-    dl_stage_guid = "4bbb5abe-6de6-45b2-a0db-36358541d7ce"
-    #build_lineage_from_data_lake_manual_file_to_data_lake_stage(prod_client, manual_file, dl_stage_guid)
-    
-    #oracle_guid = "bcc4fbe8-ea77-4e82-9aaf-51f6f6f60000"
-    #dl_stage_guid = "ff50a3fd-b6df-4e00-978c-4e139b625942" # FIRST ONE
-    #build_lineage_from_oracle_to_data_lake_stage(prod_client, oracle_guid, dl_stage_guid)
-
-
-    # 2
-    dl_stage_guid = "4bbb5abe-6de6-45b2-a0db-36358541d7ce"
-    dl_curated_guid = "8ea6f622-e702-4fc6-bb8e-56e6edc9987b"
-    #build_lineage_from_data_lake_stage_to_curated(prod_client, dl_stage_guid, dl_curated_guid)
-    
-    
-    #2.5 Curated to Curated
-    """source_dl_curated_guid = "bdacd724-28c8-43e5-a246-01046bc7cba0" # dim item lifecycle
-    target_dl_curated_guid = "8a759261-1c79-4b35-a212-4fe295da9e57" # amz fact daily
-    #build_lineage_from_data_lake_curated_to_data_lake_curated(prod_client, source_dl_curated_guid, target_dl_curated_guid)
-    """
-
-    # 3
-    dl_curated_guid = "8ea6f622-e702-4fc6-bb8e-56e6edc9987b"
-    dw_guid = "55248dad-cd9e-42b7-987b-4af6f6f60000"
-    #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
-    
-    xml_export_path = "Advanced_modeling_XML.XML"
-    parse_informatica_xml_export(xml_export_path)
-
-
-
-
-    qual_name = ""
-    entity = get_entity_from_qualified_name(qual_name)
+    qual_name = "https://hbipd01analyticsdls.dfs.core.windows.net/curated/Business/US/DimBusiness/"
+    entity = in_progress_get_entity_from_qualified_name(qa_client, qual_name)
     print(entity)
 
 

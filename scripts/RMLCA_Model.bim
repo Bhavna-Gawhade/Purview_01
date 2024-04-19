@@ -1,0 +1,2240 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "Azure Synapse",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "hbi-qa01-analytics-dwsrv.database.windows.net",
+            "database": "Hbiqa01dw"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "kind": "SQL",
+          "path": "hbi-qa01-analytics-dwsrv.database.windows.net;Hbiqa01dw",
+          "Username": "AASReader",
+          "EncryptConnection": true
+        }
+      },
+      {
+        "type": "structured",
+        "name": "AzureSqlServerCatalogAndControl",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "hbi-qa01-analytics-sqlsrv.database.windows.net",
+            "database": "CatalogAndControl"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "kind": "SQL",
+          "path": "hbi-qa01-analytics-sqlsrv.database.windows.net;CatalogAndControl",
+          "Username": "AASReader",
+          "EncryptConnection": true
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "SBU",
+        "columns": [
+          {
+            "name": "business_seg_hierarchy_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "business_seg_hierarchy_id"
+          },
+          {
+            "name": "Division_id",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Division_id"
+          },
+          {
+            "name": "BusKey",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "BusKey"
+          },
+          {
+            "name": "Business",
+            "dataType": "string",
+            "sourceColumn": "business_seg_desc",
+            "sortByColumn": "Business Sort"
+          },
+          {
+            "name": "SBU",
+            "dataType": "string",
+            "sourceColumn": "strategic_business_unit_desc"
+          },
+          {
+            "name": "Division Group",
+            "dataType": "string",
+            "sourceColumn": "SBU_Division_Group_desc",
+            "sortByColumn": "Division Group Sort"
+          },
+          {
+            "name": "Division Group Sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SBU_Division_Group_Sort"
+          },
+          {
+            "name": "Division Sub Group",
+            "dataType": "string",
+            "sourceColumn": "SBU_Division_SubGroup_desc",
+            "sortByColumn": "Division Sub Group Sort"
+          },
+          {
+            "name": "Division Sub Group Sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SBU_Division_SubGroup_Sort"
+          },
+          {
+            "name": "SBU_Alt_Bus_Grouping_desc",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "SBU_Alt_Bus_Grouping_desc"
+          },
+          {
+            "name": "SBU_Alt_Bus_Grouping_Sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SBU_Alt_Bus_Grouping_Sort"
+          },
+          {
+            "name": "Business Sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "business_seg_order"
+          },
+          {
+            "name": "reporting_sort_order",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "reporting_sort_order"
+          },
+          {
+            "name": "Division",
+            "dataType": "string",
+            "sourceColumn": "Division",
+            "sortByColumn": "Division_sort"
+          },
+          {
+            "name": "Division_sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Division_sort"
+          },
+          {
+            "name": "Division Group2",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Division_Group"
+          },
+          {
+            "name": "Division Group Sort2",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Division_Group_sort"
+          },
+          {
+            "name": "Business_Group",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Business_Group"
+          },
+          {
+            "name": "business_seg_group_sort",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "business_seg_group_sort"
+          },
+          {
+            "name": "Operator",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Operator"
+          },
+          {
+            "name": "Currency",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "currency"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_dim_SBU = Source{[Schema=\"rmlca\",Item=\"vw_dim_SBU\"]}[Data],",
+                "    // removed 'busKey' [12-156, 43-156,51-156,156-156,16-156] to account for division  'Discontinued Operations' from source.",
+                "    #\"Filtered Rows\" = Table.SelectRows(rmlca_vw_dim_SBU, each [BusKey] <> \"12-156\" and [BusKey] <> \"156-156\" and [BusKey] <> \"16-156\" and [BusKey] <> \"43-156\" and [BusKey] <> \"51-156\" and [BusKey] <> \"38-38\")",
+                "in",
+                "    #\"Filtered Rows\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Corp Cal",
+        "columns": [
+          {
+            "name": "Day Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Day Date",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "As Of Date",
+            "dataType": "dateTime",
+            "sourceColumn": "As Of Date",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "Day Date Int",
+            "dataType": "int64",
+            "sourceColumn": "Day Date Int"
+          },
+          {
+            "name": "As Of Date Int",
+            "dataType": "int64",
+            "sourceColumn": "As Of Date Int"
+          },
+          {
+            "name": "Cy Month Num",
+            "dataType": "string",
+            "sourceColumn": "Cy Month Num"
+          },
+          {
+            "name": "Cy Month Desc",
+            "dataType": "string",
+            "sourceColumn": "Cy Month Desc",
+            "sortByColumn": "CY Month Sort"
+          },
+          {
+            "name": "Cy Month Name",
+            "dataType": "string",
+            "sourceColumn": "Cy Month Name",
+            "sortByColumn": "CY Month Sort"
+          },
+          {
+            "name": "Cy Year Yy",
+            "dataType": "string",
+            "sourceColumn": "Cy Year Yy"
+          },
+          {
+            "name": "Cy Year Desc",
+            "dataType": "string",
+            "sourceColumn": "Cy Year Desc"
+          },
+          {
+            "name": "Cy Year Yyyy",
+            "dataType": "string",
+            "sourceColumn": "Cy Year Yyyy"
+          },
+          {
+            "name": "FM",
+            "dataType": "string",
+            "sourceColumn": "FM"
+          },
+          {
+            "name": "Previous FM",
+            "dataType": "string",
+            "sourceColumn": "Previous FM"
+          },
+          {
+            "type": "calculated",
+            "name": "Previous FME",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": [
+              "",
+              "var previousFM = [Previous FM]",
+              "",
+              " ",
+              "",
+              "Return",
+              "CALCULATE(MAXX('Corp Cal',[As Of Date]), ALL('Corp Cal'),'Corp Cal'[FM] = previousFM)"
+            ],
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Week End?",
+            "dataType": "boolean",
+            "isDataTypeInferred": true,
+            "expression": "IF('Corp Cal'[Day Date] = 'Corp Cal'[As Of Date],TRUE(),FALSE())",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\""
+          },
+          {
+            "type": "calculated",
+            "name": "FME",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": [
+              "",
+              "var FM = [FM]",
+              "",
+              " ",
+              "",
+              "Return",
+              "CALCULATE(MAXX('Corp Cal',[As Of Date]), ALL('Corp Cal'),'Corp Cal'[FM] = FM)"
+            ],
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Month End?",
+            "dataType": "boolean",
+            "isDataTypeInferred": true,
+            "expression": "'Corp Cal'[Day Date]='Corp Cal'[FME]",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\""
+          },
+          {
+            "type": "calculated",
+            "name": "CY Month Sort",
+            "dataType": "int64",
+            "isDataTypeInferred": false,
+            "isHidden": true,
+            "expression": "IF('Corp Cal'[Cy Month Num] = \"Un\", 1, VALUE( 'Corp Cal'[Cy Month Num]))"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    edw_vw_DimHBICorpCal = Source{[Schema=\"edw\",Item=\"vw_DimHBICorpCal\"]}[Data],",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(edw_vw_DimHBICorpCal,{\"Day Date\", \"As Of Date\", \"Day Date Int\", \"As Of Date Int\", \"Cy Month Num\", \"Cy Month Desc\", \"Cy Month Name\", \"Cy Year Yy\", \"Cy Year Desc\", \"Cy Year Yyyy\"}),",
+                "    #\"Added FM\" = Table.AddColumn(#\"Removed Other Columns\", \"FM\", each (Number.FromText([Cy Year Yyyy])*100)+Number.FromText([Cy Month Num])),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Added FM\", \"Previous FM\", each if [Cy Month Num] = \"1\" then ([FM]-89) else ([FM]-1))",
+                "in",
+                "    #\"Added Custom\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Product Style",
+        "columns": [
+          {
+            "name": "STYLE_CD",
+            "dataType": "string",
+            "sourceColumn": "STYLE_CD"
+          },
+          {
+            "name": "BOM_COST_ROLLUP_IND",
+            "dataType": "string",
+            "sourceColumn": "BOM_COST_ROLLUP_IND"
+          },
+          {
+            "name": "UNIT_OF_MEASURE",
+            "dataType": "string",
+            "sourceColumn": "UNIT_OF_MEASURE"
+          },
+          {
+            "name": "UOM_DESC",
+            "dataType": "string",
+            "sourceColumn": "UOM_DESC"
+          },
+          {
+            "name": "CORP_DIVISION_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_DIVISION_CD"
+          },
+          {
+            "name": "COST_FAMILY_CD",
+            "dataType": "string",
+            "sourceColumn": "COST_FAMILY_CD"
+          },
+          {
+            "name": "INVENTORY_CHECK_IND",
+            "dataType": "string",
+            "sourceColumn": "INVENTORY_CHECK_IND"
+          },
+          {
+            "name": "ITEM_TYPE_CD",
+            "dataType": "string",
+            "sourceColumn": "ITEM_TYPE_CD"
+          },
+          {
+            "name": "MFG_ASRMT_IND",
+            "dataType": "string",
+            "sourceColumn": "MFG_ASRMT_IND"
+          },
+          {
+            "name": "MFG_CORP_DIVISION_CD",
+            "dataType": "string",
+            "sourceColumn": "MFG_CORP_DIVISION_CD"
+          },
+          {
+            "name": "MATL_TYPE_CD",
+            "dataType": "string",
+            "sourceColumn": "MATL_TYPE_CD"
+          },
+          {
+            "name": "ORIGIN_TYPE_CD",
+            "dataType": "string",
+            "sourceColumn": "ORIGIN_TYPE_CD"
+          },
+          {
+            "name": "PACK_CD",
+            "dataType": "string",
+            "sourceColumn": "PACK_CD"
+          },
+          {
+            "name": "PLAN_PROD_GROUP_CD",
+            "dataType": "string",
+            "sourceColumn": "PLAN_PROD_GROUP_CD"
+          },
+          {
+            "name": "PLAN_STATUS_CD",
+            "dataType": "string",
+            "sourceColumn": "PLAN_STATUS_CD"
+          },
+          {
+            "name": "PRIMARY_DC",
+            "dataType": "string",
+            "sourceColumn": "PRIMARY_DC"
+          },
+          {
+            "name": "PROTO_ID",
+            "dataType": "string",
+            "sourceColumn": "PROTO_ID"
+          },
+          {
+            "name": "PROTO_VERSION",
+            "dataType": "string",
+            "sourceColumn": "PROTO_VERSION"
+          },
+          {
+            "name": "QUALITY_CD",
+            "dataType": "string",
+            "sourceColumn": "QUALITY_CD"
+          },
+          {
+            "name": "REP_STYLE",
+            "dataType": "string",
+            "sourceColumn": "REP_STYLE"
+          },
+          {
+            "name": "SIZE_LINE",
+            "dataType": "string",
+            "sourceColumn": "SIZE_LINE"
+          },
+          {
+            "name": "STYLE_MRKT_DESC",
+            "dataType": "string",
+            "sourceColumn": "STYLE_MRKT_DESC"
+          },
+          {
+            "name": "STYLE_DESC",
+            "dataType": "string",
+            "sourceColumn": "STYLE_DESC"
+          },
+          {
+            "name": "EFFECT_END_DATE",
+            "dataType": "string",
+            "sourceColumn": "EFFECT_END_DATE"
+          },
+          {
+            "name": "END_DATE_IND",
+            "dataType": "string",
+            "sourceColumn": "END_DATE_IND"
+          },
+          {
+            "name": "USER_ID",
+            "dataType": "string",
+            "sourceColumn": "USER_ID"
+          },
+          {
+            "name": "CREATE_DATE",
+            "dataType": "string",
+            "sourceColumn": "CREATE_DATE"
+          },
+          {
+            "name": "UPDATE_DATE",
+            "dataType": "string",
+            "sourceColumn": "UPDATE_DATE"
+          },
+          {
+            "name": "GTIN_LABEL_CD",
+            "dataType": "string",
+            "sourceColumn": "GTIN_LABEL_CD"
+          },
+          {
+            "name": "ADOPTION_PHASE_CD",
+            "dataType": "string",
+            "sourceColumn": "ADOPTION_PHASE_CD"
+          },
+          {
+            "name": "JOKER_FORMAT_CD",
+            "dataType": "string",
+            "sourceColumn": "JOKER_FORMAT_CD"
+          },
+          {
+            "name": "CORP_MAJOR_GROUP_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_MAJOR_GROUP_CD"
+          },
+          {
+            "name": "CORP_MRKT_GROUP_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_MRKT_GROUP_CD"
+          },
+          {
+            "name": "CORP_PIECE_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_PIECE_CD"
+          },
+          {
+            "name": "CORP_BRAND_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_BRAND_CD"
+          },
+          {
+            "name": "ASRMT_CD",
+            "dataType": "string",
+            "sourceColumn": "ASRMT_CD"
+          },
+          {
+            "name": "GLOBAL_ITEM_CLASS_CD",
+            "dataType": "string",
+            "sourceColumn": "GLOBAL_ITEM_CLASS_CD"
+          },
+          {
+            "name": "ALT_ITEM_CLASS_CD",
+            "dataType": "string",
+            "sourceColumn": "ALT_ITEM_CLASS_CD"
+          },
+          {
+            "name": "UCCNET_IND",
+            "dataType": "string",
+            "sourceColumn": "UCCNET_IND"
+          },
+          {
+            "name": "EACH_ORD_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_ORD_UNIT_IND"
+          },
+          {
+            "name": "CASE_ORD_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_ORD_UNIT_IND"
+          },
+          {
+            "name": "EACH_BASE_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_BASE_UNIT_IND"
+          },
+          {
+            "name": "CASE_BASE_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_BASE_UNIT_IND"
+          },
+          {
+            "name": "EACH_CNSMR_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_CNSMR_UNIT_IND"
+          },
+          {
+            "name": "CASE_CNSMR_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_CNSMR_UNIT_IND"
+          },
+          {
+            "name": "EACH_DISPATCH_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_DISPATCH_UNIT_IND"
+          },
+          {
+            "name": "CASE_DISPATCH_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_DISPATCH_UNIT_IND"
+          },
+          {
+            "name": "EACH_INVOICE_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_INVOICE_UNIT_IND"
+          },
+          {
+            "name": "CASE_INVOICE_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_INVOICE_UNIT_IND"
+          },
+          {
+            "name": "EACH_BAR_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "EACH_BAR_UNIT_IND"
+          },
+          {
+            "name": "CASE_BAR_UNIT_IND",
+            "dataType": "string",
+            "sourceColumn": "CASE_BAR_UNIT_IND"
+          },
+          {
+            "name": "SUB_BRAND_CD",
+            "dataType": "string",
+            "sourceColumn": "SUB_BRAND_CD"
+          },
+          {
+            "name": "SIZE_LINE_2",
+            "dataType": "string",
+            "sourceColumn": "SIZE_LINE_2"
+          },
+          {
+            "name": "SIZE_LINE_3",
+            "dataType": "string",
+            "sourceColumn": "SIZE_LINE_3"
+          },
+          {
+            "name": "MRKT_PROGRAM_CD",
+            "dataType": "string",
+            "sourceColumn": "MRKT_PROGRAM_CD"
+          },
+          {
+            "name": "CORP_PROD_FAMILY_CD",
+            "dataType": "string",
+            "sourceColumn": "CORP_PROD_FAMILY_CD"
+          },
+          {
+            "name": "DEMAND_STREAM_CD",
+            "dataType": "string",
+            "sourceColumn": "DEMAND_STREAM_CD"
+          },
+          {
+            "name": "RQMT_IND",
+            "dataType": "string",
+            "sourceColumn": "RQMT_IND"
+          },
+          {
+            "name": "BRAND_CODE",
+            "dataType": "string",
+            "sourceColumn": "BRAND_CODE"
+          },
+          {
+            "name": "SUB_BRAND_CODE",
+            "dataType": "string",
+            "sourceColumn": "SUB_BRAND_CODE"
+          },
+          {
+            "name": "BRAND_CODE_DESC",
+            "dataType": "string",
+            "sourceColumn": "BRAND_CODE_DESC"
+          },
+          {
+            "name": "SUB_BRAND_CODE_DESC",
+            "dataType": "string",
+            "sourceColumn": "SUB_BRAND_CODE_DESC"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_dim_ProductStyle = Source{[Schema=\"rmlca\",Item=\"vw_dim_ProductStyle\"]}[Data]",
+                "in",
+                "    rmlca_vw_dim_ProductStyle"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Exclusions",
+        "columns": [
+          {
+            "name": "Color",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "COMP_COLOR_CD"
+          },
+          {
+            "name": "Attribute",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "COMP_ATTRIBUTE_CD"
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "COMP_SIZE_CD"
+          },
+          {
+            "name": "SBU",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "SBU_DESC"
+          },
+          {
+            "name": "Exclusion Type",
+            "dataType": "string",
+            "sourceColumn": "EXCLUSION_TYPE"
+          },
+          {
+            "name": "Exclusion Comments",
+            "dataType": "string",
+            "sourceColumn": "COMMENTS"
+          },
+          {
+            "name": "Exclusion Start Date",
+            "dataType": "dateTime",
+            "sourceColumn": "START_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "Exclusion End Date",
+            "dataType": "dateTime",
+            "sourceColumn": "END_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "Delete Flag",
+            "dataType": "double",
+            "sourceColumn": "DELETE_FLAG"
+          },
+          {
+            "name": "Updated By",
+            "dataType": "string",
+            "sourceColumn": "UPDATED_BY"
+          },
+          {
+            "name": "Update Date",
+            "dataType": "dateTime",
+            "sourceColumn": "UPDATED",
+            "formatString": "M/d/yyyy h:mm:ss AM/PM",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeCustom\"><DateTimes><DateTime LCID=\"1033\" Group=\"GeneralLongDateTime\" FormatString=\"M/d/yyyy h:mm:ss tt\" /></DateTimes></Format>"
+              }
+            ]
+          },
+          {
+            "name": "SKUID",
+            "dataType": "string",
+            "isHidden": true,
+            "isUnique": true,
+            "sourceColumn": "SKUID"
+          },
+          {
+            "name": "Style",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "COMP_STYLE_CD"
+          },
+          {
+            "name": "RM SKU",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "RM SKU"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_dim_Exclusions = Source{[Schema=\"rmlca\",Item=\"dim_Exclusions\"]}[Data],",
+                "    #\"Added Custom\" = Table.AddColumn(rmlca_dim_Exclusions, \"RM SKU\", each [COMP_STYLE_CD]&\".\"&[COMP_COLOR_CD]&\".\"&[COMP_ATTRIBUTE_CD]&\".\"&[COMP_SIZE_CD]),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Added Custom\", {\"RM SKU\"}),",
+                "    #\"Removed Duplicates1\" = Table.Distinct(#\"Removed Duplicates\", {\"SKUID\"})",
+                "in",
+                "    #\"Removed Duplicates1\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Consolidated_Hist",
+        "columns": [
+          {
+            "name": "Plant",
+            "dataType": "string",
+            "sourceColumn": "PLANT"
+          },
+          {
+            "name": "Reserved",
+            "dataType": "string",
+            "sourceColumn": "RESERVED"
+          },
+          {
+            "name": "Reserve Amount",
+            "dataType": "double",
+            "sourceColumn": "INV_RESERVE_DOLLARS",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Source",
+            "dataType": "string",
+            "sourceColumn": "SOURCE"
+          },
+          {
+            "name": "Class Start Date",
+            "dataType": "dateTime",
+            "sourceColumn": "CURRENTRMCLASSMINDATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "INVENTORYATMINDATE",
+            "dataType": "double",
+            "sourceColumn": "INVENTORYATMINDATE"
+          },
+          {
+            "name": "Exclusion Flag",
+            "dataType": "string",
+            "sourceColumn": "EXCLFLAG"
+          },
+          {
+            "name": "Write Off Status",
+            "dataType": "string",
+            "sourceColumn": "WRITEOFFSTAT"
+          },
+          {
+            "type": "calculated",
+            "name": "UOM",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": " RELATED('Product Style'[UOM_DESC])"
+          },
+          {
+            "name": "Style",
+            "dataType": "string",
+            "sourceColumn": "COMP_STYLE_CD"
+          },
+          {
+            "name": "Color",
+            "dataType": "string",
+            "sourceColumn": "COMP_COLOR_CD"
+          },
+          {
+            "name": "Attribute",
+            "dataType": "string",
+            "sourceColumn": "COMP_ATTRIBUTE_CD"
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "sourceColumn": "COMP_SIZE_CD"
+          },
+          {
+            "name": "RM SKU",
+            "dataType": "string",
+            "sourceColumn": "RM_SKU"
+          },
+          {
+            "name": "MRP Demand",
+            "dataType": "double",
+            "sourceColumn": "MRP_DMD"
+          },
+          {
+            "name": "MRP Demand Production",
+            "dataType": "double",
+            "sourceColumn": "MRP_DMD_PRODUCTION"
+          },
+          {
+            "name": "MRP Demand Production %",
+            "dataType": "double",
+            "sourceColumn": "MRP_DMD_PRODUCTION_PERCENT"
+          },
+          {
+            "name": "As of Date",
+            "dataType": "dateTime",
+            "sourceColumn": "AS_OF_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "Update User ID",
+            "dataType": "string",
+            "sourceColumn": "UPDATE_USERID"
+          },
+          {
+            "name": "Update Timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "UPDATE_TIMESTAMP",
+            "formatString": "General Date"
+          },
+          {
+            "name": "RM Disco Date",
+            "dataType": "dateTime",
+            "sourceColumn": "RM_DISCO_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "SBU",
+            "dataType": "string",
+            "sourceColumn": "SBU_DESC"
+          },
+          {
+            "name": "Source Code",
+            "dataType": "string",
+            "sourceColumn": "DIVISION_CODE"
+          },
+          {
+            "name": "Material Description",
+            "dataType": "string",
+            "sourceColumn": "MATL_DESC"
+          },
+          {
+            "name": "Inv Amount",
+            "dataType": "double",
+            "sourceColumn": "INV_AMOUNT",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Rejected Inv",
+            "dataType": "double",
+            "sourceColumn": "REJECTED_INV",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Style Description",
+            "dataType": "string",
+            "sourceColumn": "STYLE_DESC"
+          },
+          {
+            "name": "Reserve Rate %",
+            "dataType": "double",
+            "sourceColumn": "RESERVE_RATE_PERCENT"
+          },
+          {
+            "name": "RM Class",
+            "dataType": "string",
+            "sourceColumn": "RM_CLASS",
+            "sortByColumn": "RM Class Sort"
+          },
+          {
+            "name": "Fin Class",
+            "dataType": "string",
+            "sourceColumn": "FIN_CLASS"
+          },
+          {
+            "type": "calculated",
+            "name": "RM SKU Location",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": " Consolidated_Hist[RM SKU] & \".\" &  Consolidated_Hist[Plant]"
+          },
+          {
+            "type": "calculated",
+            "name": "Aging Days",
+            "dataType": "int64",
+            "isDataTypeInferred": false,
+            "expression": [
+              " IF(",
+              "ISBLANK('Consolidated_Hist'[Class Start Date]),BLANK(), ",
+              "TODAY() - 'Consolidated_Hist'[Class Start Date])"
+            ],
+            "formatString": "#,0"
+          },
+          {
+            "type": "calculated",
+            "name": "Aging Buckets",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": [
+              "SWITCH(TRUE(),",
+              "'Consolidated_Hist'[Aging Days]< 181, \"(0-6 mos) 0-180 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 212, \"(6 mos) 181-211 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 243, \"(7 mos) 212-242 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 274, \"(8 mos) 243-273 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 305, \"(9 mos) 274-304 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 336, \"(10 mos) 305-335 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 361, \"(11 mos) 336-360 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 391, \"(12 mos) 361-390 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 421, \"(13 mos) 391-420 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 451, \"(14 mos) 421-450 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 481, \"(15 mos) 451-480 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 511, \"(16 mos) 481-510 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 541, \"(17 mos) 511-540 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 571, \"(18 mos) 541-570 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 601, \"(19 mos) 571-600 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 631, \"(20 mos) 601-630 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 661, \"(21 mos) 631-660 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 691, \"(22 mos) 661-690 days\", ",
+              "'Consolidated_Hist'[Aging Days]< 721, \"(23 mos) 691-720 days\", ",
+              "'Consolidated_Hist'[Aging Days]> 720, \"(24 mos) 0ver 721 days\", ",
+              "BLANK())"
+            ],
+            "sortByColumn": "Aging Bucket Sort Order"
+          },
+          {
+            "name": "Reserve Quantity",
+            "dataType": "double",
+            "sourceColumn": "INV_RESERVE",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Inv Quantity",
+            "dataType": "double",
+            "sourceColumn": "INV_QTY",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Previous RM Class",
+            "dataType": "string",
+            "sourceColumn": "PREVPERIODRMCLASS"
+          },
+          {
+            "type": "calculated",
+            "name": "Previous RM Class End Date",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": [
+              " IF(ISBLANK(Consolidated_Hist[Class Start Date]),BLANK(),",
+              "",
+              "[Class Start Date] - 7",
+              "",
+              ")"
+            ],
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "RM_SKU_NoDelim",
+            "dataType": "string",
+            "sourceColumn": "RM_SKU_NoDelim"
+          },
+          {
+            "type": "calculated",
+            "name": "Aging Months",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": [
+              "IF(ISBLANK(Consolidated_Hist[Aging Days]),BLANK(),",
+              "ROUNDUP(Consolidated_Hist[Aging Days] / 30,0) & \" Month(s)\"",
+              "",
+              ")"
+            ]
+          },
+          {
+            "name": "RM Class Sort",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "RM Class Sort"
+          },
+          {
+            "type": "calculated",
+            "name": "Class Start Fiscal Month",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": [
+              "LOOKUPVALUE('Corp Cal'[Cy Month Name],'Corp Cal'[Day Date],Consolidated_Hist[Class Start Date])",
+              "",
+              ""
+            ],
+            "sortByColumn": "Class Start Fiscal Month Num"
+          },
+          {
+            "type": "calculated",
+            "name": "Class Start Fiscal Month Num",
+            "dataType": "int64",
+            "isDataTypeInferred": false,
+            "isHidden": true,
+            "expression": [
+              "LOOKUPVALUE('Corp Cal'[Cy Month Num],'Corp Cal'[Day Date],Consolidated_Hist[Class Start Date])",
+              ""
+            ],
+            "formatString": "0"
+          },
+          {
+            "type": "calculated",
+            "name": "Class Start FME",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": [
+              "",
+              "LOOKUPVALUE('Corp Cal'[FME],'Corp Cal'[Day Date],Consolidated_Hist[Class Start Date])",
+              ""
+            ],
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Max As of Date",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": [
+              " ",
+              "VAR maxdte = MAX(Consolidated_Hist[As of Date])",
+              "RETURN",
+              "IF(",
+              "Consolidated_Hist[As of Date] = maxdte,",
+              "\"Y\", \"N\")",
+              ""
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "As of Date FM",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": [
+              "LOOKUPVALUE('Corp Cal'[FM],'Corp Cal'[Day Date],'Consolidated_Hist'[As of Date])",
+              ""
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Total Excluded Reserve Amount",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": [
+              "Consolidated_Hist[Excluded Inv Reserve Amount] + Consolidated_Hist[New Add Reserve Amount]",
+              ""
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Class Start FM",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "LOOKUPVALUE('Corp Cal'[FM],'Corp Cal'[Day Date],Consolidated_Hist[Class Start Date])"
+          },
+          {
+            "type": "calculated",
+            "name": "As of Date Previous FM",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "LOOKUPVALUE('Corp Cal'[Previous FM],'Corp Cal'[Day Date],Consolidated_Hist[As of Date])"
+          },
+          {
+            "type": "calculated",
+            "name": "Net Reserve Amount",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": "Consolidated_Hist[Reserve Amount] - Consolidated_Hist[Total Excluded Reserve Amount]",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Excluded Inv Reserve Amount",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": [
+              "IF(",
+              "    AND(",
+              "        Consolidated_Hist[Exclusion Flag] = \"Y\",",
+              "        AND(",
+              "            Consolidated_Hist[As of Date FM] <> Consolidated_Hist[Class Start FM],",
+              "            Consolidated_Hist[As of Date Previous FM] <> Consolidated_Hist[Class Start FM]",
+              "            )",
+              "        ),",
+              "Consolidated_Hist[Reserve Amount], ",
+              "0 )",
+              ""
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "New Add Reserve Amount",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": [
+              "IF(",
+              "        OR(Consolidated_Hist[As of Date FM] = Consolidated_Hist[Class Start FM], ",
+              "           Consolidated_Hist[As of Date Previous FM] = Consolidated_Hist[Class Start FM]",
+              "           )",
+              "            ,Consolidated_Hist[Reserve Amount]",
+              "    ,0",
+              ")",
+              ""
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Class Start Year",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "LOOKUPVALUE('Corp Cal'[Cy Year Yyyy],'Corp Cal'[Day Date],'Consolidated_Hist'[Class Start Date])"
+          },
+          {
+            "type": "calculated",
+            "name": "Aging Bucket Sort Order",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "expression": "RELATED('Aging Bucket Sort'[Sort Order])"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_RawMaterialsLCA_Consolidated_Hist = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_Consolidated_Hist\"]}[Data],",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(rmlca_RawMaterialsLCA_Consolidated_Hist,{{\"AS_OF_DATE\", type datetime}, {\"UPDATE_TIMESTAMP\", type datetime}, {\"RM_DISCO_DATE\", type datetime}, {\"CURRENTRMCLASSMINDATE\", type datetime}}),",
+                "    #\"Appended Query\" = Table.Combine({#\"Changed Type1\", Consolidated_append}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Appended Query\",null,\"N\",Replacer.ReplaceValue,{\"EXCLFLAG\", \"WRITEOFFSTAT\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",\"|\",\"\",Replacer.ReplaceText,{\"WRITEOFFSTAT\"}),",
+                "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",\"Yes\",\"Y\",Replacer.ReplaceText,{\"WRITEOFFSTAT\"}),",
+                "    // to temporarily fix the as of date to be week ending, instead of week ahead. Delete this step when fix is in place in PROD1",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Replaced Value2\",{{\"AS_OF_DATE\", \"AS_OF_DATE_OLD\"}, {\"CURRENTRMCLASSMINDATE\", \"CURRENTRMCLASSMINDATE_OLD\"}}),",
+                "    // to temporarily fix the as of date to be week ending, instead of week ahead. Delete this step when fix is in place in PROD1",
+                "    #\"Added AS_OF_DATE (TEMPORARY)\" = Table.AddColumn(#\"Renamed Columns\", \"AS_OF_DATE\", each [AS_OF_DATE_OLD] - #duration(7,0,0,0)),",
+                "    // to temporarily fix the as of date to be week ending, instead of week ahead. Delete this step when fix is in place in PROD1",
+                "    #\"Added CURRENTCLASSMINDATE\" = Table.AddColumn(#\"Added AS_OF_DATE (TEMPORARY)\", \"CURRENTRMCLASSMINDATE\", each [CURRENTRMCLASSMINDATE_OLD] - #duration(7,0,0,0)),",
+                "    // to temporarily fix the as of date to be week ending, instead of week ahead. Delete this step when fix is in place in PROD1",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Added CURRENTCLASSMINDATE\",{\"AS_OF_DATE_OLD\", \"CURRENTRMCLASSMINDATE_OLD\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Columns\",{{\"AS_OF_DATE\", type date}, {\"CURRENTRMCLASSMINDATE\", type date}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"RM Class Sort\", each if [RM_CLASS] = \"Active\" then 1 else if [RM_CLASS] = \"Slow\" then 2 else if [RM_CLASS] = \"Obsolete\" then 3 else null),",
+                "    #\"Replaced Value3\" = Table.ReplaceValue(#\"Added Conditional Column\",\"\",\"Undetermined\",Replacer.ReplaceValue,{\"RM_CLASS\"})",
+                "in",
+                "    #\"Replaced Value3\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Std Cost",
+            "expression": " [Inv $]/[Inv Qty]",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Surplus Qty",
+            "expression": "[Slow Qty]+[Obsolete Qty]",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Obsolete $ % of Total",
+            "expression": " DIVIDE([Obsolete $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Obsolete Qty",
+            "expression": " CALCULATE([Inv Qty],'Consolidated_Hist'[RM Class]=\"Obsolete\")",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Reserve Qty",
+            "expression": " SUM('Consolidated_Hist'[Reserve Quantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Reserve Rate",
+            "expression": " DIVIDE([Total Gross Reserve $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Slow $",
+            "expression": " CALCULATE([Inv $],'Consolidated_Hist'[RM Class]=\"Slow\")",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Slow $ % of Ttl",
+            "expression": " DIVIDE([Slow $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Slow Qty",
+            "expression": " CALCULATE([Inv Qty],'Consolidated_Hist'[RM Class]=\"Slow\")",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Surplus Reserve $",
+            "expression": "[Slow Gross Reserve $]+[Obsolete Gross Reserve $]",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Inv Qty",
+            "expression": "SUM([Inv Quantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Inv $",
+            "expression": "SUM([Inv Amount])",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Inv Rejected",
+            "expression": "SUM([Rejected Inv])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Obsolete $",
+            "expression": [
+              " CALCULATE([Inv $]",
+              ",'Consolidated_Hist'[RM Class] = \"Obsolete\")"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Previous RM Class Reserve $",
+            "expression": [
+              " ",
+              "//change the as of date = CURRENTRMCLASSMINDATE - 7",
+              "//change the RM_Class = Previous RM Class",
+              "//Previous RM Class we need to remove the filter context",
+              "//We need to grab a list of sku/locations in the current context, and use that to filter down the table to be iterated on (this should fix the total line) INTERSECT()",
+              "VAR asofdate = MAXX('Consolidated_Hist',[Previous RM Class End Date])",
+              "VAR rmclass = MAXX('Consolidated_Hist',[Previous RM Class])",
+              "VAR RMSKUlist = VALUES('Consolidated_Hist'[RM SKU Location])",
+              "",
+              "RETURN",
+              "CALCULATE(",
+              "    SUMX('Consolidated_Hist',",
+              "            'Consolidated_Hist'[Reserve Amount]",
+              "        ),",
+              "            FILTER(ALL('Consolidated_Hist'),",
+              "            'Consolidated_Hist'[As of Date] = asofdate && ",
+              "            'Consolidated_Hist'[RM Class] = rmclass",
+              "                ),",
+              "            INTERSECT(",
+              "                ALL('Consolidated_Hist'[RM SKU Location]),",
+              "                RMSKUlist",
+              "            )",
+              "    )"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Obsolete Gross Reserve $",
+            "expression": " CALCULATE([Total Gross Reserve $],'Consolidated_Hist'[RM Class] = \"Obsolete\")",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Slow Gross Reserve $",
+            "expression": " CALCULATE([Total Gross Reserve $],'Consolidated_Hist'[RM Class]=\"Slow\")",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Gross Reserve $",
+            "expression": [
+              " sum([Reserve Amount])",
+              ""
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Surplus $",
+            "expression": "[Slow $]+[Obsolete $]",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Aging Days (WA)",
+            "expression": [
+              " ",
+              "DIVIDE(",
+              "    SUMX('Consolidated_Hist', 'Consolidated_Hist'[Inv $] * CALCULATE(SUM('Consolidated_Hist'[Aging Days]))),",
+              "    SUMX('Consolidated_Hist', 'Consolidated_Hist'[Inv $]))"
+            ]
+          },
+          {
+            "name": "Total Excluded Reserve $",
+            "expression": [
+              " sum([Total Excluded Reserve Amount])",
+              ""
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Net Reserve $",
+            "expression": " SUM(Consolidated_Hist[Net Reserve Amount])",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Excluded Reserve Rate",
+            "expression": " DIVIDE([Total Excluded Reserve $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Net Reserve Rate",
+            "expression": " DIVIDE([Total Net Reserve $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Excluded Inv Reserve $",
+            "expression": " sum([Excluded Inv Reserve Amount])",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Excluded New Add Reserve $",
+            "expression": " sum([New Add Reserve Amount])",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Excluded Inv Reserve Rate",
+            "expression": " DIVIDE([Excluded Inv Reserve $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "New Add Reserve Rate",
+            "expression": " DIVIDE([Excluded New Add Reserve $],[Inv $])",
+            "formatString": "0.00%;-0.00%;0.00%"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "SBU Plant Hierarchy",
+            "levels": [
+              {
+                "name": "SBU",
+                "ordinal": 0,
+                "column": "SBU"
+              },
+              {
+                "name": "Plant",
+                "ordinal": 1,
+                "column": "Plant"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "WriteOffs",
+        "columns": [
+          {
+            "name": "RM SKU",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "SKU"
+          },
+          {
+            "name": "SC Comments",
+            "dataType": "string",
+            "sourceColumn": "SC_AREACOMMENT"
+          },
+          {
+            "name": "SC Approval",
+            "dataType": "string",
+            "sourceColumn": "SC_AREAVALUE"
+          },
+          {
+            "name": "SC Update Date",
+            "dataType": "dateTime",
+            "sourceColumn": "SC_UPDATED_ON",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "SC Update By",
+            "dataType": "string",
+            "sourceColumn": "SC_UPDATED_BY"
+          },
+          {
+            "name": "FIN Comments",
+            "dataType": "string",
+            "sourceColumn": "FIN_AREACOMMENT"
+          },
+          {
+            "name": "FIN Approval",
+            "dataType": "string",
+            "sourceColumn": "FIN_AREAVALUE"
+          },
+          {
+            "name": "FIN Update Date",
+            "dataType": "dateTime",
+            "sourceColumn": "FIN_UPDATED_ON",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "FIN Update By",
+            "dataType": "string",
+            "sourceColumn": "FIN_UPDATED_BY"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_RawMaterialsLCA_WriteOffs = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_WriteOffs\"]}[Data],",
+                "    #\"Replaced Value\" = Table.ReplaceValue(rmlca_vw_RawMaterialsLCA_WriteOffs,null,\"No\",Replacer.ReplaceValue,{\"SC_AREAVALUE\",\"FIN_AREAVALUE\"})",
+                "in",
+                "    #\"Replaced Value\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Flat BOM",
+        "columns": [
+          {
+            "name": "ROOT_FG_SKU",
+            "dataType": "string",
+            "sourceColumn": "ROOT_FG_SKU"
+          },
+          {
+            "name": "COMP_RM_SKU",
+            "dataType": "string",
+            "sourceColumn": "COMP_RM_SKU"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_RawMaterialsLCA_FlatBOM = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_FlatBOM\"]}[Data]",
+                "in",
+                "    rmlca_vw_RawMaterialsLCA_FlatBOM"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Last Usage",
+        "columns": [
+          {
+            "name": "Last Usage Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Last_Usage_Date"
+          },
+          {
+            "name": "RM_SKU",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "RM_SKU"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_RawMaterialsLCA_Last_Usage = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_Last_Usage\"]}[Data]",
+                "in",
+                "    rmlca_vw_RawMaterialsLCA_Last_Usage"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "LCA FG",
+        "columns": [
+          {
+            "name": "ITEM_ID",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "ITEM_ID"
+          },
+          {
+            "name": "Style",
+            "dataType": "string",
+            "sourceColumn": "STYLE"
+          },
+          {
+            "name": "Attrib",
+            "dataType": "string",
+            "sourceColumn": "ATTRIB"
+          },
+          {
+            "name": "SALES_PAST_THREE_MTHS_GARM",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "SALES_PAST_THREE_MTHS_GARM"
+          },
+          {
+            "name": "As of Date",
+            "dataType": "dateTime",
+            "sourceColumn": "AS_OF_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "FG SKU",
+            "dataType": "string",
+            "sourceColumn": "FG_SKU"
+          },
+          {
+            "name": "Sales Past 2 Months",
+            "dataType": "double",
+            "sourceColumn": "SALES_PAST_TWO_MTHS",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Sales Past 1 Year",
+            "dataType": "double",
+            "sourceColumn": "SALES_PAST_ONE_YEAR",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "FG Inv Qty",
+            "dataType": "double",
+            "sourceColumn": "INV_GARMENTS",
+            "formatString": "#,0"
+          },
+          {
+            "name": "FG Inv $",
+            "dataType": "double",
+            "sourceColumn": "INV_DOLLARS",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Current Class",
+            "dataType": "string",
+            "sourceColumn": "LOAD_CURRENT_CLASSIFICATION"
+          },
+          {
+            "name": "Disco Date",
+            "dataType": "dateTime",
+            "sourceColumn": "OBSOLETE_DATE",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "FG SKU Delim",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "'LCA FG'[Style]&\".\"&'LCA FG'[Color]&\".\"&'LCA FG'[Attrib]&\".\"&'LCA FG'[Size]"
+          },
+          {
+            "type": "calculated",
+            "name": "Upcoming Disco Flag",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "'LCA FG'[Current Class]&\".\"&IF(ISBLANK('LCA FG'[Disco Date]),\"No\",\"Yes\")"
+          },
+          {
+            "name": "FG Gender Category",
+            "dataType": "string",
+            "sourceColumn": "GENDER_CATEGORY"
+          },
+          {
+            "name": "FG Marketing Resp Lv1",
+            "dataType": "string",
+            "sourceColumn": "MARKETING_RESP_LEVEL1"
+          },
+          {
+            "name": "FG Marketing Resp Lv2",
+            "dataType": "string",
+            "sourceColumn": "MARKETING_RESP_LEVEL2"
+          },
+          {
+            "name": "FG Marketing Resp Lv3",
+            "dataType": "string",
+            "sourceColumn": "MARKETING_RESP_LEVEL3"
+          },
+          {
+            "name": "Color",
+            "dataType": "string",
+            "sourceColumn": "COLOR_CODE"
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "sourceColumn": "SIZE_CODE"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Azure Synapse\",",
+                "    rmlca_vw_RawMaterialsLCA_FG = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_FG\"]}[Data]",
+                "in",
+                "    rmlca_vw_RawMaterialsLCA_FG"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "RM SKU",
+        "isHidden": true,
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "RM_SKU_NoDelim",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "Consolidated_Hist[RM_SKU_NoDelim]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": "SUMMARIZE(Consolidated_Hist,Consolidated_Hist[RM_SKU_NoDelim])"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Update Dates",
+        "columns": [
+          {
+            "name": "Process",
+            "dataType": "string",
+            "sourceColumn": "Process"
+          },
+          {
+            "name": "DateTimeStamp_UTC",
+            "dataType": "dateTime",
+            "sourceColumn": "DateTimeStamp_UTC",
+            "formatString": "M/d/yyyy h:mm:ss AM/PM",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeCustom\"><DateTimes><DateTime LCID=\"1033\" Group=\"GeneralLongDateTime\" FormatString=\"M/d/yyyy h:mm:ss tt\" /></DateTimes></Format>"
+              }
+            ]
+          },
+          {
+            "name": "DateTimeStamp_EST",
+            "dataType": "dateTime",
+            "sourceColumn": "DateTimeStamp_EST",
+            "formatString": "M/d/yyyy h:mm:ss AM/PM",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeCustom\"><DateTimes><DateTime LCID=\"1033\" Group=\"GeneralLongDateTime\" FormatString=\"M/d/yyyy h:mm:ss tt\" /></DateTimes></Format>"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Value.NativeQuery(#\"AzureSqlServerCatalogAndControl\", ",
+                "\"select\t Process",
+                "\t\t,DateTimeStamp as  DateTimeStamp_UTC",
+                "\t\t,Format((DateTimeStamp AT TIME ZONE 'UTC' AT TIME ZONE 'Eastern Standard Time'),'yyyy/MM/dd HH:mm:ss') as  DateTimeStamp_EST",
+                "From",
+                "(",
+                "\tselect 'OracleFileCreateDateTime' as Process, max(SourceFileCreatedDate)  as DateTimeStamp ",
+                "\t from landing.loadlog",
+                "\twhere SourceSystemName='PROD1'",
+                "\tand SourceDataSetName='LCA_PROD1'",
+                "\tand ExecutionStatusCode='SUCC'",
+                "",
+                "\tUNION",
+                "",
+                "\tselect 'RawFileCreateDateTime' as Process, max(EndDate)  as DateTimeStamp ",
+                "\t from landing.loadlog",
+                "\twhere SourceSystemName='PROD1'",
+                "\tand SourceDataSetName='LCA_PROD1'",
+                "\tand ExecutionStatusCode='SUCC'",
+                "",
+                "\tUNION",
+                "",
+                "\tselect 'SSMFileCreateDateTime' as Process, max(EndDate) as DateTimeStamp ",
+                "\tfrom [etl].[SSMergedLog] ",
+                "\twhere SourceSystemName='PROD1'",
+                "\tand SourceDataSetName='LCA_PROD1'",
+                "\tand ExecutionStatusCode='SUCC'",
+                "",
+                "\tUNION",
+                "",
+                "\tselect 'TabularModelProcessDateTime' as Process,max(startdate)  as DateTimeStamp ",
+                "\tfrom etl.AzureResourceLog",
+                "\twhere ActionItemName='ProcessModel'",
+                "\tand DatabaseName='RMLCA'",
+                "\t--and ExecutionStatusMessage='Success.'",
+                "\tGroup By  DatabaseName",
+                ")main\")",
+                "in",
+                "    Source"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Aging Bucket Sort",
+        "isHidden": true,
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "Aging Bucket",
+            "dataType": "string",
+            "isNameInferred": false,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Value1]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Sort Order",
+            "dataType": "int64",
+            "isNameInferred": false,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Value2]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                "{(\"(0-6 mos) 0-180 days\", 1)",
+                ",(\"(6 mos) 181-211 days\", 2)",
+                ",(\"(7 mos) 212-242 days\", 3)",
+                ",(\"(8 mos) 243-273 days\", 4)",
+                ",(\"(9 mos) 274-304 days\", 5)",
+                ",(\"(10 mos) 305-335 days\", 6)",
+                ",(\"(11 mos) 336-360 days\", 7)",
+                ",(\"(12 mos) 361-390 days\", 8)",
+                ",(\"(13 mos) 391-420 days\", 9)",
+                ",(\"(14 mos) 421-450 days\", 10)",
+                ",(\"(15 mos) 451-480 days\", 11)",
+                ",(\"(16 mos) 481-510 days\", 12)",
+                ",(\"(17 mos) 511-540 days\", 13)",
+                ",(\"(18 mos) 541-570 days\", 14)",
+                ",(\"(19 mos) 571-600 days\", 15)",
+                ",(\"(20 mos) 601-630 days\", 16)",
+                ",(\"(21 mos) 631-660 days\", 17)",
+                ",(\"(22 mos) 661-690 days\", 18)",
+                ",(\"(23 mos) 691-720 days\", 19)",
+                ",(\"(24 mos) 0ver 721 days\", 20)",
+                "}"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "885c1a5c-addd-465b-a6ff-50e53bc932e4",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "SBU",
+        "toTable": "SBU",
+        "toColumn": "SBU"
+      },
+      {
+        "name": "a91c62f0-b0d7-4c68-88d8-6948ac7ff263",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "Style",
+        "toTable": "Product Style",
+        "toColumn": "STYLE_CD"
+      },
+      {
+        "name": "57014eb4-fd9b-4b44-87aa-cfb83889a8b3",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "RM SKU",
+        "toTable": "WriteOffs",
+        "toColumn": "RM SKU"
+      },
+      {
+        "name": "142dc517-ec62-4e43-bfb0-39be13fcc9bb",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "RM SKU",
+        "toTable": "Exclusions",
+        "toColumn": "RM SKU"
+      },
+      {
+        "name": "2e280f8e-aeb9-4f05-b28a-283d39dca057",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "As of Date",
+        "toTable": "Corp Cal",
+        "toColumn": "Day Date"
+      },
+      {
+        "name": "5b5c9a39-0436-45c2-b6ec-1f932547a0df",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "RM SKU",
+        "toTable": "Last Usage",
+        "toColumn": "RM_SKU"
+      },
+      {
+        "name": "de9fae5e-7e61-40fc-8624-43b47e35b08d",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "RM_SKU_NoDelim",
+        "toTable": "RM SKU",
+        "toColumn": "RM_SKU_NoDelim",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "cee501f4-7778-4fd4-a855-481715dc7e3e",
+        "fromTable": "Flat BOM",
+        "fromColumn": "COMP_RM_SKU",
+        "toTable": "RM SKU",
+        "toColumn": "RM_SKU_NoDelim",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "af5159af-e8bd-400b-bdc5-b8e55b3dc07c",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "Class Start Date",
+        "toTable": "Corp Cal",
+        "toColumn": "Day Date",
+        "isActive": false
+      },
+      {
+        "name": "7df1f4eb-33cd-4ff2-8bc9-94fe3140be91",
+        "fromTable": "Flat BOM",
+        "fromColumn": "ROOT_FG_SKU",
+        "toTable": "LCA FG",
+        "toColumn": "FG SKU",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "3ce9ca59-ba5c-4e41-a069-6d6011c442e3",
+        "fromTable": "Consolidated_Hist",
+        "fromColumn": "Aging Buckets",
+        "toTable": "Aging Bucket Sort",
+        "toColumn": "Aging Bucket"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Reader",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "obj:c07d2f43-d789-44c3-b369-1c487822e793@333b3fe4-69f0-4013-a0eb-5bcb97f52644",
+            "memberId": "obj:c07d2f43-d789-44c3-b369-1c487822e793@333b3fe4-69f0-4013-a0eb-5bcb97f52644",
+            "identityProvider": "AzureAD"
+          }
+        ]
+      },
+      {
+        "name": "Admin",
+        "modelPermission": "administrator",
+        "members": [
+          {
+            "memberName": "obj:a0309aad-8744-440d-ab49-65299a2f4e7a@333b3fe4-69f0-4013-a0eb-5bcb97f52644",
+            "memberId": "obj:a0309aad-8744-440d-ab49-65299a2f4e7a@333b3fe4-69f0-4013-a0eb-5bcb97f52644",
+            "identityProvider": "AzureAD"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "Consolidated_append",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"Azure Synapse\",",
+          "    rmlca_RawMaterialsLCA_Consolidated_Hist = Source{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_Consolidated\"]}[Data],",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(rmlca_RawMaterialsLCA_Consolidated_Hist,{{\"AS_OF_DATE\", type date}, {\"UPDATE_TIMESTAMP\", type datetime}, {\"RM_DISCO_DATE\", type date}, {\"CURRENTRMCLASSMINDATE\", type date}})",
+          "in",
+          "    #\"Changed Type\""
+        ]
+      },
+      {
+        "name": "MTD Trans Last Usage",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"Azure Synapse\",",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Kind] = \"View\") and ([Schema] = \"rmlca\")),",
+          "    rmlca_vw_RawMaterialsLCA_MTD_Trans = #\"Filtered Rows\"{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_MTD_Trans\"]}[Data],",
+          "    #\"Filtered Rows1\" = Table.SelectRows(rmlca_vw_RawMaterialsLCA_MTD_Trans, each ([INVENTORY_TRANS_CD] = \"IS\")),",
+          "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [TRANSACTION_SOURCE_CD] = \"FAB2\"),",
+          "    #\"Filtered Rows3\" = Table.SelectRows(#\"Filtered Rows2\", each [INVENTORY_REASON_CD] = \"--\"),",
+          "    #\"Trimmed Text\" = Table.TransformColumns(#\"Filtered Rows3\",{{\"STYLE\", Text.Trim, type text}, {\"SIZE_CD\", Text.Trim, type text}, {\"COLOR\", Text.Trim, type text}, {\"ATTRIBUTE_CD\", Text.Trim, type text}}),",
+          "    #\"Merged Columns\" = Table.CombineColumns(#\"Trimmed Text\",{\"STYLE\", \"SIZE_CD\", \"COLOR\", \"ATTRIBUTE_CD\"},Combiner.CombineTextByDelimiter(\".\", QuoteStyle.None),\"SKU\"),",
+          "    #\"Grouped Rows\" = Table.Group(#\"Merged Columns\", {\"SKU\"}, {{\"Last Usage Date\", each List.Max([ACTIVITY_DATE]), type date}})",
+          "in",
+          "    #\"Grouped Rows\""
+        ]
+      },
+      {
+        "name": "Trans Archive Last Usage",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"Azure Synapse\",",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Kind] = \"View\") and ([Schema] = \"rmlca\")),",
+          "    rmlca_vw_RawMaterialsLCA_Trans_Archive = #\"Filtered Rows\"{[Schema=\"rmlca\",Item=\"vw_RawMaterialsLCA_Trans_Archive\"]}[Data],",
+          "    #\"Filtered Rows1\" = Table.SelectRows(rmlca_vw_RawMaterialsLCA_Trans_Archive, each [INVENTORY_TRANS_CD] = \"IS\"),",
+          "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [INVENTORY_REASON_CD] = \"--\"),",
+          "    #\"Filtered Rows3\" = Table.SelectRows(#\"Filtered Rows2\", each [TRANSACTION_SOURCE_CD] = \"FAB2\"),",
+          "    #\"Trimmed Text\" = Table.TransformColumns(#\"Filtered Rows3\",{{\"STYLE\", Text.Trim, type text}, {\"COLOR\", Text.Trim, type text}, {\"ATTRIBUTE_CD\", Text.Trim, type text}, {\"SIZE_CD\", Text.Trim, type text}}),",
+          "    #\"Merged Columns\" = Table.CombineColumns(#\"Trimmed Text\",{\"STYLE\", \"COLOR\", \"ATTRIBUTE_CD\", \"SIZE_CD\"},Combiner.CombineTextByDelimiter(\".\", QuoteStyle.None),\"SKU\"),",
+          "    #\"Grouped Rows\" = Table.Group(#\"Merged Columns\", {\"SKU\"}, {{\"Last Usage Date\", each List.Max([ACTIVITY_DATE]), type date}})",
+          "in",
+          "    #\"Grouped Rows\""
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}

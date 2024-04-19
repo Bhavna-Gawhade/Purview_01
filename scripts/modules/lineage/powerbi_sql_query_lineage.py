@@ -103,6 +103,18 @@ def build_powerbi_lineage_from_sql_query(client, source_entities_qualified_paths
     print(result)
 
 
+def build_lineage_from_azure_sql_to_pbi(client, azure_sql_asset_qualified_name, pbi_dataset_qualified_name):
+    '''
+    Build lineage from an Azure Dedicated SQL Pool Table's asset to a Power BI dataset.
+    '''
+
+    source_entity = get_entity_from_qualified_name(client, azure_sql_asset_qualified_name)
+    target_entity = get_entity_from_qualified_name(client, pbi_dataset_qualified_name)
+    process_type_name = "sql_database_source"
+    result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
+    print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
+
+
 # Main Function
 # ---------------
 
