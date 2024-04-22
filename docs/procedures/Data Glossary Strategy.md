@@ -20,6 +20,7 @@
    - **AFS (Apparel and Footwear Solution):**
    - **APS (Advanced Planning and Scheduling):**
    - **MDG (Master Data Governance):**
+   - **PLM (Product Lifecycle Management):**
 
    These systems represent key components of our data ecosystem, and tracking glossary terms within them helps ensure that data terminology is standardized and consistent across various business functions and processes.
 
