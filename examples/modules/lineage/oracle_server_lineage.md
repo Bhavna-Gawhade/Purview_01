@@ -17,7 +17,6 @@ def example_build_lineage_from_oracle_server_to_pbi():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_oracle_to_data_lake_stage():

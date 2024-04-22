@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_cube_to_pbi():

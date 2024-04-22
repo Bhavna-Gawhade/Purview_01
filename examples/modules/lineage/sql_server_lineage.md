@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_sql_server_to_pbi():
@@ -17,7 +16,6 @@ def example_build_lineage_from_sql_server_to_pbi():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_sql_vw_to_data_lake_stage():
@@ -31,7 +29,6 @@ def example_build_lineage_from_sql_vw_to_data_lake_stage():
 ## Establishes a  lineage connection between a sql table and a data lake stage using guid
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

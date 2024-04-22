@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_extract_source_and_target_from_external_table():

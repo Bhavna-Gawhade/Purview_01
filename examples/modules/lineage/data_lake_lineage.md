@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_data_lake_curated_to_data_warehouse_stage():
@@ -16,7 +15,6 @@ def example_build_lineage_from_data_lake_curated_to_data_warehouse_stage():
 ## Establishes a  lineage connection between a data lake stage and a data lake curated using guid
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -32,7 +30,6 @@ def example_build_lineage_from_data_lake_stage_to_curated():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_lineage_from_data_lake_manual_file_to_data_lake_stage():
@@ -46,7 +43,6 @@ def example_build_lineage_from_data_lake_manual_file_to_data_lake_stage():
 ## Establishes a  lineage connection between a data lake curated and a data lake curated using guid
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

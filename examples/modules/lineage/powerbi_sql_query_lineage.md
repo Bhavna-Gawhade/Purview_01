@@ -3,7 +3,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_powerbi_lineage_from_sql_query():

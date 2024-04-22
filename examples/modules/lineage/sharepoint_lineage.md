@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_build_sharepoint_to_pbi_lineage():
@@ -30,7 +29,6 @@ def example_build_sharepoint_to_pbi_lineage():
 ## Create a SharePoint entity in the Purview Atlas
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

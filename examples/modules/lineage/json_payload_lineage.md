@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_info_from_entity_dict():
@@ -22,7 +21,6 @@ def example_get_info_from_entity_dict():
 ## Uploads lineage information from the given payload dictionary
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -57,7 +55,6 @@ def example_upload_lineage_from_payload():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_process_json_file():
@@ -70,7 +67,6 @@ def example_process_json_file():
 ## Process the JSON file and extract the source, target, and process payloads.
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -85,7 +81,6 @@ def example_process_payload():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_process_payload():
@@ -99,7 +94,6 @@ def example_process_payload():
 ## Establishes a  lineage connection between a Data Lake (DL) and a Data Warehouse (DW) using qualified names
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
