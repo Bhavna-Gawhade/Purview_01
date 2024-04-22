@@ -106,18 +106,24 @@ def main():
     dw_guid = "55248dad-cd9e-42b7-987b-4af6f6f60000"
     #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
+    
+
+
+    # Informatica Testing
     xml_export_path = "Advanced_modeling_XML.XML"
-    parse_informatica_xml_export(xml_export_path)
+    #parse_informatica_xml_export(xml_export_path)
+    #parse_informatica_xml_export(xml_export_path)
 
+    model_path = "RMLCA_Model.bim"
+    model_name = "RMLCA"
+    targ_qual_name = "https://app.powerbi.com/groups/87418287-152f-44c8-931d-7fd6228dda48/datasets/b96f5c8a-5e4e-4f5e-adcf-412a2641758f"
+    #prod_build_powerbi_lineage_from_tabular_model(prod_client, model_path, targ_no_char, targ_qual_name, model_name)
 
-
-
-    qual_name = ""
-    entity = get_entity_from_qualified_name(qual_name)
-    print(entity)
-
+    model_qualified_name = "https://app.powerbi.com/groups/87418287-152f-44c8-931d-7fd6228dda48/datasets/fd27d606-7bf1-4821-9a77-1a78214c38ed"
+    report_qual_name = ""
+    #build_tabular_model_source_lineage(prod_client, model_path, model_qualified_name, "pd")
+    #build_lineage_from_tabular_model_pbi_dataset_to_pbi_report(prod_client, model_qualified_name, report_qual_name)
 
   
-
 if __name__ == '__main__':
     main()

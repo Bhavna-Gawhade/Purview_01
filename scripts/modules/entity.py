@@ -148,6 +148,18 @@ PKMS_COLUMN_DEF = EntityTypeDef(
   superTypes = ["Column"]
 )
 
+DW_TO_PBI_DATASET_DEF = EntityTypeDef(
+  name = "DW_to_PBI_Dataset",
+  superTypes = ["Process"]
+)
+
+TABULAR_MODEL_TO_PBI_REPORT_DEF = EntityTypeDef(
+  name = "Tabular_Model_to_PBI_Report",
+  superTypes = ["Process"]
+)
+
+
+
 
 # Functions
 # ---------------
