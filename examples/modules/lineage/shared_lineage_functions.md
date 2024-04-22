@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_add_manual_lineage():
@@ -112,7 +111,6 @@ def example_get_and_add_lineage_from_payload():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_add_manual_lineage_with_specific_client():
@@ -130,7 +128,6 @@ def example_add_manual_lineage_with_specific_client():
 ## Add manual lineage by using GUIDS
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
