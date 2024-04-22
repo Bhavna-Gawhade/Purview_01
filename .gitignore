@@ -1,8 +1,6 @@
 # Hanes repo
-scripts/inputs/BIDW
-scripts/inputs/BIDW
-scripts/inputs/cube_xml_files/
-scripts/inputs/cube_xml_files
+scripts/inputs
+scripts/inputs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
