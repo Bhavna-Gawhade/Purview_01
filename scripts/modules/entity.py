@@ -153,8 +153,8 @@ DW_TO_PBI_DATASET_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
-TABULAR_MODEL_TO_PBI_REPORT_DEF = EntityTypeDef(
-  name = "Tabular_Model_to_PBI_Report",
+TABULAR_MODEL_TO_PBI_DATASET_DEF = EntityTypeDef(
+  name = "Tabular_Model_to_PBI_Dataset",
   superTypes = ["Process"]
 )
 

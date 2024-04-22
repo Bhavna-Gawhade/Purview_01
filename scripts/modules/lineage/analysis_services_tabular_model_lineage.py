@@ -112,21 +112,11 @@ def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_
 
         if source_schema != "" and source_table_name != "":
             source_qualified_name = start_of_source_qualified_name + source_schema + "/" + source_table_name
-
-            """# Create powerbi table if needed
-            powerbi_table_name = t.get("name")
-            if not is_pbi_table_in_json_list(existing_pbi_tables_file_path, powerbi_table_name):
-                create_powerbi_table(client, {"powerbi_table_name": powerbi_table_name}, tab_model_purview_path)
-                append_to_existing_pbi_tables_json(existing_pbi_tables_file_path, powerbi_table_name)
-                print("Created PBI table for: " + powerbi_table_name)
-                source_qualified_name = tab_model_purview_path + powerbi_table_name.replace(" ", "")
-            """
             
             source_entity_details = get_entity_from_qualified_name(client, source_qualified_name)
             print(source_qualified_name)
             try:
                 table_details = {
-                    #"powerbi_table_name": powerbi_table_name,
                     "source_schema": source_schema,
                     "source_table_name": source_table_name,
 
@@ -142,140 +132,6 @@ def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_
                 
     return all_tables
 
-
-def build_lineage_from_pbi_table_to_dataset(client, source_dict, target_dict, target_name):
-    '''
-    Builds a lineage relationship from a Power BI table to a Power BI dataset.
-
-    Parameters:
-    - client: The Atlas client for making API calls.
-    - source_dict (dict): Dictionary containing details of the Power BI table.
-    - target_dict (dict): Dictionary containing details of the Power BI dataset.
-    - target_name (str): The name of the Power BI dataset.
-    '''
-    process_type_name = "PBI_Table_to_PBI_Dataset_Connection"
-    source_type_name = "PowerBITable"
-    target_type_name = "PowerBIDataset"
-    name_to_use_in_qualified_name = source_dict["name"] + "_to_" + target_name.replace(" ", "")
-
-    result = add_manual_lineage_with_specific_client(client, [source_dict], [target_dict], process_type_name, source_type_name, target_type_name, name_to_use_in_qualified_name)
-    print(result)
-    print()
-
-
-def create_powerbi_table(client, table, tab_model_purview_path_name):
-    entity_type = "Power_BI_Table"
-    powerbi_table_name_without_spaces = table["powerbi_table_name"].replace(" ", "")
-    unique_qualified_name = tab_model_purview_path_name + powerbi_table_name_without_spaces
-    e = AtlasEntity(
-        name = table["powerbi_table_name"],
-        typeName = entity_type,
-        qualified_name = unique_qualified_name,
-        guid = GuidTracker().get_guid()
-    )
-    
-    result  = client.upload_entities(
-        batch = [e]
-    )
-    print(result)
-
-
-def bulk_create_powerbi_tables(client, tables, target_dataset_name_without_special_char, target_dataset_qualified_name, existing_pbi_tables_file_path):
-    '''
-    Creates Power BI table entities in Apache Atlas and returns a list of created entities.
-
-    Parameters:
-    - client: The Atlas client for making API calls.
-    - tables (list): List of dictionaries containing details of Power BI tables.
-    - target_dataset_name_without_special_char (str): The name of the target Power BI dataset without special characters.
-    - target_dataset_qualified_name (str): The qualified name of the target Power BI dataset.
-
-    Returns:
-    - power_bi_tables (list): List of AtlasEntity objects representing the created Power BI table entities.
-    '''
-    entity_type = "Power_BI_Table" # custom type can be found under entity.py
-
-    power_bi_tables = []
-    for t in tables:
-        powerbi_table_name_without_spaces = t["powerbi_table_name"].replace(" ", "")
-        unique_qualified_name = target_dataset_qualified_name + "/" + powerbi_table_name_without_spaces + "Table/"
-        e = AtlasEntity(
-            name = t["powerbi_table_name"],
-            typeName = entity_type,
-            qualified_name = unique_qualified_name,
-            guid = GuidTracker().get_guid()
-        )
-        power_bi_tables.append(e)
-        
-        result  = client.upload_entities(
-            batch = [e]
-        )
-        print(result)
-        append_to_existing_pbi_tables_json(existing_pbi_tables_file_path, powerbi_table_name_without_spaces)
-
-    return power_bi_tables
-
-
-def get_custom_power_bi_tables(client):
-    '''
-    Retrieves Power BI table entities of a custom type from Apache Atlas.
-
-    Parameters:
-    - client: The Atlas client for making API calls.
-
-    Returns:
-    - entities (list): List of dictionaries representing Power BI table entities.
-    '''
-    entity_type = "Power_BI_Table"
-    entities = client.discovery.browse(entityType=entity_type).get("value")
-    return entities
-
-
-def build_lineage_from_sql_to_pbi_table(client, source_dict, target_dict, target_name):
-    '''
-    Builds lineage from an SQL database table to a Power BI table in Apache Atlas.
-
-    Parameters:
-    - client: The Apache Atlas client for making API calls.
-    - source_dict (dict): Dictionary representing the source SQL table entity.
-    - target_dict (dict): Dictionary representing the target Power BI table entity.
-    - target_name (str): The name of the target Power BI table.
-
-    Returns:
-    - result (dict): Result of the lineage creation operation.
-    '''
-    process_type_name = "SQL_to_PBI_Table_Connection"
-    source_type_name = "AzureSQLDB"
-    target_type_name = "PowerBITable"
-
-    target_name_without_special_char = target_name.replace(" ", "")
-
-    result = add_manual_lineage_with_specific_client(client, [source_dict], [target_dict], process_type_name, source_type_name, target_type_name, target_name_without_special_char)
-    print(result)
-    print()
-
-
-def append_to_existing_pbi_tables_json(file_path, string_to_append):
-    with open(file_path, 'r') as f:
-        data = json.load(f)
-    
-    # Append the pbi table name to the list of existing pbi tables in Purview
-    data["existing_pbi_tables_in_purview"].append(string_to_append)
-    
-    # Write the updated JSON back to the file
-    with open(file_path, 'w') as f:
-        json.dump(data, f, indent=4)
-
-
-def is_pbi_table_in_json_list(existing_pbi_tables_file_path, pbi_table_name):
-    with open(existing_pbi_tables_file_path, 'r') as f:
-        data = json.load(f)
-    
-    if pbi_table_name in data["existing_pbi_tables_in_purview"]:
-        return True
-    else:
-        return False
-    
 
 def build_lineage_from_sql_to_pbi_dataset(client, source_dict, target_dict, target_name):
     process_type_name = "DW_to_PBI_Dataset"
@@ -310,9 +166,9 @@ def create_tabular_model_entity(client, tabular_model_name, dev_instance_short_n
         print("Error uploading tabular model entity: " + tabular_model_name)
 
 
-def build_lineage_from_tabular_model_pbi_dataset_to_pbi_report(client, tabular_model_qualified_name, pbi_report_qualified_name):
+def build_lineage_from_tabular_model_to_pbi_dataset(client, tabular_model_qualified_name, pbi_report_qualified_name):
     # The source entity must be a PBI dataset type that is the representation of the tabular model (automatically created by Power BI)
-    process_type_name = "Tabular_Model_to_PBI_Report"
+    process_type_name = "Tabular_Model_to_PBI_Dataset"
     source_dict = get_entity_from_qualified_name(client, tabular_model_qualified_name) 
     target_dict = get_entity_from_qualified_name(client, pbi_report_qualified_name)
     if source_dict == None:
@@ -337,7 +193,7 @@ def build_tabular_model_source_lineage(client, model_bim_file_path, tabular_mode
     all_tables_extracted = get_all_tables_from_tabular_model(client, pre_extraction_tables_list, start_of_source_qualified_name)
         
     # Build lineage directly from sources of the PBI tables in the tabular models
-    source_entities = all_tables_extracted # info for the SQL DBs
+    source_entities = all_tables_extracted # info for the DW tables
     target_dict = get_entity_from_qualified_name(client, tabular_model_qualified_name)
     if target_dict == None:
         print("Target returned as NoneType")
