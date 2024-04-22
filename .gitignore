@@ -1,6 +1,7 @@
 # Hanes repo
 scripts/inputs
 scripts/inputs/
+scripts/Advanced_modeling_XML.XML
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
