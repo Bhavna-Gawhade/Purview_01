@@ -2,7 +2,7 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_alternate_parse_load_routine_for_data_warehouse():
@@ -16,7 +16,7 @@ def example_alternate_parse_load_routine_for_data_warehouse():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_parse_load_routine_for_data_warehouse():
@@ -30,7 +30,7 @@ def example_parse_load_routine_for_data_warehouse():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_alternate_parse_view_for_data_warehouse():
@@ -44,7 +44,7 @@ def example_alternate_parse_view_for_data_warehouse():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_parse_view_for_data_warehouse():
@@ -58,7 +58,7 @@ def example_parse_view_for_data_warehouse():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_build_table_to_source_data_warehouse_internal_lineage():
@@ -74,7 +74,7 @@ def example_build_table_to_source_data_warehouse_internal_lineage():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_build_stage_to_common_data_warehouse_internal_lineage():
@@ -91,7 +91,7 @@ def example_build_stage_to_common_data_warehouse_internal_lineage():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_prod_parse_data_warehouse_view_internal_lineage():
@@ -106,7 +106,7 @@ def example_prod_parse_data_warehouse_view_internal_lineage():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
+
 import json
 
 def example_prod_parse_data_warehouse_table_internal_lineage():

@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_parse_dsp_json_of_table():
@@ -16,7 +15,6 @@ def example_parse_dsp_json_of_table():
 ## Parses a JSON file representing a table in a Data Services Project (DSP) 
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -41,7 +39,6 @@ def example_parse_dsp_json_of_table():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_parse_dsp_json_and_create_view():
@@ -65,7 +62,6 @@ def example_parse_dsp_json_and_create_view():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_sap_hana_views_with_substring_of_qualified_name():
@@ -81,7 +77,6 @@ def example_get_sap_hana_views_with_substring_of_qualified_name():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_extract_schema_from_qualified_name():
@@ -96,7 +91,6 @@ def example_extract_schema_from_qualified_name():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_extract_entity_name_from_qualified_name():
@@ -110,7 +104,6 @@ def example_extract_entity_name_from_qualified_name():
 ## Creates lineage connections between a target SAP HANA view and its source entities
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -127,7 +120,6 @@ def example_create_lineage_for_view():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_create_lineage_for_view():
@@ -142,7 +134,6 @@ def example_create_lineage_for_view():
 ## Adds manual DSP lineage connection between source and target entities
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -172,7 +163,6 @@ def example_add_manual_dsp_lineage():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_existing_prod_sap_hana_view_and_tables_qualified_names():
@@ -186,7 +176,6 @@ def example_get_existing_prod_sap_hana_view_and_tables_qualified_names():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_existing_prod_dsp_connection_qualified_names():
@@ -199,7 +188,6 @@ def example_get_existing_prod_dsp_connection_qualified_names():
 ## Main function to parse SAP HANA internal lineage, create entities, and build lineage connections
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_confirm_source_not_target():
@@ -16,7 +15,6 @@ def example_confirm_source_not_target():
 ## Extract the source and target tables from a stored procedure SQL file.
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

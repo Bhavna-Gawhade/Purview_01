@@ -61,7 +61,15 @@ def build_lineage_from_data_lake_stage_to_curated(client, stage_guid, curated_gu
 
 def build_lineage_from_data_lake_manual_file_to_data_lake_stage(client, manual_file_guid, dl_stage_guid):
     '''
-    Build lineage from a manually added asset to a data lake stage asset.
+    Builds lineage from a manually added asset to a data lake stage asset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        manual_file_guid (str): The GUID of the manually added file asset.
+        dl_stage_guid (str): The GUID of the data lake stage asset.
+
+    Returns:
+        None
     '''
     manual_file_type = "azure_datalake_gen2_path"
     dl_type = "azure_datalake_gen2_path"
@@ -71,7 +79,15 @@ def build_lineage_from_data_lake_manual_file_to_data_lake_stage(client, manual_f
 
 def build_lineage_from_data_lake_curated_to_data_lake_curated(client, source_curated_guid, target_curated_guid):
     '''
-    Build lineage from a manually added asset to a data lake stage asset.
+    Builds lineage from one data lake curated asset to another data lake curated asset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        source_curated_guid (str): The GUID of the source data lake curated asset.
+        target_curated_guid (str): The GUID of the target data lake curated asset.
+
+    Returns:
+        None
     '''
     source_curated_type = "azure_datalake_gen2_path"
     target_curated_type = "azure_datalake_gen2_path"

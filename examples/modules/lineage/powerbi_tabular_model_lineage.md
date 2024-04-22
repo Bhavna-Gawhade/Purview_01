@@ -2,7 +2,6 @@
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_load_json():
@@ -15,7 +14,6 @@ def example_load_json():
 ## Extracts source schema and table name information from a partitions dictionary.
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -39,7 +37,6 @@ def example_extract_source_schema_and_table_name():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_all_tables_from_tabular_model():
@@ -53,7 +50,6 @@ def example_get_all_tables_from_tabular_model():
 ## Builds a lineage relationship from a Power BI table to a Power BI dataset
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -75,7 +71,6 @@ def example_build_lineage_from_pbi_table_to_dataset():
 ## Creates Power BI table entities in Apache Atlas and returns a list of created entities
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -101,7 +96,6 @@ def example_create_powerbi_tables():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_get_custom_power_bi_tables():
@@ -113,7 +107,6 @@ def example_get_custom_power_bi_tables():
 ## Builds lineage from an SQL database table to a Power BI table
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 
@@ -131,7 +124,6 @@ prod_build_powerbi_lineage_from_tabular_model()
 ## Build lineage relationships from SQL database tables to Power BI tables and from Power BI tables to Power BI datasets
 
 ```python
-from scripts.modules.lineage import *
 from scripts.modules.lineage import *
 import json
 

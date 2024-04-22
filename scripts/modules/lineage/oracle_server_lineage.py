@@ -23,7 +23,15 @@ from pathlib import Path
 
 def build_lineage_from_oracle_server_to_pbi(client, oracle_asset_qualified_name, pbi_dataset_qualified_name):
     '''
-    Build lineage from an Oracle Server's asset to a Power BI dataset.
+    Builds lineage from an Oracle Server's asset to a Power BI dataset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        oracle_asset_qualified_name (str): The qualified name of the Oracle Server asset.
+        pbi_dataset_qualified_name (str): The qualified name of the Power BI dataset.
+
+    Returns:
+        None
     '''
 
     source_entity = get_entity_from_qualified_name(client, oracle_asset_qualified_name)
@@ -35,7 +43,15 @@ def build_lineage_from_oracle_server_to_pbi(client, oracle_asset_qualified_name,
 
 def build_lineage_from_oracle_to_data_lake_stage(client, oracle_guid, dl_stage_guid):
     '''
-    Build lineage from an Oracle asset to a data lake stage asset.
+    Builds lineage from an Oracle asset to a data lake stage asset.
+
+    Parameters:
+        client (object): The client object for accessing the metadata service.
+        oracle_guid (str): The GUID of the Oracle asset.
+        dl_stage_guid (str): The GUID of the data lake stage asset.
+
+    Returns:
+        None
     '''
     oracle_type = "oracle_table"
     dl_type = "azure_datalake_gen2_path"
