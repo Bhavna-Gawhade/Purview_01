@@ -96,14 +96,3 @@ def extract_sheet_from_excel(file_path, sheet_name):
     excel_sheet = pd.read_excel(file_path, sheet_name=sheet_name)
     return excel_sheet
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    # Call main function
-    main()

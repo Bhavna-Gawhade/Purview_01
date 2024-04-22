@@ -76,13 +76,3 @@ def build_lineage_from_sql_table_to_data_lake_stage(client, sql_table_guid, dl_s
     process_type_name = "SQL_Table_to_DL_Stage"
     build_lineage_using_guids(client, sql_table_guid, sql_table_type, dl_stage_guid, dl_type, process_type_name)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

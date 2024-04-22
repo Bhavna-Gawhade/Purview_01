@@ -91,16 +91,3 @@ def extract_source_and_target_from_external_table(sql_file_path: str):
     except Exception as e:
         raise ValueError("Failed to extract source location or target table name from the SQL file.") from e
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    # Set up logging configuration
-
-    # Call main function
-    main()

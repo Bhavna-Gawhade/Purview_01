@@ -579,14 +579,3 @@ def parse_sap_hana_internal_lineage():
     
     create_all_tables_for_schema(prod_client, directory, dsp_prod_header_with_schema)
     """
-
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

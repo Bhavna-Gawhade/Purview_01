@@ -428,14 +428,3 @@ def generate_all_fail_test_files(excel_file_path: str, classifications_sheet_nam
         
     return fail_test_file_names
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    # Call main function
-    main()

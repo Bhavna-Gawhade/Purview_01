@@ -202,13 +202,3 @@ def build_tabular_model_source_lineage(client, model_bim_file_path, tabular_mode
             print(source_dict.get("name"))
             build_lineage_from_sql_to_pbi_dataset(client, source_dict, target_dict, target_dict["name"])
     
-
-# Main Function
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

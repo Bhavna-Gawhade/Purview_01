@@ -221,13 +221,10 @@ def datalake_inventory_stage_ingest_to_curated_ingest():
     else:
         print("The specified path does not exist.")
     
-    
-
     #input_file = "BIDW/Databricks/01/Workflows/Pipelines/Curated/DimWinningPortfolioSkuList/dependencies/stage_Ingest_to_curated_Ingest.sql"
     # will give back something like ["stage/WinningPortfolioSKUList/Ingest"]
     #partial_source_names = datalake_get_stage_asset(input_file)
     #source_qualified_name = get_inventory_datalake_stage_qualified_name(partial_source_names)
-
 
     # iterate through the process payloads until file name found
     # save that sub-directory
@@ -236,23 +233,9 @@ def datalake_inventory_stage_ingest_to_curated_ingest():
     "/mnt/curated/Inventory/US/Manual/DimWinningPortfolioSkuList/Ingest/"
     # remove /mnt, and use this to search, but add header of htt.... first
     
-
     # then pull entities for both qual names and create lineage
-
-
     # then use process payload code to pull this asset again
 
     what_we_have_target = "curated.DimWinningPortfolioSkuList_Ingest"
     what_we_need_target = "https://hbipd01analyticsdls.dfs.core.windows.net/curated/Inventory/US/Manual/DimWinningPortfolioSkuList/Ingest/{Division}/{SparkPartitions}"
 
-
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

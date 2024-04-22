@@ -78,13 +78,3 @@ def extract_source_and_target_from_stored_procedure(sql_file_path: str):
         return None, None
 
 
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()
-

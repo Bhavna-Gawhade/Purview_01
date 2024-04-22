@@ -5,11 +5,6 @@
 # ---------------
 
 from modules import entity
-from modules.classification.test_case_generator import *
-from modules.classification.regex_generator import *
-from modules.classification.shared_generator_functions import *
-from modules.classification.classification import *
-
 from modules.lineage.cube_lineage import *
 from modules.lineage.databricks_lineage import *
 from modules.lineage.data_lake_lineage import *
@@ -52,7 +47,6 @@ from datetime import datetime
 import re
 import time
 import sys
-from pyapacheatlas.readers import ExcelConfiguration, ExcelReader
 
 
 # Constants
@@ -106,8 +100,6 @@ def main():
     dw_guid = "55248dad-cd9e-42b7-987b-4af6f6f60000"
     #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
-    
-
 
     # Informatica Testing
     xml_export_path = "Advanced_modeling_XML.XML"

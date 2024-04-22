@@ -265,13 +265,3 @@ def build_lineage_using_guids(client, source_guid, source_type, target_guid, tar
 
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

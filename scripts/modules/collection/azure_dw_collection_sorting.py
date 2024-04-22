@@ -75,13 +75,3 @@ def move_azure_dw_to_collection():
     print()
     print(result)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    main()

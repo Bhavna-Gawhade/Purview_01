@@ -91,12 +91,3 @@ def glossary_propagation_azure_dw(client, purview_acct_short_name):
         file.flush()
         file.close()
                    
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-if __name__ == "__main__":
-    main()

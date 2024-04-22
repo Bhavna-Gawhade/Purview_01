@@ -114,13 +114,3 @@ def build_lineage_from_azure_sql_to_pbi(client, azure_sql_asset_qualified_name, 
     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
-
-# Main Function
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

@@ -724,7 +724,6 @@ def extract_fields_for_which_there_are_not_glossary_terms(client):
     df.to_excel(excel_file, index=False)
 
 
-
 def unassign_then_delete_glossary_terms(client):
     glossary  = client.glossary.get_glossaries(limit = 1)
     #print(glossary)
@@ -740,8 +739,7 @@ def unassign_then_delete_glossary_terms(client):
                 unassign_result = client.glossary.delete_assignedTerm(entities = pulled, termGuid = term.get("termGuid"))
                 print(unassign_result)
                 print("Unassigned " + term.get("displayText") + " from " + str(num_to_unassign) + " entities")
-
-                
+         
             else:
                 print("Unassigned " + term.get("displayText") + " from 0 entities")
             
@@ -778,16 +776,3 @@ def extract_fields_of_table(client):
     # Write the DataFrame to the Excel file
     df.to_excel(excel_file, index=False)
 
-
-
-
-# Main Processing
-# ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
-
-def main():
-    print()
-
-if __name__ == "__main__":
-    main()
