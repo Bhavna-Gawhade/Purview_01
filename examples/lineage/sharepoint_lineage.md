@@ -48,7 +48,6 @@ def example_create_sharepoint_entity():
 
 ```python
 from scripts.modules.lineage import *
-from scripts.modules.lineage import *
 import json
 
 def example_create_sharepoint_entity_and_build_lineage_to_pbi():
