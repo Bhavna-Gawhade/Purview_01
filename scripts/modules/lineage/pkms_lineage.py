@@ -117,13 +117,3 @@ def parse_pkms_tables_from_excel(client, file_name):
 
             print("Table created for: " + record_name + "\n\n\n")
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

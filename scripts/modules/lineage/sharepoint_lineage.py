@@ -132,13 +132,3 @@ def create_sharepoint_entity_and_build_lineage_to_pbi(client, entity_name, actua
     build_sharepoint_to_pbi_lineage(client, sharepoint_dict, sharepoint_short_name, pbi_dataset_dict, pbi_short_name, "sharepoint_to_pbi")
     print("Lineage built between " + entity_name + " and " + pbi_short_name)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

@@ -393,13 +393,3 @@ def move_assets_to_ignore_Collection(client, base_asset_guid,collection_name):
     result=client.collections.move_entities(guids=list_of_Guid, collection=collection_name)
     return result  
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    main()

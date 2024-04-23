@@ -18,6 +18,7 @@
 - [Configuring Credentials in Purview](#configuring-credentials-in-purview)
 - [Configuring Connection Details](#configuring-connection-details)
 - [Required Permissions for Scan](#required-permissions-for-scan)
+- [Whitelisting the VM's IP Address in Datasphere](#whitelisting-the-vm's-ip-address-in-datasphere)
 - [Scanning SAP HANA Data Assets](#scanning-sap-hana-data-assets)
 - [Verifying Registration and Scanning](#verifying-registration-and-scanning)
 - [Best Practices](#best-practices)
@@ -87,6 +88,12 @@ Registering SAP HANA in Purview is a pivotal step that integrates SAP HANA as a 
    GRANT SELECT ON SCHEMA _SYS_BI TO `<user>`;  
 
 - Utilize the provided SQL commands to create the user, grant required permissions, and facilitate seamless metadata retrieval during the scanning process. Refer to Microsoft Purview documentation for detailed instructions and updates.
+
+<p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
+
+## Whitelisting the VM's IP Address in Datasphere
+
+- In order to connect to a Datasphere instance, the IP address of the virtual machine being used to scan DSP must be whitelisted in HANA cloud.
 
 <p align="right">(<a href="#SAP HANA-top">Back to Top</a>)</p>
 

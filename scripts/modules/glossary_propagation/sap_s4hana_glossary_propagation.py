@@ -180,15 +180,3 @@ def glossary_propagation_of_sap_s4hana(client, purview_acct_short_name, import_f
         file.flush()
         file.close()
         print("Propagation across SAP S4HANA tables and views in " + short_name + " is complete\n\n")
-
-
-# Main Processing
-# ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
-
-def main():
-    print()
-
-if __name__ == "__main__":
-    main()

@@ -724,6 +724,31 @@ def extract_fields_for_which_there_are_not_glossary_terms(client):
     df.to_excel(excel_file, index=False)
 
 
+def unassign_then_delete_glossary_terms(client):
+    glossary  = client.glossary.get_glossaries(limit = 1)
+    #print(glossary)
+    terms = glossary[0].get("terms")
+    count = 0
+    for term in terms:
+        if term.get("displayText") != "Material Number" and term.get("displayText") != "Plant" and term.get("displayText") != "Profit Center":
+            count += 1
+            print("Term: " + term.get("displayText") + ", Count: " + str(count))
+            pulled = client.glossary.get_termAssignedEntities(term.get("termGuid"))
+            num_to_unassign = len(pulled)
+            if num_to_unassign > 0:
+                unassign_result = client.glossary.delete_assignedTerm(entities = pulled, termGuid = term.get("termGuid"))
+                print(unassign_result)
+                print("Unassigned " + term.get("displayText") + " from " + str(num_to_unassign) + " entities")
+         
+            else:
+                print("Unassigned " + term.get("displayText") + " from 0 entities")
+            
+            delete_term_result = client.glossary.delete_term(term.get("termGuid"))
+            print(delete_term_result)
+            print("Deleted term " + term.get("displayText"))
+            print("\n\n")
+
+
 def extract_fields_of_table(client):
     '''
     Extracts fields of a specified table for which there are no associated glossary terms and writes them to an Excel file.
@@ -751,16 +776,3 @@ def extract_fields_of_table(client):
     # Write the DataFrame to the Excel file
     df.to_excel(excel_file, index=False)
 
-
-
-
-# Main Processing
-# ---------------
-# Put the code to be executed inside a main() function, 
-# and call it at the bottom of the module with an if __name__ == "__main__" block. 
-
-def main():
-    print()
-
-if __name__ == "__main__":
-    main()

@@ -48,13 +48,3 @@ def build_lineage_from_databricks_to_pbi(client, databricks_qualified_name, pbi_
     result = add_manual_lineage(client, [source_entity], [target_entity], process_type_name)
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

@@ -187,13 +187,3 @@ def build_lineage_from_cube_to_pbi(client, cube_guid, pbi_dataset_guid):
     process_type_name = "Cube_to_PBI"
     build_lineage_using_guids(client, cube_guid, cube_type, pbi_dataset_guid, pbi_dataset_type, process_type_name)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

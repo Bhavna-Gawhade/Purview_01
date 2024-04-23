@@ -137,16 +137,3 @@ def export_to_excel(all_regex_dicts, file_path):
     df = pd.DataFrame(data, columns=["Classification_Name", "Classification_Description", "Glossary_Term", "Keywords", "REGEX"])
     df.to_excel(file_path, index=False)
     
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    # Call main function
-    main()
-
-

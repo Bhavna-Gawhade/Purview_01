@@ -334,13 +334,3 @@ def prod_parse_data_warehouse_table_internal_lineage(client, table_file_name):
     except Exception as e:
         print(f"\n\nAn error occurred: {e}\n\n")   
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

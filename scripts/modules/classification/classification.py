@@ -128,14 +128,3 @@ def get_entity_classification(qualified_name: str):
     classifications = ent["classification"]
     return classifications
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    # Call main function
-    main()

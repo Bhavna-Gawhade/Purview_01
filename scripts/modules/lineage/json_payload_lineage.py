@@ -455,12 +455,3 @@ def manually_connect_dl_to_dw_via_qualified_names(client, source_qual_name, targ
     print(result)
 
     
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

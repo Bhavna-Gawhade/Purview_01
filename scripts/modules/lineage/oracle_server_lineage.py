@@ -58,13 +58,3 @@ def build_lineage_from_oracle_to_data_lake_stage(client, oracle_guid, dl_stage_g
     process_type_name = "Oracle_to_DL_Stage"
     build_lineage_using_guids(client, oracle_guid, oracle_type, dl_stage_guid, dl_type, process_type_name)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-
-
-if __name__ == '__main__':
-    main()

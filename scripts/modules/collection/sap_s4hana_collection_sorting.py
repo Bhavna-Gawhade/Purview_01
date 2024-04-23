@@ -65,13 +65,3 @@ def move_sap_s4hana_to_collection(client):
     result = pull_and_move_s4hana_application_component_and_nested_entities_to_collection(client, application_component_guid, collection_id)
     print(result)
 
-
-# Main Processing
-# ---------------
-
-def main():
-    print()
-    
-
-if __name__ == '__main__':
-    main()
