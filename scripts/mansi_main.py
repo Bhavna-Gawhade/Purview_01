@@ -113,40 +113,50 @@ def get_entity_from_qualified_name(client, qualified_name):
         dict: The entity found based on the qualified name.
     """
 
+    #get all the matching entities from search client
     entities_found = client.discovery.search_entities(query=qualified_name)
-    entities = {}
+
+    #initialize an empty entity list
+    entity_lst = []
+    
+    #checking for each entity in the entities received if it matches
+    #Fuzzy ratio 100 means an exact match
+    #If we get an exact match we pick that, otherwise the next best match
+
     for entity in entities_found:
-        # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
-        # This is to avoid qualified names that have the same beginning and different extensions
-        # Allow length to differ by 1 for potential '/' at the end
-        entities[entity["qualifiedName"]]=0
+        
+        entity_dict={'entity_name':'' , 'entity_score':0,'entity_dict':{}}
+        entity_dict['entity_name']=entity["qualifiedName"]
+        entity_dict['entity_dict']=entity
+
         fuzz_score=fuzz.ratio(entity["qualifiedName"],qualified_name)
-        entities[entity["qualifiedName"]]=max(entities[entity["qualifiedName"]],fuzz_score)
+
+        entity_dict['entity_name']=max(entity_dict["entity_score"],fuzz_score)
+        entity_lst.append(entity_dict)
         if fuzz_score==100:
             return entity
 
-     
     best_score=0
-    best_entity=''
-    for entity in entities:
-        if entities[entity]>best_score:
-            best_entity=entity
-            best_score=entities[entity]
-    if entities=={}:
+    best_entity_dict={}
+    for entity in entity_lst:
+        if entity['entity_score']>best_score:
+            best_score=entity['entity_score']
+            best_entity_dict=entity['entity_dict']
+
+    if best_entity_dict=={}:
         return 'No matching names were found'
-    return best_entity
+    return best_entity_dict
 
 
        
 
 
-    return None
 
 
 def main():
     #qual_name = "https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Business/US/DimBusiness/"
-    qual_name="pkms://file/STSTYL00/record/ST00RC"
-    #qual_name="pkms://file/STSTYL00/record/ST00RC1234"
+    #qual_name="pkms://file/STSTYL00/record/ST00RC"
+    qual_name="pkms://file/STSTYL00/record/ST00RC1234"
  
     entity = get_entity_from_qualified_name(qa_client, qual_name)
     print(entity)
