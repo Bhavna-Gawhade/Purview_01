@@ -17,3 +17,4 @@ azure-purview-catalog
 azure-purview-account
 pyapacheatlas
 sqllineage
+fuzzywuzzy
