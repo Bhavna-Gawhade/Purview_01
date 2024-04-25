@@ -3,6 +3,15 @@ import re
 
 
 def get_source_and_target_groupings(file_path):
+    """
+    Parses an XML file containing session metadata and groups the sources and targets.
+
+    Parameters:
+        file_path (str): Path to the XML file.
+
+    Returns:
+        list: List of groupings, where each grouping is a list of dictionaries containing source and target details.
+    """
     # Parse the XML file
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -41,6 +50,15 @@ def get_source_and_target_groupings(file_path):
 
 
 def get_sources_targets_and_mappings(file_path):
+    """
+    Parses an XML file containing session metadata and extracts sources, targets, and mappings.
+
+    Parameters:
+        file_path (str): Path to the XML file.
+
+    Returns:
+        tuple: A tuple containing a list of dictionaries with source and target details, and a list of mapping descriptions.
+    """
     # Parse the XML file
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -65,6 +83,16 @@ def get_sources_targets_and_mappings(file_path):
 
 
 def grab_sources_and_targets_for_each_mapping(mappings, file_path):
+    """
+    Parses mapping descriptions to extract sources and targets for each mapping.
+
+    Parameters:
+        mappings (list): List of mapping descriptions.
+        file_path (str): Path to the file.
+
+    Returns:
+        list: List of dictionaries containing grouped sources and target for each mapping.
+    """
     # Regular expression pattern to match "from X to Y" statements
     pattern_from_to = r'from\s+(\S+)\s+to\s+(\S+)\b'
 
@@ -101,6 +129,16 @@ def grab_sources_and_targets_for_each_mapping(mappings, file_path):
 
 
 def build_lineage_between_source_and_target_groupings(grouped_sources_and_targets, sources_and_target_details):
+    """
+    Builds lineage between source and target groupings.
+
+    Parameters:
+        grouped_sources_and_targets (list): List of dictionaries containing grouped sources and target for each mapping.
+        sources_and_target_details (list): List of dictionaries with source and target details.
+
+    Returns:
+        None
+    """
     for group in grouped_sources_and_targets:
         # Currently handles 1-2 sources and 1 target
         source_table_list = group.get("sources")
@@ -108,6 +146,15 @@ def build_lineage_between_source_and_target_groupings(grouped_sources_and_target
 
 
 def parse_informatica_xml_export(file_path):
+    """
+    Parses an XML export from Informatica to build lineage between sources and targets.
+
+    Parameters:
+        file_path (str): Path to the XML file.
+
+    Returns:
+        None
+    """
     # Separate the XML export into groupings of sources and targets
     sources_and_targets, mappings = get_sources_targets_and_mappings(file_path)
 

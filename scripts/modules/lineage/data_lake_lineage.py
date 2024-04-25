@@ -98,6 +98,15 @@ def build_lineage_from_data_lake_curated_to_data_lake_curated(client, source_cur
 
 
 def datalake_get_curated_asset(input_file):
+    '''
+    Extracts the target location from a SQL query that creates or inserts into a data lake asset.
+
+    Parameters:
+        input_file (str): Path to the input SQL file.
+
+    Returns:
+        str: The target location in the data lake.
+    '''
     with open(input_file, 'r') as file:
         sql_query = file.read()
         split_sql_query = sql_query.split()
@@ -114,6 +123,15 @@ def datalake_get_curated_asset(input_file):
 
 
 def datalake_get_stage_asset(input_file):
+    '''
+    Extracts the source locations from a SQL query used in staging data into a data lake.
+
+    Parameters:
+        input_file (str): Path to the input SQL file.
+
+    Returns:
+        list: List of source locations in the data lake.
+    '''
     with open(input_file, 'r') as file:
         sources = []
         sql_query = file.read()
@@ -138,6 +156,18 @@ def datalake_get_stage_asset(input_file):
     
 
 def get_inventory_datalake_stage_qualified_name(partial_source_names):
+    '''
+    Constructs the qualified names for inventory data lake staging sources.
+
+    Parameters:
+        partial_source_names (list of str): List of partial source names.
+
+    Raises:
+        Exception: If all details of stage Ingest source are not provided.
+
+    Returns:
+        None
+    '''
     for name in partial_source_names:
         split_name = name.split("/")
         if len(split_name) != 3:
@@ -150,6 +180,18 @@ def get_inventory_datalake_stage_qualified_name(partial_source_names):
     
 
 def get_target_partial_qual_name(asset_name):
+    '''
+    Retrieves the partial qualified name of the target asset.
+
+    Parameters:
+        asset_name (str): Name of the target asset.
+
+    Raises:
+        Exception: If the asset file is not found or if there's an issue loading its JSON data.
+
+    Returns:
+        None
+    '''
     process_payloads_directory = "BIDW/ProcessPayloads/Curated/"
     if os.path.exists(process_payloads_directory):
         items = os.listdir(process_payloads_directory)
@@ -187,6 +229,15 @@ def get_target_partial_qual_name(asset_name):
 
 
 def datalake_inventory_stage_ingest_to_curated_ingest():
+    '''
+    Constructs lineage and retrieves target partial qualified name for the inventory data lake staging process.
+
+    Raises:
+        Exception: If there's an error with the process.
+
+    Returns:
+        None
+    '''
     path_to_file_with_this_source = ""
     what_we_have_source = "stage.WinningPortfolioSKUList_ingest"
     what_we_need_source = "https://hbipd01analyticsdls.dfs.core.windows.net/stage/Inventory/US/Manual/WinningPortfolioSKUList/Ingest/{SparkPartitions}"

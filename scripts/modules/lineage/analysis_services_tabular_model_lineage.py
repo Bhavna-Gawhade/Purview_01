@@ -134,12 +134,35 @@ def get_all_tables_from_tabular_model(client, tables, start_of_source_qualified_
 
 
 def build_lineage_from_sql_to_pbi_dataset(client, source_dict, target_dict, target_name):
+    '''
+    Build lineage from SQL to Power BI Dataset.
+
+    Parameters:
+        client (Client): The client object for accessing the lineage service.
+        source_dict (dict): Dictionary containing details of the SQL data source.
+        target_dict (dict): Dictionary containing details of the Power BI dataset.
+        target_name (str): Name of the target Power BI dataset.
+
+    Returns:
+        str: Result of the lineage addition process.
+    '''
     process_type_name = "DW_to_PBI_Dataset"
     result = add_manual_lineage(client, [source_dict], [target_dict], process_type_name)
     print(result)
 
 
 def create_tabular_model_entity(client, tabular_model_name, dev_instance_short_name):
+    '''
+    Create a tabular model entity in Apache Atlas.
+
+    Parameters:
+        client (Client): The client object for accessing Apache Atlas.
+        tabular_model_name (str): Name of the tabular model.
+        dev_instance_short_name (str): Short name of the development instance ('dv', 'qa', or 'pd').
+
+    Returns:
+        dict: Dictionary containing details of the created tabular model entity.
+    '''
     # ONLY USE IN INSTANCES WHERE PURVIEW DIDN'T AUTOMATICALLY CREATE A PBI DATASET TO REPRESENT THE TABULAR MODEL
     if dev_instance_short_name not in ["dv", "qa", "pd"]:
         print("dev_instance_short_name must be either 'dv', 'qa', or 'pd'")
@@ -167,6 +190,17 @@ def create_tabular_model_entity(client, tabular_model_name, dev_instance_short_n
 
 
 def build_lineage_from_tabular_model_to_pbi_dataset(client, tabular_model_qualified_name, pbi_report_qualified_name):
+    '''
+    Build lineage from a tabular model to a Power BI dataset.
+
+    Parameters:
+        client (Client): The client object for accessing the lineage service.
+        tabular_model_qualified_name (str): Qualified name of the tabular model entity.
+        pbi_report_qualified_name (str): Qualified name of the Power BI report entity.
+
+    Returns:
+        str: Result of the lineage addition process.
+    '''
     # The source entity must be a PBI dataset type that is the representation of the tabular model (automatically created by Power BI)
     process_type_name = "Tabular_Model_to_PBI_Dataset"
     source_dict = get_entity_from_qualified_name(client, tabular_model_qualified_name) 
@@ -180,7 +214,18 @@ def build_lineage_from_tabular_model_to_pbi_dataset(client, tabular_model_qualif
 
 
 def build_tabular_model_source_lineage(client, model_bim_file_path, tabular_model_qualified_name, dev_instance_short_name):
+    '''
+     Build lineage from the sources of a tabular model to the model itself.
 
+    Parameters:
+        client (Client): The client object for accessing the lineage service.
+        model_bim_file_path (str): File path to the model BIM file.
+        tabular_model_qualified_name (str): Qualified name of the tabular model entity.
+        dev_instance_short_name (str): Short name of the development instance ('dv', 'qa', or 'pd').
+
+    Returns:
+        None
+    '''
     if dev_instance_short_name not in ["dv", "qa", "pd"]:
         print("dev_instance_short_name must be either 'dv', 'qa', or 'pd'")
         raise Exception
