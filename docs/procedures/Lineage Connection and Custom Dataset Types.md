@@ -95,7 +95,7 @@ This Lineage process connects lineage between a SharePoint entity and a Power BI
 
 Process Name: sharepoint_to_pbi
 
-Function Name : build_sharepoint_to_pbi_lineage
+Function Name : build_sharepoint_to_pbi_lineage , create_sharepoint_entity_and_build_lineage_to_pbi
 
 File containing above function : sharepoint_lineage.py
 
@@ -254,6 +254,31 @@ Process Name: SQL_to_PBI_Table_Connection
 Function Name : build_lineage_from_sql_to_pbi_table
 
 File containing above function : powerbi_tabular_model_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
+## Datawarehouse to PBI Dataset
+
+This Lineage process connects lineage between Datawarehouse and PBI dataset. 
+
+Process Name: DW_to_PBI_Dataset
+
+Function Name : build_lineage_from_sql_to_pbi_dataset
+
+File containing above function : analysis_services_tabular_model_lineage.py
+
+<p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
+
+
+## Tabular model to PBI Dataset
+
+This Lineage process connects lineage between Tabular model and PBI dataset. 
+
+Process Name: Tabular_Model_to_PBI_Dataset
+
+Function Name : build_lineage_from_tabular_model_to_pbi_dataset
+
+File containing above function : analysis_services_tabular_model_lineage.py
 
 <p align="right">(<a href="#Lineage Connection-top">Back to Top</a>)</p>
 
