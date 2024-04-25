@@ -114,30 +114,6 @@ SQL_DATABASE_EXTRACT_TYPEDEF = EntityTypeDef(
   attributeDefs = [SQL_DATABASE_EXTRACT_ATTRIBUTES]
 )
 
-POWERBI_TABLE_TO_DATASET_ATTRIBUTES = AtlasAttributeDef(
-    displayName = "PBI Table to PBI Dataset Connection",
-    description = "This type is used to connect PowerBI tables to PowerBI datasets.",
-    name = "PBI_Table_to_PBI_Dataset_Connection"
-)
-    
-POWERBI_TABLE_TO_DATASET_TYPEDEF = EntityTypeDef(
-  name = "PBI_Table_to_PBI_Dataset_Connection",
-  superTypes = ["Process"],
-  attributeDefs = [POWERBI_TABLE_TO_DATASET_ATTRIBUTES]
-)
-
-SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES = AtlasAttributeDef(
-    displayName = "SQL to PBI Table Connection",
-    description = "This type is used to connect Azure SQL DBs to PowerBI tables.",
-    name = "SQL_to_PBI_Table_Connection"
-)
-    
-SQL_TO_PBI_TABLE_CONNECTION_TYPEDEF = EntityTypeDef(
-  name = "SQL_to_PBI_Table_Connection",
-  superTypes = ["Process"],
-  attributeDefs = [SQL_TO_PBI_TABLE_CONNECTION_ATTRIBUTES]
-)
-
 PKMS_RECORD_DEF = EntityTypeDef(
   name = "PKMS_Record",
   superTypes = ["DataSet"]
@@ -618,20 +594,10 @@ def pull_lineage_connections_from_purview(purview_account_short_name, purview_ac
     print("Successfully pulled all: " + entity_type + " assets")
     print(str(len(ingestion_framework_all_entities_with_type)) + " " + entity_type + " assets pulled")   
     
-    entity_type = "PBI_Table_to_PBI_Dataset_Connection"
-    pbi_table_to_dataset_all_entities_with_type = get_all_entities_with_type(client, entity_type)
-    print("Successfully pulled all: " + entity_type + " assets")
-    print(str(len(pbi_table_to_dataset_all_entities_with_type)) + " " + entity_type + " assets pulled")   
-
     entity_type = "sql_database_source"
     sql_database_source_all_entities_with_type = get_all_entities_with_type(client, entity_type)
     print("Successfully pulled all: " + entity_type + " assets")
     print(str(len(sql_database_source_all_entities_with_type)) + " " + entity_type + " assets pulled") 
-
-    entity_type = "SQL_to_PBI_Table_Connection"
-    sql_to_pbi_table_all_entities_with_type = get_all_entities_with_type(client, entity_type)
-    print("Successfully pulled all: " + entity_type + " assets")
-    print(str(len(sql_to_pbi_table_all_entities_with_type)) + " " + entity_type + " assets pulled") 
 
     entity_type = "sharepoint_to_pbi"
     sharepoint_to_pbi_all_entities_with_type = get_all_entities_with_type(client, entity_type)
@@ -645,9 +611,7 @@ def pull_lineage_connections_from_purview(purview_account_short_name, purview_ac
             "dw_routine": dw_routine_all_entities_with_type,
             "dw_view_creation": dw_view_creation_all_entities_with_type,
             "ingestion_framework": ingestion_framework_all_entities_with_type,
-            "PBI_Table_to_PBI_Dataset_Connection": pbi_table_to_dataset_all_entities_with_type,
             "sql_database_source": sql_database_source_all_entities_with_type,
-            "SQL_to_PBI_Table_Connection": sql_to_pbi_table_all_entities_with_type,
             "sharepoint_to_pbi": sharepoint_to_pbi_all_entities_with_type
         }
     }
