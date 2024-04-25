@@ -100,6 +100,51 @@ def get_entity_from_qualified_name_old(client, qualified_name):
 # Main Function
 # ---------------
 
+def get_all_entities_with_type(client, entity_type):
+    """
+    Retrieves all entities of a specific type in Purview.
+
+    Parameters:
+        client (PurviewClient): The Purview client.
+        entity_type (str): The name of the entity type.
+
+    Returns:
+        dict: Information about all entities of the specified type.
+    """
+    list_of_guids = get_guids_of_entities_with_specific_type(client, entity_type)
+    #print("Pulled all guids for type: " + entity_type)
+    #print("Now pulling the entity details for each guid")
+
+    all_entity_details = []
+    count = 0
+
+
+    for guid in list_of_guids:
+        count=count+1
+        if count==100:
+            break
+
+        pulled = client.get_entity(guid)
+        entity = pulled.get("entities")[0]
+        entry = {
+            "guid": guid, 
+            "entity": entity, # just use the first entry
+            "columns": entity.get("relationshipAttributes").get("columns")
+        }
+        if entity_type == "azure_datalake_gen2_resource_set" and "tabular_schema" in entity.get("relationshipAttributes"):
+            resource_set_tabular_schema_guid = entity.get("relationshipAttributes").get("tabular_schema").get("guid")
+            entry["columns"] = get_columns_from_datalake(client, resource_set_tabular_schema_guid)
+            #print(entry["columns"])
+        
+    
+        all_entity_details.append(entry)
+
+    all_entities_with_type = {
+        "entity_type": entity_type,
+        "info_pulled_on": datetime.now().strftime("%m/%d/%Y %H:%M"),
+        "all_entity_details" : all_entity_details
+    }
+    return all_entities_with_type
 
 
 def get_entity_from_qualified_name(client, qualified_name):
@@ -124,7 +169,7 @@ def get_entity_from_qualified_name(client, qualified_name):
     #If we get an exact match we pick that, otherwise the next best match
 
     for entity in entities_found:
-        
+
         entity_dict={'entity_name':'' , 'entity_score':0,'entity_dict':{}}
         entity_dict['entity_name']=entity["qualifiedName"]
         entity_dict['entity_dict']=entity
@@ -136,6 +181,7 @@ def get_entity_from_qualified_name(client, qualified_name):
         if fuzz_score==100:
             return entity
 
+    
     best_score=0
     best_entity_dict={}
     for entity in entity_lst:
@@ -154,12 +200,60 @@ def get_entity_from_qualified_name(client, qualified_name):
 
 
 def main():
+    print(datetime.now())
     #qual_name = "https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Business/US/DimBusiness/"
     #qual_name="pkms://file/STSTYL00/record/ST00RC"
     qual_name="pkms://file/STSTYL00/record/ST00RC1234"
  
     entity = get_entity_from_qualified_name(qa_client, qual_name)
-    print(entity)
+
+    all_entities=get_all_entities_with_type(qa_client, entity_type='azure_datalake_gen2_resource_set')
+    file = open(file='all_entities.json', mode='w')
+    file.write(str(all_entities))
+    file.close()
+
+    qualified_names=[]
+    
+    for entity_detail in all_entities['all_entity_details']:
+
+        qualified_names.append(entity_detail['entity']['attributes']['qualifiedName'])
+    
+
+    comparison_dict={
+        'qualified_name':[],
+        'output_old_func':[],
+        'output_new_func':[],
+        'old_qualified_name':[],
+        'new_qualified_name':[]
+        }
+
+    for qual_name in qualified_names:
+        comparison_dict['qualified_name'].append(qual_name)
+        old_output=get_entity_from_qualified_name_old(qa_client, qual_name)
+        new_output=get_entity_from_qualified_name(qa_client, qual_name)
+        comparison_dict['output_old_func'].append(old_output)
+        comparison_dict['output_new_func'].append(new_output)
+        if old_output is not None:
+            comparison_dict['old_qualified_name'].append(old_output['qualifiedName'])
+        if type(new_output)==dict:
+            comparison_dict['new_qualified_name'].append(new_output['qualifiedName'])
+        
+        
+    file = open(file='all_entities_output.json', mode='w')
+    file.write(str(comparison_dict))
+    file.close()
+
+    df=pd.DataFrame(comparison_dict)
+    df.to_csv('Comparison_File.csv')
+    print(datetime.now())
+
+
+
+
+
+
+    
+    
 
     
     

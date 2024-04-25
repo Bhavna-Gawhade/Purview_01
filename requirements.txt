@@ -18,3 +18,4 @@ azure-purview-account
 pyapacheatlas
 sqllineage
 fuzzywuzzy
+python-Levenshtein
