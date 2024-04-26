@@ -87,6 +87,7 @@ def get_entity_from_qualified_name_old(client, qualified_name):
     entities_found = client.discovery.search_entities(query=qualified_name)
     entities = []
     for entity in entities_found:
+      
     
         # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
         # This is to avoid qualified names that have the same beginning and different extensions
@@ -121,7 +122,7 @@ def get_all_entities_with_type(client, entity_type):
 
     for guid in list_of_guids:
         count=count+1
-        if count==100:
+        if count==1000:
             break
 
         pulled = client.get_entity(guid)
@@ -169,6 +170,7 @@ def get_entity_from_qualified_name(client, qualified_name):
     #If we get an exact match we pick that, otherwise the next best match
 
     for entity in entities_found:
+       
 
         entity_dict={'entity_name':'' , 'entity_score':0,'entity_dict':{}}
         entity_dict['entity_name']=entity["qualifiedName"]
@@ -176,10 +178,12 @@ def get_entity_from_qualified_name(client, qualified_name):
 
         fuzz_score=fuzz.ratio(entity["qualifiedName"],qualified_name)
 
+      
         entity_dict['entity_name']=max(entity_dict["entity_score"],fuzz_score)
         entity_lst.append(entity_dict)
-        if fuzz_score==100:
-            return entity
+        if fuzz_score==100 :
+            if  (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
+                return entity
 
     
     best_score=0
@@ -203,14 +207,15 @@ def main():
     print(datetime.now())
     #qual_name = "https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Business/US/DimBusiness/"
     #qual_name="pkms://file/STSTYL00/record/ST00RC"
-    qual_name="pkms://file/STSTYL00/record/ST00RC1234"
+    qual_name="https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Product/US/DimItem/Archive/DivisionGroup=/{SparkPartitions}"
+    #entity=get_entity_from_qualified_name_old(qa_client, qual_name)
  
-    entity = get_entity_from_qualified_name(qa_client, qual_name)
+    #entity = get_entity_from_qualified_name(qa_client, qual_name)
+    #print(entity)
+    
+    
+    all_entities=get_all_entities_with_type(qa_client, entity_type='powerbi_dataset')
 
-    all_entities=get_all_entities_with_type(qa_client, entity_type='azure_datalake_gen2_resource_set')
-    file = open(file='all_entities.json', mode='w')
-    file.write(str(all_entities))
-    file.close()
 
     qualified_names=[]
     
@@ -244,9 +249,10 @@ def main():
     file.close()
 
     df=pd.DataFrame(comparison_dict)
-    df.to_csv('Comparison_File.csv')
+    df.to_csv('Comparison_File2_pbi_dataset.csv')
     print(datetime.now())
 
+    
 
 
 
