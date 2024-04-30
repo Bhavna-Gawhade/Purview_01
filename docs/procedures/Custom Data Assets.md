@@ -21,6 +21,8 @@
 
 In many organizations, there are data sources that Purview does not currently support scanning directly. This could be due to various reasons such as proprietary formats, legacy systems, or niche applications. In such cases, custom import processes are necessary to bring the metadata and lineage information from these sources into Purview. Custom importing allows organizations to maintain a comprehensive data catalog that includes assets and connections from diverse sources, enabling better governance and understanding of their data landscape.
 
+<p align="right">(<a href="#Custom Data Assets-top">Back to Top</a>)</p>
+
 ### Current Custom Import Systems
 
 #### 1. PKMS:
