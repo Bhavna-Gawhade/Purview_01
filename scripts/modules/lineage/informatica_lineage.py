@@ -168,7 +168,11 @@ def psuedo_for_informatica():
     # partially implemented
 
     # step 3:
-    # actually creating the lineage links for these tables
+    # take the pairs of assets that are connected (i.e. A,B -> C) and then create lineage links between them
+
+    # step 4:
+    # for the assets where pairs couldn't be automatically extracted, manually intervene and build the lineage
+    # perhaps extract a list of the assets and mappings that didn't have lineage built between them
 
 
 def parse_informatica_xml_export(file_path):
