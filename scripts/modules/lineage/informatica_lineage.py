@@ -145,6 +145,32 @@ def build_lineage_between_source_and_target_groupings(grouped_sources_and_target
         target_table = group.get("target")
 
 
+def psuedo_for_informatica():
+    print()
+    # step 0:
+    # at the start of this function, we would have the names of the tables extracted from XML 
+        # note, now may need to extract not just the table names, but also DBNAME and OWNERNAME
+
+    # step 0.5:
+    # identify unique DBNAMEs
+    
+    # step 1:
+    # a list of already identified/already handled systems
+        # bipaosql server to the ABC server
+        # use the DBNAME tags to identify which qualified name structure to use
+        # i.e. if it's the "bisql1-hbidw", and the table name is "Dim_Week", we know the table's qualified name will look like:
+            # "mssql://bipaosql.res.hbi.net/MSSQLSERVER/HBIDW/dbo/Dim_Week"
+            # "mssql://bipaosql.res.hbi.net/MSSQLSERVER" + "hbidw"(DBNAME) + "/" + "dbo"(OWNERNAME) + "/" + "Dim_Week"(NAME)
+        # bisql1_taser_WSBID1SQL
+
+    # step 2:
+    # interpretting the MAPPING tags to see which assets link to which
+    # partially implemented
+
+    # step 3:
+    # actually creating the lineage links for these tables
+
+
 def parse_informatica_xml_export(file_path):
     """
     Parses an XML export from Informatica to build lineage between sources and targets.
