@@ -588,46 +588,47 @@ def main():
     
     
     # #define file path
-    # path_to_file= r'C:\Users\Mansi.Choudhary\Documents\Hanes\salsify_export1.xlsx'
-    # hierarchy_cols=['ID','salsify:data_inheritance_hierarchy_level_id','salsify:parent_id']
+    path_to_file= r'C:\Users\Mansi.Choudhary\Documents\Hanes\salsify_export1.xlsx'
+    #hierarchy_cols=['ID','salsify:data_inheritance_hierarchy_level_id','salsify:parent_id']
+    hierarchy_cols=['ID','Hierarchy Level','Parent ID']
 
     # #get salsify_dict
-    # salsify_hierarchy_dict=get_salsify_hierarchy(path_to_file,hierarchy_cols)
-    # salsify_hierarchy_df=pd.DataFrame(salsify_hierarchy_dict)
-    # salsify_hierarchy_df.to_csv('salsify_hierarchy.csv')
+    salsify_hierarchy_dict=get_salsify_hierarchy(path_to_file,hierarchy_cols)
+    salsify_hierarchy_df=pd.DataFrame(salsify_hierarchy_dict)
+    salsify_hierarchy_df.to_csv('salsify_hierarchy.csv')
 
     # #parse salsify data for extracting columns with values
-    # salsify_dict=parse_salsify(path_to_file)
-    # salsify_df=parse_salsify_dict(salsify_dict)
+    salsify_dict=parse_salsify(path_to_file)
+    salsify_df=parse_salsify_dict(salsify_dict)
 
     # #get column description for the columns in salsify
-    # file_path  =r'C:\Users\Mansi.Choudhary\Documents\Hanes\export_All_Properties_Hanes_Inc.xlsx'
-    # col_description_columns=['salsify:id','salsify:name']
-    # salsify_desc_df=get_salsify_descriptions(file_path, col_description_columns)
+    file_path  =r'C:\Users\Mansi.Choudhary\Documents\Hanes\export_All_Properties_Hanes_Inc.xlsx'
+    col_description_columns=['salsify:id','salsify:name']
+    salsify_desc_df=get_salsify_descriptions(file_path, col_description_columns)
 
     # #merge with the salsify df to combine each column name with corresponding description
-    # salsify_df=pd.merge(salsify_df,salsify_desc_df,
-    #                     left_on='EntityColumn', right_on='salsify:id',how='left')
-    # salsify_df.drop('salsify:id',axis=1,inplace=True)
-    # salsify_df.rename(columns={'salsify:name': 'EntityColumnDescription'}, inplace=True)
+    salsify_df=pd.merge(salsify_df,salsify_desc_df,
+                        left_on='EntityColumn', right_on='salsify:id',how='left')
+    salsify_df.drop('salsify:id',axis=1,inplace=True)
+    salsify_df.rename(columns={'salsify:name': 'EntityColumnDescription'}, inplace=True)
 
     # #merge with hierarchy dataframe to get hierarchy values
-    # salsify_df=pd.merge(salsify_df,salsify_hierarchy_df,
-    #                     left_on='EntityName', right_on='asset_name',how='left')
+    salsify_df=pd.merge(salsify_df,salsify_hierarchy_df,
+                        left_on='EntityName', right_on='asset_name',how='left')
     
     # #save salsify column mapping
-    # salsify_df.to_csv('salsify_column_mappings.csv')
+    salsify_df.to_csv('salsify_column_mappings.csv')
     
 
     #creating assets in purview
-    REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
+    """REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
     PROJ_PATH = Path(__file__).resolve().parent
     CREDS = get_credentials(cred_type= 'default')
     qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
     file_name='salsify_mappings_test.csv'
     #file_name='salsify_column_mappings.csv'
     df=salsify_lineage(qa_client, file_name) 
-    # #df.to_csv('salsify_name_mappings.csv')
+    # #df.to_csv('salsify_name_mappings.csv')"""
 
 
   
