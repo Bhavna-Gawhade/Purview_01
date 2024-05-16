@@ -431,14 +431,8 @@ def salsify_lineage(client, file_name):
     Returns:
     - None
     """
-  
-  
-
     #Read the salsify dataframe
     df = pd.read_csv(file_name)
-
-   
-    
     
     #assign previous group and asset value for checking condition, so that
     #if current and previous are same we will go in the loop,
@@ -473,9 +467,13 @@ def salsify_lineage(client, file_name):
         delete_flag=0
         while current_asset_name==previous_asset_name and index<n:
             if previous_group_name!=current_group_name:
-                parent_qualified_name="salsify://parent_style/test37/"
-                selling_qualified_name="salsify://parent_style/selling_style/test37/"
-                color_qualified_name="salsify://parent_style/sellingstyle/color/test37/"
+                #parent_qualified_name="salsify://parent_style/test37/"
+                #selling_qualified_name="salsify://parent_style/selling_style/test37/"
+                #color_qualified_name="salsify://parent_style/sellingstyle/color/test37/"
+
+                parent_qualified_name="salsify://parent_style/"
+                selling_qualified_name="salsify://parent_style/selling_style/"
+                color_qualified_name="salsify://parent_style/sellingstyle/color/"
                 previous_group_name=current_group_name
 
             # Define entity attributes
@@ -483,7 +481,8 @@ def salsify_lineage(client, file_name):
             #assign qualified names based on the type of style
             record_name=df['EntityName'][index]
             if df['level_name'][index]=='parent_style':
-                record_qualified_name = "salsify://parent_style/test37/" + record_name
+                #record_qualified_name = "salsify://parent_style/test37/" + record_name
+                record_qualified_name = "salsify://parent_style/" + record_name
                 parent_qualified_name=record_qualified_name
             
             if df['level_name'][index]=='selling_style':
@@ -523,7 +522,8 @@ def salsify_lineage(client, file_name):
             create_classification(client,classification_name,classification_desc,attribut_name)
 
             classification_attrs = {
-                "classification": "SalsifyTest"
+                #"classification": "SalsifyTest"
+                "classification": "Salsify"
                 }
 
             classification = AtlasClassification(classification_name, attributes=classification_attrs)
