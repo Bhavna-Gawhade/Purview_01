@@ -107,6 +107,21 @@ def main():
     #parse_informatica_xml_export(xml_export_path)
 
 
+    INFORMATICA_CONNECTION_DEF = EntityTypeDef(
+        name = "Informatica_Connection",
+        superTypes = ["Process"]
+    )
+
+    result = qa_client.upload_typedefs(
+        entityDefs=[INFORMATICA_CONNECTION_DEF],
+        force_update=True
+    )
+    result = prod_client.upload_typedefs(
+        entityDefs=[INFORMATICA_CONNECTION_DEF],
+        force_update=True
+    )
+
+
 
   
 if __name__ == '__main__':
