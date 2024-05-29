@@ -8,6 +8,7 @@ from modules import *
 from modules.lineage.shared_lineage_functions import *
 from pyapacheatlas.core.util import GuidTracker
 from pyapacheatlas.readers import ExcelConfiguration, ExcelReader
+from pyapacheatlas.core.typedef import AtlasEntityTypeDef
 
 
 # Imports
@@ -113,6 +114,7 @@ def parse_pkms_tables_from_excel(client, file_name):
                     }
                 } 
                 relationship_assignment = client.upload_relationship(tab_column_relationship) 
+     
                 print("Column added for column guid " + str(column_guid))
 
             print("Table created for: " + record_name + "\n\n\n")

@@ -134,7 +134,10 @@ TABULAR_MODEL_TO_PBI_DATASET_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
-
+INFORMATICA_CONNECTION_DEF = EntityTypeDef(
+  name = "Informatica_Connection",
+  superTypes = ["Process"]
+)
 
 
 # Functions
