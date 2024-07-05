@@ -139,6 +139,13 @@ INFORMATICA_CONNECTION_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
+CustomProcessWithMapping_Def = EntityTypeDef(
+  name = "Column_Mapping",
+  superTypes = ["Process"],
+  attributes = [
+        AtlasAttributeDef("columnMapping")
+    ]
+)
 
 # Functions
 # ---------------
