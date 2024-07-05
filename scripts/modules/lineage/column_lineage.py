@@ -45,7 +45,7 @@ def get_all_column_from_guid(client,asset_name,source_type_name,source_guid,sour
     - target_guid (str): GUID of the target entity.
     - target_qualified_name (str): Qualified name of the target entity.
     """
-        
+
     # Define the file path dynamically
     file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
     # Define column data
@@ -67,8 +67,8 @@ def get_all_column_from_guid(client,asset_name,source_type_name,source_guid,sour
     extra_source_columns = [(col, '') for col in source_columns if col not in target_columns]
     extra_target_columns = [('',col) for col in target_columns if col not in source_columns]
 
-    # Combine the columns, with matched first, then extra source columns
-    sorted_columns = matched_columns + extra_source_columns + extra_target_columns
+    # Not adding the unmatched columns as of now building lineage for mapped columns
+    sorted_columns = matched_columns # + extra_source_columns + extra_target_columns 
 
     # Separate into source and target lists
     source_columns_sorted, target_columns_sorted = zip(*sorted_columns)
@@ -131,6 +131,6 @@ def create_column_lineage(client,file_path):
 asset_name='MARA'
 file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
 
-#get_all_column_from_guid(qa_client,'MARA','sap_s4hana_table','93fdb21f-2e47-4bcc-883b-30f6f6f60000','sap_s4hana://vhhbrmq1ci_MQ1_00_100/MARA','sap_s4hana_table','296cc2eb-0a1c-445f-a683-a5f6f6f60000','sap_s4hana://vhhbrqs4ci_QS4_00_100/MARA')
+get_all_column_from_guid(qa_client,'MARA','sap_s4hana_table','93fdb21f-2e47-4bcc-883b-30f6f6f60000','sap_s4hana://vhhbrmq1ci_MQ1_00_100/MARA','sap_s4hana_table','296cc2eb-0a1c-445f-a683-a5f6f6f60000','sap_s4hana://vhhbrqs4ci_QS4_00_100/MARA')
 #create_column_lineage(qa_client,file_path)
 
