@@ -58,9 +58,9 @@ def get_all_column_from_guid(client,asset_name,source_type_name,source_guid,sour
     target_col = [entity['displayText'] for entity in target_details['referredEntities'].values()]  
     target_columns = sorted(target_col) 
 
-    process_qualified_name="sources:" + asset_name + "/targets:" + asset_name + "/process_type:CustomProcessWithMapping"
-    process_type_name='CustomProcessWithMapping'
-    process_name='ColumnMapping'
+    process_qualified_name="sources:" + asset_name + "/targets:" + asset_name + "/process_type:Column_Connection"
+    process_type_name='Column_Connection'
+    process_name='Column Lineage'
 
     # Find matched columns and extra columns
     matched_columns = [(col, col) for col in source_columns if col in target_columns]
@@ -128,9 +128,8 @@ def create_column_lineage(client,file_path):
     results = client.upload_entities(processes)
     print(json.dumps(results, indent=2))
 
-asset_name='MARA'
+asset_name='LFB1'
 file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
 
-get_all_column_from_guid(qa_client,'MARA','sap_s4hana_table','93fdb21f-2e47-4bcc-883b-30f6f6f60000','sap_s4hana://vhhbrmq1ci_MQ1_00_100/MARA','sap_s4hana_table','296cc2eb-0a1c-445f-a683-a5f6f6f60000','sap_s4hana://vhhbrqs4ci_QS4_00_100/MARA')
+#get_all_column_from_guid(qa_client,'LFB1','sap_s4hana_table','0a15efa5-0018-416b-9f9f-7cf6f6f60000','sap_s4hana://vhhbrmq1ci_MQ1_00_100/LFB1','sap_s4hana_table','17346f8f-7912-4a36-9a97-51f6f6f60000','sap_s4hana://vhhbrqs4ci_QS4_00_100/LFB1')
 #create_column_lineage(qa_client,file_path)
-
