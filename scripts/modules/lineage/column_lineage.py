@@ -128,8 +128,9 @@ def create_column_lineage(client,file_path):
     results = client.upload_entities(processes)
     print(json.dumps(results, indent=2))
 
-asset_name='LFB1'
+asset_name='MARM'
 file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
 
-#get_all_column_from_guid(qa_client,'LFB1','sap_s4hana_table','0a15efa5-0018-416b-9f9f-7cf6f6f60000','sap_s4hana://vhhbrmq1ci_MQ1_00_100/LFB1','sap_s4hana_table','17346f8f-7912-4a36-9a97-51f6f6f60000','sap_s4hana://vhhbrqs4ci_QS4_00_100/LFB1')
-#create_column_lineage(qa_client,file_path)
+#get_all_column_from_guid(prod_client,'MARM','sap_s4hana_table','47b00ad2-7a3e-4d07-be3d-08f6f6f60000','sap_s4hana://vhhbrmp1ci_MP1_00_100/MARM','sap_s4hana_table','f5e9ec3d-9d03-48b2-aacd-e3f6f6f60000','sap_s4hana://vhhbrps4ci_PS4_00_100/MARM')
+#create_column_lineage(prod_client,file_path)
+
