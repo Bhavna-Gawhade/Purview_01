@@ -37,10 +37,8 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 def get_existing_collection_friendly_names(client):
     """
     Retrieves a list of existing collection friendly names.
-
     Returns:
         List[str]: A list of existing collection friendly names.
-
     """
     collections = get_flattened_collections(client)
     collection_friendly_name = []
@@ -62,14 +60,11 @@ def create_subcollections_from_json(client):
 def sort_collection_into_subcollections(client, parent_collection_name: str,archive_subcollection_name:str,delta_log_subcollection_name: str,ingest_subcollection_name:str):
     """
     Retrieves all entities in the specified collection.
-
     Args:
         collection_name (str): The name of the collection to retrieve entities from.
-
     Returns:
         List[Dict[str, Any]]: A list of dictionaries representing the entities in the collection.
             Each dictionary contains the entity properties.
-
     """
     json_str = '{"collectionId": "' + parent_collection_name + '"}'
     json_obj = json.loads(json_str)
@@ -95,18 +90,18 @@ def sort_collection_into_subcollections(client, parent_collection_name: str,arch
             archive_guids.append(item["guid"])
         elif item["AssetName"] == "Ingest":
             ingest_guids.append(item["guid"])
-    
+
     #print("Log GUIDs:", delta_log_guids)
     #print("Archive GUIDs:", archive_guids)
     #print("Ingest GUIDs:", ingest_guids)
     if len(archive_guids)>20:
         #move assets to Archive subcollection
         client.collections.move_entities(guids=archive_guids, collection=archive_subcollection_name)
-    
+
     if len(delta_log_guids)>20:
         #move assets to delta log subcollection
         client.collections.move_entities(guids=delta_log_guids, collection=delta_log_subcollection_name)
-    
+
     if len(ingest_guids)>20:
         #move assets to Ingest subcollection
         client.collections.move_entities(guids=ingest_guids, collection=ingest_subcollection_name)
@@ -114,15 +109,4 @@ def sort_collection_into_subcollections(client, parent_collection_name: str,arch
     return None
 
 #create_subcollections_from_json(prod_client) 
-sort_collection_into_subcollections(prod_client,'a72ccq','tspr1x','fii3o3','j7jz84')
-
-
-
-
-
-
-
-
-
-
-    
+#sort_collection_into_subcollections(prod_client,'a72ccq','tspr1x','fii3o3','j7jz84')
