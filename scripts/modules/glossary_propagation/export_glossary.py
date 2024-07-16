@@ -18,7 +18,7 @@ import json
 from pathlib import Path
 import random
 import string
-
+from datetime import date
 
 # Constants
 # ---------------
@@ -38,7 +38,7 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 def get_all_glossary_terms(client):
     result=client.glossary.get_glossaries(-1,0,"ASC")
     term_guids = [term['termGuid'] for term in result[0]['terms']]
-    csv_file = f"./ExportGlossaryFiles/glossary_terms.csv"
+    csv_file = f"./ExportGlossaryFiles/glossary_terms_"+str(date.today())+".csv"
     try:
         result=client.glossary.export_terms(term_guids,csv_file )
     except Exception as e:
