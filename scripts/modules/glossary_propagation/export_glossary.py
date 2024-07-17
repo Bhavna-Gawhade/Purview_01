@@ -34,7 +34,6 @@ CREDS = get_credentials(cred_type= 'default')
 prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 
-
 def get_all_glossary_terms(client):
     result=client.glossary.get_glossaries(-1,0,"ASC")
     term_guids = [term['termGuid'] for term in result[0]['terms']]
@@ -43,5 +42,3 @@ def get_all_glossary_terms(client):
         result=client.glossary.export_terms(term_guids,csv_file )
     except Exception as e:
         print(e)
-
-get_all_glossary_terms(prod_client)
