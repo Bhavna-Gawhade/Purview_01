@@ -84,6 +84,6 @@ def glossary_terms_details(client):
         equivalent_phrases.append(item.get("[Attribute][Business Glossary]Equivalent Phrases", None))
         system_table_fields.append(item.get("[Attribute][Business Glossary]System-Table-Field", None))
 
-    return    
+    return glossary_terms   
 
 glossary_terms_details(qa_client)    
