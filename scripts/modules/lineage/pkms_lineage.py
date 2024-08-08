@@ -4,10 +4,9 @@
 # Function Imports
 # ---------------
 from utils import get_credentials, create_purview_client
-from modules import *
-from modules.lineage.shared_lineage_functions import *
 from pyapacheatlas.core.util import GuidTracker
 from pyapacheatlas.readers import ExcelConfiguration, ExcelReader
+from pyapacheatlas.core import AtlasEntity
 
 
 # Imports
@@ -17,10 +16,19 @@ import re
 import json
 import sys
 from pathlib import Path
-
+import pandas as pd
 
 # Constants
 # ---------------
+REFERENCE_NAME_PURVIEW = "hbi-qa01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+qa_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
+
+REFERENCE_NAME_PURVIEW = "hbi-pd01-datamgmt-pview"
+PROJ_PATH = Path(__file__).resolve().parent
+CREDS = get_credentials(cred_type= 'default')
+prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas', purview_account= REFERENCE_NAME_PURVIEW)
 
 
 # Global
@@ -65,11 +73,13 @@ def parse_pkms_tables_from_excel(client, file_name):
             for index, row in df.iterrows():
                 column_name = row["Field"]
                 column_description = row["Field text description"]
+                column_type=" "
+                '''
                 is_numeric = row["Number of digits"]
                 column_type = "NUM"
                 if is_numeric == 0:
                     column_type = "CHAR"
-                
+                '''
                 column_qualified_name = record_qualified_name + "#" + column_name
                 column_guid = guid_tracker.get_guid()
                 column = AtlasEntity(column_name, "column", column_qualified_name, column_guid, attributes={"type": column_type, "userDescription": column_description})
@@ -117,3 +127,4 @@ def parse_pkms_tables_from_excel(client, file_name):
 
             print("Table created for: " + record_name + "\n\n\n")
 
+parse_pkms_tables_from_excel(prod_client, 'CQSTYL00.xlsx')

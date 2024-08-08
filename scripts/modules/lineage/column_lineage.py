@@ -128,9 +128,9 @@ def create_column_lineage(client,file_path):
     results = client.upload_entities(processes)
     print(json.dumps(results, indent=2))
 
-asset_name='MARM'
+asset_name='MARM_PKMS' 
 file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
 
-#get_all_column_from_guid(prod_client,'MARM','sap_s4hana_table','47b00ad2-7a3e-4d07-be3d-08f6f6f60000','sap_s4hana://vhhbrmp1ci_MP1_00_100/MARM','sap_s4hana_table','f5e9ec3d-9d03-48b2-aacd-e3f6f6f60000','sap_s4hana://vhhbrps4ci_PS4_00_100/MARM')
-#create_column_lineage(prod_client,file_path)
+#get_all_column_from_guid(qa_client,'MARA','sap_s4hana_table','3a6db04d-998c-4317-accc-e9f6f6f60000','sap_s4hana://vhhbrmd1ci_MD1_00_220/MARA','azure_datalake_gen2_resource_set','8f4e90b7-d276-406a-b727-2497366fc0b9','https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Business/US/DimProject/Ingest/{ProjectYear}/{SparkPartitions}')
+create_column_lineage(prod_client,file_path)
 
