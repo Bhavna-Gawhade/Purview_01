@@ -123,6 +123,6 @@ def delete_SAP_S4_Hana_Application_Components(client,qualified_name,type_name):
 
             
 
-#delete_SAP_S4_Hana_Packages(prod_client,'sap_s4hana://vhhbrps4ci_PS4_00_100/','sap_s4hana_package')
-#delete_SAP_S4_Hana_Sub_Application_Components(prod_client,'sap_s4hana://vhhbrps4ci_PS4_00_100/','sap_s4hana_application_component')
-delete_SAP_S4_Hana_Application_Components(prod_client,'sap_s4hana://vhhbrps4ci_PS4_00_100/','sap_s4hana_application_component')
+#delete_SAP_S4_Hana_Packages(qa_client,'sap_s4hana://vhhbrds4ci_DS4_00_100/','sap_s4hana_package')
+#delete_SAP_S4_Hana_Sub_Application_Components(qa_client,'sap_s4hana://vhhbrqs4ci_QS4_00_100/','sap_s4hana_application_component')
+delete_SAP_S4_Hana_Application_Components(qa_client,'sap_s4hana://vhhbrmd1ci_MD1_00_220/','sap_s4hana_application_component')
