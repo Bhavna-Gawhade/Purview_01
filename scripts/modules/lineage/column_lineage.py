@@ -123,12 +123,12 @@ def create_column_lineage(client,file_path):
 
     #Update the lineage with given mappings
     processes = reader.parse_update_lineage_with_mappings(file_path)
-
+    
     #upload the lineage to purview
     results = client.upload_entities(processes)
     print(json.dumps(results, indent=2))
 
-asset_name='MARM_PKMS' 
+asset_name='AFS_KNVV' 
 file_path = f"./ColumnMapping/{asset_name}_ColumnMapping.xlsx"
 
 #get_all_column_from_guid(qa_client,'MARA','sap_s4hana_table','3a6db04d-998c-4317-accc-e9f6f6f60000','sap_s4hana://vhhbrmd1ci_MD1_00_220/MARA','azure_datalake_gen2_resource_set','8f4e90b7-d276-406a-b727-2497366fc0b9','https://hbiqa01analyticsdls.dfs.core.windows.net/curated/Business/US/DimProject/Ingest/{ProjectYear}/{SparkPartitions}')
