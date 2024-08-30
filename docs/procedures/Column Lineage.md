@@ -14,7 +14,7 @@
 - [Overview](#overview)
 - [Key Benifits](#key-benifits)
 - [Function Workflow](#function-workflow)
-- [Importing Custom Lineage Connections](#importing-custom-lineage-connections)
+- [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 
 ### Overview
@@ -25,46 +25,46 @@ Column-level lineage provides a detailed view of how individual data columns mov
 
 ### Key Benifits
 
-#### Granular Data Tracking: 
+#### 1. Granular Data Tracking: 
 Allows organizations to trace the flow of specific data points, helping in understanding the origin, transformation, and destination of each column.
 
-#### Impact Analysis: 
+#### 2. Impact Analysis: 
 Facilitates the assessment of how changes to a column in one system might impact downstream processes, reports, or data models.
 
-#### Compliance and Governance: 
+#### 3. Compliance and Governance: 
 Helps ensure that sensitive data is appropriately handled and that data flows comply with regulatory requirements.
 
-#### Root Cause Analysis: 
+#### 4. Root Cause Analysis: 
 Provides insights into the source of data issues by pinpointing exactly where data changes or errors may have occurred in the pipeline.
 
 <p align="right">(<a href="#Column Lineage-top">Back to Top</a>)</p>
 
 ### Function Workflow
 
-#### Excel Configuration and Reader Initialization:
+#### 1. Excel Configuration and Reader Initialization:
 The function begins by initializing an ExcelConfiguration object (ec) and an ExcelReader object (reader). These are used to configure and read the Excel file containing the column lineage mappings.
 
-#### Parsing and Updating Lineage:
+#### 2. Parsing and Updating Lineage:
 The function calls reader.parse_update_lineage_with_mappings(file_path) to parse the Excel file. This method reads the file, extracts the necessary mappings, and updates the lineage data according to the specified transformations and relationships.
 
-#### Uploading Lineage Data:
+#### 3. Uploading Lineage Data:
 
 The processed lineage entities (processes) are then uploaded to the client using client.upload_entities(processes). This step pushes the lineage data to the data catalog, making it available for visualization and analysis.
 
-#### Output:
+#### 4. Output:
 The results of the upload operation are printed in a formatted JSON structure. This output provides a detailed view of the entities that were successfully uploaded, as well as any errors encountered during the process.
 
 <p align="right">(<a href="#Column Lineage-top">Back to Top</a>)</p>
 
 ### Best Practices
 
-#### Validate Excel Mappings: 
+#### 1. Validate Excel Mappings: 
 Ensure that the Excel file is correctly formatted and contains all necessary columns for mapping source to destination fields.
 
-#### Error Handling: 
+#### 2. Error Handling: 
 Implement additional error handling to manage potential issues during the upload process, such as invalid mappings or network errors.
 
-#### Regular Updates: 
+#### 3. Regular Updates: 
 Regularly update lineage information to reflect changes in data pipelines and schemas.
 
 <p align="right">(<a href="#Column Lineage-top">Back to Top</a>)</p>
@@ -73,9 +73,11 @@ Regularly update lineage information to reflect changes in data pipelines and sc
 
 If encountering issues in building column level lineage in purview:
 
-Upload Failures: If the upload fails, check the JSON output for error messages. Common issues include missing or incorrect entity types, invalid GUIDs, or network connectivity problems.
+#### 1. Upload Failures: 
+If the upload fails, check the JSON output for error messages. Common issues include missing or incorrect entity types, invalid GUIDs, or network connectivity problems.
 
-Incorrect Mappings: Ensure that the mappings in the Excel file accurately represent the desired lineage. Incorrect mappings can lead to inaccurate lineage representations in the data catalog.
+#### 2. Incorrect Mappings: 
+Ensure that the mappings in the Excel file accurately represent the desired lineage. Incorrect mappings can lead to inaccurate lineage representations in the data catalog.
 
 Please refer to the Purview documentation or please don't hesitate to [reach out to the Data Governance Team](mailto:data_governance_team@hanes.com). We are here to assist you promptly and ensure a smooth experience with our project.
 
