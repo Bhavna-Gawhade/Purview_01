@@ -12,7 +12,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Key Benifits](#key-benifits)
+- [Key Benefits](#key-benefits)
 - [Function Workflow](#function-workflow)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
@@ -23,7 +23,7 @@ Column-level lineage provides a detailed view of how individual data columns mov
 
 <p align="right">(<a href="#Column Lineage-top">Back to Top</a>)</p>
 
-### Key Benifits
+### Key Benefits
 
 #### 1. Granular Data Tracking: 
 Allows organizations to trace the flow of specific data points, helping in understanding the origin, transformation, and destination of each column.
@@ -49,7 +49,7 @@ The function calls reader.parse_update_lineage_with_mappings(file_path) to parse
 
 #### 3. Uploading Lineage Data:
 
-The processed lineage entities (processes) are then uploaded to the client using client.upload_entities(processes). This step pushes the lineage data to the data catalog, making it available for visualization and analysis.
+The processed lineage entities (processes) are then uploaded to the client using client.upload_entities(processes). This step pushes the lineage data to the data catalog, making it available for visualization and analysis. We are currently supporting column lineage between SAP assets.
 
 #### 4. Output:
 The results of the upload operation are printed in a formatted JSON structure. This output provides a detailed view of the entities that were successfully uploaded, as well as any errors encountered during the process.
