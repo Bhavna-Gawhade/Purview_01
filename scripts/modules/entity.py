@@ -146,6 +146,7 @@ Column_Connection_Def = EntityTypeDef(
         AtlasAttributeDef("columnMapping")
     ]
 )
+
 # Functions
 # ---------------
 
@@ -179,14 +180,12 @@ def get_entity_from_qualified_name(client, qualified_name):
         dict: The entity found based on the qualified name.
     """
     entities_found = client.discovery.search_entities(query=qualified_name)
-    entities = []
     for entity in entities_found:
         # Since the input qualified_name is all lowercase, we cannot do a direct str comparison, we must check length
         # This is to avoid qualified names that have the same beginning and different extensions
         # Allow length to differ by 1 for potential '/' at the end
-        if (len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1):
-            entities.append(entity)
-            return entities[0]
+        if ((len(entity["qualifiedName"]) == len(qualified_name)) or (len(entity["qualifiedName"]) == len(qualified_name) + 1)) and qualified_name in entity["qualifiedName"]:
+            return entity
 
     return None
 
