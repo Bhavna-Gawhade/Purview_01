@@ -139,14 +139,13 @@ INFORMATICA_CONNECTION_DEF = EntityTypeDef(
   superTypes = ["Process"]
 )
 
-SYSTEM_CONNECTION_DEF = EntityTypeDef(
-  name = "System_Connection",
+Column_Connection_Def = EntityTypeDef(
+  name = "Column_Mapping",
   superTypes = ["Process"],
   attributes = [
         AtlasAttributeDef("columnMapping")
     ]
 )
-
 
 # Functions
 # ---------------

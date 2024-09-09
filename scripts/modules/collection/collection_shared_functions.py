@@ -5,7 +5,7 @@
 # ---------------
 
 
-from modules.classification.classification import change_key_names
+#from modules.classification.classification import change_key_names
 from utils import get_credentials, create_purview_client
 
 
@@ -26,6 +26,25 @@ import string
 
 # Functions
 # ---------------
+
+def change_key_names(dictionary: dict, key_mapping: dict) -> dict:
+    """
+    Changes the key names in a dictionary based on a given key mapping.
+
+    Args:
+        dictionary (dict): The input dictionary.
+        key_mapping (dict): A dictionary containing the mapping of old key names to new key names.
+
+    Returns:
+        dict: The dictionary with updated key names.
+    """
+    new_dict = {}
+    for old_key, new_key in key_mapping.items():
+        if old_key in dictionary:
+            new_dict[new_key] = dictionary[old_key]
+        else:
+            new_dict[new_key] = None
+    return new_dict
 
 def nest_collections(data):
     """
@@ -149,7 +168,7 @@ def get_flattened_collections(client):
     return collections
 
 
-def get_existing_collection_names():
+def get_existing_collection_names(client):
     """
     Retrieves a list of existing collection names.
 
@@ -157,14 +176,14 @@ def get_existing_collection_names():
         List[str]: A list of existing collection names.
 
     """
-    collections = get_flattened_collections()
+    collections = get_flattened_collections(client)
     collection_names = []
     for c in collections:
         collection_names.append(c["name"])
     return collection_names
 
 
-def create_unique_collection_name():
+def create_unique_collection_name(client):
     """
     Generates a unique collection name.
 
@@ -172,7 +191,7 @@ def create_unique_collection_name():
         str: A unique collection name.
 
     """
-    existing_names = get_existing_collection_names()
+    existing_names = get_existing_collection_names(client)
     while True:
         # Generate a 6-character random name
         new_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
@@ -193,7 +212,7 @@ def create_collection(client, friendly_name: str, parent_collection_name: str, d
     Returns:
         dict: The result of creating or updating the collection.
     """
-    name = create_unique_collection_name()
+    name = create_unique_collection_name(client)
     result = client.collections.create_or_update_collection(name, friendly_name, parent_collection_name, description)
     return result
 
@@ -263,7 +282,7 @@ def find_collection_in_json(collection_name, json_str):
     return None
 
 
-def create_collections_recursive(collections: list, parent_collection_name: str):
+def create_collections_recursive(client, collections: list, parent_collection_name: str):
     """
     Recursively creates collections and their subcollections.
 
@@ -277,8 +296,7 @@ def create_collections_recursive(collections: list, parent_collection_name: str)
     for collection in collections:
         friendly_name = collection['friendly_name']
         description = collection['description']
-
-        create_collection(friendly_name, parent_collection_name, description)
+        create_collection(client, friendly_name, parent_collection_name, description)
 
         subcollections = collection['subcollections']
         if subcollections:
@@ -307,7 +325,7 @@ def get_collection_name_from_friendly_name(friendly_name: str, collections: list
     return None
 
 
-def generate_subcollections_from_json(friendly_name: str, json_str: str):
+def generate_subcollections_from_json(client,friendly_name: str, json_str: str):
     """
     Generates subcollections based on a JSON structure.
 
@@ -319,10 +337,10 @@ def generate_subcollections_from_json(friendly_name: str, json_str: str):
         None
     """
     collection = find_collection_in_json(friendly_name, json_str)
-    existing_collections = get_nested_collections()
+    existing_collections = get_nested_collections(client)
     collection_name = get_collection_name_from_friendly_name(friendly_name, existing_collections)
     if collection:
-        create_collections_recursive(collection['subcollections'], collection_name)
+        create_collections_recursive(client,collection['subcollections'], collection_name)
     else:
         print(f"Collection '{friendly_name}' not found in the output structure.")
 
