@@ -201,24 +201,41 @@ def get_qualified_names_for_xml_elements(elements):
             if table_name.startswith(prefix):
                 table_name = table_name[len(prefix):]
         
+        qual_name = None  # Initialize qual_name to None
+        
         if server.lower() == "sqlpag19":
             qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "prod1":
-            qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
+            qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "prod5":
-            qual_name = "oracle://10.1.17.28/" + elem.get("schema") + "/" + table_name
+            qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "slbadw" or server.lower() == "slba" or server.lower() == "slbadw_prd":
-            qual_name = "oracle://10.1.17.127/SLBA/" + table_name
+            qual_name = "oracle://10.1.17.241/SLBA/" + table_name
         elif server.lower() == "oakdwhp1":
-            qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
+            qual_name = "oracle://10.1.17.241/" + elem.get("schema") + "/" + table_name
         else:
             print(f"NEW SERVER: {server}")
+
+        
+        # if server.lower() == "sqlpag19":
+        #     qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
+        # elif server.lower() == "prod1":
+        #     qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
+        # elif server.lower() == "prod5":
+        #     qual_name = "oracle://10.1.17.28/" + elem.get("schema") + "/" + table_name
+        # elif server.lower() == "slbadw" or server.lower() == "slba" or server.lower() == "slbadw_prd":
+        #     qual_name = "oracle://10.1.17.127/SLBA/" + table_name
+        # elif server.lower() == "oakdwhp1":
+        #     qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
+        # else:
+        #     print(f"NEW SERVER: {server}")
         
         """elif server.lower() == "prod4":
             qual_name = "" + elem.get("schema") + "/" + elem.get("table")"""
         
 
-        qualified_names.append(qual_name)
+        if qual_name is not None:
+            qualified_names.append(qual_name)
     
     return qualified_names
 
