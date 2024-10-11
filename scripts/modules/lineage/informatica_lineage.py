@@ -190,8 +190,8 @@ def get_qualified_names_for_xml_elements(elements):
         # Pull the server name
         server = elem.get("server")
 
-        # Handle instances where no server was detected or it's a flat file
-        if server == None or server.lower() == "flat_file" or server.lower() == "flat file":
+        # Handle instances where no server was detected or server is not a string or it's a flat file
+        if server is None or not isinstance(server, str) or server.lower() in ["flat_file", "flat file"]:
             continue
 
         # The XMLs for this server prepend LKP_ or SQ_ to the table name
