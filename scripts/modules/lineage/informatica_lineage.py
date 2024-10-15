@@ -78,13 +78,12 @@ def load_connection_name_details(excel_file_path):
     connection_map = df.set_index('Connection Name').to_dict(orient='index')
     return connection_map
 
-
 def get_connection_names_from_xml(file_path):
     """
     Extracts CONNECTION NAME values from an XML file and associates them with session names.
 
     This function processes an XML file to find CONNECTION NAME attributes and maps them to their corresponding 
-    session names (SINSTANCENAME).
+    session names (SINSTANCENAME). It prints each connection name as it is found.
 
     Parameters:
         file_path (str): The path to the XML file containing session and connection details.
@@ -92,28 +91,27 @@ def get_connection_names_from_xml(file_path):
     Returns:
         dict: A dictionary where the keys are CONNECTION NAME values and the values are lists of session names 
               (SINSTANCENAME) associated with each CONNECTION NAME.
+
+    Note:
+        This function prints each connection name as it is discovered in the XML file.
     """
+
     tree = ET.parse(file_path)
     root = tree.getroot()
     connection_names = {}
 
-    for folder in root.findall('.//FOLDER'):        
-        for elem in folder:
-            if elem.tag == 'SESSION':
-                for nested_elem in elem:
-                    if nested_elem.tag == "SESSIONEXTENSION":
-                        session_name = nested_elem.attrib.get('SINSTANCENAME')
-                        for nested_nested_elem in nested_elem:
-                            conn_name = nested_nested_elem.attrib.get('CONNECTIONNAME')
-                            # Grab the non-empty connection name
-                            if conn_name != None and conn_name != "":
-                                # Add the SINSTANCENAME (table name) for the connection to the list
-                                if connection_names.get(conn_name) == None:
-                                    connection_names[conn_name] = []
-                                connection_names[conn_name].append(session_name)
+    for session in root.findall('.//SESSION'):
+        for session_extension in session.findall('.//SESSIONEXTENSION'):
+            session_name = session_extension.get('SINSTANCENAME')
+            for connection_ref in session_extension.findall('.//CONNECTIONREFERENCE'):
+                conn_name = connection_ref.get('CONNECTIONNAME')
+                if conn_name:
+                    #print(f"Connection name found: {conn_name}")  # Added print statement
+                    if conn_name not in connection_names:
+                        connection_names[conn_name] = []
+                    connection_names[conn_name].append(session_name)
     
     return connection_names
-
 
 def get_targets_from_connection_names(excel_file_path, xml_file_path):
     """
@@ -290,12 +288,19 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
     """
     # Separate the XML export into sources and targets
     sources = get_sources_from_xml(xml_file_path)
+    print(sources)
     targets = get_targets_from_connection_names(excel_file_path, xml_file_path)
 
+    
+
     # Based on the server details, craft a qualified name for each of the sources and targets
-    source_qualified_names = get_qualified_names_for_xml_elements(sources)
+    source_qualified_names = get_qualified_names_for_xml_elements(sources) #FIXME: failing here
     target_qualified_names = get_qualified_names_for_xml_elements(targets)
 
+    # Check if source_qualified_names is empty
+    if not source_qualified_names:
+        print("Source_qualified_names not fetched!")
+        return "Source_qualified_names not fetched!"
     # Using the qualified names, pull the Purview details for each entity
     source_entities = []
     target_entities = []
@@ -309,12 +314,14 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
             source_entities.append(entity)"""
     
     for source_qual_name in source_qualified_names:
+        print(source_qual_name)
         entity = get_entity_from_qualified_name(client, source_qual_name)
         if entity is not None:
             source_entities.append(entity)
-
+# TODO: to check if target_qualifiendname is empty. Result: Not empty
     for target_qual_name in target_qualified_names:
-        entity = get_entity_from_qualified_name(client, target_qual_name)
+        #print(target_qual_name)
+        entity = get_entity_from_qualified_name(client, target_qual_name) #FIXME: entity is empty
         if entity is not None:
             target_entities.append(entity)
     
