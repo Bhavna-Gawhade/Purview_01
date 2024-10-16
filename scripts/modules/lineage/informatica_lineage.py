@@ -201,32 +201,33 @@ def get_qualified_names_for_xml_elements(elements):
         
         qual_name = None  # Initialize qual_name to None
         
-        if server.lower() == "sqlpag19":
-            qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
-        elif server.lower() == "prod1":
-            qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
-        elif server.lower() == "prod5":
-            qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
-        elif server.lower() == "slbadw" or server.lower() == "slba" or server.lower() == "slbadw_prd":
-            qual_name = "oracle://10.1.17.241/SLBA/" + table_name
-        elif server.lower() == "oakdwhp1":
-            qual_name = "oracle://10.1.17.241/" + elem.get("schema") + "/" + table_name
-        else:
-            print(f"NEW SERVER: {server}")
-
-        
+        '''QA MAPPING'''
         # if server.lower() == "sqlpag19":
         #     qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
         # elif server.lower() == "prod1":
-        #     qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
+        #     qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
         # elif server.lower() == "prod5":
-        #     qual_name = "oracle://10.1.17.28/" + elem.get("schema") + "/" + table_name
+        #     qual_name = "oracle://10.1.17.242/" + elem.get("schema") + "/" + table_name
         # elif server.lower() == "slbadw" or server.lower() == "slba" or server.lower() == "slbadw_prd":
-        #     qual_name = "oracle://10.1.17.127/SLBA/" + table_name
+        #     qual_name = "oracle://10.1.17.241/SLBA/" + table_name
         # elif server.lower() == "oakdwhp1":
-        #     qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
+        #     qual_name = "oracle://10.1.17.241/" + elem.get("schema") + "/" + table_name
         # else:
         #     print(f"NEW SERVER: {server}")
+
+        """ PROD MAPPING"""
+        if server.lower() == "sqlpag19":
+            qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
+        elif server.lower() == "prod1":
+            qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
+        elif server.lower() == "prod5":
+            qual_name = "oracle://10.1.17.28/" + elem.get("schema") + "/" + table_name
+        elif server.lower() == "slbadw" or server.lower() == "slba" or server.lower() == "slbadw_prd":
+            qual_name = "oracle://10.1.17.127/SLBA/" + table_name
+        elif server.lower() == "oakdwhp1":
+            qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
+        else:
+            print(f"NEW SERVER: {server}")
         
         """elif server.lower() == "prod4":
             qual_name = "" + elem.get("schema") + "/" + elem.get("table")"""
@@ -288,10 +289,7 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
     """
     # Separate the XML export into sources and targets
     sources = get_sources_from_xml(xml_file_path)
-    print(sources)
     targets = get_targets_from_connection_names(excel_file_path, xml_file_path)
-
-    
 
     # Based on the server details, craft a qualified name for each of the sources and targets
     source_qualified_names = get_qualified_names_for_xml_elements(sources) #FIXME: failing here
@@ -299,8 +297,8 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
 
     # Check if source_qualified_names is empty
     if not source_qualified_names:
-        print("Source_qualified_names not fetched!")
-        return "Source_qualified_names not fetched!"
+        print("Source_qualified_names not fetched, server None or falt file!")
+        return "Source_qualified_names not fetched, server None or falt file!"
     # Using the qualified names, pull the Purview details for each entity
     source_entities = []
     target_entities = []
@@ -314,14 +312,14 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
             source_entities.append(entity)"""
     
     for source_qual_name in source_qualified_names:
-        print(source_qual_name)
+        #print(source_qual_name)
         entity = get_entity_from_qualified_name(client, source_qual_name)
         if entity is not None:
             source_entities.append(entity)
 # TODO: to check if target_qualifiendname is empty. Result: Not empty
     for target_qual_name in target_qualified_names:
-        #print(target_qual_name)
-        entity = get_entity_from_qualified_name(client, target_qual_name) #FIXME: entity is empty
+        print("target_qual_name: " + target_qual_name)
+        entity = get_entity_from_qualified_name(client, target_qual_name) #FIXME: entity is empty for QA
         if entity is not None:
             target_entities.append(entity)
     
