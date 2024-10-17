@@ -6,6 +6,8 @@ from modules import *
 from pyapacheatlas.core import AtlasEntity
 from pathlib import Path
 import pandas as pd
+from pyapacheatlas.core.util import GuidTracker
+
 
 def parse_excel_file(file):
     """
@@ -24,32 +26,68 @@ def parse_excel_file(file):
 
     return entity_dict
 
-def upload_entities_to_purview(client, entity_dict):
+def upload_entities_to_purview(client, entity_dict, table_name):
     """
     Upload entities and their relationships to Purview.
     """
-    for entity_name, columns in entity_dict.items():
-        record_qualified_name = f"your_prefix://{entity_name}"
-        record = AtlasEntity(entity_name, "DataSet", record_qualified_name)
+    table_qualified_name = "magento://" + table_name 
+    guid_tracker = GuidTracker(starting=-1002, direction='decrease')
+    table_guid = guid_tracker.get_guid()
+    table = AtlasEntity(table_name, "DataSet", table_qualified_name, table_guid)
 
-        # Upload the main entity
-        record_assignment = client.upload_entities([record])
-        record_guid = next(iter(record_assignment.get('guidAssignments').values()))
+    columns_to_add = []
+    dimensions = entity_dict.get(table_name)
+    
+    for column_name in dimensions:
+        dimension_qualified_name = table_qualified_name + "/column/" + column_name
+        dimension_guid = guid_tracker.get_guid()
+        dimension = AtlasEntity(column_name, "column", dimension_qualified_name, dimension_guid, attributes={"type": "Dimension"})
+        dimension.addRelationship(table = table)
+        columns_to_add.append(dimension)
 
-        # Upload columns as child entities
-        column_entities = []
-        for column in columns:
-            column_qualified_name = f"{record_qualified_name}#{column}"
-            column_entity = AtlasEntity(column, "column", column_qualified_name)
-            column_entities.append(column_entity)
-            # Create relationship to the parent entity
-            column_entity.addRelationship(table=record)
 
-        # Upload column entities
-        if column_entities:
-            client.upload_entities(column_entities)
+    tabular_schema = AtlasEntity(table_name + " Tabular Schema", "tabular_schema", table_qualified_name + "/tabular_schema", guid_tracker.get_guid())
+    tab_assgn = client.upload_entities([tabular_schema])
+    tab_key, tab_guid = next(iter(tab_assgn.get('guidAssignments').items()))
+    tabular_schema = AtlasEntity(table_name + " Tabular Schema", "tabular_schema", table_qualified_name + "/tabular_schema", tab_guid)
 
-        print(f"Uploaded entity: {entity_name} with columns: {columns}")
+    table_assignment = client.upload_entities([table] + [tabular_schema])
+    table_key, table_guid = next(iter(table_assignment.get('guidAssignments').items()))
+    column_assignment = client.upload_entities(columns_to_add)
+
+    tab_dataset_relationship = {
+            "typeName": "tabular_schema_datasets",
+            "attributes": {},
+            "guid": -100,
+            "end1": {
+                "guid": table_guid
+            },
+            "end2": {
+                "guid": tab_guid
+            }
+        }
+    relationship_assignment = client.upload_relationship(tab_dataset_relationship)  
+
+    for key, value in column_assignment.get('guidAssignments').items():
+        column_guid = value
+
+        tab_column_relationship = {
+            "typeName": "tabular_schema_columns",
+            "attributes": {},
+            "guid": -100,
+            "end1": {
+                "guid": tab_guid
+            },
+            "end2": {
+                "guid": column_guid
+            }
+        } 
+        relationship_assignment = client.upload_relationship(tab_column_relationship) 
+        print("Column added for column guid " + str(column_guid))
+
+    print("Cube created for: " + table_name + "\n\n\n")
+
+
 
 def main():
     # Define file path
