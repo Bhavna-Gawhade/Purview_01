@@ -6,6 +6,7 @@
 
 from modules import entity
 from modules.lineage.cube_lineage import *
+from modules.lineage.magento_lineage import *
 from modules.lineage.databricks_lineage import *
 from modules.lineage.data_lake_lineage import *
 from modules.lineage.data_warehouse_internal_lineage import *
@@ -101,10 +102,17 @@ def main():
     #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
 
-    connection_names_excel = "All_connections.xlsx"
+    """connection_names_excel = "All_connections.xlsx"
     directories = ["informatica"]
-    build_mass_lineage_for_folders(prod_client, connection_names_excel, directories)
+    build_mass_lineage_for_folders(prod_client, connection_names_excel, directories)"""
 
+    # Parse the Excel file
+    magento_excel = "Magento_Upload.xlsx"
+    entity_dict = parse_excel_file(magento_excel)
+
+    # Upload entities to Purview
+    result = upload_entities_to_purview(prod_client, entity_dict, "product_feed")
+    print(result)
 
 
   
