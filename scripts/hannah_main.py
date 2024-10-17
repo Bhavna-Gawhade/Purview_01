@@ -5,7 +5,6 @@
 # ---------------
 
 from modules import entity
-from modules.lineage.column_lineage import *
 from modules.lineage.cube_lineage import *
 from modules.lineage.databricks_lineage import *
 from modules.lineage.data_lake_lineage import *
@@ -13,7 +12,7 @@ from modules.lineage.data_warehouse_internal_lineage import *
 from modules.lineage.json_payload_lineage import *
 from modules.lineage.informatica_lineage import *
 from modules.lineage.oracle_server_lineage import *
-from modules.lineage.pkms_lineage import *
+#from modules.lineage.pkms_lineage import *
 from modules.lineage.powerbi_sql_query_lineage import *
 from modules.lineage.analysis_services_tabular_model_lineage import *
 from modules.lineage.sap_hana_internal_lineage import *
@@ -102,47 +101,9 @@ def main():
     #build_lineage_from_data_lake_curated_to_data_warehouse_stage(prod_client, dl_curated_guid, dw_guid)
     
 
-    # Informatica Testing
-    xml_export_path = "Advanced_modeling_XML.XML"
-    #parse_informatica_xml_export(xml_export_path)
-
-
-    """dw_qual = "mssql://hbi-pd01-analytics-dwsrv.database.windows.net/hbipd01dw/mount/Inventory_Availability_TimeTravel"
-    pbi_dataset_qualified_name = "https://app.powerbi.com/groups/87418287-152f-44c8-931d-7fd6228dda48/datasets/7b832cc0-cddf-4395-90d6-0fccee1c8cb2"
-    
-    source_entity = get_entity_from_qualified_name(prod_client, dw_qual)
-    target_entity = get_entity_from_qualified_name(prod_client, pbi_dataset_qualified_name)
-    process_type_name = "DW_to_PBI_Dataset"
-    result = add_manual_lineage(prod_client, [source_entity], [target_entity], process_type_name)
-    print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
-    """
-
-    # Column lineage
-    ent_qual = "sap_s4hana://vhhbrmd1ci_MD1_00_220/KNVV"
-    #ent = get_entity_from_qualified_name(qa_client, ent_qual)
-    knvv_guid = "3955dcf1-6297-47e3-8ab0-61f6f6f60000"
-    result = qa_client.get_entity(guid=knvv_guid)
-    true_result = result["entities"][0]
-
-    for rel in true_result["relationshipAttributes"]:
-        print(rel)
-
-    print(true_result["relationshipAttributes"]["sinks"])
-    """for entry in true_result["relationshipAttributes"]["fields"]:
-        if entry["displayText"] == "BEGRU":
-            print(entry)
-            break"""
-
-    """for rel in true_result["relationshipAttributes"]["fields"]:
-        if rel["typeName"] == "sap_s4hana_table_field":
-            print(rel["displayText"])"""
-        
-    
-    knvv_excel_mappings = "KNVV_column_mappings_MDG_to_S4.xlsx"
-    source_qual_name = "sap_s4hana://vhhbrmd1ci_MD1_00_220/KNVV"
-    target_qual_name = "sap_s4hana://vhhbrds4ci_DS4_00_100/KNVV"
-    mappings = extract_column_mappings_from_excel(knvv_excel_mappings)
-    #alt_build_column_lineage_using_mappings(qa_client, mappings, source_qual_name, target_qual_name)
+    connection_names_excel = "All_connections.xlsx"
+    directories = ["informatica"]
+    build_mass_lineage_for_folders(prod_client, connection_names_excel, directories)
 
 
 

@@ -212,6 +212,7 @@ def get_qualified_names_for_xml_elements(elements):
         elif server.lower() == "oakdwhp1":
             qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
         else:
+            raise Exception (f"New Server Type: {server}")
             print(f"NEW SERVER: {server}")
         
         """elif server.lower() == "prod4":
@@ -228,7 +229,7 @@ def get_informatica_entities_by_qualified_names(client, qualified_names_list):
     for qualified_name in qualified_names_list:
         if "oracle" in qualified_name:
             # Search for the first entity of type "oracle_view"
-            view_entities = search_entity_by_qualified_name_and_type(client, qualified_name, "oracle_view")
+            view_entities = get_entity_from_qualified_name_using_type(client, qualified_name, "oracle_view")
             if view_entities is not None:
                 entity = next(view_entities, None)
             else:
@@ -236,7 +237,7 @@ def get_informatica_entities_by_qualified_names(client, qualified_names_list):
             
             # If no entity found in "oracle_view", search for "oracle_table"
             if entity is None:
-                table_entities = search_entity_by_qualified_name_and_type(client, qualified_name, "oracle_table")
+                table_entities = get_entity_from_qualified_name_using_type(client, qualified_name, "oracle_table")
                 if table_entities is not None:
                     entity = next(table_entities, None)
                 else:
