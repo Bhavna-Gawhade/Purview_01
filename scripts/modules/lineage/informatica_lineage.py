@@ -312,13 +312,13 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
             source_entities.append(entity)"""
     
     for source_qual_name in source_qualified_names:
-        #print(source_qual_name)
+        #print("source_qual_name: " + source_qual_name)
         entity = get_entity_from_qualified_name(client, source_qual_name)
         if entity is not None:
             source_entities.append(entity)
 # TODO: to check if target_qualifiendname is empty. Result: Not empty
     for target_qual_name in target_qualified_names:
-        print("target_qual_name: " + target_qual_name)
+        #print("target_qual_name: " + target_qual_name)
         entity = get_entity_from_qualified_name(client, target_qual_name) #FIXME: entity is empty for QA
         if entity is not None:
             target_entities.append(entity)
@@ -330,17 +330,23 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
 
     # Iterate through each of the sources and build lineage to each of the targets
     for source_entity in source_entities:
+        #print("source_entity: " + source_entity["entityType"])
         if source_entity["entityType"] != "oracle_synonym":
             for target_entity in target_entities:
+                #print("target_entity: " + target_entity["entityType"])
                 if target_entity["entityType"] != "oracle_synonym":
                     #result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
                     try:
                         result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
-                        print(result)
+                        if result is not None:
+                            print(result)
+                        else:
+                            print("Lineage not added!")
                     except Exception as e:
                         print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
                     print("\n\n")
-
+        else:
+            print("Skipping oracle_synonym: " + source_entity["entityType"] + "\n\n")
 
 def build_mass_lineage_for_folders(client, connection_names_excel, directories):
     """
