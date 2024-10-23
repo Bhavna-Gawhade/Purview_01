@@ -631,7 +631,6 @@ def pull_lineage_connections_from_purview(purview_account_short_name, purview_ac
 
     return pulled_entities
 
-
 # Main Processing
 # ---------------
 

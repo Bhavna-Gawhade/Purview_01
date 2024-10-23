@@ -1,0 +1,19 @@
+D:\Git\Purview\scripts\data files\Test\wf_s_m_OPEN_ORDERS.XML
+
+sources: [{'table': 'STG_HAA_OPEN_ORDERS', 'server': 'SLBADW', 'schema': 'PUBLIC'}, {'table': 'OPEN_ORDERS', 'server': None, 'schema': None}, {'table': 'Reference', 'server': 'bisql1_edm_WSBID1SQLV', 'schema': 'dbo'}, {'table': 'PARAM_REF_OPEN_ORDERS', 'server': None, 'schema': None}] 
+
+targets: [{'table': 'OPEN_ORDERS', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'SQ_STG_HAA_OPEN_ORDERS', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_ITEM_HAA', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_ITEM_HBI', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_ITEM', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_XRF_ACC', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_DAY_DIMENSION', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_FACILITY_HAA', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_FACILITY_HBI', 'server': 'oakdwhp1', 'schema': 'SLBA'}, {'table': 'LKP_SLBA_ITEM_DIV', 'server': 'oakdwhp1', 'schema': 'SLBA'}] 
+
+NEW SERVER: bisql1_edm_WSBID1SQLV
+
+Source Found! source_qual_name: oracle://10.1.17.127/SLBA/STG_HAA_OPEN_ORDERS
+Target Found! target_qual_name: oracle://10.1.17.127/SLBA/OPEN_ORDERS
+Target Found! target_qual_name: oracle://10.1.17.127/SLBA/STG_HAA_OPEN_ORDERS
+Target not found! oracle://10.1.17.127/SLBA/SLBA_ITEM_HAA
+Target not found! oracle://10.1.17.127/SLBA/SLBA_ITEM_HBI
+Target Found! target_qual_name: oracle://10.1.17.127/SLBA/SLBA_ITEM
+Target Found! target_qual_name: oracle://10.1.17.127/SLBA/XRF_ACC
+Target Found! target_qual_name: oracle://10.1.17.127/SLBA/DAY_DIMENSION
+Target not found! oracle://10.1.17.127/SLBA/SLBA_FACILITY_HAA
+Target not found! oracle://10.1.17.127/SLBA/SLBA_FACILITY_HBI
+Target not found! oracle://10.1.17.127/SLBA/SLBA_ITEM_DIV

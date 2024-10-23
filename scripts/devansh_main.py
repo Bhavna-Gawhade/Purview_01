@@ -54,6 +54,5 @@ def main():
     directories = ["D:\Git\Purview\scripts\data files\Test"]
     build_mass_lineage_for_folders(prod_client, connection_names_excel, directories)
  
- 
 if __name__ == '__main__':
     main()

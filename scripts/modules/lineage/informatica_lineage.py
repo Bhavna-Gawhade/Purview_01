@@ -227,7 +227,7 @@ def get_qualified_names_for_xml_elements(elements):
         elif server.lower() == "oakdwhp1":
             qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
         else:
-            print(f"NEW SERVER: {server}")
+            print(f"NEW SERVER: {server}\n")
         
         """elif server.lower() == "prod4":
             qual_name = "" + elem.get("schema") + "/" + elem.get("table")"""
@@ -289,7 +289,9 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
     """
     # Separate the XML export into sources and targets
     sources = get_sources_from_xml(xml_file_path)
+    print("sources:", sources, "\n")
     targets = get_targets_from_connection_names(excel_file_path, xml_file_path)
+    print("targets:", targets, "\n")
 
     # Based on the server details, craft a qualified name for each of the sources and targets
     source_qualified_names = get_qualified_names_for_xml_elements(sources) #FIXME: failing here
@@ -297,8 +299,8 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
 
     # Check if source_qualified_names is empty
     if not source_qualified_names:
-        print("Source_qualified_names not fetched, server None or falt file!")
-        return "Source_qualified_names not fetched, server None or falt file!"
+        print("Source_qualified_names not fetched, server None or falt file!\n")
+        return "Source_qualified_names not fetched, server None or falt file!\n"
     # Using the qualified names, pull the Purview details for each entity
     source_entities = []
     target_entities = []
@@ -312,23 +314,29 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
             source_entities.append(entity)"""
     
     for source_qual_name in source_qualified_names:
-        #print("source_qual_name: " + source_qual_name)
+        
         entity = get_entity_from_qualified_name(client, source_qual_name)
         if entity is not None:
             source_entities.append(entity)
+            print("Source Found! source_qual_name: " + source_qual_name)
+        else:
+            print("Source not found!", source_qual_name)
 # TODO: to check if target_qualifiendname is empty. Result: Not empty
     for target_qual_name in target_qualified_names:
-        #print("target_qual_name: " + target_qual_name)
+        
         entity = get_entity_from_qualified_name(client, target_qual_name) #FIXME: entity is empty for QA
         if entity is not None:
             target_entities.append(entity)
+            print("Target Found! target_qual_name: " + target_qual_name)
+        else:
+            print("Target not found!", target_qual_name)
     
     # Check for a list of empty targets
     if target_entities == []:
         print("Empty targets!")
         return "Empty targets!"
 
-    # Iterate through each of the sources and build lineage to each of the targets
+    # # Iterate through each of the sources and build lineage to each of the targets
     for source_entity in source_entities:
         #print("source_entity: " + source_entity["entityType"])
         if source_entity["entityType"] != "oracle_synonym":
@@ -339,14 +347,28 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
                     try:
                         result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
                         if result is not None:
-                            print(result)
+                            print("Connections successfully built: \n\n", result)
                         else:
                             print("Lineage not added!")
                     except Exception as e:
                         print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
                     print("\n\n")
         else:
-            print("Skipping oracle_synonym: " + source_entity["entityType"] + "\n\n")
+            print("\nSkipping Source Entity Type: " + source_entity["entityType"] + "\n\n")
+
+    # # Iterate through each of the sources and build lineage to each of the targets
+    # for source_entity in source_entities:
+    #     for target_entity in target_entities:
+    #         if source_entity["entityType"] == "oracle_synonym" or target_entity["entityType"] == "oracle_synonym":
+    #             try:
+    #                 result = add_manual_lineage(client, [source_entity], [target_entity], "oracle_synonym_source_synonym")
+    #                 if result is not None:
+    #                     print("Connections successfully built: \n\n", result)
+    #                 else:
+    #                     print("Lineage not added!")
+    #             except Exception as e:
+    #                 print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
+    #             print("\n\n")
 
 def build_mass_lineage_for_folders(client, connection_names_excel, directories):
     """
