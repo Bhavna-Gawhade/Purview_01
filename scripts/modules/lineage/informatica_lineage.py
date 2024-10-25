@@ -5,7 +5,9 @@
 
 from modules.entity import *
 from modules.lineage.shared_lineage_functions import *
-
+import requests
+from pyapacheatlas.core.util import AtlasException
+from typing import List
 # Imports
 # ---------------
 
@@ -336,39 +338,44 @@ def parse_informatica_xml_export(client, excel_file_path, xml_file_path):
         print("Empty targets!")
         return "Empty targets!"
 
-    # # Iterate through each of the sources and build lineage to each of the targets
+    # Iterate through each of the sources and build lineage to each of the targets
     for source_entity in source_entities:
-        #print("source_entity: " + source_entity["entityType"])
-        if source_entity["entityType"] != "oracle_synonym":
-            for target_entity in target_entities:
-                #print("target_entity: " + target_entity["entityType"])
-                if target_entity["entityType"] != "oracle_synonym":
-                    #result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
-                    try:
-                        result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
-                        if result is not None:
-                            print("Connections successfully built: \n\n", result)
-                        else:
-                            print("Lineage not added!")
-                    except Exception as e:
-                        print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
-                    print("\n\n")
-        else:
-            print("\nSkipping Source Entity Type: " + source_entity["entityType"] + "\n\n")
+        for target_entity in target_entities:
+            # Scenario 1: Skip if source and target are the same entity
+            if source_entity["id"] == target_entity["id"]:
+                print("Skipping Scenario 1: Source and Target are the same.")
+                continue
 
-    # # Iterate through each of the sources and build lineage to each of the targets
-    # for source_entity in source_entities:
-    #     for target_entity in target_entities:
-    #         if source_entity["entityType"] == "oracle_synonym" or target_entity["entityType"] == "oracle_synonym":
-    #             try:
-    #                 result = add_manual_lineage(client, [source_entity], [target_entity], "oracle_synonym_source_synonym")
-    #                 if result is not None:
-    #                     print("Connections successfully built: \n\n", result)
-    #                 else:
-    #                     print("Lineage not added!")
-    #             except Exception as e:
-    #                 print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
-    #             print("\n\n")
+            # Scenario 2: Source is not oracle_synonym, Target is oracle_synonym
+            if source_entity["entityType"] != "oracle_synonym" and target_entity["entityType"] == "oracle_synonym":
+                print("Scenario 2: Target is oracle_synonym.")
+                upload_relationships(client, source_entity["id"], target_entity["id"])
+
+            # Scenario 3: Source and Target are anything other than oracle_synonym
+            elif source_entity["entityType"] != "oracle_synonym" and target_entity["entityType"] != "oracle_synonym":
+                try:
+                    result = add_manual_lineage(client, [source_entity], [target_entity], "Informatica_Connection")
+                    if result is not None:
+                        print("Scenario 3: Connections successfully built: \n\n", result)
+                    else:
+                        print("Scenario 3: Lineage not added!")
+                except Exception as e:
+                    print(f"Error adding lineage from {source_entity['qualifiedName']} to {target_entity['qualifiedName']}: {e}")
+                print("\n\n")
+
+            # Scenario 4: Both source and target are different and are oracle_synonym
+            elif (source_entity["entityType"] == "oracle_synonym" and target_entity["entityType"] == "oracle_synonym" and source_entity["id"] != target_entity["id"]):
+                print("Scenario 4: Both source and target are different and are oracle_synonym.")
+                upload_relationships(client, source_entity["id"], target_entity["id"])
+
+            # Scenario 5: Source is oracle_synonym, Target is anything other than oracle_synonym
+            elif source_entity["entityType"] == "oracle_synonym" and target_entity["entityType"] != "oracle_synonym":
+                print(f"Scenario 5: Uploading relationship between {source_entity['qualifiedName']} and {target_entity['qualifiedName']}")
+                upload_relationships(client, source_entity["id"], target_entity["id"])
+
+            else:
+                print("\nScenario 6: Skipping unknown scenario\n\n")
+
 
 def build_mass_lineage_for_folders(client, connection_names_excel, directories):
     """
@@ -396,3 +403,30 @@ def build_mass_lineage_for_folders(client, connection_names_excel, directories):
                 print(file_path + "\n")
                 parse_informatica_xml_export(client, connection_names_excel, file_path)
 
+def upload_relationships(client, entity_a_guid: str, entity_c_guid: str):
+    rel_type = "oracle_synonym_source_synonym"
+    # Create the relationship as a dictionary with the correct structure
+    relationship = {
+            "typeName": rel_type,
+            "attributes": {},  # You can add any relevant attributes here if needed
+            #"guid": -1,  # Set to -1 or remove it if not needed
+            "end1": {
+                "guid": entity_a_guid
+            },
+            "end2": {
+                "guid": entity_c_guid
+            }
+        }
+    try:
+        response = client.upload_relationship(relationship)
+        print(f"Successfully added relationship '{rel_type}' between {entity_a_guid} and {entity_c_guid}.")
+        print(f"Response: {response}")
+    except requests.exceptions.HTTPError as http_err:
+        if http_err.response.status_code == 409:
+            # Handle the conflict when the relationship already exists
+            print(f"Relationship '{rel_type}' already exists between {entity_a_guid} and {entity_c_guid}.")
+        else:
+            # Re-raise the exception for other HTTP errors
+            raise
+    except AtlasException as atlas_err:
+        print(f"AtlasException occurred: {str(atlas_err)}")
