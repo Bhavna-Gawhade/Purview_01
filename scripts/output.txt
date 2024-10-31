@@ -1,24 +1,50 @@
-Updated entity 5c9c150c-1496-44e2-b68f-13e85d543f87 with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsInventory
-Updated entity 1508dccd-f16c-4b7b-9e7c-01341572b02f with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: DimItem
-Updated entity acf0cd43-1099-4eae-93d2-e22d6da0a276 with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: FactFGInventoryAvailability
-Updated entity a77c92ee-70b6-4fe0-a3ef-8162dbfe96c4 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: TGTBpdFactActuals
-Updated entity 1a15e471-a6f7-403f-aaa4-523a545c1db3 with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsReserves
-Updated entity 97add1c9-e755-4c59-b42f-72381702d0a5 with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsPlan
-Updated entity 26da3cf5-7d9d-4149-9ea2-8e1df107d35e with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: FactFGInventoryAvailability
-Updated entity 18ed9681-779d-4e6e-be16-fc4a70fbef43 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimItem
-Updated entity dae754e4-120e-4f1f-b8ff-88f8d107721b with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimCustomer
-Updated entity 00a02d36-b665-48ac-93ed-475f71a442ca with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: FactInventoryProduction
-Updated entity 731d5ee8-26c3-411e-ac99-58af92fd7674 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: StLDimRetailerSKU
-Updated entity b3b1d6f9-f6f2-4ddd-a5cf-c1632804916f with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: FactBookings
-Updated entity 3e81fb9e-5013-4884-9557-d3634b82a6c0 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimStyle
-Updated entity 1695cc93-cb4f-4eda-a7d9-d0a552abbf1e with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimFacility
-Updated entity 9d9c99a0-b08a-4518-86b5-4407b9500a4f with description: Source Type: azure_datalake_gen2_path, Source Name: Archive, Target Type: azure_datalake_gen2_path, Target Name: DimItemWM
-Updated entity 4d025a85-2294-4285-af21-935352f37939 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimItemSCD
-Updated entity da709988-6372-4917-ae22-c37e3223c9ad with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimFinancialMeasure
-Updated entity 0ab6f336-5cb0-44ab-ae5e-fba9ce179fa4 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: SlbaSlmGrossMargin
-Updated entity 1c34522a-ba89-49af-8080-2a96a1ed4ec2 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: StLDimRetailer
-Updated entity 66e52213-98f2-4b04-8011-fd114401e502 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsReserves
-Updated entity 7c876be5-b090-4af3-a0b8-b85fd1396f35 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsPlan
-Updated entity 02afe208-3199-4f76-9cd5-b85e1920d101 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: FactFinishedGoodsInventory
-Updated entity 699c9c08-82b1-4aba-8979-d6ee1cbbe436 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimSKUCreates
-Updated entity 010758f3-167d-4681-939d-59ce6b66fac2 with description: Source Type: azure_datalake_gen2_path, Source Name: Ingest, Target Type: azure_datalake_gen2_path, Target Name: DimMarketingResponsibilityHierarchy
+Updated entity 5c9c150c-1496-44e2-b68f-13e85d543f87 with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: FactFinishedGoodsInventory
+
+Updated entity 1508dccd-f16c-4b7b-9e7c-01341572b02f with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: DimItem
+
+Updated entity acf0cd43-1099-4eae-93d2-e22d6da0a276 with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: FactFGInventoryAvailability
+
+Updated entity a77c92ee-70b6-4fe0-a3ef-8162dbfe96c4 with description: Source Type: azure_datalake_gen2_path
+Source Name: Ingest
+Target Type: azure_datalake_gen2_path
+Target Name: TGTBpdFactActuals
+
+Updated entity 26da3cf5-7d9d-4149-9ea2-8e1df107d35e with description: Source Type: azure_datalake_gen2_path
+Source Name: Ingest
+Target Type: azure_datalake_gen2_path
+Target Name: FactFGInventoryAvailability
+
+Updated entity 1a15e471-a6f7-403f-aaa4-523a545c1db3 with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: FactFinishedGoodsReserves
+
+Updated entity 97add1c9-e755-4c59-b42f-72381702d0a5 with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: FactFinishedGoodsPlan
+
+Updated entity dae754e4-120e-4f1f-b8ff-88f8d107721b with description: Source Type: azure_datalake_gen2_path
+Source Name: Ingest
+Target Type: azure_datalake_gen2_path
+Target Name: DimCustomer
+
+Updated entity 18ed9681-779d-4e6e-be16-fc4a70fbef43 with description: Source Type: azure_datalake_gen2_path
+Source Name: Ingest
+Target Type: azure_datalake_gen2_path
+Target Name: DimItem
+
+Updated entity 00a02d36-b665-48ac-93ed-475f71a442ca with description: Source Type: azure_datalake_gen2_path
+Source Name: Archive
+Target Type: azure_datalake_gen2_path
+Target Name: FactInventoryProduction
+
