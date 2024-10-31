@@ -265,3 +265,157 @@ def build_lineage_using_guids(client, source_guid, source_type, target_guid, tar
 
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
+
+
+
+#----------------------------------------------------------------------------------------
+# List of custom process types to iterate through
+PROCESS_TYPES = [
+    # "ingestion_framework",
+    # "dw_routine",
+    # "dw_view_creation",
+    # "dsp_connection",
+    # "sharepoint_to_pbi",
+    # "Databricks_to_PBI",
+    # "SQL_Server_to_PBI",
+    # "Oracle_Server_to_PBI",
+    # "Cube_to_PBI",
+    # "DL_Curated_to_DW_Stage",
+    # "Oracle_to_DL_Stage",
+    # "DL_Manual_File_to_DL_Stage",
+    # "SQL_VW_to_DL_Stage",
+    # "SQL_Table_to_DL_Stage",
+    # "DL_Curated_to_DL_Curated",
+    # "sql_database_extract",
+    # "DW_to_PBI_Dataset",
+    # "Tabular_Model_to_PBI_Dataset",
+    # "Informatica_Connection",
+    # "Column_Mapping",
+    "DL_Stage_to_DL_Curated"
+]
+
+def update_lineage_connector_descriptions(client):
+    missing_guid_count = 0  # Counter for entities missing 'guid'
+    max_missing_guid_threshold = 100  # Threshold to prevent excessive missing entries
+
+    for process_type in PROCESS_TYPES:
+        search_results = client.discovery.search_entities(
+            query=process_type,
+            limit=100
+        )
+
+        for entity in search_results:
+            entity_guid = entity.get("guid") or entity.get("id")
+
+            if not entity_guid:
+                missing_guid_count += 1
+                print("Skipping an entity missing expected key: 'guid' or 'id'")
+                print("Entity structure:", entity)
+
+                # Exit if too many missing 'guid' or 'id' entries to prevent infinite loop
+                if missing_guid_count > max_missing_guid_threshold:
+                    print("Too many entities missing 'guid' or 'id'. Exiting to prevent infinite loop.")
+                    return
+                continue
+
+            # Fetch the full entity details, including relationships
+            entity_details = client.get_entity(entity_guid)
+            entity_info = entity_details.get("entities", [{}])[0]
+
+            # Ensure 'attributes' is initialized if missing
+            if "attributes" not in entity_info:
+                entity_info["attributes"] = {}
+
+            # Extract source and target details
+            source_entity = next((rel for rel in entity_info["relationshipAttributes"].get("inputs", [])), None)
+            target_entity = next((rel for rel in entity_info["relationshipAttributes"].get("outputs", [])), None)
+
+            # Construct the new description
+            description = "Source Type: {src_type}, Source Name: {src_name}, " \
+                          "Target Type: {tgt_type}, Target Name: {tgt_name}".format(
+                src_type=source_entity["typeName"] if source_entity else "Unknown",
+                src_name=source_entity["displayText"] if source_entity else "Unknown",
+                tgt_type=target_entity["typeName"] if target_entity else "Unknown",
+                tgt_name=target_entity["displayText"] if target_entity else "Unknown"
+            )
+            
+            # Update the 'userDescription' attribute with the new description
+            entity_info["attributes"]["userDescription"] = description
+            
+            # Push the updated entity back to Purview
+            try:
+                # Using upload_entities to send the updated entity info
+                client.upload_entities([entity_info])
+                print(f"Updated entity {entity_guid} with description: {description}")
+            except ValueError as e:
+                print(f"Failed to update entity {entity_guid}: {e}")
+
+
+# def update_lineage_connector_descriptions(client):
+#     missing_guid_count = 0  # Counter for entities missing 'guid'
+#     max_missing_guid_threshold = 100  # Threshold to prevent excessive missing entries
+
+#     for process_type in PROCESS_TYPES:
+#         search_results = client.discovery.search_entities(
+#             query=process_type,
+#             limit=100
+#         )
+
+#         for entity in search_results:
+#             entity_guid = entity.get("guid") or entity.get("id")
+
+#             if not entity_guid:
+#                 missing_guid_count += 1
+#                 print("Skipping an entity missing expected key: 'guid' or 'id'")
+#                 print("Entity structure:", entity)
+
+#                 # Exit if too many missing 'guid' or 'id' entries to prevent infinite loop
+#                 if missing_guid_count > max_missing_guid_threshold:
+#                     print("Too many entities missing 'guid' or 'id'. Exiting to prevent infinite loop.")
+#                     return
+#                 continue
+
+#             # Fetch the full entity details, including relationships
+#             entity_details = client.get_entity(entity_guid)
+#             #print(f"Fetched entity details: {entity_details}")
+            
+#             # Access the main entity details
+#             entity_info = entity_details.get("entities", [{}])[0]
+#             #print(f"Full entity details for {entity_guid}: {entity_info}")
+
+#             # Ensure 'attributes' is initialized if missing
+#             if "attributes" not in entity_info:
+#                 entity_info["attributes"] = {}
+
+#             # Extract source and target details
+#             source_entity = next((rel for rel in entity_info["relationshipAttributes"].get("inputs", [])), None)
+#             target_entity = next((rel for rel in entity_info["relationshipAttributes"].get("outputs", [])), None)
+
+#             # Construct the new description
+#             description = "Source Type: {src_type}, Source Name: {src_name}, " \
+#                           "Target Type: {tgt_type}, Target Name: {tgt_name}".format(
+#                 src_type=source_entity["typeName"] if source_entity else "Unknown",
+#                 src_name=source_entity["displayText"] if source_entity else "Unknown",
+#                 tgt_type=target_entity["typeName"] if target_entity else "Unknown",
+#                 tgt_name=target_entity["displayText"] if target_entity else "Unknown"
+#             )
+#             #print("Description:",description) 
+#             # Update entity with the new description
+#             entity_info["attributes"]["userDescription"] = description
+#             #print("Updated description:",entity_info["attributes"]["userDescription"])
+#             # Prepare the update for the entity, ensuring only one key-value pair is included
+#             update_entity = {
+#                 "guid": entity_guid,
+#                 "attributes": {
+#                     "userDescription": description  # Only this key-value pair is allowed
+#                 }
+#             }
+#             #print("Update Entity:",update_entity)
+#             # Push the updated entity back to Purview
+#             # Push the updated entity back to Purview
+#             try:
+#                 update_result = client.entity_partial_update(update_entity)
+#                 print(f"Updated entity {entity_guid} with description: {description}")
+#             except ValueError as e:
+#                 print(f"Failed to update entity {entity_guid}: {e}")
+
