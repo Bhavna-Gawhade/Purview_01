@@ -6,9 +6,6 @@
 from modules.lineage.informatica_lineage import *
 from modules.entity import *
 from utils import get_credentials, create_purview_client
-import requests
-from pyapacheatlas.core.util import AtlasException
-from typing import List
 # Import Packages
 # ---------------
 from pathlib import Path
@@ -34,7 +31,7 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 
 def main():
     # Call the function to update descriptions
-    update_lineage_connector_descriptions(qa_client)
+    update_lineage_connector_descriptions(prod_client)
 
 if __name__ == "__main__":
     main()
