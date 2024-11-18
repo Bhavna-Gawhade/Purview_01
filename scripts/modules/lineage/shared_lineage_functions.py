@@ -271,13 +271,13 @@ def build_lineage_using_guids(client, source_guid, source_type, target_guid, tar
 #----------------------------------------------------------------------------------------
 # List of custom process types to iterate through. These tyoes are present in the qualified Name of the process.
 PROCESS_TYPES = [
-    # "ingestion_framework",
-    # "dw_routine",
-    # "dw_view_creation",
-    # "dsp_connection",
+    # "ingestion_framework"
+    # "dw_routine"
+    # "dw_view_creation"
+     "dsp_connection"
     # "sharepoint_to_pbi",
     # "Databricks_to_PBI"
-    # "SQL_Server_to_PBI",
+    # "SQL_Server_to_PBI"
     # "Oracle_Server_to_PBI",
     # "Cube_to_PBI",
     # "Column_Connection"
@@ -288,11 +288,11 @@ PROCESS_TYPES = [
     # "SQL_Table_to_DL_Stage",
     # "DL_Curated_to_DL_Curated"
     # "sql_database_extract",
-    # "DW_to_PBI_Dataset",
-    # "Tabular_Model_to_PBI_Dataset",
+    # "DW_to_PBI_Dataset"
+    # "Tabular_Model_to_PBI_Report"
     # "Column_Mapping",
-    # "Informatica_Connection",
-     "DL_Stage_to_DL_Curated"
+    # "Informatica_Connection"
+    # "DL_Stage_to_DL_Curated"
     #"CustomProcessWithMapping" #QA process_type name
     #"ColumnMapping" #QA process name
     #"dsp_connection", #QA process_type name

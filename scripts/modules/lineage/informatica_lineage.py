@@ -220,7 +220,7 @@ def get_qualified_names_for_xml_elements(elements):
         """ PROD MAPPING"""
         if server.lower() == "sqlpag19":
             qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
-        elif server.lower() == "prod1":
+        elif server.lower() == "prod1" or server.lower() == "tprod1":
             qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "prod5":
             qual_name = "oracle://10.1.17.28/" + elem.get("schema") + "/" + table_name
@@ -228,11 +228,10 @@ def get_qualified_names_for_xml_elements(elements):
             qual_name = "oracle://10.1.17.127/SLBA/" + table_name
         elif server.lower() == "oakdwhp1":
             qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
+        elif server.lower() == "prod4d":
+            qual_name = "oracle://10.1.17.106/" + elem.get("schema") + "/" + table_name
         else:
             print(f"NEW SERVER: {server}\n")
-        
-        """elif server.lower() == "prod4":
-            qual_name = "" + elem.get("schema") + "/" + elem.get("table")"""
         
 
         if qual_name is not None:

@@ -3,7 +3,7 @@
  
 # Import Functions
 # ---------------
-from modules.lineage.informatica_lineage import *
+from modules.lineage.business_assets import *
 from modules.entity import *
 from utils import get_credentials, create_purview_client
 # Import Packages
@@ -30,8 +30,9 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
 # ---------------
 
 def main():
-    # Call the function to update descriptions
-    update_lineage_connector_descriptions(prod_client)
+    # Call the function to to create the application service
+    #create_application_service(client=qa_client)
+    list_types(qa_client)
 
 if __name__ == "__main__":
     main()
