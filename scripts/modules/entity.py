@@ -9,7 +9,7 @@ from modules.glossary_propagation.shared_glossary_functions import *
 
 # Package Imports
 # ---------------
-from pyapacheatlas.core.typedef import EntityTypeDef, AtlasAttributeDef
+from pyapacheatlas.core.typedef import EntityTypeDef, AtlasAttributeDef, AtlasProcessTypeDef
 from pyapacheatlas.core import AtlasEntity, AtlasProcess, PurviewClient
 from pathlib import Path
 
@@ -631,6 +631,31 @@ def pull_lineage_connections_from_purview(purview_account_short_name, purview_ac
 
     return pulled_entities
 
+def create_app_service_to_dataset_typedef(client):
+    """
+    Create and upload a typedef for a connector process linking an Application Service to a Dataset.
+
+    Args:
+        client (PurviewClient): The initialized Purview client used to upload the typedef.
+
+    Returns:
+        dict: The response from the Purview client after uploading the typedef.
+    """
+    app_service_to_dataset_typedef = AtlasProcessTypeDef(
+        name="App_Service_to_Dataset",
+        attribute_defs=[
+            {"name": "inputs", "typeName": "array<atlas_object_id>", "isOptional": True},
+            {"name": "outputs", "typeName": "array<atlas_object_id>", "isOptional": True}
+        ],
+        relationship_category="PROCESS",
+        service_type="CustomLineage"
+    )
+
+    response = client.upload_typedefs(
+        typedefs=[app_service_to_dataset_typedef],
+        force_update=True
+    )
+    return response
 
 # Main Processing
 # ---------------

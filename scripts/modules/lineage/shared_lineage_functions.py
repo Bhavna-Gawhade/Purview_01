@@ -265,3 +265,216 @@ def build_lineage_using_guids(client, source_guid, source_type, target_guid, tar
 
     print("Lineage built between " + source_entity["name"] + " and " + target_entity["name"])
 
+
+
+
+#----------------------------------------------------------------------------------------
+# List of custom process types to iterate through. These tyoes are present in the qualified Name of the process.
+PROCESS_TYPES = [
+    # "ingestion_framework"
+    # "dw_routine"
+    # "dw_view_creation"
+     "dsp_connection"
+    # "sharepoint_to_pbi",
+    # "Databricks_to_PBI"
+    # "SQL_Server_to_PBI"
+    # "Oracle_Server_to_PBI",
+    # "Cube_to_PBI",
+    # "Column_Connection"
+    # "DL_Curated_to_DW_Stage"
+    # "Oracle_to_DL_Stage",
+    # "DL_Manual_File_to_DL_Stage"
+    # "SQL_VW_to_DL_Stage",
+    # "SQL_Table_to_DL_Stage",
+    # "DL_Curated_to_DL_Curated"
+    # "sql_database_extract",
+    # "DW_to_PBI_Dataset"
+    # "Tabular_Model_to_PBI_Report"
+    # "Column_Mapping",
+    # "Informatica_Connection"
+    # "DL_Stage_to_DL_Curated"
+    #"CustomProcessWithMapping" #QA process_type name
+    #"ColumnMapping" #QA process name
+    #"dsp_connection", #QA process_type name
+    #"synapse_stored_procedure" #QA process_type name
+    #"synapse_external_table" #QA process_type name
+    #"System_Connection" #QA process_type name
+]
+
+def update_lineage_connector_descriptions(client): 
+    """
+    Updates the `userDescription` field of lineage connector entities in Microsoft Purview. 
+    For each lineage connector entity of specified process types, this function sets the 
+    `userDescription` to reflect details about the source and target of the entity.
+
+    Parameters:
+        client (PurviewClient): Authenticated Purview client instance for entity operations.
+
+    Returns:
+        None: Outputs the updated entity descriptions to console.
+    """
+
+    for process_type in PROCESS_TYPES:
+        try:
+            # Adjust search filter to match qualifiedName with 'process_type:DL_Stage_to_DL_Curated'
+            search_filter = {
+                "and": [
+                    {
+                        "attributeName": "qualifiedName",
+                        "operator": "contains",  # Use "contains" if your SDK/Purview supports it
+                        "attributeValue": f"process_type:{process_type}"
+                    }
+                ]
+            }
+            
+            # Fetch entities using the discovery client with the search filter
+            search_results = client.discovery.search_entities(
+                query="",  # No broad query needed since we are using a search filter
+                limit=100,
+                search_filter=search_filter  # Use the search filter to restrict results
+            )
+            
+            entities_found = False
+            for entity in search_results:
+                entities_found = True
+                entity_guid = entity.get("guid") or entity.get("id")
+                print(f"Entity GUID: {entity_guid}")
+
+                if not entity_guid:
+                    print("Skipping entity without 'guid' or 'id'")
+                    continue
+
+                try:
+                    entity_details = client.get_entity(entity_guid)
+                    print(entity_details)
+                except Exception as e:
+                    print(f"Failed to fetch entity details for GUID {entity_guid}: {e}")
+                    continue
+
+                # Extract source and target details for description
+                entity_info = entity_details.get("entities", [{}])[0]
+                source_entity = next((rel for rel in entity_info["relationshipAttributes"].get("inputs", [])), None)
+                target_entity = next((rel for rel in entity_info["relationshipAttributes"].get("outputs", [])), None)
+
+                # Only proceed if both source and target are present
+                if source_entity and target_entity:
+                    description = "Source Type: {src_type}\nSource Name: {src_name}\nTarget Type: {tgt_type}\nTarget Name: {tgt_name}".format(
+                        src_type=source_entity["typeName"],
+                        src_name=source_entity["displayText"],
+                        tgt_type=target_entity["typeName"],
+                        tgt_name=target_entity["displayText"]
+                    )
+
+                    entity_info["attributes"]["userDescription"] = description
+
+                    try:
+                        client.upload_entities([entity_info])
+                        print(f"Updated entity {entity_guid} with description: {description}\n")
+                    except Exception as e:
+                        print(f"Failed to update entity {entity_guid}: {e}")
+                
+                else:
+                    print(f"Skipping update for entity {entity_guid}: Missing source or target information.\n")
+            
+            if not entities_found:
+                print(f"No entities found for process type '{process_type}'.")
+
+        except Exception as e:
+            print(f"Failed to search entities for process type '{process_type}': {e}")
+            continue
+
+
+#def update_lineage_connector_descriptions(client): 
+"""
+This function will work when you provide the name of the process (in the process_type parameter in the function) which is displayed in the Purview portal
+EXAMPLE: 'name':'ColumnMapping' needs to be used in place of 'process_type':'CustomProcessWithMapping' 
+"""
+
+    # """
+    # Updates the `userDescription` field of lineage connector entities in Microsoft Purview. 
+    # For each lineage connector entity of specified process types, this function sets the 
+    # `userDescription` to reflect details about the source and target of the entity.
+
+    # Parameters:
+    #     client (PurviewClient): Authenticated Purview client instance for entity operations.
+
+    # Returns:
+    #     None: Outputs the updated entity descriptions to console.
+    # """
+
+    # for process_type in PROCESS_TYPES:
+    #     try:
+    #         # Apply search filter to only retrieve entities with the specified name
+    #         search_filter = {
+    #             "and": [
+    #                 {
+    #                     "attributeName": "name",
+    #                     "operator": "eq",
+    #                     "attributeValue": process_type
+    #                 }
+    #             ]
+    #         }
+            
+    #         # Fetch entities using the discovery client with the search filter
+    #         search_results = client.discovery.search_entities(
+    #             query=process_type,  # No broad query needed since we are using a search filter
+    #             limit=100,
+    #             search_filter=search_filter  # Use the search filter to restrict results
+    #         )
+            
+    #         # Process the search results
+    #         entities_found = False
+    #         for entity in search_results:
+    #             entities_found = True
+    #             entity_guid = entity.get("guid") or entity.get("id")
+    #             print(f"Entity GUID: {entity_guid}")
+
+    #             if not entity_guid:
+    #                 print("Skipping entity without 'guid' or 'id'")
+    #                 continue
+
+    #             # Fetch the full entity details, including relationships
+    #             try:
+    #                 entity_details = client.get_entity(entity_guid)
+    #                 entity_info = entity_details.get("entities", [{}])[0]
+    #                 print(f"Entity Details: {entity_info}")
+    #             except Exception as e:
+    #                 print(f"Failed to fetch entity details for GUID {entity_guid}: {e}")
+    #                 continue
+
+    #             # Extract source and target details for description
+    #             source_entity = next((rel for rel in entity_info["relationshipAttributes"].get("inputs", [])), None)
+    #             target_entity = next((rel for rel in entity_info["relationshipAttributes"].get("outputs", [])), None)
+
+    #             # Construct the description based on available source and target information
+    #             # Only proceed if both source and target are present
+    #             if source_entity and target_entity:
+    #                 description = "Source Type: {src_type}\n" \
+    #                             "Source Name: {src_name}\n" \
+    #                             "Target Type: {tgt_type}\n" \
+    #                             "Target Name: {tgt_name}".format(
+    #                     src_type=source_entity["typeName"],
+    #                     src_name=source_entity["displayText"],
+    #                     tgt_type=target_entity["typeName"],
+    #                     tgt_name=target_entity["displayText"]
+    #                 )
+
+    #                 # Assign the new description to the entity attributes
+    #                 entity_info["attributes"]["userDescription"] = description
+
+    #                 # Update entity in Purview
+    #                 try:
+    #                     client.upload_entities([entity_info])
+    #                     print(f"Updated entity {entity_guid} with description: {description}\n")
+    #                 except Exception as e:
+    #                     print(f"Failed to update entity {entity_guid}: {e}")
+
+    #             else:
+    #                 print(f"Skipping update for entity {entity_guid}: Missing source or target information.\n")
+
+    #         if not entities_found:
+    #             print(f"No entities found for process type '{process_type}'.")
+
+    #     except Exception as e:
+    #         print(f"Failed to search entities for process type '{process_type}': {e}")
+    #         continue
