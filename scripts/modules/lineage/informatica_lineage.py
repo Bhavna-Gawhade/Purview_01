@@ -232,6 +232,7 @@ def get_qualified_names_for_xml_elements(elements):
             qual_name = "oracle://10.1.17.106/" + elem.get("schema") + "/" + table_name
         else:
             print(f"NEW SERVER: {server}\n")
+
         
 
         if qual_name is not None:
