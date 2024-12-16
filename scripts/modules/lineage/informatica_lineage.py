@@ -135,7 +135,7 @@ def get_targets_from_connection_names(excel_file_path, xml_file_path):
     """
     # Load connection details from the Excel file
     connection_excel_details = load_connection_name_details(excel_file_path)
-
+    
     # Extract CONNECTION NAME values from the XML file
     connection_names = get_connection_names_from_xml(xml_file_path)
 
@@ -144,7 +144,8 @@ def get_targets_from_connection_names(excel_file_path, xml_file_path):
     for conn_name in connection_names:
         table_names = connection_names.get(conn_name)
         for table in table_names:
-            if conn_name in connection_excel_details: 
+            if conn_name in connection_excel_details:
+                #print("conn_name:", conn_name) #FIXME: failing here for FINCON
                 # Pull the excel mapping details 
                 server_details = connection_excel_details.get(conn_name)
                 elem_dict = {
@@ -219,7 +220,11 @@ def get_qualified_names_for_xml_elements(elements):
 
         """ PROD MAPPING"""
         if server.lower() == "sqlpag19":
-            qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + table_name
+            qual_name = "mssql://10.1.70.20:1433/MSSQLSERVER/" + elem.get("schema") + "/" + "dbo" + "/" + table_name #FIXME: dbo had to be hardcoded to build succesful connection asit is not present in the XML
+        elif server.lower() == "wsbip3sqlv":
+            qual_name = "mssql://wsbip3sqlv.res.hbi.net/MSSQLSERVER/" + "POS" + "/" + elem.get("schema") + "/" + table_name #FIXME: something needs to be hardcoded for it to work
+        elif server.lower() == "bipaosql":
+            qual_name = "mssql://bipaosql.res.hbi.net/MSSQLSERVER/" + elem.get("schema") + "/" + "dbo" + "/" + table_name ##FIXME: something needs to be hardcoded for it to work
         elif server.lower() == "prod1" or server.lower() == "tprod1":
             qual_name = "oracle://10.1.17.190/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "prod5":
@@ -230,6 +235,8 @@ def get_qualified_names_for_xml_elements(elements):
             qual_name = "oracle://10.1.17.127/" + elem.get("schema") + "/" + table_name
         elif server.lower() == "prod4d":
             qual_name = "oracle://10.1.17.106/" + elem.get("schema") + "/" + table_name
+        elif server.lower() == "lawprod" or server.lower() == "lawp2":
+            qual_name = "oracle://10.1.17.126/" + elem.get("schema") + "/" + table_name
         else:
             print(f"NEW SERVER: {server}\n")
 

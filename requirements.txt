@@ -19,3 +19,5 @@ pyapacheatlas
 sqllineage
 fuzzywuzzy
 python-Levenshtein
+azure-mgmt-datafactory
+azure-identity

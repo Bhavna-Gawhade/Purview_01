@@ -50,7 +50,7 @@ prod_client = create_purview_client(credentials=CREDS, mod_type='pyapacheatlas',
  
 def main():
     # INFORMATICA DEV
-    connection_names_excel = "All_connections.xlsx"
+    connection_names_excel = "testing_inputs\All_connections.xlsx"
     directories = ["D:\Git\Purview\scripts\data files\HIGHLEVEL_SALES_FORECAST"]
     build_mass_lineage_for_folders(prod_client, connection_names_excel, directories)
  
