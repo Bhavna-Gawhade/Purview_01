@@ -32,8 +32,8 @@ def get_failed_scans(client, ds_name, scan_names):
     return failed_scans
 
 # Replace with your actual values
-ds_name = "HBIAnalyticsADLS"  # Name of your registered data source
-scan_names = ["Scan-Full", "Scan-Incremental"]  # List of known scan names
+ds_name = "SAPHana-DSP-DV"  # Name of your registered data source
+scan_names = ["Scan-Fin-Rep", "Scan-Md-Stg"]  # List of known scan names
 reference_name_purview = "hbi-qa01-datamgmt-pview"  # Your Purview account name
 
 # Use DefaultAzureCredential for authentication
